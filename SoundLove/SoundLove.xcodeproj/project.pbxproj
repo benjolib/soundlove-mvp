@@ -9,11 +9,10 @@
 /* Begin PBXBuildFile section */
 		569513871B5D1F42008A649B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 569513861B5D1F42008A649B /* main.m */; };
 		5695138A1B5D1F42008A649B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 569513891B5D1F42008A649B /* AppDelegate.m */; };
-		5695138D1B5D1F42008A649B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5695138C1B5D1F42008A649B /* ViewController.m */; };
 		569513901B5D1F42008A649B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5695138E1B5D1F42008A649B /* Main.storyboard */; };
 		569513921B5D1F42008A649B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 569513911B5D1F42008A649B /* Images.xcassets */; };
-		569513951B5D1F42008A649B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 569513931B5D1F42008A649B /* LaunchScreen.xib */; };
 		569513A11B5D1F43008A649B /* SoundLoveTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 569513A01B5D1F43008A649B /* SoundLoveTests.m */; };
+		569513AE1B5D20B0008A649B /* FavoriteConcertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 569513AD1B5D20B0008A649B /* FavoriteConcertViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +31,13 @@
 		569513861B5D1F42008A649B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		569513881B5D1F42008A649B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		569513891B5D1F42008A649B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		5695138B1B5D1F42008A649B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		5695138C1B5D1F42008A649B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		5695138F1B5D1F42008A649B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		569513911B5D1F42008A649B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		569513941B5D1F42008A649B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		5695139A1B5D1F43008A649B /* SoundLoveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SoundLoveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5695139F1B5D1F43008A649B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		569513A01B5D1F43008A649B /* SoundLoveTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SoundLoveTests.m; sourceTree = "<group>"; };
+		569513AC1B5D20B0008A649B /* FavoriteConcertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoriteConcertViewController.h; path = viewcontrollers/FavoriteConcertViewController.h; sourceTree = "<group>"; };
+		569513AD1B5D20B0008A649B /* FavoriteConcertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavoriteConcertViewController.m; path = viewcontrollers/FavoriteConcertViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,11 +81,8 @@
 			children = (
 				569513881B5D1F42008A649B /* AppDelegate.h */,
 				569513891B5D1F42008A649B /* AppDelegate.m */,
-				5695138B1B5D1F42008A649B /* ViewController.h */,
-				5695138C1B5D1F42008A649B /* ViewController.m */,
-				5695138E1B5D1F42008A649B /* Main.storyboard */,
-				569513911B5D1F42008A649B /* Images.xcassets */,
-				569513931B5D1F42008A649B /* LaunchScreen.xib */,
+				569513AA1B5D2048008A649B /* viewControllers */,
+				569513AB1B5D2057008A649B /* Storyboards */,
 				569513841B5D1F42008A649B /* Supporting Files */,
 			);
 			path = SoundLove;
@@ -96,6 +91,7 @@
 		569513841B5D1F42008A649B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				569513911B5D1F42008A649B /* Images.xcassets */,
 				569513851B5D1F42008A649B /* Info.plist */,
 				569513861B5D1F42008A649B /* main.m */,
 			);
@@ -117,6 +113,23 @@
 				5695139F1B5D1F43008A649B /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		569513AA1B5D2048008A649B /* viewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				569513AC1B5D20B0008A649B /* FavoriteConcertViewController.h */,
+				569513AD1B5D20B0008A649B /* FavoriteConcertViewController.m */,
+			);
+			name = viewControllers;
+			sourceTree = "<group>";
+		};
+		569513AB1B5D2057008A649B /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				5695138E1B5D1F42008A649B /* Main.storyboard */,
+			);
+			name = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,7 +213,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				569513901B5D1F42008A649B /* Main.storyboard in Resources */,
-				569513951B5D1F42008A649B /* LaunchScreen.xib in Resources */,
 				569513921B5D1F42008A649B /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,8 +231,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5695138D1B5D1F42008A649B /* ViewController.m in Sources */,
 				5695138A1B5D1F42008A649B /* AppDelegate.m in Sources */,
+				569513AE1B5D20B0008A649B /* FavoriteConcertViewController.m in Sources */,
 				569513871B5D1F42008A649B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,14 +262,6 @@
 				5695138F1B5D1F42008A649B /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		569513931B5D1F42008A649B /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				569513941B5D1F42008A649B /* Base */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -299,7 +303,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -336,7 +340,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -347,7 +351,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = SoundLove/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -357,7 +363,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = SoundLove/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
