@@ -32,6 +32,9 @@
 		56740A1D1B60F12700638FEF /* MainContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56740A1C1B60F12700638FEF /* MainContainerViewController.m */; };
 		56740A221B60F17C00638FEF /* FestivalTransitionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 56740A1F1B60F17C00638FEF /* FestivalTransitionManager.m */; };
 		56740A231B60F17C00638FEF /* FestivalTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 56740A211B60F17C00638FEF /* FestivalTransitionAnimator.m */; };
+		56740A261B61230500638FEF /* ProfilViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56740A251B61230500638FEF /* ProfilViewController.m */; };
+		56740A291B61232900638FEF /* BandsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56740A281B61232900638FEF /* BandsViewController.m */; };
+		56740A2C1B61234800638FEF /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56740A2B1B61234800638FEF /* CalendarViewController.m */; };
 		569513871B5D1F42008A649B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 569513861B5D1F42008A649B /* main.m */; };
 		5695138A1B5D1F42008A649B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 569513891B5D1F42008A649B /* AppDelegate.m */; };
 		569513901B5D1F42008A649B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5695138E1B5D1F42008A649B /* Main.storyboard */; };
@@ -98,6 +101,12 @@
 		56740A1F1B60F17C00638FEF /* FestivalTransitionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FestivalTransitionManager.m; sourceTree = "<group>"; };
 		56740A201B60F17C00638FEF /* FestivalTransitionAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FestivalTransitionAnimator.h; sourceTree = "<group>"; };
 		56740A211B60F17C00638FEF /* FestivalTransitionAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FestivalTransitionAnimator.m; sourceTree = "<group>"; };
+		56740A241B61230500638FEF /* ProfilViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfilViewController.h; sourceTree = "<group>"; };
+		56740A251B61230500638FEF /* ProfilViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfilViewController.m; sourceTree = "<group>"; };
+		56740A271B61232900638FEF /* BandsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BandsViewController.h; sourceTree = "<group>"; };
+		56740A281B61232900638FEF /* BandsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BandsViewController.m; sourceTree = "<group>"; };
+		56740A2A1B61234800638FEF /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
+		56740A2B1B61234800638FEF /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
 		569513811B5D1F42008A649B /* SoundLove.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoundLove.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		569513851B5D1F42008A649B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		569513861B5D1F42008A649B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -246,12 +255,18 @@
 				56740A021B60ED8B00638FEF /* BaseGradientViewController.m */,
 				56740A1B1B60F12700638FEF /* MainContainerViewController.h */,
 				56740A1C1B60F12700638FEF /* MainContainerViewController.m */,
+				567409E71B60DD3900638FEF /* MenuViewController.h */,
+				567409E81B60DD3900638FEF /* MenuViewController.m */,
 				56740A181B60F0CA00638FEF /* ConcertsViewController.h */,
 				56740A191B60F0CA00638FEF /* ConcertsViewController.m */,
 				567409E51B60DD3900638FEF /* FavoriteConcertViewController.h */,
 				567409E61B60DD3900638FEF /* FavoriteConcertViewController.m */,
-				567409E71B60DD3900638FEF /* MenuViewController.h */,
-				567409E81B60DD3900638FEF /* MenuViewController.m */,
+				56740A2A1B61234800638FEF /* CalendarViewController.h */,
+				56740A2B1B61234800638FEF /* CalendarViewController.m */,
+				56740A271B61232900638FEF /* BandsViewController.h */,
+				56740A281B61232900638FEF /* BandsViewController.m */,
+				56740A241B61230500638FEF /* ProfilViewController.h */,
+				56740A251B61230500638FEF /* ProfilViewController.m */,
 				567409E91B60DD3900638FEF /* OverlayViewController.h */,
 				567409EA1B60DD3900638FEF /* OverlayViewController.m */,
 				56740A001B60ED4B00638FEF /* Info views */,
@@ -435,10 +450,12 @@
 				56740A061B60EE0900638FEF /* BaseTableViewCell.m in Sources */,
 				5695138A1B5D1F42008A649B /* AppDelegate.m in Sources */,
 				567409F31B60EB5700638FEF /* BadgeCounterView.m in Sources */,
+				56740A261B61230500638FEF /* ProfilViewController.m in Sources */,
 				567409DD1B60DAEC00638FEF /* StoryboardManager.m in Sources */,
 				56D395DB1B5F8928000DC427 /* OverlayTransitionManager.m in Sources */,
 				567409EB1B60DD3900638FEF /* FavoriteConcertViewController.m in Sources */,
 				567409FF1B60ED4700638FEF /* WhatWeDoViewController.m in Sources */,
+				56740A291B61232900638FEF /* BandsViewController.m in Sources */,
 				56740A1A1B60F0CA00638FEF /* ConcertsViewController.m in Sources */,
 				56D395D71B5F8133000DC427 /* UIColor+GlobalColors.m in Sources */,
 				56D395D31B5F806B000DC427 /* RoundedButton.m in Sources */,
@@ -449,6 +466,7 @@
 				567409ED1B60DD3900638FEF /* OverlayViewController.m in Sources */,
 				567409F01B60DD5A00638FEF /* MenuButton.m in Sources */,
 				56D395E51B5F8C11000DC427 /* UIImage+ImageEffects.m in Sources */,
+				56740A2C1B61234800638FEF /* CalendarViewController.m in Sources */,
 				56740A221B60F17C00638FEF /* FestivalTransitionManager.m in Sources */,
 				56740A171B60F07B00638FEF /* CoreDataHandler.m in Sources */,
 				56D395DE1B5F8988000DC427 /* OverlayTransitionAnimator.m in Sources */,

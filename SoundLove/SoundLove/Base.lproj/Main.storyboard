@@ -57,7 +57,7 @@
                                             <constraint firstAttribute="width" constant="70" id="qYR-i0-MvU"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="15"/>
-                                        <state key="normal" title="Button" image="bandsIcon">
+                                        <state key="normal" title="Künstler" image="bandsIcon">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </state>
@@ -72,7 +72,7 @@
                                             <constraint firstAttribute="height" constant="70" id="in6-eW-yZ7"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="15"/>
-                                        <state key="normal" title="Button" image="microphone">
+                                        <state key="normal" title="Konzerte" image="microphone">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </state>
@@ -87,7 +87,7 @@
                                             <constraint firstAttribute="width" constant="70" id="Ipe-V3-mRi"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="15"/>
-                                        <state key="normal" title="Button" image="calendarIcon">
+                                        <state key="normal" title="Kalendar" image="calendarIcon">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </state>
@@ -102,7 +102,7 @@
                                             <constraint firstAttribute="width" constant="70" id="nr4-xU-hnf"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="15"/>
-                                        <state key="normal" title="Button" image="favoriteConcertsIcon">
+                                        <state key="normal" title="Beliebte Konzerte" image="favoriteConcertsIcon">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </state>
@@ -117,7 +117,7 @@
                                             <constraint firstAttribute="height" constant="70" id="mgl-Pl-myK"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="15"/>
-                                        <state key="normal" title="Button" image="profilIcon">
+                                        <state key="normal" title="Profil" image="profilIcon">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </state>
@@ -179,15 +179,73 @@
                         <viewControllerLayoutGuide type="bottom" id="caF-j8-5UG"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Td5-zZ-V6n">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RrY-ju-eIV" userLabel="navigation view">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vR3-P3-6fV">
+                                        <rect key="frame" x="0.0" y="8" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="UAH-z3-H85"/>
+                                        </constraints>
+                                        <state key="normal" image="menuIcon">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="menuButtonPressed:" destination="9rZ-zW-Pvp" eventType="touchUpInside" id="zWF-4j-arZ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="vR3-P3-6fV" firstAttribute="leading" secondItem="RrY-ju-eIV" secondAttribute="leading" id="Fh4-Gj-Emv"/>
+                                    <constraint firstAttribute="height" constant="60" id="OFa-uP-dTo"/>
+                                    <constraint firstAttribute="bottom" secondItem="vR3-P3-6fV" secondAttribute="bottom" constant="8" id="nfG-je-u3Z"/>
+                                    <constraint firstItem="vR3-P3-6fV" firstAttribute="top" secondItem="RrY-ju-eIV" secondAttribute="top" constant="8" id="njr-e3-tvO"/>
+                                </constraints>
+                            </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GqS-Hu-NWI">
-                                <rect key="frame" x="0.0" y="50" width="320" height="454"/>
+                                <rect key="frame" x="0.0" y="60" width="320" height="508"/>
                                 <connections>
-                                    <segue destination="piB-x3-s0E" kind="embed" id="pTi-U4-fX8"/>
+                                    <segue destination="TSd-hq-GDC" kind="embed" id="mlv-Bl-Sez"/>
                                 </connections>
                             </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="RrY-ju-eIV" firstAttribute="top" secondItem="ngf-hk-RAX" secondAttribute="bottom" id="3mO-o8-T5Y"/>
+                            <constraint firstItem="GqS-Hu-NWI" firstAttribute="top" secondItem="RrY-ju-eIV" secondAttribute="bottom" id="66s-rs-1Fx"/>
+                            <constraint firstAttribute="trailing" secondItem="GqS-Hu-NWI" secondAttribute="trailing" id="8JB-lC-3KT"/>
+                            <constraint firstItem="RrY-ju-eIV" firstAttribute="leading" secondItem="Td5-zZ-V6n" secondAttribute="leading" id="JuV-0Q-2Ln"/>
+                            <constraint firstAttribute="trailing" secondItem="RrY-ju-eIV" secondAttribute="trailing" id="RwR-6c-WT8"/>
+                            <constraint firstItem="GqS-Hu-NWI" firstAttribute="leading" secondItem="Td5-zZ-V6n" secondAttribute="leading" id="XB2-gB-xwz"/>
+                            <constraint firstAttribute="bottom" secondItem="GqS-Hu-NWI" secondAttribute="bottom" id="YSb-1l-rSx"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Wo2-Xm-glE"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <segue destination="yjD-t2-ppn" kind="modal" identifier="presentMenuView" id="zxU-JI-7s7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jE7-Ub-sAO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="522" y="743"/>
+        </scene>
+        <!--Concerts View Controller-->
+        <scene sceneID="6kc-do-1f8">
+            <objects>
+                <viewController storyboardIdentifier="ConcertsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="TSd-hq-GDC" customClass="ConcertsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="z3K-6X-k9E"/>
+                        <viewControllerLayoutGuide type="bottom" id="FFl-qm-afL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="epi-WA-mRh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="508"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LuD-cs-s1I">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                 <subviews>
@@ -230,35 +288,87 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="LuD-cs-s1I" firstAttribute="leading" secondItem="Td5-zZ-V6n" secondAttribute="leading" id="0ow-RS-vaq"/>
-                            <constraint firstItem="LuD-cs-s1I" firstAttribute="top" secondItem="ngf-hk-RAX" secondAttribute="bottom" id="1xR-iI-7Dj"/>
-                            <constraint firstAttribute="trailing" secondItem="GqS-Hu-NWI" secondAttribute="trailing" id="8JB-lC-3KT"/>
-                            <constraint firstItem="GqS-Hu-NWI" firstAttribute="top" secondItem="LuD-cs-s1I" secondAttribute="bottom" id="JyQ-vb-OMz"/>
-                            <constraint firstItem="GqS-Hu-NWI" firstAttribute="leading" secondItem="Td5-zZ-V6n" secondAttribute="leading" id="XB2-gB-xwz"/>
-                            <constraint firstAttribute="bottom" secondItem="GqS-Hu-NWI" secondAttribute="bottom" id="XWN-gt-gn1"/>
-                            <constraint firstAttribute="trailing" secondItem="LuD-cs-s1I" secondAttribute="trailing" id="svA-qg-mp9"/>
+                            <constraint firstItem="LuD-cs-s1I" firstAttribute="leading" secondItem="epi-WA-mRh" secondAttribute="leading" id="JRU-ew-eh8"/>
+                            <constraint firstItem="LuD-cs-s1I" firstAttribute="top" secondItem="z3K-6X-k9E" secondAttribute="bottom" id="kba-e4-XPz"/>
+                            <constraint firstAttribute="trailing" secondItem="LuD-cs-s1I" secondAttribute="trailing" id="x1F-54-p9l"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Wo2-Xm-glE">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="Po9-6c-gXK">
-                            <connections>
-                                <action selector="menuButtonPressed:" destination="9rZ-zW-Pvp" id="5dv-VD-TJu"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Popup" id="idT-9j-L50">
-                            <connections>
-                                <action selector="showOverlay:" destination="9rZ-zW-Pvp" id="Zxn-zb-2Um"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <connections>
-                        <segue destination="yjD-t2-ppn" kind="modal" identifier="presentMenuView" id="zxU-JI-7s7"/>
-                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jE7-Ub-sAO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IBd-j8-B6q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="522" y="743"/>
+            <point key="canvasLocation" x="1192" y="525"/>
+        </scene>
+        <!--Favorite Concert View Controller-->
+        <scene sceneID="cAT-w9-bSs">
+            <objects>
+                <viewController storyboardIdentifier="FavoriteConcertViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PBY-6T-M2t" customClass="FavoriteConcertViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="h9u-v9-tsG"/>
+                        <viewControllerLayoutGuide type="bottom" id="JKW-nC-YaH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Bcg-kf-VKA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y4N-UB-6Sp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1192" y="1187"/>
+        </scene>
+        <!--Calendar View Controller-->
+        <scene sceneID="BYj-T6-9de">
+            <objects>
+                <viewController storyboardIdentifier="CalendarViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ika-SG-cLz" customClass="CalendarViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PI3-Z4-jHY"/>
+                        <viewControllerLayoutGuide type="bottom" id="2YF-wV-eul"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mSK-YL-gkH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X39-1d-6z8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1192" y="1857"/>
+        </scene>
+        <!--Bands View Controller-->
+        <scene sceneID="n8M-7f-gdE">
+            <objects>
+                <viewController storyboardIdentifier="BandsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LGI-Y9-wyp" customClass="BandsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eb0-Jq-sW0"/>
+                        <viewControllerLayoutGuide type="bottom" id="YeG-h4-I2w"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1R5-3T-2rE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TLx-Pe-Lmf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1192" y="2511"/>
+        </scene>
+        <!--Profil View Controller-->
+        <scene sceneID="D6i-Nz-Mar">
+            <objects>
+                <viewController storyboardIdentifier="ProfilViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jsh-Gv-cxE" customClass="ProfilViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nkZ-dP-MjB"/>
+                        <viewControllerLayoutGuide type="bottom" id="QcA-Ha-SB1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7mJ-co-hHa">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1M5-er-uks" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1192" y="3163"/>
         </scene>
         <!--Overlay View Controller-->
         <scene sceneID="g4r-HW-wyF">
@@ -337,30 +447,13 @@
             </objects>
             <point key="canvasLocation" x="522" y="-201"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="Wi4-8G-97C">
-            <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="piB-x3-s0E" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="cB1-wH-ZD6"/>
-                        <viewControllerLayoutGuide type="bottom" id="82N-E6-6EQ"/>
-                    </layoutGuides>
-                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="t3j-ky-hiP">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="454"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <toolbarItems/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sfO-Lu-fQ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="951" y="800"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="4lR-y9-hfi">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1uW-j9-Ptf" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="1uW-j9-Ptf" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="XbG-qb-YUR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -495,6 +588,7 @@
         <image name="calendarIcon" width="40" height="40"/>
         <image name="favoriteConcertsIcon" width="43" height="42"/>
         <image name="info button" width="33" height="33"/>
+        <image name="menuIcon" width="27" height="27"/>
         <image name="microphone" width="34" height="45"/>
         <image name="profilIcon" width="39" height="42"/>
         <image name="wifi icon" width="94" height="94"/>

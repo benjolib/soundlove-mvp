@@ -30,4 +30,29 @@
     return [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"infoNavigationID"];
 }
 
++ (ConcertsViewController*)concertsViewController
+{
+    return [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"ConcertsViewController"];
+}
+
++ (FavoriteConcertViewController*)favoriteConcertViewController
+{
+    return [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"FavoriteConcertViewController"];
+}
+
++ (CalendarViewController*)calendarViewController
+{
+    return [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"CalendarViewController"];
+}
+
++ (BandsViewController*)bandsViewController
+{
+    return [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"BandsViewController"];
+}
+
++ (ProfilViewController*)profilViewController
+{
+    return [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"ProfilViewController"];
+}
+
 @end

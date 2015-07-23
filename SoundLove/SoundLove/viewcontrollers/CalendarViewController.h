@@ -1,5 +1,5 @@
 //
-//  ConcertsViewController.h
+//  CalendarViewController.h
 //  SoundLove
 //
 //  Created by Sztanyi Szabolcs on 23/07/15.
@@ -8,6 +8,6 @@
 
 #import "BaseGradientViewController.h"
 
-@interface ConcertsViewController : BaseGradientViewController
+@interface CalendarViewController : BaseGradientViewController
 
 @end

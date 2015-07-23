@@ -8,6 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSUInteger, MenuItem) {
+    MenuItemConcerts,
+    MenuItemFavoriteConcerts,
+    MenuItemCalendar,
+    MenuItemBands,
+    MenuItemProfil
+};
+
 @interface MainContainerViewController : UIViewController
+
+@property (nonatomic, weak) IBOutlet UIView *containerView;
+
+- (void)changeToMenuItem:(MenuItem)menuItem;
 
 @end

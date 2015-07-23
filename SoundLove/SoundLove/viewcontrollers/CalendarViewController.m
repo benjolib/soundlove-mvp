@@ -1,13 +1,13 @@
 //
-//  ConcertsViewController.h
+//  CalendarViewController.m
 //  SoundLove
 //
 //  Created by Sztanyi Szabolcs on 23/07/15.
 //  Copyright (c) 2015 Zappdesigntemplates. All rights reserved.
 //
 
-#import "BaseGradientViewController.h"
+#import "CalendarViewController.h"
 
-@interface ConcertsViewController : BaseGradientViewController
+@implementation CalendarViewController
 
 @end

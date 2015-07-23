@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Zappdesigntemplates. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseGradientViewController.h"
 
-@interface FavoriteConcertViewController : UIViewController
+@interface FavoriteConcertViewController : BaseGradientViewController
 
 @end

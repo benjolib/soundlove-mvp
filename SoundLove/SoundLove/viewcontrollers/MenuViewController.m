@@ -47,7 +47,23 @@
 
 - (IBAction)menuButtonSelected:(MenuButton*)button
 {
-
+    if ([button isEqual:self.concertButton])
+    {
+        [self switchCurrentSourceWithMenuItem:MenuItemConcerts];
+    }
+    else if ([button isEqual:self.favoriteConcertButton])
+    {
+        [self switchCurrentSourceWithMenuItem:MenuItemFavoriteConcerts];
+    }
+    else if ([button isEqual:self.calendarButton]) {
+        [self switchCurrentSourceWithMenuItem:MenuItemCalendar];
+    }
+    else if ([button isEqual:self.bandsButton]) {
+        [self switchCurrentSourceWithMenuItem:MenuItemBands];
+    }
+    else if ([button isEqual:self.profilButton]) {
+        [self switchCurrentSourceWithMenuItem:MenuItemProfil];
+    }
 }
 
 //- (IBAction)festivalButtonPressed:(id)sender
@@ -85,17 +101,17 @@
 //        [self switchCurrentSourceWithMenuItem:MenuItemFestivalsCalendar];
 //    }
 //}
-//
-//- (void)switchCurrentSourceWithMenuItem:(MenuItem)menuItem
-//{
-//    MainContainerViewController *mainContainerViewController = [self mainContainerViewController];
-//    if (!mainContainerViewController) {
-//        return;
-//    }
-//
-//    [mainContainerViewController changeToMenuItem:menuItem];
-//    [self dismissViewControllerAnimated:YES completion:nil];
-//}
+
+- (void)switchCurrentSourceWithMenuItem:(MenuItem)menuItem
+{
+    MainContainerViewController *mainContainerViewController = [self mainContainerViewController];
+    if (!mainContainerViewController) {
+        return;
+    }
+
+    [mainContainerViewController changeToMenuItem:menuItem];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class OverlayViewController, MenuViewController;
+@class ConcertsViewController, FavoriteConcertViewController, CalendarViewController, BandsViewController, ProfilViewController;
 
 @interface StoryboardManager : NSObject
 
@@ -16,5 +17,11 @@
 + (MenuViewController*)menuViewController;
 
 + (UINavigationController*)infoNavigationController;
+
++ (ConcertsViewController*)concertsViewController;
++ (FavoriteConcertViewController*)favoriteConcertViewController;
++ (CalendarViewController*)calendarViewController;
++ (BandsViewController*)bandsViewController;
++ (ProfilViewController*)profilViewController;
 
 @end
