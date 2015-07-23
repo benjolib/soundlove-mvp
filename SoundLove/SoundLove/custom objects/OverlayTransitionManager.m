@@ -8,12 +8,13 @@
 
 #import "OverlayTransitionManager.h"
 #import "OverlayTransitionAnimator.h"
+#import "StoryboardManager.h"
 
 @implementation OverlayTransitionManager
 
 - (void)presentOverlayViewWithType:(OverlayType)type onViewController:(UIViewController*)viewController
 {
-    OverlayViewController *overlayViewController = [[OverlayViewController alloc] initWithNibName:@"OverlayViewController" bundle:nil];
+    OverlayViewController *overlayViewController = [StoryboardManager overlayViewController];
     
     overlayViewController.transitioningDelegate = self;
     [viewController presentViewController:overlayViewController animated:YES completion:nil];

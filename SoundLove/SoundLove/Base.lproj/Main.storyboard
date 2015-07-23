@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E36b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="1uW-j9-Ptf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F6a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="1uW-j9-Ptf">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Montserrat-Regular.ttf">
+            <string>Montserrat-Regular</string>
+            <string>Montserrat-Regular</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--Favorite Concert View Controller-->
         <scene sceneID="GlZ-aD-bpm">
@@ -88,6 +94,82 @@
             </objects>
             <point key="canvasLocation" x="522" y="417"/>
         </scene>
+        <!--Overlay View Controller-->
+        <scene sceneID="g4r-HW-wyF">
+            <objects>
+                <viewController storyboardIdentifier="OverlayViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yJY-bI-EgW" customClass="OverlayViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GJI-Ld-WFq"/>
+                        <viewControllerLayoutGuide type="bottom" id="K2N-J2-HOd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="oE1-52-NHD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wo bist du?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="Ebz-qx-WRD" userLabel="titleLabel">
+                                <rect key="frame" x="20" y="193" width="280" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="irN-OX-Io9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="24"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bitte erlaube uns auf Deinen Ort zuzugreifen, damit wir Dir Konzerte in Deiner Nähe zeigen können" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="78O-Uj-qyc" userLabel="detailLabel">
+                                <rect key="frame" x="30" y="228" width="260" height="116"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="19"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vTF-F2-xxo" customClass="RoundedButton">
+                                <rect key="frame" x="20" y="444" width="280" height="62"/>
+                                <color key="backgroundColor" red="0.2666666667" green="0.64705882349999999" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="62" id="GDg-Q7-8Yh"/>
+                                </constraints>
+                                <state key="normal" title="Erlauben">
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="confirmButtonPressed:" destination="yJY-bI-EgW" eventType="touchUpInside" id="DxH-SQ-pk3"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wifi icon" translatesAutoresizingMaskIntoConstraints="NO" id="TeP-zW-naC" userLabel="icon imageView">
+                                <rect key="frame" x="114" y="63" width="92" height="92"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="92" id="5aR-5d-6CW"/>
+                                    <constraint firstAttribute="height" constant="92" id="DGn-0k-0c2"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="vTF-F2-xxo" firstAttribute="top" relation="greaterThanOrEqual" secondItem="78O-Uj-qyc" secondAttribute="bottom" constant="10" id="8fG-Vu-g8a"/>
+                            <constraint firstItem="Ebz-qx-WRD" firstAttribute="top" secondItem="TeP-zW-naC" secondAttribute="bottom" constant="38" id="COe-wT-o1z"/>
+                            <constraint firstAttribute="trailing" secondItem="vTF-F2-xxo" secondAttribute="trailing" constant="20" id="RfQ-rv-VND"/>
+                            <constraint firstItem="78O-Uj-qyc" firstAttribute="top" secondItem="Ebz-qx-WRD" secondAttribute="bottom" constant="10" id="TtP-og-sBn"/>
+                            <constraint firstAttribute="centerX" secondItem="TeP-zW-naC" secondAttribute="centerX" id="aZ4-3L-Dca"/>
+                            <constraint firstAttribute="trailing" secondItem="78O-Uj-qyc" secondAttribute="trailing" constant="30" id="hLS-ZR-H9v"/>
+                            <constraint firstAttribute="bottom" secondItem="vTF-F2-xxo" secondAttribute="bottom" constant="62" id="jjo-Hs-4cK"/>
+                            <constraint firstAttribute="trailing" secondItem="Ebz-qx-WRD" secondAttribute="trailing" constant="20" id="mO9-tY-cQn"/>
+                            <constraint firstItem="vTF-F2-xxo" firstAttribute="leading" secondItem="oE1-52-NHD" secondAttribute="leading" constant="20" id="nN4-Tj-geT"/>
+                            <constraint firstItem="78O-Uj-qyc" firstAttribute="leading" secondItem="oE1-52-NHD" secondAttribute="leading" constant="30" id="q9u-tT-xjM"/>
+                            <constraint firstItem="Ebz-qx-WRD" firstAttribute="leading" secondItem="oE1-52-NHD" secondAttribute="leading" constant="20" id="r9d-4g-ADI"/>
+                            <constraint firstItem="TeP-zW-naC" firstAttribute="top" secondItem="oE1-52-NHD" secondAttribute="top" constant="63" id="us8-d8-QCd"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="confirmButton" destination="vTF-F2-xxo" id="Mc7-DV-Euh"/>
+                        <outlet property="detailLabel" destination="78O-Uj-qyc" id="M9E-jk-19l"/>
+                        <outlet property="iconImageView" destination="TeP-zW-naC" id="gSQ-SI-2pN"/>
+                        <outlet property="titleLabel" destination="Ebz-qx-WRD" id="gCa-ws-NHO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RNk-gm-kGF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="522" y="1081"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="Wi4-8G-97C">
             <objects>
@@ -126,6 +208,9 @@
             <point key="canvasLocation" x="115" y="417"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="wifi icon" width="94" height="94"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		567409DD1B60DAEC00638FEF /* StoryboardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 567409DC1B60DAEC00638FEF /* StoryboardManager.m */; };
+		567409DF1B60DC1C00638FEF /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 567409DE1B60DC1C00638FEF /* Montserrat-Bold.ttf */; };
+		567409E11B60DC2100638FEF /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 567409E01B60DC2100638FEF /* Montserrat-Regular.ttf */; };
 		569513871B5D1F42008A649B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 569513861B5D1F42008A649B /* main.m */; };
 		5695138A1B5D1F42008A649B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 569513891B5D1F42008A649B /* AppDelegate.m */; };
 		569513901B5D1F42008A649B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5695138E1B5D1F42008A649B /* Main.storyboard */; };
@@ -14,7 +17,6 @@
 		569513A11B5D1F43008A649B /* SoundLoveTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 569513A01B5D1F43008A649B /* SoundLoveTests.m */; };
 		569513AE1B5D20B0008A649B /* FavoriteConcertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 569513AD1B5D20B0008A649B /* FavoriteConcertViewController.m */; };
 		56D395CD1B5F7DE3000DC427 /* OverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D395CC1B5F7DE3000DC427 /* OverlayViewController.m */; };
-		56D395CF1B5F7E56000DC427 /* OverlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56D395CE1B5F7E56000DC427 /* OverlayViewController.xib */; };
 		56D395D31B5F806B000DC427 /* RoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D395D21B5F806B000DC427 /* RoundedButton.m */; };
 		56D395D71B5F8133000DC427 /* UIColor+GlobalColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D395D61B5F8133000DC427 /* UIColor+GlobalColors.m */; };
 		56D395DB1B5F8928000DC427 /* OverlayTransitionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D395DA1B5F8928000DC427 /* OverlayTransitionManager.m */; };
@@ -34,6 +36,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		567409DB1B60DAEC00638FEF /* StoryboardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoryboardManager.h; path = "custom objects/StoryboardManager.h"; sourceTree = "<group>"; };
+		567409DC1B60DAEC00638FEF /* StoryboardManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StoryboardManager.m; path = "custom objects/StoryboardManager.m"; sourceTree = "<group>"; };
+		567409DE1B60DC1C00638FEF /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		567409E01B60DC2100638FEF /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		569513811B5D1F42008A649B /* SoundLove.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoundLove.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		569513851B5D1F42008A649B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		569513861B5D1F42008A649B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -48,7 +54,6 @@
 		569513AD1B5D20B0008A649B /* FavoriteConcertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavoriteConcertViewController.m; path = viewcontrollers/FavoriteConcertViewController.m; sourceTree = "<group>"; };
 		56D395CB1B5F7DE3000DC427 /* OverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OverlayViewController.h; path = viewcontrollers/OverlayViewController.h; sourceTree = "<group>"; };
 		56D395CC1B5F7DE3000DC427 /* OverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OverlayViewController.m; path = viewcontrollers/OverlayViewController.m; sourceTree = "<group>"; };
-		56D395CE1B5F7E56000DC427 /* OverlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OverlayViewController.xib; path = viewcontrollers/OverlayViewController.xib; sourceTree = "<group>"; };
 		56D395D11B5F806B000DC427 /* RoundedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedButton.h; sourceTree = "<group>"; };
 		56D395D21B5F806B000DC427 /* RoundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundedButton.m; sourceTree = "<group>"; };
 		56D395D51B5F8133000DC427 /* UIColor+GlobalColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+GlobalColors.h"; sourceTree = "<group>"; };
@@ -118,6 +123,8 @@
 			children = (
 				56D395DF1B5F8C00000DC427 /* Third party */,
 				569513911B5D1F42008A649B /* Images.xcassets */,
+				567409DE1B60DC1C00638FEF /* Montserrat-Bold.ttf */,
+				567409E01B60DC2100638FEF /* Montserrat-Regular.ttf */,
 				569513851B5D1F42008A649B /* Info.plist */,
 				569513861B5D1F42008A649B /* main.m */,
 			);
@@ -148,7 +155,6 @@
 				569513AD1B5D20B0008A649B /* FavoriteConcertViewController.m */,
 				56D395CB1B5F7DE3000DC427 /* OverlayViewController.h */,
 				56D395CC1B5F7DE3000DC427 /* OverlayViewController.m */,
-				56D395CE1B5F7E56000DC427 /* OverlayViewController.xib */,
 			);
 			name = viewControllers;
 			sourceTree = "<group>";
@@ -157,6 +163,8 @@
 			isa = PBXGroup;
 			children = (
 				5695138E1B5D1F42008A649B /* Main.storyboard */,
+				567409DB1B60DAEC00638FEF /* StoryboardManager.h */,
+				567409DC1B60DAEC00638FEF /* StoryboardManager.m */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -283,9 +291,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56D395CF1B5F7E56000DC427 /* OverlayViewController.xib in Resources */,
+				567409E11B60DC2100638FEF /* Montserrat-Regular.ttf in Resources */,
 				569513901B5D1F42008A649B /* Main.storyboard in Resources */,
 				569513921B5D1F42008A649B /* Images.xcassets in Resources */,
+				567409DF1B60DC1C00638FEF /* Montserrat-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5695138A1B5D1F42008A649B /* AppDelegate.m in Sources */,
+				567409DD1B60DAEC00638FEF /* StoryboardManager.m in Sources */,
 				56D395DB1B5F8928000DC427 /* OverlayTransitionManager.m in Sources */,
 				569513AE1B5D20B0008A649B /* FavoriteConcertViewController.m in Sources */,
 				56D395D71B5F8133000DC427 /* UIColor+GlobalColors.m in Sources */,

@@ -77,4 +77,9 @@
     self.detailLabel.textColor = [UIColor globalGreenColor];
 }
 
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
+
 @end
