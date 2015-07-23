@@ -10,13 +10,33 @@
 		567409DD1B60DAEC00638FEF /* StoryboardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 567409DC1B60DAEC00638FEF /* StoryboardManager.m */; };
 		567409DF1B60DC1C00638FEF /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 567409DE1B60DC1C00638FEF /* Montserrat-Bold.ttf */; };
 		567409E11B60DC2100638FEF /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 567409E01B60DC2100638FEF /* Montserrat-Regular.ttf */; };
+		567409EB1B60DD3900638FEF /* FavoriteConcertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 567409E61B60DD3900638FEF /* FavoriteConcertViewController.m */; };
+		567409EC1B60DD3900638FEF /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 567409E81B60DD3900638FEF /* MenuViewController.m */; };
+		567409ED1B60DD3900638FEF /* OverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 567409EA1B60DD3900638FEF /* OverlayViewController.m */; };
+		567409F01B60DD5A00638FEF /* MenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 567409EF1B60DD5A00638FEF /* MenuButton.m */; };
+		567409F31B60EB5700638FEF /* BadgeCounterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 567409F21B60EB5700638FEF /* BadgeCounterView.m */; };
+		567409F71B60EC4400638FEF /* Montserrat-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 567409F41B60EC4400638FEF /* Montserrat-Black.otf */; };
+		567409F81B60EC4400638FEF /* Montserrat-Hairline.otf in Resources */ = {isa = PBXBuildFile; fileRef = 567409F51B60EC4400638FEF /* Montserrat-Hairline.otf */; };
+		567409F91B60EC4400638FEF /* Montserrat-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 567409F61B60EC4400638FEF /* Montserrat-Light.otf */; };
+		567409FE1B60ED4700638FEF /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 567409FB1B60ED4700638FEF /* InfoViewController.m */; };
+		567409FF1B60ED4700638FEF /* WhatWeDoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 567409FD1B60ED4700638FEF /* WhatWeDoViewController.m */; };
+		56740A031B60ED8B00638FEF /* BaseGradientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56740A021B60ED8B00638FEF /* BaseGradientViewController.m */; };
+		56740A061B60EE0900638FEF /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56740A051B60EE0900638FEF /* BaseTableViewCell.m */; };
+		56740A091B60EE2700638FEF /* GeneralSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 56740A081B60EE2700638FEF /* GeneralSettings.m */; };
+		56740A0B1B60EE3900638FEF /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56740A0A1B60EE3900638FEF /* StoreKit.framework */; };
+		56740A0E1B60EE4200638FEF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56740A0C1B60EE4200638FEF /* CoreData.framework */; };
+		56740A0F1B60EE4200638FEF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56740A0D1B60EE4200638FEF /* CoreLocation.framework */; };
+		56740A131B60EFEA00638FEF /* MenuTransitionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 56740A121B60EFEA00638FEF /* MenuTransitionManager.m */; };
+		56740A171B60F07B00638FEF /* CoreDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 56740A161B60F07B00638FEF /* CoreDataHandler.m */; };
+		56740A1A1B60F0CA00638FEF /* ConcertsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56740A191B60F0CA00638FEF /* ConcertsViewController.m */; };
+		56740A1D1B60F12700638FEF /* MainContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56740A1C1B60F12700638FEF /* MainContainerViewController.m */; };
+		56740A221B60F17C00638FEF /* FestivalTransitionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 56740A1F1B60F17C00638FEF /* FestivalTransitionManager.m */; };
+		56740A231B60F17C00638FEF /* FestivalTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 56740A211B60F17C00638FEF /* FestivalTransitionAnimator.m */; };
 		569513871B5D1F42008A649B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 569513861B5D1F42008A649B /* main.m */; };
 		5695138A1B5D1F42008A649B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 569513891B5D1F42008A649B /* AppDelegate.m */; };
 		569513901B5D1F42008A649B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5695138E1B5D1F42008A649B /* Main.storyboard */; };
 		569513921B5D1F42008A649B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 569513911B5D1F42008A649B /* Images.xcassets */; };
 		569513A11B5D1F43008A649B /* SoundLoveTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 569513A01B5D1F43008A649B /* SoundLoveTests.m */; };
-		569513AE1B5D20B0008A649B /* FavoriteConcertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 569513AD1B5D20B0008A649B /* FavoriteConcertViewController.m */; };
-		56D395CD1B5F7DE3000DC427 /* OverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D395CC1B5F7DE3000DC427 /* OverlayViewController.m */; };
 		56D395D31B5F806B000DC427 /* RoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D395D21B5F806B000DC427 /* RoundedButton.m */; };
 		56D395D71B5F8133000DC427 /* UIColor+GlobalColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D395D61B5F8133000DC427 /* UIColor+GlobalColors.m */; };
 		56D395DB1B5F8928000DC427 /* OverlayTransitionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D395DA1B5F8928000DC427 /* OverlayTransitionManager.m */; };
@@ -40,6 +60,44 @@
 		567409DC1B60DAEC00638FEF /* StoryboardManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StoryboardManager.m; path = "custom objects/StoryboardManager.m"; sourceTree = "<group>"; };
 		567409DE1B60DC1C00638FEF /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		567409E01B60DC2100638FEF /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		567409E51B60DD3900638FEF /* FavoriteConcertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteConcertViewController.h; sourceTree = "<group>"; };
+		567409E61B60DD3900638FEF /* FavoriteConcertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteConcertViewController.m; sourceTree = "<group>"; };
+		567409E71B60DD3900638FEF /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		567409E81B60DD3900638FEF /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		567409E91B60DD3900638FEF /* OverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayViewController.h; sourceTree = "<group>"; };
+		567409EA1B60DD3900638FEF /* OverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayViewController.m; sourceTree = "<group>"; };
+		567409EE1B60DD5A00638FEF /* MenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuButton.h; sourceTree = "<group>"; };
+		567409EF1B60DD5A00638FEF /* MenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuButton.m; sourceTree = "<group>"; };
+		567409F11B60EB5700638FEF /* BadgeCounterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BadgeCounterView.h; sourceTree = "<group>"; };
+		567409F21B60EB5700638FEF /* BadgeCounterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BadgeCounterView.m; sourceTree = "<group>"; };
+		567409F41B60EC4400638FEF /* Montserrat-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.otf"; sourceTree = "<group>"; };
+		567409F51B60EC4400638FEF /* Montserrat-Hairline.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Hairline.otf"; sourceTree = "<group>"; };
+		567409F61B60EC4400638FEF /* Montserrat-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.otf"; sourceTree = "<group>"; };
+		567409FA1B60ED4700638FEF /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
+		567409FB1B60ED4700638FEF /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
+		567409FC1B60ED4700638FEF /* WhatWeDoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhatWeDoViewController.h; sourceTree = "<group>"; };
+		567409FD1B60ED4700638FEF /* WhatWeDoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhatWeDoViewController.m; sourceTree = "<group>"; };
+		56740A011B60ED8B00638FEF /* BaseGradientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseGradientViewController.h; sourceTree = "<group>"; };
+		56740A021B60ED8B00638FEF /* BaseGradientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseGradientViewController.m; sourceTree = "<group>"; };
+		56740A041B60EE0900638FEF /* BaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell.h; sourceTree = "<group>"; };
+		56740A051B60EE0900638FEF /* BaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell.m; sourceTree = "<group>"; };
+		56740A071B60EE2700638FEF /* GeneralSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralSettings.h; sourceTree = "<group>"; };
+		56740A081B60EE2700638FEF /* GeneralSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralSettings.m; sourceTree = "<group>"; };
+		56740A0A1B60EE3900638FEF /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		56740A0C1B60EE4200638FEF /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		56740A0D1B60EE4200638FEF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		56740A111B60EFEA00638FEF /* MenuTransitionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTransitionManager.h; sourceTree = "<group>"; };
+		56740A121B60EFEA00638FEF /* MenuTransitionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuTransitionManager.m; sourceTree = "<group>"; };
+		56740A151B60F07B00638FEF /* CoreDataHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataHandler.h; sourceTree = "<group>"; };
+		56740A161B60F07B00638FEF /* CoreDataHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataHandler.m; sourceTree = "<group>"; };
+		56740A181B60F0CA00638FEF /* ConcertsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcertsViewController.h; sourceTree = "<group>"; };
+		56740A191B60F0CA00638FEF /* ConcertsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcertsViewController.m; sourceTree = "<group>"; };
+		56740A1B1B60F12700638FEF /* MainContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainContainerViewController.h; sourceTree = "<group>"; };
+		56740A1C1B60F12700638FEF /* MainContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainContainerViewController.m; sourceTree = "<group>"; };
+		56740A1E1B60F17C00638FEF /* FestivalTransitionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FestivalTransitionManager.h; sourceTree = "<group>"; };
+		56740A1F1B60F17C00638FEF /* FestivalTransitionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FestivalTransitionManager.m; sourceTree = "<group>"; };
+		56740A201B60F17C00638FEF /* FestivalTransitionAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FestivalTransitionAnimator.h; sourceTree = "<group>"; };
+		56740A211B60F17C00638FEF /* FestivalTransitionAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FestivalTransitionAnimator.m; sourceTree = "<group>"; };
 		569513811B5D1F42008A649B /* SoundLove.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoundLove.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		569513851B5D1F42008A649B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		569513861B5D1F42008A649B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -50,10 +108,6 @@
 		5695139A1B5D1F43008A649B /* SoundLoveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SoundLoveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5695139F1B5D1F43008A649B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		569513A01B5D1F43008A649B /* SoundLoveTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SoundLoveTests.m; sourceTree = "<group>"; };
-		569513AC1B5D20B0008A649B /* FavoriteConcertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoriteConcertViewController.h; path = viewcontrollers/FavoriteConcertViewController.h; sourceTree = "<group>"; };
-		569513AD1B5D20B0008A649B /* FavoriteConcertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavoriteConcertViewController.m; path = viewcontrollers/FavoriteConcertViewController.m; sourceTree = "<group>"; };
-		56D395CB1B5F7DE3000DC427 /* OverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OverlayViewController.h; path = viewcontrollers/OverlayViewController.h; sourceTree = "<group>"; };
-		56D395CC1B5F7DE3000DC427 /* OverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OverlayViewController.m; path = viewcontrollers/OverlayViewController.m; sourceTree = "<group>"; };
 		56D395D11B5F806B000DC427 /* RoundedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedButton.h; sourceTree = "<group>"; };
 		56D395D21B5F806B000DC427 /* RoundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundedButton.m; sourceTree = "<group>"; };
 		56D395D51B5F8133000DC427 /* UIColor+GlobalColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+GlobalColors.h"; sourceTree = "<group>"; };
@@ -73,6 +127,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56740A0E1B60EE4200638FEF /* CoreData.framework in Frameworks */,
+				56740A0F1B60EE4200638FEF /* CoreLocation.framework in Frameworks */,
+				56740A0B1B60EE3900638FEF /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,11 +143,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		56740A001B60ED4B00638FEF /* Info views */ = {
+			isa = PBXGroup;
+			children = (
+				567409FA1B60ED4700638FEF /* InfoViewController.h */,
+				567409FB1B60ED4700638FEF /* InfoViewController.m */,
+				567409FC1B60ED4700638FEF /* WhatWeDoViewController.h */,
+				567409FD1B60ED4700638FEF /* WhatWeDoViewController.m */,
+			);
+			name = "Info views";
+			sourceTree = "<group>";
+		};
+		56740A101B60EE4600638FEF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				56740A0C1B60EE4200638FEF /* CoreData.framework */,
+				56740A0D1B60EE4200638FEF /* CoreLocation.framework */,
+				56740A0A1B60EE3900638FEF /* StoreKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		56740A141B60F06C00638FEF /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				56740A151B60F07B00638FEF /* CoreDataHandler.h */,
+				56740A161B60F07B00638FEF /* CoreDataHandler.m */,
+			);
+			name = "Core Data";
+			sourceTree = "<group>";
+		};
 		569513781B5D1F42008A649B = {
 			isa = PBXGroup;
 			children = (
 				569513831B5D1F42008A649B /* SoundLove */,
 				5695139D1B5D1F43008A649B /* SoundLoveTests */,
+				56740A101B60EE4600638FEF /* Frameworks */,
 				569513821B5D1F42008A649B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -109,10 +197,10 @@
 			children = (
 				569513881B5D1F42008A649B /* AppDelegate.h */,
 				569513891B5D1F42008A649B /* AppDelegate.m */,
+				569513AB1B5D2057008A649B /* Storyboards */,
 				56D395D41B5F8117000DC427 /* custom objects */,
 				56D395D01B5F7FBF000DC427 /* Custom views */,
 				569513AA1B5D2048008A649B /* viewControllers */,
-				569513AB1B5D2057008A649B /* Storyboards */,
 				569513841B5D1F42008A649B /* Supporting Files */,
 			);
 			path = SoundLove;
@@ -125,6 +213,9 @@
 				569513911B5D1F42008A649B /* Images.xcassets */,
 				567409DE1B60DC1C00638FEF /* Montserrat-Bold.ttf */,
 				567409E01B60DC2100638FEF /* Montserrat-Regular.ttf */,
+				567409F41B60EC4400638FEF /* Montserrat-Black.otf */,
+				567409F51B60EC4400638FEF /* Montserrat-Hairline.otf */,
+				567409F61B60EC4400638FEF /* Montserrat-Light.otf */,
 				569513851B5D1F42008A649B /* Info.plist */,
 				569513861B5D1F42008A649B /* main.m */,
 			);
@@ -151,12 +242,22 @@
 		569513AA1B5D2048008A649B /* viewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				569513AC1B5D20B0008A649B /* FavoriteConcertViewController.h */,
-				569513AD1B5D20B0008A649B /* FavoriteConcertViewController.m */,
-				56D395CB1B5F7DE3000DC427 /* OverlayViewController.h */,
-				56D395CC1B5F7DE3000DC427 /* OverlayViewController.m */,
+				56740A011B60ED8B00638FEF /* BaseGradientViewController.h */,
+				56740A021B60ED8B00638FEF /* BaseGradientViewController.m */,
+				56740A1B1B60F12700638FEF /* MainContainerViewController.h */,
+				56740A1C1B60F12700638FEF /* MainContainerViewController.m */,
+				56740A181B60F0CA00638FEF /* ConcertsViewController.h */,
+				56740A191B60F0CA00638FEF /* ConcertsViewController.m */,
+				567409E51B60DD3900638FEF /* FavoriteConcertViewController.h */,
+				567409E61B60DD3900638FEF /* FavoriteConcertViewController.m */,
+				567409E71B60DD3900638FEF /* MenuViewController.h */,
+				567409E81B60DD3900638FEF /* MenuViewController.m */,
+				567409E91B60DD3900638FEF /* OverlayViewController.h */,
+				567409EA1B60DD3900638FEF /* OverlayViewController.m */,
+				56740A001B60ED4B00638FEF /* Info views */,
 			);
 			name = viewControllers;
+			path = viewcontrollers;
 			sourceTree = "<group>";
 		};
 		569513AB1B5D2057008A649B /* Storyboards */ = {
@@ -172,6 +273,12 @@
 		56D395D01B5F7FBF000DC427 /* Custom views */ = {
 			isa = PBXGroup;
 			children = (
+				567409F11B60EB5700638FEF /* BadgeCounterView.h */,
+				567409F21B60EB5700638FEF /* BadgeCounterView.m */,
+				56740A041B60EE0900638FEF /* BaseTableViewCell.h */,
+				56740A051B60EE0900638FEF /* BaseTableViewCell.m */,
+				567409EE1B60DD5A00638FEF /* MenuButton.h */,
+				567409EF1B60DD5A00638FEF /* MenuButton.m */,
 				56D395D11B5F806B000DC427 /* RoundedButton.h */,
 				56D395D21B5F806B000DC427 /* RoundedButton.m */,
 			);
@@ -182,6 +289,9 @@
 		56D395D41B5F8117000DC427 /* custom objects */ = {
 			isa = PBXGroup;
 			children = (
+				56740A141B60F06C00638FEF /* Core Data */,
+				56740A071B60EE2700638FEF /* GeneralSettings.h */,
+				56740A081B60EE2700638FEF /* GeneralSettings.m */,
 				56D395D81B5F88DF000DC427 /* transitionManagers */,
 				56D395D51B5F8133000DC427 /* UIColor+GlobalColors.h */,
 				56D395D61B5F8133000DC427 /* UIColor+GlobalColors.m */,
@@ -192,6 +302,12 @@
 		56D395D81B5F88DF000DC427 /* transitionManagers */ = {
 			isa = PBXGroup;
 			children = (
+				56740A1E1B60F17C00638FEF /* FestivalTransitionManager.h */,
+				56740A1F1B60F17C00638FEF /* FestivalTransitionManager.m */,
+				56740A201B60F17C00638FEF /* FestivalTransitionAnimator.h */,
+				56740A211B60F17C00638FEF /* FestivalTransitionAnimator.m */,
+				56740A111B60EFEA00638FEF /* MenuTransitionManager.h */,
+				56740A121B60EFEA00638FEF /* MenuTransitionManager.m */,
 				56D395D91B5F8928000DC427 /* OverlayTransitionManager.h */,
 				56D395DA1B5F8928000DC427 /* OverlayTransitionManager.m */,
 				56D395DC1B5F8988000DC427 /* OverlayTransitionAnimator.h */,
@@ -291,9 +407,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				567409F81B60EC4400638FEF /* Montserrat-Hairline.otf in Resources */,
 				567409E11B60DC2100638FEF /* Montserrat-Regular.ttf in Resources */,
+				567409F71B60EC4400638FEF /* Montserrat-Black.otf in Resources */,
 				569513901B5D1F42008A649B /* Main.storyboard in Resources */,
 				569513921B5D1F42008A649B /* Images.xcassets in Resources */,
+				567409F91B60EC4400638FEF /* Montserrat-Light.otf in Resources */,
 				567409DF1B60DC1C00638FEF /* Montserrat-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -312,17 +431,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56740A1D1B60F12700638FEF /* MainContainerViewController.m in Sources */,
+				56740A061B60EE0900638FEF /* BaseTableViewCell.m in Sources */,
 				5695138A1B5D1F42008A649B /* AppDelegate.m in Sources */,
+				567409F31B60EB5700638FEF /* BadgeCounterView.m in Sources */,
 				567409DD1B60DAEC00638FEF /* StoryboardManager.m in Sources */,
 				56D395DB1B5F8928000DC427 /* OverlayTransitionManager.m in Sources */,
-				569513AE1B5D20B0008A649B /* FavoriteConcertViewController.m in Sources */,
+				567409EB1B60DD3900638FEF /* FavoriteConcertViewController.m in Sources */,
+				567409FF1B60ED4700638FEF /* WhatWeDoViewController.m in Sources */,
+				56740A1A1B60F0CA00638FEF /* ConcertsViewController.m in Sources */,
 				56D395D71B5F8133000DC427 /* UIColor+GlobalColors.m in Sources */,
 				56D395D31B5F806B000DC427 /* RoundedButton.m in Sources */,
+				56740A131B60EFEA00638FEF /* MenuTransitionManager.m in Sources */,
 				569513871B5D1F42008A649B /* main.m in Sources */,
+				567409FE1B60ED4700638FEF /* InfoViewController.m in Sources */,
+				56740A091B60EE2700638FEF /* GeneralSettings.m in Sources */,
+				567409ED1B60DD3900638FEF /* OverlayViewController.m in Sources */,
+				567409F01B60DD5A00638FEF /* MenuButton.m in Sources */,
 				56D395E51B5F8C11000DC427 /* UIImage+ImageEffects.m in Sources */,
+				56740A221B60F17C00638FEF /* FestivalTransitionManager.m in Sources */,
+				56740A171B60F07B00638FEF /* CoreDataHandler.m in Sources */,
 				56D395DE1B5F8988000DC427 /* OverlayTransitionAnimator.m in Sources */,
+				567409EC1B60DD3900638FEF /* MenuViewController.m in Sources */,
 				56D395E41B5F8C11000DC427 /* Reachability.m in Sources */,
-				56D395CD1B5F7DE3000DC427 /* OverlayViewController.m in Sources */,
+				56740A231B60F17C00638FEF /* FestivalTransitionAnimator.m in Sources */,
+				56740A031B60ED8B00638FEF /* BaseGradientViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

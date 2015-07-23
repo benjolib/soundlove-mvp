@@ -28,4 +28,25 @@
     return RGB(23.0, 26.0, 38.0);
 }
 
++ (UIColor*)menuButtonSelectedColor
+{
+    return RGB(133.0, 225.0, 195.0);
+}
+
++ (UIColor*)menuButtonDeselectedColor
+{
+    return RGB(86.0, 133.0, 122.0);
+}
+
+#pragma mark - gradient background colors
++ (UIColor*)gradientTopColor
+{
+    return RGB(31.0, 39.0, 49.0);
+}
+
++ (UIColor*)gradientBottomColor
+{
+    return RGB(29.0, 32.0, 48.0);
+}
+
 @end

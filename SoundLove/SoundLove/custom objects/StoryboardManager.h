@@ -6,12 +6,15 @@
 //  Copyright (c) 2015 Zappdesigntemplates. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@class OverlayViewController;
+@class OverlayViewController, MenuViewController;
 
 @interface StoryboardManager : NSObject
 
 + (OverlayViewController*)overlayViewController;
++ (MenuViewController*)menuViewController;
+
++ (UINavigationController*)infoNavigationController;
 
 @end

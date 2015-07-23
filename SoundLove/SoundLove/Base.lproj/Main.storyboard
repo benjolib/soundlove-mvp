@@ -6,16 +6,174 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
+        <mutableArray key="Montserrat-Light.otf">
+            <string>Montserrat-Light</string>
+            <string>Montserrat-Light</string>
+            <string>Montserrat-Light</string>
+            <string>Montserrat-Light</string>
+            <string>Montserrat-Light</string>
+            <string>Montserrat-Light</string>
+            <string>Montserrat-Light</string>
+        </mutableArray>
         <mutableArray key="Montserrat-Regular.ttf">
             <string>Montserrat-Regular</string>
             <string>Montserrat-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
-        <!--Favorite Concert View Controller-->
+        <!--Menu View Controller-->
+        <scene sceneID="fO4-u3-3JP">
+            <objects>
+                <viewController storyboardIdentifier="MenuViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yjD-t2-ppn" customClass="MenuViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JrP-1f-ghw"/>
+                        <viewControllerLayoutGuide type="bottom" id="pY1-6D-cMy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9eY-WQ-5NE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HPd-CU-lWn">
+                                <rect key="frame" x="125" y="498" width="70" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="1pQ-nl-ESg"/>
+                                    <constraint firstAttribute="width" constant="70" id="GwT-4W-o5b"/>
+                                </constraints>
+                                <state key="normal" image="info button">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="x10-5t-1r6" kind="modal" identifier="openInfoView" id="h5N-ab-YaY"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jUh-hL-RPd">
+                                <rect key="frame" x="105" y="11" width="110" height="476"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zN5-F3-Ake" customClass="MenuButton">
+                                        <rect key="frame" x="20" y="276" width="70" height="70"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" id="8CC-JW-yRS"/>
+                                            <constraint firstAttribute="width" constant="70" id="qYR-i0-MvU"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="15"/>
+                                        <state key="normal" title="Button" image="bandsIcon">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="menuButtonSelected:" destination="yjD-t2-ppn" eventType="touchUpInside" id="zrG-8v-EoL"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P4q-du-8VS" customClass="MenuButton">
+                                        <rect key="frame" x="20" y="17" width="70" height="70"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="70" id="AkM-fM-cBf"/>
+                                            <constraint firstAttribute="height" constant="70" id="in6-eW-yZ7"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="15"/>
+                                        <state key="normal" title="Button" image="microphone">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="menuButtonSelected:" destination="yjD-t2-ppn" eventType="touchUpInside" id="9yA-V3-ae2"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fg5-jQ-djF" customClass="MenuButton">
+                                        <rect key="frame" x="20" y="103" width="70" height="70"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" id="0Q7-xF-t9A"/>
+                                            <constraint firstAttribute="width" constant="70" id="Ipe-V3-mRi"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="15"/>
+                                        <state key="normal" title="Button" image="calendarIcon">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="menuButtonSelected:" destination="yjD-t2-ppn" eventType="touchUpInside" id="2kI-4S-RJJ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X2Z-uq-skV" customClass="MenuButton">
+                                        <rect key="frame" x="20" y="190" width="70" height="70"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" id="EIM-ty-6wh"/>
+                                            <constraint firstAttribute="width" constant="70" id="nr4-xU-hnf"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="15"/>
+                                        <state key="normal" title="Button" image="favoriteConcertsIcon">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="menuButtonSelected:" destination="yjD-t2-ppn" eventType="touchUpInside" id="9Sz-uf-YAh"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e3K-xN-GVo" customClass="MenuButton">
+                                        <rect key="frame" x="20" y="363" width="70" height="70"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="70" id="7MC-fD-KOC"/>
+                                            <constraint firstAttribute="height" constant="70" id="mgl-Pl-myK"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="15"/>
+                                        <state key="normal" title="Button" image="profilIcon">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="menuButtonSelected:" destination="yjD-t2-ppn" eventType="touchUpInside" id="Mdh-jl-H8Q"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="P4q-du-8VS" secondAttribute="centerX" id="5M4-rd-O8V"/>
+                                    <constraint firstAttribute="bottom" secondItem="X2Z-uq-skV" secondAttribute="bottom" multiplier="11:6" id="BoG-jP-Dhw"/>
+                                    <constraint firstAttribute="bottom" secondItem="P4q-du-8VS" secondAttribute="bottom" multiplier="11:2" id="FFW-b8-qZ1"/>
+                                    <constraint firstAttribute="centerX" secondItem="fg5-jQ-djF" secondAttribute="centerX" id="K9T-6u-gkX"/>
+                                    <constraint firstAttribute="bottom" secondItem="e3K-xN-GVo" secondAttribute="bottom" multiplier="11:10" id="OX8-mo-vnf"/>
+                                    <constraint firstAttribute="centerX" secondItem="e3K-xN-GVo" secondAttribute="centerX" id="TT4-9g-dnU"/>
+                                    <constraint firstAttribute="centerX" secondItem="X2Z-uq-skV" secondAttribute="centerX" id="WZ3-pB-uwm"/>
+                                    <constraint firstAttribute="bottom" secondItem="fg5-jQ-djF" secondAttribute="bottom" multiplier="11:4" id="aJI-Jq-fPS"/>
+                                    <constraint firstAttribute="bottom" secondItem="zN5-F3-Ake" secondAttribute="bottom" multiplier="11:8" id="bvy-iy-9Wa"/>
+                                    <constraint firstAttribute="width" constant="110" id="kpd-Xt-mJK"/>
+                                    <constraint firstAttribute="centerX" secondItem="zN5-F3-Ake" secondAttribute="centerX" id="rGN-do-W0U"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="jUh-hL-RPd" secondAttribute="centerX" id="4U6-H6-nyB"/>
+                            <constraint firstItem="HPd-CU-lWn" firstAttribute="top" secondItem="jUh-hL-RPd" secondAttribute="bottom" constant="11" id="5y6-XU-HnQ"/>
+                            <constraint firstItem="pY1-6D-cMy" firstAttribute="top" secondItem="HPd-CU-lWn" secondAttribute="bottom" id="BYO-x4-MS2"/>
+                            <constraint firstItem="jUh-hL-RPd" firstAttribute="top" secondItem="JrP-1f-ghw" secondAttribute="bottom" constant="11" id="Z3C-6K-22u"/>
+                            <constraint firstAttribute="centerX" secondItem="HPd-CU-lWn" secondAttribute="centerX" id="pDO-mG-7tc"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="bandsButton" destination="zN5-F3-Ake" id="LVB-hH-3Z4"/>
+                        <outlet property="calendarButton" destination="fg5-jQ-djF" id="4DP-pQ-MLN"/>
+                        <outlet property="concertButton" destination="P4q-du-8VS" id="93d-gK-Edl"/>
+                        <outlet property="favoriteConcertButton" destination="X2Z-uq-skV" id="SGJ-O8-uj3"/>
+                        <outlet property="infoButton" destination="HPd-CU-lWn" id="B9b-bB-v43"/>
+                        <outlet property="profilButton" destination="e3K-xN-GVo" id="I10-cb-zbF"/>
+                        <outletCollection property="menuButtonsArray" destination="P4q-du-8VS" id="Cdw-uq-IkN"/>
+                        <outletCollection property="menuButtonsArray" destination="fg5-jQ-djF" id="ALc-lw-QmP"/>
+                        <outletCollection property="menuButtonsArray" destination="X2Z-uq-skV" id="9FX-iw-Wme"/>
+                        <outletCollection property="menuButtonsArray" destination="zN5-F3-Ake" id="2qj-hA-dnu"/>
+                        <outletCollection property="menuButtonsArray" destination="e3K-xN-GVo" id="0ji-Dq-z3w"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b25-44-rGF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="951" y="-201"/>
+        </scene>
+        <!--Main Container View Controller-->
         <scene sceneID="GlZ-aD-bpm">
             <objects>
-                <viewController id="9rZ-zW-Pvp" customClass="FavoriteConcertViewController" sceneMemberID="viewController">
+                <viewController id="9rZ-zW-Pvp" customClass="MainContainerViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ngf-hk-RAX"/>
                         <viewControllerLayoutGuide type="bottom" id="caF-j8-5UG"/>
@@ -82,6 +240,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Wo2-Xm-glE">
+                        <barButtonItem key="leftBarButtonItem" title="Menu" id="Po9-6c-gXK">
+                            <connections>
+                                <action selector="menuButtonPressed:" destination="9rZ-zW-Pvp" id="5dv-VD-TJu"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Popup" id="idT-9j-L50">
                             <connections>
                                 <action selector="showOverlay:" destination="9rZ-zW-Pvp" id="Zxn-zb-2Um"/>
@@ -89,10 +252,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <segue destination="yjD-t2-ppn" kind="modal" identifier="presentMenuView" id="zxU-JI-7s7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jE7-Ub-sAO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="522" y="417"/>
+            <point key="canvasLocation" x="522" y="743"/>
         </scene>
         <!--Overlay View Controller-->
         <scene sceneID="g4r-HW-wyF">
@@ -116,8 +282,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bitte erlaube uns auf Deinen Ort zuzugreifen, damit wir Dir Konzerte in Deiner Nähe zeigen können" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="78O-Uj-qyc" userLabel="detailLabel">
-                                <rect key="frame" x="30" y="228" width="260" height="116"/>
-                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="19"/>
+                                <rect key="frame" x="30" y="228" width="260" height="87"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="18"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -127,6 +293,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="62" id="GDg-Q7-8Yh"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="18"/>
                                 <state key="normal" title="Erlauben">
                                     <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </state>
@@ -168,7 +335,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RNk-gm-kGF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="522" y="1081"/>
+            <point key="canvasLocation" x="522" y="-201"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Wi4-8G-97C">
@@ -187,7 +354,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sfO-Lu-fQ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="951" y="474"/>
+            <point key="canvasLocation" x="951" y="800"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4lR-y9-hfi">
@@ -205,10 +372,131 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LR7-0K-zBZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="115" y="417"/>
+            <point key="canvasLocation" x="104" y="743"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="xSb-qb-sIY">
+            <objects>
+                <navigationController storyboardIdentifier="infoNavigationID" useStoryboardIdentifierAsRestorationIdentifier="YES" id="x10-5t-1r6" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="FYs-Rj-6mV"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="SvU-tc-O0q">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="LFW-W8-RiI" kind="relationship" relationship="rootViewController" id="AmS-TQ-RUA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PHI-K6-6x1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1441" y="-201"/>
+        </scene>
+        <!--Info View Controller-->
+        <scene sceneID="p8t-zU-92b">
+            <objects>
+                <viewController id="LFW-W8-RiI" customClass="InfoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FTd-Mi-BX2"/>
+                        <viewControllerLayoutGuide type="bottom" id="ecj-OM-ry5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="35z-Sr-Fr1">
+                        <rect key="frame" x="0.0" y="64" width="320" height="524"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wRd-DX-5kp">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="DwH-f0-PYo" style="IBUITableViewCellStyleDefault" id="9qU-5D-xLR">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9qU-5D-xLR" id="YzP-au-Y19">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DwH-f0-PYo">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="18"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="LFW-W8-RiI" id="OEE-zC-1Ip"/>
+                                    <outlet property="delegate" destination="LFW-W8-RiI" id="LRF-20-GUs"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ecj-OM-ry5" firstAttribute="top" secondItem="wRd-DX-5kp" secondAttribute="bottom" id="6N6-oG-Gmz"/>
+                            <constraint firstAttribute="trailing" secondItem="wRd-DX-5kp" secondAttribute="trailing" id="eTA-ga-nUu"/>
+                            <constraint firstItem="wRd-DX-5kp" firstAttribute="leading" secondItem="35z-Sr-Fr1" secondAttribute="leading" id="qQv-5F-2ks"/>
+                            <constraint firstItem="wRd-DX-5kp" firstAttribute="top" secondItem="35z-Sr-Fr1" secondAttribute="top" id="ylf-sV-dmd"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="a5p-pW-jOU">
+                        <barButtonItem key="leftBarButtonItem" image="backbutton" id="Pa8-HA-mW6">
+                            <connections>
+                                <action selector="backButtonPressed:" destination="LFW-W8-RiI" id="4PC-Tr-PBd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="wRd-DX-5kp" id="SXw-o9-MNq"/>
+                        <segue destination="TIm-mn-KeI" kind="push" identifier="openWhatWeDo" id="cWc-Z7-aVb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aSZ-v3-c20" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1837" y="-201"/>
+        </scene>
+        <!--What We Do View Controller-->
+        <scene sceneID="SWG-4P-71h">
+            <objects>
+                <viewController id="TIm-mn-KeI" customClass="WhatWeDoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sPz-ec-wJC"/>
+                        <viewControllerLayoutGuide type="bottom" id="YO2-du-lcH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="j4W-xW-7Ib">
+                        <rect key="frame" x="0.0" y="64" width="320" height="524"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xly-Qn-mPP">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Xly-Qn-mPP" secondAttribute="bottom" id="Qp7-TU-6d4"/>
+                            <constraint firstAttribute="trailing" secondItem="Xly-Qn-mPP" secondAttribute="trailing" id="Zjw-e1-aBW"/>
+                            <constraint firstItem="Xly-Qn-mPP" firstAttribute="top" secondItem="sPz-ec-wJC" secondAttribute="bottom" id="lR2-xV-iy3"/>
+                            <constraint firstItem="Xly-Qn-mPP" firstAttribute="leading" secondItem="j4W-xW-7Ib" secondAttribute="leading" id="pHL-nT-kbs"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="hBO-yi-kJ0"/>
+                    <connections>
+                        <outlet property="webview" destination="Xly-Qn-mPP" id="XXC-Hy-PbZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mn5-91-gR0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2227" y="-201"/>
         </scene>
     </scenes>
     <resources>
+        <image name="backbutton" width="48" height="36"/>
+        <image name="bandsIcon" width="40" height="40"/>
+        <image name="calendarIcon" width="40" height="40"/>
+        <image name="favoriteConcertsIcon" width="43" height="42"/>
+        <image name="info button" width="33" height="33"/>
+        <image name="microphone" width="34" height="45"/>
+        <image name="profilIcon" width="39" height="42"/>
         <image name="wifi icon" width="94" height="94"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

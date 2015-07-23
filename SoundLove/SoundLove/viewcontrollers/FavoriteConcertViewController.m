@@ -15,10 +15,6 @@
 
 @implementation FavoriteConcertViewController
 
-- (IBAction)showOverlay:(id)sender
-{
-    self.overlayTransitionManager = [[OverlayTransitionManager alloc] init];
-    [self.overlayTransitionManager presentOverlayViewWithType:OverlayTypeNoInternet onViewController:self];
-}
+
 
 @end

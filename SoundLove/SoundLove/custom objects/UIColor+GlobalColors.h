@@ -14,4 +14,10 @@
 + (UIColor*)globalGreenColorWithAlpha:(CGFloat)alpha;
 + (UIColor*)darkGreenButtonTitleColor;
 
++ (UIColor*)menuButtonSelectedColor;
++ (UIColor*)menuButtonDeselectedColor;
+
++ (UIColor*)gradientTopColor;
++ (UIColor*)gradientBottomColor;
+
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "StoryboardManager.h"
-#import <UIKit/UIKit.h>
 
 @implementation StoryboardManager
 
@@ -19,6 +18,16 @@
 + (OverlayViewController*)overlayViewController
 {
     return [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"OverlayViewController"];
+}
+
++ (MenuViewController*)menuViewController
+{
+    return [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"MenuViewController"];
+}
+
++ (UINavigationController*)infoNavigationController
+{
+    return [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"infoNavigationID"];
 }
 
 @end
