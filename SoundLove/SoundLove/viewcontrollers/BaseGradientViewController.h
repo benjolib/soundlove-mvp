@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import "SearchNavigationView.h"
+#import "SearchNavigationView.h"
 
-@interface BaseGradientViewController : UIViewController /*<SearchNavigationViewDelegate>*/
+@interface BaseGradientViewController : UIViewController <SearchNavigationViewDelegate>
 
 - (void)addGradientBackground;
 

@@ -11,6 +11,7 @@
 #import <StoreKit/StoreKit.h>
 //#import "TrackingManager.h"
 #import "GeneralSettings.h"
+#import "CustomNavigationView.h"
 
 @interface InfoViewController () <SKStoreProductViewControllerDelegate>
 @property (nonatomic, strong) NSArray *cellTitlesArray;
@@ -27,7 +28,7 @@
     return _cellTitlesArray;
 }
 
-- (IBAction)backButtonPressed:(id)sender
+- (void)backButtonPressed
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -70,7 +71,7 @@
 
 - (void)shareTheApp
 {
-    NSString *stringToShare = @"FestivaLama App besorgt Dir die besten Festival Deals für Dich und Deine Freunde www.FestivaLama.io";
+    NSString *stringToShare = @"";
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[stringToShare]
                                                                                          applicationActivities:nil];
     activityViewController.excludedActivityTypes = @[UIActivityTypePostToWeibo,
@@ -110,7 +111,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"Info";
+    [self.customNavigationView setTitle:@"Info"];
+    [self.customNavigationView setButtonTarget:self selector:@selector(backButtonPressed)];
 
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }

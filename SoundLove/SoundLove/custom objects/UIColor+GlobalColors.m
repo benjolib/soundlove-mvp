@@ -18,6 +18,11 @@
     return [self globalGreenColorWithAlpha:1.0];
 }
 
++ (UIColor*)colorWithR:(CGFloat)red G:(CGFloat)green B:(CGFloat)blue
+{
+    return RGB(red, green, blue);
+}
+
 + (UIColor*)globalGreenColorWithAlpha:(CGFloat)alpha
 {
     return RGBA(142.0, 223.0, 183.0, alpha);
@@ -38,6 +43,11 @@
     return RGB(86.0, 133.0, 122.0);
 }
 
++ (UIColor*)navigationBarBackgroundColor
+{
+    return RGB(39.0, 48.0, 62.0);
+}
+
 #pragma mark - gradient background colors
 + (UIColor*)gradientTopColor
 {
@@ -47,6 +57,17 @@
 + (UIColor*)gradientBottomColor
 {
     return RGB(29.0, 32.0, 48.0);
+}
+
+#pragma mark - tabbing button colors
++ (UIColor*)tabbingButtonInactiveColor
+{
+    return RGB(15.0, 21.0, 30.0);
+}
+
++ (UIColor*)tabbingButtonActiveColor
+{
+    return RGB(31.0, 38.0, 49.0);
 }
 
 @end

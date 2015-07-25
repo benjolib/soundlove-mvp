@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5658BA941B63F757004F08BB /* SearchNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5658BA921B63F757004F08BB /* SearchNavigationView.m */; };
+		5658BA951B63F757004F08BB /* SearchNavigationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5658BA931B63F757004F08BB /* SearchNavigationView.xib */; };
+		5658BA991B63FA35004F08BB /* CustomNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5658BA981B63FA35004F08BB /* CustomNavigationView.m */; };
+		5658BA9C1B63FE72004F08BB /* TabbingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5658BA9B1B63FE72004F08BB /* TabbingButton.m */; };
+		5658BAA01B64062C004F08BB /* ConcertsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5658BA9F1B64062C004F08BB /* ConcertsTableViewCell.m */; };
+		5658BAA31B640862004F08BB /* CalendarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5658BAA21B640862004F08BB /* CalendarButton.m */; };
+		5658BAA81B640D77004F08BB /* AbstractClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5658BAA71B640D77004F08BB /* AbstractClient.m */; };
 		567409DD1B60DAEC00638FEF /* StoryboardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 567409DC1B60DAEC00638FEF /* StoryboardManager.m */; };
 		567409DF1B60DC1C00638FEF /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 567409DE1B60DC1C00638FEF /* Montserrat-Bold.ttf */; };
 		567409E11B60DC2100638FEF /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 567409E01B60DC2100638FEF /* Montserrat-Regular.ttf */; };
@@ -59,6 +66,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5658BA911B63F757004F08BB /* SearchNavigationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchNavigationView.h; sourceTree = "<group>"; };
+		5658BA921B63F757004F08BB /* SearchNavigationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchNavigationView.m; sourceTree = "<group>"; };
+		5658BA931B63F757004F08BB /* SearchNavigationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchNavigationView.xib; sourceTree = "<group>"; };
+		5658BA971B63FA35004F08BB /* CustomNavigationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNavigationView.h; sourceTree = "<group>"; };
+		5658BA981B63FA35004F08BB /* CustomNavigationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomNavigationView.m; sourceTree = "<group>"; };
+		5658BA9A1B63FE72004F08BB /* TabbingButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabbingButton.h; sourceTree = "<group>"; };
+		5658BA9B1B63FE72004F08BB /* TabbingButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabbingButton.m; sourceTree = "<group>"; };
+		5658BA9E1B64062C004F08BB /* ConcertsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcertsTableViewCell.h; sourceTree = "<group>"; };
+		5658BA9F1B64062C004F08BB /* ConcertsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcertsTableViewCell.m; sourceTree = "<group>"; };
+		5658BAA11B640862004F08BB /* CalendarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarButton.h; sourceTree = "<group>"; };
+		5658BAA21B640862004F08BB /* CalendarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarButton.m; sourceTree = "<group>"; };
+		5658BAA51B640D6F004F08BB /* NetworkConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkConstants.h; sourceTree = "<group>"; };
+		5658BAA61B640D77004F08BB /* AbstractClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractClient.h; sourceTree = "<group>"; };
+		5658BAA71B640D77004F08BB /* AbstractClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractClient.m; sourceTree = "<group>"; };
 		567409DB1B60DAEC00638FEF /* StoryboardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoryboardManager.h; path = "custom objects/StoryboardManager.h"; sourceTree = "<group>"; };
 		567409DC1B60DAEC00638FEF /* StoryboardManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StoryboardManager.m; path = "custom objects/StoryboardManager.m"; sourceTree = "<group>"; };
 		567409DE1B60DC1C00638FEF /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
@@ -152,6 +173,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5658BA961B63F7E3004F08BB /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				567409DE1B60DC1C00638FEF /* Montserrat-Bold.ttf */,
+				567409E01B60DC2100638FEF /* Montserrat-Regular.ttf */,
+				567409F41B60EC4400638FEF /* Montserrat-Black.otf */,
+				567409F51B60EC4400638FEF /* Montserrat-Hairline.otf */,
+				567409F61B60EC4400638FEF /* Montserrat-Light.otf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
+		5658BA9D1B640612004F08BB /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				5658BA9E1B64062C004F08BB /* ConcertsTableViewCell.h */,
+				5658BA9F1B64062C004F08BB /* ConcertsTableViewCell.m */,
+				5658BAA11B640862004F08BB /* CalendarButton.h */,
+				5658BAA21B640862004F08BB /* CalendarButton.m */,
+			);
+			name = TableViewCells;
+			sourceTree = "<group>";
+		};
+		5658BAA41B640D67004F08BB /* networking */ = {
+			isa = PBXGroup;
+			children = (
+				5658BAA51B640D6F004F08BB /* NetworkConstants.h */,
+				5658BAA61B640D77004F08BB /* AbstractClient.h */,
+				5658BAA71B640D77004F08BB /* AbstractClient.m */,
+			);
+			path = networking;
+			sourceTree = "<group>";
+		};
 		56740A001B60ED4B00638FEF /* Info views */ = {
 			isa = PBXGroup;
 			children = (
@@ -220,11 +274,7 @@
 			children = (
 				56D395DF1B5F8C00000DC427 /* Third party */,
 				569513911B5D1F42008A649B /* Images.xcassets */,
-				567409DE1B60DC1C00638FEF /* Montserrat-Bold.ttf */,
-				567409E01B60DC2100638FEF /* Montserrat-Regular.ttf */,
-				567409F41B60EC4400638FEF /* Montserrat-Black.otf */,
-				567409F51B60EC4400638FEF /* Montserrat-Hairline.otf */,
-				567409F61B60EC4400638FEF /* Montserrat-Light.otf */,
+				5658BA961B63F7E3004F08BB /* Fonts */,
 				569513851B5D1F42008A649B /* Info.plist */,
 				569513861B5D1F42008A649B /* main.m */,
 			);
@@ -288,6 +338,7 @@
 		56D395D01B5F7FBF000DC427 /* Custom views */ = {
 			isa = PBXGroup;
 			children = (
+				5658BA9D1B640612004F08BB /* TableViewCells */,
 				567409F11B60EB5700638FEF /* BadgeCounterView.h */,
 				567409F21B60EB5700638FEF /* BadgeCounterView.m */,
 				56740A041B60EE0900638FEF /* BaseTableViewCell.h */,
@@ -296,6 +347,13 @@
 				567409EF1B60DD5A00638FEF /* MenuButton.m */,
 				56D395D11B5F806B000DC427 /* RoundedButton.h */,
 				56D395D21B5F806B000DC427 /* RoundedButton.m */,
+				5658BA911B63F757004F08BB /* SearchNavigationView.h */,
+				5658BA921B63F757004F08BB /* SearchNavigationView.m */,
+				5658BA931B63F757004F08BB /* SearchNavigationView.xib */,
+				5658BA971B63FA35004F08BB /* CustomNavigationView.h */,
+				5658BA981B63FA35004F08BB /* CustomNavigationView.m */,
+				5658BA9A1B63FE72004F08BB /* TabbingButton.h */,
+				5658BA9B1B63FE72004F08BB /* TabbingButton.m */,
 			);
 			name = "Custom views";
 			path = "custom views";
@@ -304,12 +362,13 @@
 		56D395D41B5F8117000DC427 /* custom objects */ = {
 			isa = PBXGroup;
 			children = (
-				56740A141B60F06C00638FEF /* Core Data */,
+				5658BAA41B640D67004F08BB /* networking */,
 				56740A071B60EE2700638FEF /* GeneralSettings.h */,
 				56740A081B60EE2700638FEF /* GeneralSettings.m */,
-				56D395D81B5F88DF000DC427 /* transitionManagers */,
 				56D395D51B5F8133000DC427 /* UIColor+GlobalColors.h */,
 				56D395D61B5F8133000DC427 /* UIColor+GlobalColors.m */,
+				56740A141B60F06C00638FEF /* Core Data */,
+				56D395D81B5F88DF000DC427 /* transitionManagers */,
 			);
 			path = "custom objects";
 			sourceTree = "<group>";
@@ -424,6 +483,7 @@
 			files = (
 				567409F81B60EC4400638FEF /* Montserrat-Hairline.otf in Resources */,
 				567409E11B60DC2100638FEF /* Montserrat-Regular.ttf in Resources */,
+				5658BA951B63F757004F08BB /* SearchNavigationView.xib in Resources */,
 				567409F71B60EC4400638FEF /* Montserrat-Black.otf in Resources */,
 				569513901B5D1F42008A649B /* Main.storyboard in Resources */,
 				569513921B5D1F42008A649B /* Images.xcassets in Resources */,
@@ -450,21 +510,27 @@
 				56740A061B60EE0900638FEF /* BaseTableViewCell.m in Sources */,
 				5695138A1B5D1F42008A649B /* AppDelegate.m in Sources */,
 				567409F31B60EB5700638FEF /* BadgeCounterView.m in Sources */,
+				5658BAA81B640D77004F08BB /* AbstractClient.m in Sources */,
 				56740A261B61230500638FEF /* ProfilViewController.m in Sources */,
 				567409DD1B60DAEC00638FEF /* StoryboardManager.m in Sources */,
 				56D395DB1B5F8928000DC427 /* OverlayTransitionManager.m in Sources */,
 				567409EB1B60DD3900638FEF /* FavoriteConcertViewController.m in Sources */,
+				5658BAA31B640862004F08BB /* CalendarButton.m in Sources */,
 				567409FF1B60ED4700638FEF /* WhatWeDoViewController.m in Sources */,
 				56740A291B61232900638FEF /* BandsViewController.m in Sources */,
 				56740A1A1B60F0CA00638FEF /* ConcertsViewController.m in Sources */,
 				56D395D71B5F8133000DC427 /* UIColor+GlobalColors.m in Sources */,
 				56D395D31B5F806B000DC427 /* RoundedButton.m in Sources */,
+				5658BA941B63F757004F08BB /* SearchNavigationView.m in Sources */,
 				56740A131B60EFEA00638FEF /* MenuTransitionManager.m in Sources */,
+				5658BA991B63FA35004F08BB /* CustomNavigationView.m in Sources */,
 				569513871B5D1F42008A649B /* main.m in Sources */,
 				567409FE1B60ED4700638FEF /* InfoViewController.m in Sources */,
 				56740A091B60EE2700638FEF /* GeneralSettings.m in Sources */,
 				567409ED1B60DD3900638FEF /* OverlayViewController.m in Sources */,
+				5658BA9C1B63FE72004F08BB /* TabbingButton.m in Sources */,
 				567409F01B60DD5A00638FEF /* MenuButton.m in Sources */,
+				5658BAA01B64062C004F08BB /* ConcertsTableViewCell.m in Sources */,
 				56D395E51B5F8C11000DC427 /* UIImage+ImageEffects.m in Sources */,
 				56740A2C1B61234800638FEF /* CalendarViewController.m in Sources */,
 				56740A221B60F17C00638FEF /* FestivalTransitionManager.m in Sources */,

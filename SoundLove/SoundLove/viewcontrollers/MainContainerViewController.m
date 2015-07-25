@@ -17,11 +17,14 @@
 #import "BandsViewController.h"
 #import "ProfilViewController.h"
 #import "CalendarViewController.h"
+#import "UIColor+GlobalColors.h"
+#import "SearchNavigationView.h"
 
 @interface MainContainerViewController ()
 @property (nonatomic, strong) BaseGradientViewController *mainViewController;
 @property (nonatomic, strong) OverlayTransitionManager *overlayTransitionManager;
 @property (nonatomic) MenuItem currentMenuItem;
+@property (nonatomic, strong) SearchNavigationView *searchView;
 @end
 
 @implementation MainContainerViewController
@@ -41,7 +44,7 @@
 
 - (void)setParentTitle:(NSString*)title
 {
-//    [self.searchView setTitle:title];
+    [self.searchView setTitle:title];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -51,9 +54,9 @@
     {
         BaseGradientViewController *controller = (BaseGradientViewController*)[segue destinationViewController];
         self.mainViewController = controller;
-//        self.searchView.delegate = self.mainViewController;
-//        self.currentMenuItem = MenuItemFestivals;
-//        [self setParentTitle:@"Festivals"];
+        self.searchView.delegate = self.mainViewController;
+        self.currentMenuItem = MenuItemConcerts;
+        [self setParentTitle:@"Konzerte"];
     }
     else
     if ([segue.identifier isEqualToString:@"presentMenuView"])
@@ -133,14 +136,42 @@
 
                                 [toDisplayViewController didMoveToParentViewController:self];
                                 self.mainViewController = toDisplayViewController;
-//                                self.searchView.delegate = self.mainViewController;
+                                self.searchView.delegate = self.mainViewController;
                             }];
+}
+
+- (void)leftNavigationButtonPressed
+{
+    [self performSegueWithIdentifier:@"presentMenuView" sender:nil];
+}
+
+- (void)searchNavigationViewMenuButtonPressed
+{
+    [self performSegueWithIdentifier:@"presentMenuView" sender:nil];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setupSearchView];
 
+    self.navigationView.layer.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5].CGColor;
+    self.navigationView.layer.shadowOffset = CGSizeMake(0.0, 2.0);
+    self.navigationView.layer.shadowRadius = 2.0;
+    self.navigationView.layer.shadowOpacity = 1.0;
+    self.navigationView.backgroundColor = [UIColor navigationBarBackgroundColor];
+}
+
+- (void)setupSearchView
+{
+    self.searchView = [[SearchNavigationView alloc] initWithTitle:@"Festivals" andDelegate:self.mainViewController];
+    self.searchView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.navigationView addSubview:self.searchView];
+
+    [self.navigationView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_searchView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_searchView)]];
+    [self.navigationView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_searchView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_searchView)]];
+
+    [self.searchView assignLeftButtonWithSelector:@selector(leftNavigationButtonPressed) toTarget:self];
 }
 
 - (BOOL)prefersStatusBarHidden

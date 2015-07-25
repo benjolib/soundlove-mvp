@@ -8,8 +8,11 @@
 
 #import "BaseGradientViewController.h"
 
+@class CustomNavigationView;
+
 @interface InfoViewController : BaseGradientViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) IBOutlet CustomNavigationView *customNavigationView;
 
 @end

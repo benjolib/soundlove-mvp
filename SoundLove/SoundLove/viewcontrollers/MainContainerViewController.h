@@ -19,7 +19,10 @@ typedef NS_ENUM(NSUInteger, MenuItem) {
 @interface MainContainerViewController : UIViewController
 
 @property (nonatomic, weak) IBOutlet UIView *containerView;
+@property (nonatomic, weak) IBOutlet UIView *navigationView;
 
 - (void)changeToMenuItem:(MenuItem)menuItem;
+
+- (void)setParentTitle:(NSString*)title;
 
 @end

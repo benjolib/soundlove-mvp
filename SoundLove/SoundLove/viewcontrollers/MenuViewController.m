@@ -13,6 +13,11 @@
 #import "MainContainerViewController.h"
 #import "FestivalTransitionManager.h"
 
+#import "FavoriteConcertViewController.h"
+#import "CalendarViewController.h"
+#import "BandsViewController.h"
+#import "ProfilViewController.h"
+
 @interface MenuViewController ()
 @property (nonatomic, strong) UITapGestureRecognizer *tapRecognizer;
 @property (nonatomic, weak) UIViewController *sourceViewController;
@@ -66,42 +71,6 @@
     }
 }
 
-//- (IBAction)festivalButtonPressed:(id)sender
-//{
-////    [[TrackingManager sharedManager] trackUserSelectedFestivals];
-//
-//    if ([self isSourceViewControllerFestivalsView])
-//    {
-//        [self dismissViewControllerAnimated:YES completion:nil];
-//    }
-//    else
-//    {
-//        [self switchCurrentSourceWithMenuItem:MenuItemFestivals];
-//    }
-//}
-//
-//- (IBAction)favoriteButtonPressed:(id)sender
-//{
-////    [[TrackingManager sharedManager] trackUserSelectedPopularFestivals];
-//
-//    if ([self.sourceViewController isMemberOfClass:[PopularFestivalsViewController class]]) {
-//        [self dismissViewControllerAnimated:YES completion:nil];
-//    } else {
-//        [self switchCurrentSourceWithMenuItem:MenuItemFavoriteFestivals];
-//    }
-//}
-//
-//- (IBAction)calendarButtonPressed:(id)sender
-//{
-////    [[TrackingManager sharedManager] trackUserSelectedCalender];
-//
-//    if ([self.sourceViewController isMemberOfClass:[CalendarViewController class]]) {
-//        [self dismissViewControllerAnimated:YES completion:nil];
-//    } else {
-//        [self switchCurrentSourceWithMenuItem:MenuItemFestivalsCalendar];
-//    }
-//}
-
 - (void)switchCurrentSourceWithMenuItem:(MenuItem)menuItem
 {
     MainContainerViewController *mainContainerViewController = [self mainContainerViewController];
@@ -138,36 +107,39 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)setButtonStates
+{
+    if ([self.sourceViewController isMemberOfClass:[ConcertsViewController class]]) {
+        [self activateButton:self.concertButton];
+    } else if ([self.sourceViewController isMemberOfClass:[CalendarViewController class]]) {
+        [self activateButton:self.calendarButton];
+    } else if ([self.sourceViewController isMemberOfClass:[FavoriteConcertViewController class]]) {
+        [self activateButton:self.favoriteConcertButton];
+    } else if ([self.sourceViewController isMemberOfClass:[BandsViewController class]]) {
+        [self activateButton:self.bandsButton];
+    } else {
+        [self activateButton:self.profilButton];
+    }
+}
+
+- (void)activateButton:(MenuButton*)button
+{
+    for (MenuButton *menuButton in self.menuButtonsArray) {
+        if ([menuButton isEqual:button]) {
+            [menuButton setActive:YES];
+        } else {
+            [menuButton setActive:NO];
+        }
+    }
+}
+
 #pragma mark - view methods
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self addRecognizer];
 
-//    if ([self isSourceViewControllerFestivalsView])
-//    {
-//        [UIView animateWithDuration:0.2 animations:^{
-////            [self.festivalButton setActive:YES];
-////            [self.favoriteFestivalButton setActive:NO];
-////            [self.calendarButton setActive:NO];
-//        }];
-//    }
-//    else if ([self.sourceViewController isKindOfClass:[PopularFestivalsViewController class]])
-//    {
-//        [UIView animateWithDuration:0.2 animations:^{
-////            [self.festivalButton setActive:NO];
-////            [self.favoriteFestivalButton setActive:YES];
-////            [self.calendarButton setActive:NO];
-//        }];
-//    }
-//    else
-//    {
-//        [UIView animateWithDuration:0.2 animations:^{
-////            [self.festivalButton setActive:NO];
-////            [self.favoriteFestivalButton setActive:NO];
-////            [self.calendarButton setActive:YES];
-//        }];
-//    }
+    [self setButtonStates];
 }
 
 - (void)viewDidAppear:(BOOL)animated

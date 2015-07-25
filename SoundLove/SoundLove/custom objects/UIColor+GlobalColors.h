@@ -13,11 +13,16 @@
 + (UIColor*)globalGreenColor;
 + (UIColor*)globalGreenColorWithAlpha:(CGFloat)alpha;
 + (UIColor*)darkGreenButtonTitleColor;
++ (UIColor*)navigationBarBackgroundColor;
 
 + (UIColor*)menuButtonSelectedColor;
 + (UIColor*)menuButtonDeselectedColor;
 
 + (UIColor*)gradientTopColor;
 + (UIColor*)gradientBottomColor;
+
++ (UIColor*)colorWithR:(CGFloat)red G:(CGFloat)green B:(CGFloat)blue;
++ (UIColor*)tabbingButtonInactiveColor;
++ (UIColor*)tabbingButtonActiveColor;
 
 @end

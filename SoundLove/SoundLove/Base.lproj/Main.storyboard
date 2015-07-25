@@ -6,7 +6,13 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
+        <mutableArray key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </mutableArray>
         <mutableArray key="Montserrat-Light.otf">
+            <string>Montserrat-Light</string>
+            <string>Montserrat-Light</string>
+            <string>Montserrat-Light</string>
             <string>Montserrat-Light</string>
             <string>Montserrat-Light</string>
             <string>Montserrat-Light</string>
@@ -16,6 +22,10 @@
             <string>Montserrat-Light</string>
         </mutableArray>
         <mutableArray key="Montserrat-Regular.ttf">
+            <string>Montserrat-Regular</string>
+            <string>Montserrat-Regular</string>
+            <string>Montserrat-Regular</string>
+            <string>Montserrat-Regular</string>
             <string>Montserrat-Regular</string>
             <string>Montserrat-Regular</string>
         </mutableArray>
@@ -182,6 +192,12 @@
                         <rect key="frame" x="0.0" y="44" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GqS-Hu-NWI">
+                                <rect key="frame" x="0.0" y="60" width="320" height="508"/>
+                                <connections>
+                                    <segue destination="TSd-hq-GDC" kind="embed" identifier="embedView" id="mlv-Bl-Sez"/>
+                                </connections>
+                            </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RrY-ju-eIV" userLabel="navigation view">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                                 <subviews>
@@ -206,12 +222,6 @@
                                     <constraint firstItem="vR3-P3-6fV" firstAttribute="top" secondItem="RrY-ju-eIV" secondAttribute="top" constant="8" id="njr-e3-tvO"/>
                                 </constraints>
                             </view>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GqS-Hu-NWI">
-                                <rect key="frame" x="0.0" y="60" width="320" height="508"/>
-                                <connections>
-                                    <segue destination="TSd-hq-GDC" kind="embed" id="mlv-Bl-Sez"/>
-                                </connections>
-                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -227,6 +237,8 @@
                     <navigationItem key="navigationItem" id="Wo2-Xm-glE"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="containerView" destination="GqS-Hu-NWI" id="DZh-oI-ZXA"/>
+                        <outlet property="navigationView" destination="RrY-ju-eIV" id="FRE-0Q-ad5"/>
                         <segue destination="yjD-t2-ppn" kind="modal" identifier="presentMenuView" id="zxU-JI-7s7"/>
                     </connections>
                 </viewController>
@@ -249,23 +261,44 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LuD-cs-s1I">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dQB-Ey-55k">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dQB-Ey-55k" customClass="TabbingButton">
                                         <rect key="frame" x="0.0" y="0.0" width="107" height="50"/>
-                                        <state key="normal" title="Button">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="15"/>
+                                        <state key="normal" title="Favoriten">
+                                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tabbuttonSelected:" destination="TSd-hq-GDC" eventType="touchUpInside" id="XRb-g6-6Fe"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N2C-fF-QfP">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N2C-fF-QfP" customClass="TabbingButton">
                                         <rect key="frame" x="107" y="0.0" width="106" height="50"/>
-                                        <state key="normal" title="Button">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="15"/>
+                                        <state key="normal" title="Empfohlen">
+                                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tabbuttonSelected:" destination="TSd-hq-GDC" eventType="touchUpInside" id="hhf-P3-OhL"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qd7-3s-xC2">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qd7-3s-xC2" customClass="TabbingButton">
                                         <rect key="frame" x="213" y="0.0" width="107" height="50"/>
-                                        <state key="normal" title="Button">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="15"/>
+                                        <state key="normal" title="Alle">
+                                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tabbuttonSelected:" destination="TSd-hq-GDC" eventType="touchUpInside" id="v1O-gQ-b7c"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -285,14 +318,109 @@
                                     <constraint firstItem="N2C-fF-QfP" firstAttribute="top" secondItem="LuD-cs-s1I" secondAttribute="top" id="wFM-cp-GQj"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="JXi-TK-IkR">
+                                <rect key="frame" x="0.0" y="50" width="320" height="458"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="70" id="ImC-eA-74Z" customClass="ConcertsTableViewCell">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ImC-eA-74Z" id="ZEL-pt-qvP">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="roK-hm-Qm1">
+                                                    <rect key="frame" x="15" y="12" width="45" height="45"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="45" id="DIN-c4-day"/>
+                                                        <constraint firstAttribute="height" constant="45" id="d3z-Lm-Ud3"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wc6-Pg-vck" customClass="CalendarButton">
+                                                    <rect key="frame" x="256" y="10" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="60l-Ly-tRN"/>
+                                                        <constraint firstAttribute="width" constant="50" id="Zqo-G2-XFx"/>
+                                                    </constraints>
+                                                    <state key="normal" image="calendarButton">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ab 35,00 €" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="176" translatesAutoresizingMaskIntoConstraints="NO" id="gSa-gG-evF">
+                                                    <rect key="frame" x="70" y="54" width="176" height="13"/>
+                                                    <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="10"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="in 20 Tagen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="176" translatesAutoresizingMaskIntoConstraints="NO" id="gDv-6y-TXA">
+                                                    <rect key="frame" x="70" y="37" width="176" height="13"/>
+                                                    <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="10"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gräfenhainichen, DE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="176" translatesAutoresizingMaskIntoConstraints="NO" id="VMl-eO-8UF">
+                                                    <rect key="frame" x="70" y="20" width="176" height="13"/>
+                                                    <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="10"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MELT!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="176" translatesAutoresizingMaskIntoConstraints="NO" id="V9i-Wx-j8c">
+                                                    <rect key="frame" x="70" y="1" width="176" height="15"/>
+                                                    <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="12"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="wc6-Pg-vck" secondAttribute="trailing" constant="14" id="5Gb-kx-piq"/>
+                                                <constraint firstAttribute="centerY" secondItem="V9i-Wx-j8c" secondAttribute="centerY" multiplier="4:1" id="5iz-p3-vkw"/>
+                                                <constraint firstItem="gSa-gG-evF" firstAttribute="leading" secondItem="roK-hm-Qm1" secondAttribute="trailing" constant="10" id="B1d-ES-E32"/>
+                                                <constraint firstItem="wc6-Pg-vck" firstAttribute="leading" secondItem="gDv-6y-TXA" secondAttribute="trailing" constant="10" id="D2C-dy-lJB"/>
+                                                <constraint firstAttribute="centerY" secondItem="wc6-Pg-vck" secondAttribute="centerY" id="HXU-Fg-70T"/>
+                                                <constraint firstAttribute="centerY" secondItem="roK-hm-Qm1" secondAttribute="centerY" id="JyQ-nG-uCD"/>
+                                                <constraint firstItem="wc6-Pg-vck" firstAttribute="leading" secondItem="VMl-eO-8UF" secondAttribute="trailing" constant="10" id="QXH-Qr-tjQ"/>
+                                                <constraint firstItem="V9i-Wx-j8c" firstAttribute="leading" secondItem="roK-hm-Qm1" secondAttribute="trailing" constant="10" id="S9i-Mg-SCI"/>
+                                                <constraint firstItem="VMl-eO-8UF" firstAttribute="leading" secondItem="roK-hm-Qm1" secondAttribute="trailing" constant="10" id="coP-fI-wwJ"/>
+                                                <constraint firstItem="wc6-Pg-vck" firstAttribute="leading" secondItem="gSa-gG-evF" secondAttribute="trailing" constant="10" id="eAh-Sf-45F"/>
+                                                <constraint firstItem="roK-hm-Qm1" firstAttribute="leading" secondItem="ZEL-pt-qvP" secondAttribute="leading" constant="15" id="eeZ-d7-9J0"/>
+                                                <constraint firstAttribute="centerY" secondItem="gDv-6y-TXA" secondAttribute="centerY" multiplier="4:5" id="jMi-eJ-XhN"/>
+                                                <constraint firstAttribute="centerY" secondItem="gSa-gG-evF" secondAttribute="centerY" multiplier="4:7" id="lxN-Fy-Use"/>
+                                                <constraint firstItem="gDv-6y-TXA" firstAttribute="leading" secondItem="roK-hm-Qm1" secondAttribute="trailing" constant="10" id="myF-PN-8LL"/>
+                                                <constraint firstItem="wc6-Pg-vck" firstAttribute="leading" secondItem="V9i-Wx-j8c" secondAttribute="trailing" constant="10" id="vX8-JJ-cBV"/>
+                                                <constraint firstAttribute="centerY" secondItem="VMl-eO-8UF" secondAttribute="centerY" multiplier="4:3" id="vXO-NE-NAb"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="calendarButton" destination="wc6-Pg-vck" id="qfY-PB-Zla"/>
+                                            <outlet property="concertImageView" destination="roK-hm-Qm1" id="GRE-ol-8mf"/>
+                                            <outlet property="concertTitleLabel" destination="V9i-Wx-j8c" id="rtv-ac-Ddl"/>
+                                            <outlet property="dateLabel" destination="gDv-6y-TXA" id="l2C-Lt-IDj"/>
+                                            <outlet property="locationLabel" destination="VMl-eO-8UF" id="skn-dB-FCb"/>
+                                            <outlet property="priceLabel" destination="gSa-gG-evF" id="a6N-Rg-xVF"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="TSd-hq-GDC" id="I2h-WM-SNI"/>
+                                    <outlet property="delegate" destination="TSd-hq-GDC" id="rVT-Ga-sjY"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="JXi-TK-IkR" firstAttribute="top" secondItem="LuD-cs-s1I" secondAttribute="bottom" id="3Y8-se-kuw"/>
+                            <constraint firstItem="JXi-TK-IkR" firstAttribute="leading" secondItem="epi-WA-mRh" secondAttribute="leading" id="ASf-21-z9x"/>
+                            <constraint firstAttribute="trailing" secondItem="JXi-TK-IkR" secondAttribute="trailing" id="CVY-EZ-XZM"/>
                             <constraint firstItem="LuD-cs-s1I" firstAttribute="leading" secondItem="epi-WA-mRh" secondAttribute="leading" id="JRU-ew-eh8"/>
                             <constraint firstItem="LuD-cs-s1I" firstAttribute="top" secondItem="z3K-6X-k9E" secondAttribute="bottom" id="kba-e4-XPz"/>
+                            <constraint firstItem="FFl-qm-afL" firstAttribute="top" secondItem="JXi-TK-IkR" secondAttribute="bottom" id="sCn-P7-EFF"/>
                             <constraint firstAttribute="trailing" secondItem="LuD-cs-s1I" secondAttribute="trailing" id="x1F-54-p9l"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="JXi-TK-IkR" id="eqv-et-7nl"/>
+                        <outletCollection property="tabbuttonsArray" destination="dQB-Ey-55k" id="xzl-It-2Yj"/>
+                        <outletCollection property="tabbuttonsArray" destination="N2C-fF-QfP" id="bQG-ZP-u9z"/>
+                        <outletCollection property="tabbuttonsArray" destination="Qd7-3s-xC2" id="V1K-Ll-ShG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IBd-j8-B6q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -388,13 +516,13 @@
                                     <constraint firstAttribute="height" constant="25" id="irN-OX-Io9"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="24"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bitte erlaube uns auf Deinen Ort zuzugreifen, damit wir Dir Konzerte in Deiner Nähe zeigen können" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="78O-Uj-qyc" userLabel="detailLabel">
                                 <rect key="frame" x="30" y="228" width="260" height="87"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="18"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vTF-F2-xxo" customClass="RoundedButton">
@@ -470,9 +598,9 @@
         <!--Navigation Controller-->
         <scene sceneID="xSb-qb-sIY">
             <objects>
-                <navigationController storyboardIdentifier="infoNavigationID" useStoryboardIdentifierAsRestorationIdentifier="YES" id="x10-5t-1r6" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="infoNavigationID" useStoryboardIdentifierAsRestorationIdentifier="YES" navigationBarHidden="YES" id="x10-5t-1r6" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="FYs-Rj-6mV"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="SvU-tc-O0q">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -494,11 +622,11 @@
                         <viewControllerLayoutGuide type="bottom" id="ecj-OM-ry5"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="35z-Sr-Fr1">
-                        <rect key="frame" x="0.0" y="64" width="320" height="524"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wRd-DX-5kp">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                                <rect key="frame" x="0.0" y="62" width="320" height="506"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="DwH-f0-PYo" style="IBUITableViewCellStyleDefault" id="9qU-5D-xLR">
@@ -509,7 +637,7 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DwH-f0-PYo">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="18"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -522,23 +650,60 @@
                                     <outlet property="delegate" destination="LFW-W8-RiI" id="LRF-20-GUs"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="egL-6c-W2G" userLabel="navigation bar" customClass="CustomNavigationView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="62"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0gm-xH-Gpp">
+                                        <rect key="frame" x="0.0" y="11" width="44" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="QQX-bC-0yo"/>
+                                            <constraint firstAttribute="height" constant="40" id="sul-HR-Acj"/>
+                                        </constraints>
+                                        <state key="normal" image="backButton">
+                                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="192" translatesAutoresizingMaskIntoConstraints="NO" id="2ww-6n-7zJ">
+                                        <rect key="frame" x="54" y="13" width="212" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36" id="RmM-Ks-aSN"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="20"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="2ww-6n-7zJ" secondAttribute="trailing" constant="54" id="33B-a3-e3Q"/>
+                                    <constraint firstItem="2ww-6n-7zJ" firstAttribute="leading" secondItem="0gm-xH-Gpp" secondAttribute="trailing" constant="10" id="5oQ-xm-bkb"/>
+                                    <constraint firstAttribute="centerY" secondItem="2ww-6n-7zJ" secondAttribute="centerY" id="E6p-YI-UOu"/>
+                                    <constraint firstAttribute="centerY" secondItem="0gm-xH-Gpp" secondAttribute="centerY" id="hRJ-Fq-2rH"/>
+                                    <constraint firstAttribute="height" constant="62" id="koe-zh-W2b"/>
+                                    <constraint firstItem="0gm-xH-Gpp" firstAttribute="leading" secondItem="egL-6c-W2G" secondAttribute="leading" id="n7f-f8-Njg"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="backButton" destination="0gm-xH-Gpp" id="KP5-Wq-AL6"/>
+                                    <outlet property="titleLabel" destination="2ww-6n-7zJ" id="ixS-u9-3ao"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ecj-OM-ry5" firstAttribute="top" secondItem="wRd-DX-5kp" secondAttribute="bottom" id="6N6-oG-Gmz"/>
+                            <constraint firstItem="egL-6c-W2G" firstAttribute="leading" secondItem="35z-Sr-Fr1" secondAttribute="leading" id="N2m-FG-iMi"/>
+                            <constraint firstItem="wRd-DX-5kp" firstAttribute="top" secondItem="egL-6c-W2G" secondAttribute="bottom" id="QYA-r0-qAV"/>
                             <constraint firstAttribute="trailing" secondItem="wRd-DX-5kp" secondAttribute="trailing" id="eTA-ga-nUu"/>
+                            <constraint firstAttribute="trailing" secondItem="egL-6c-W2G" secondAttribute="trailing" id="l1F-cc-QnR"/>
                             <constraint firstItem="wRd-DX-5kp" firstAttribute="leading" secondItem="35z-Sr-Fr1" secondAttribute="leading" id="qQv-5F-2ks"/>
-                            <constraint firstItem="wRd-DX-5kp" firstAttribute="top" secondItem="35z-Sr-Fr1" secondAttribute="top" id="ylf-sV-dmd"/>
+                            <constraint firstItem="egL-6c-W2G" firstAttribute="top" secondItem="FTd-Mi-BX2" secondAttribute="bottom" id="tg1-j5-0av"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="a5p-pW-jOU">
-                        <barButtonItem key="leftBarButtonItem" image="backbutton" id="Pa8-HA-mW6">
-                            <connections>
-                                <action selector="backButtonPressed:" destination="LFW-W8-RiI" id="4PC-Tr-PBd"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" image="backButton" id="Pa8-HA-mW6"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="customNavigationView" destination="egL-6c-W2G" id="pOh-8o-SvT"/>
                         <outlet property="tableView" destination="wRd-DX-5kp" id="SXw-o9-MNq"/>
                         <segue destination="TIm-mn-KeI" kind="push" identifier="openWhatWeDo" id="cWc-Z7-aVb"/>
                     </connections>
@@ -556,11 +721,11 @@
                         <viewControllerLayoutGuide type="bottom" id="YO2-du-lcH"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="j4W-xW-7Ib">
-                        <rect key="frame" x="0.0" y="64" width="320" height="524"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xly-Qn-mPP">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </webView>
                         </subviews>
@@ -583,8 +748,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="backbutton" width="48" height="36"/>
+        <image name="backButton" width="12" height="19"/>
         <image name="bandsIcon" width="40" height="40"/>
+        <image name="calendarButton" width="35" height="31"/>
         <image name="calendarIcon" width="40" height="40"/>
         <image name="favoriteConcertsIcon" width="43" height="42"/>
         <image name="info button" width="33" height="33"/>

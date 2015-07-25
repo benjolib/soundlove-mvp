@@ -12,7 +12,7 @@
 
 @interface MenuViewController : UIViewController
 
-@property (nonatomic, weak) IBOutletCollection(MenuButton) NSArray *menuButtonsArray;
+@property (nonatomic, strong) IBOutletCollection(MenuButton) NSArray *menuButtonsArray;
 
 @property (nonatomic, weak) IBOutlet MenuButton *concertButton;
 @property (nonatomic, weak) IBOutlet MenuButton *calendarButton;
