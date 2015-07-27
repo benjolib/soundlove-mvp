@@ -9,6 +9,7 @@
 #import "ConcertsViewController.h"
 #import "TabbingButton.h"
 #import "ConcertsTableViewCell.h"
+#import "LoadingTableView.h"
 
 @interface ConcertsViewController ()
 

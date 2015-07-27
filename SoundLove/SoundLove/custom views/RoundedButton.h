@@ -10,4 +10,6 @@
 
 @interface RoundedButton : UIButton
 
+- (void)setButtonActive:(BOOL)active;
+
 @end

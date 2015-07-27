@@ -33,8 +33,24 @@
     [self setTitleColor:[UIColor darkGreenButtonTitleColor] forState:UIControlStateNormal];
     [self setTitleColor:[[UIColor darkGreenButtonTitleColor] colorWithAlphaComponent:0.4]
                forState:UIControlStateHighlighted];
+    [self setTitleColor:[UIColor globalGreenColorWithAlpha:0.4] forState:UIControlStateDisabled];
 
     self.layer.borderWidth = 0.0;
+}
+
+- (void)setButtonActive:(BOOL)active
+{
+    if (active) {
+        self.enabled = YES;
+        self.backgroundColor = [UIColor globalGreenColor];
+        self.layer.borderWidth = 0.0;
+        self.layer.borderColor = [UIColor clearColor].CGColor;
+    } else {
+        self.enabled = NO;
+        self.backgroundColor = [UIColor clearColor];
+        self.layer.borderWidth = 1.0;
+        self.layer.borderColor = [UIColor globalGreenColorWithAlpha:0.4].CGColor;
+    }
 }
 
 @end

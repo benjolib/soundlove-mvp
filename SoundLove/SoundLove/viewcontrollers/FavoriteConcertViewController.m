@@ -8,6 +8,7 @@
 
 #import "FavoriteConcertViewController.h"
 #import "OverlayTransitionManager.h"
+#import "LoadingTableView.h"
 
 @interface FavoriteConcertViewController ()
 @property (nonatomic, strong) OverlayTransitionManager *overlayTransitionManager;

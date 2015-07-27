@@ -8,6 +8,8 @@
 
 #import "BaseGradientViewController.h"
 
+@class LoadingTableView;
+
 @interface FavoriteConcertViewController : BaseGradientViewController
 
 @end

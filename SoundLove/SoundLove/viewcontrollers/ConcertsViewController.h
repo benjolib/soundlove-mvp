@@ -8,12 +8,12 @@
 
 #import "BaseGradientViewController.h"
 
-@class TabbingButton;
+@class TabbingButton, LoadingTableView;
 
 @interface ConcertsViewController : BaseGradientViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) IBOutletCollection(TabbingButton) NSArray *tabbuttonsArray;
-@property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) IBOutlet LoadingTableView *tableView;
 
 - (IBAction)tabbuttonSelected:(TabbingButton*)selectedButton;
 
