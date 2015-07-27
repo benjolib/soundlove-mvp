@@ -14,6 +14,9 @@
 
 @property (nonatomic, strong) IBOutletCollection(TabbingButton) NSArray *tabbuttonsArray;
 @property (nonatomic, weak) IBOutlet LoadingTableView *tableView;
+@property (nonatomic, weak) IBOutlet UIView *filterSortView;
+@property (nonatomic, weak) IBOutlet UIButton *filterButton;
+@property (nonatomic, weak) IBOutlet UIButton *sortButton;
 
 - (IBAction)tabbuttonSelected:(TabbingButton*)selectedButton;
 

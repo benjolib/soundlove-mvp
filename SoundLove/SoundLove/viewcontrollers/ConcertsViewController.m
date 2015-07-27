@@ -10,9 +10,13 @@
 #import "TabbingButton.h"
 #import "ConcertsTableViewCell.h"
 #import "LoadingTableView.h"
+#import "ConcertRefreshControl.h"
+#import "GeneralSettings.h"
+#import "UIColor+GlobalColors.h"
+#import "TutorialPopupView.h"
 
 @interface ConcertsViewController ()
-
+@property (nonatomic, strong) ConcertRefreshControl *refreshController;
 @end
 
 @implementation ConcertsViewController
@@ -51,9 +55,64 @@
 }
 
 #pragma mark - view methods
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [self.refreshController parentScrollViewDidScroll:scrollView];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    [self.refreshController parentScrollViewDidEndDragging:scrollView];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor clearColor];
+    self.tableView.backgroundColor = [UIColor clearColor];
+    self.filterSortView.backgroundColor = [UIColor navigationBarBackgroundColor];
+    [self.tableView setContentInset:UIEdgeInsetsMake(0.0, 0.0, 50.0, 0.0)];
+
+    for (TabbingButton *button in self.tabbuttonsArray) {
+        [button setButtonActive:button.tag == 0];
+    }
+
+    [self addRefreshController];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+
+    if (![GeneralSettings wasTutorialShown]) {
+        [self showTutorialPopup];
+    }
+}
+
+- (void)showTutorialPopup
+{
+    TutorialPopupView *tutorial2 = [[TutorialPopupView alloc] init];
+    [tutorial2 showWithText:@"Filtere die Ergebniss nach Musik Genre, Künstler oder Ort"
+                    atPoint:CGPointMake(CGRectGetMidX(self.filterSortView.frame), CGRectGetMinY(self.filterSortView.frame)-50.0)
+              highLightArea:self.filterSortView.frame];
+}
+
+- (void)refreshView
+{
+    [self.refreshController startRefreshing];
+
+    [self.refreshController endRefreshing];
+    [self.tableView hideLoadingIndicator];
+}
+
+- (void)addRefreshController
+{
+    self.refreshController = [[ConcertRefreshControl alloc] initWithFrame:CGRectMake(0.0, -50.0, CGRectGetWidth(self.view.frame), 50.0)];
+    [self.tableView addSubview:self.refreshController];
+
+    [self.refreshController addTarget:self
+                               action:@selector(refreshView)
+                     forControlEvents:UIControlEventValueChanged];
 }
 
 @end

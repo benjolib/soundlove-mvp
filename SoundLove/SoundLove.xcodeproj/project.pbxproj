@@ -48,6 +48,11 @@
 		5684B1C61B6619BD009EF346 /* TicketShopDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5684B1C51B6619BD009EF346 /* TicketShopDetailViewController.m */; };
 		5684B1C91B6619EC009EF346 /* TicketShopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5684B1C81B6619EC009EF346 /* TicketShopTableViewCell.m */; };
 		5684B1CC1B661B0E009EF346 /* UITextField+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5684B1CB1B661B0E009EF346 /* UITextField+Helper.m */; };
+		5684B1CF1B661DB3009EF346 /* TicketShopperClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5684B1CE1B661DB3009EF346 /* TicketShopperClient.m */; };
+		5684B1D21B661DCB009EF346 /* ConcertModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5684B1D11B661DCB009EF346 /* ConcertModel.m */; };
+		5684B1D51B662135009EF346 /* ConcertRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 5684B1D41B662135009EF346 /* ConcertRefreshControl.m */; };
+		5684B1D91B66220F009EF346 /* TutorialPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5684B1D71B66220F009EF346 /* TutorialPopupView.m */; };
+		5684B1DA1B66220F009EF346 /* TutorialPopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5684B1D81B66220F009EF346 /* TutorialPopupView.xib */; };
 		569513871B5D1F42008A649B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 569513861B5D1F42008A649B /* main.m */; };
 		5695138A1B5D1F42008A649B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 569513891B5D1F42008A649B /* AppDelegate.m */; };
 		569513901B5D1F42008A649B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5695138E1B5D1F42008A649B /* Main.storyboard */; };
@@ -145,6 +150,15 @@
 		5684B1C81B6619EC009EF346 /* TicketShopTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketShopTableViewCell.m; sourceTree = "<group>"; };
 		5684B1CA1B661B0E009EF346 /* UITextField+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+Helper.h"; sourceTree = "<group>"; };
 		5684B1CB1B661B0E009EF346 /* UITextField+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Helper.m"; sourceTree = "<group>"; };
+		5684B1CD1B661DB3009EF346 /* TicketShopperClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketShopperClient.h; sourceTree = "<group>"; };
+		5684B1CE1B661DB3009EF346 /* TicketShopperClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketShopperClient.m; sourceTree = "<group>"; };
+		5684B1D01B661DCB009EF346 /* ConcertModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcertModel.h; sourceTree = "<group>"; };
+		5684B1D11B661DCB009EF346 /* ConcertModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcertModel.m; sourceTree = "<group>"; };
+		5684B1D31B662135009EF346 /* ConcertRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcertRefreshControl.h; sourceTree = "<group>"; };
+		5684B1D41B662135009EF346 /* ConcertRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcertRefreshControl.m; sourceTree = "<group>"; };
+		5684B1D61B66220F009EF346 /* TutorialPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialPopupView.h; sourceTree = "<group>"; };
+		5684B1D71B66220F009EF346 /* TutorialPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialPopupView.m; sourceTree = "<group>"; };
+		5684B1D81B66220F009EF346 /* TutorialPopupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialPopupView.xib; sourceTree = "<group>"; };
 		569513811B5D1F42008A649B /* SoundLove.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoundLove.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		569513851B5D1F42008A649B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		569513861B5D1F42008A649B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -223,6 +237,8 @@
 				5658BAA51B640D6F004F08BB /* NetworkConstants.h */,
 				5658BAA61B640D77004F08BB /* AbstractClient.h */,
 				5658BAA71B640D77004F08BB /* AbstractClient.m */,
+				5684B1CD1B661DB3009EF346 /* TicketShopperClient.h */,
+				5684B1CE1B661DB3009EF346 /* TicketShopperClient.m */,
 			);
 			path = networking;
 			sourceTree = "<group>";
@@ -364,6 +380,8 @@
 				5658BA9D1B640612004F08BB /* TableViewCells */,
 				567409F11B60EB5700638FEF /* BadgeCounterView.h */,
 				567409F21B60EB5700638FEF /* BadgeCounterView.m */,
+				5684B1D31B662135009EF346 /* ConcertRefreshControl.h */,
+				5684B1D41B662135009EF346 /* ConcertRefreshControl.m */,
 				5684B1BC1B6612C5009EF346 /* LoadingTableView.h */,
 				5684B1BD1B6612C5009EF346 /* LoadingTableView.m */,
 				567409EE1B60DD5A00638FEF /* MenuButton.h */,
@@ -380,6 +398,9 @@
 				5658BA981B63FA35004F08BB /* CustomNavigationView.m */,
 				5658BA9A1B63FE72004F08BB /* TabbingButton.h */,
 				5658BA9B1B63FE72004F08BB /* TabbingButton.m */,
+				5684B1D61B66220F009EF346 /* TutorialPopupView.h */,
+				5684B1D71B66220F009EF346 /* TutorialPopupView.m */,
+				5684B1D81B66220F009EF346 /* TutorialPopupView.xib */,
 			);
 			name = "Custom views";
 			path = "custom views";
@@ -388,6 +409,8 @@
 		56D395D41B5F8117000DC427 /* custom objects */ = {
 			isa = PBXGroup;
 			children = (
+				5684B1D01B661DCB009EF346 /* ConcertModel.h */,
+				5684B1D11B661DCB009EF346 /* ConcertModel.m */,
 				5658BAA41B640D67004F08BB /* networking */,
 				56740A071B60EE2700638FEF /* GeneralSettings.h */,
 				56740A081B60EE2700638FEF /* GeneralSettings.m */,
@@ -514,6 +537,7 @@
 				5658BA951B63F757004F08BB /* SearchNavigationView.xib in Resources */,
 				567409F71B60EC4400638FEF /* Montserrat-Black.otf in Resources */,
 				5684B1C31B6612D8009EF346 /* SearchEmptyView.xib in Resources */,
+				5684B1DA1B66220F009EF346 /* TutorialPopupView.xib in Resources */,
 				569513901B5D1F42008A649B /* Main.storyboard in Resources */,
 				569513921B5D1F42008A649B /* Images.xcassets in Resources */,
 				567409F91B60EC4400638FEF /* Montserrat-Light.otf in Resources */,
@@ -540,6 +564,7 @@
 				5695138A1B5D1F42008A649B /* AppDelegate.m in Sources */,
 				567409F31B60EB5700638FEF /* BadgeCounterView.m in Sources */,
 				5658BAA81B640D77004F08BB /* AbstractClient.m in Sources */,
+				5684B1D91B66220F009EF346 /* TutorialPopupView.m in Sources */,
 				56740A261B61230500638FEF /* ProfilViewController.m in Sources */,
 				567409DD1B60DAEC00638FEF /* StoryboardManager.m in Sources */,
 				56D395DB1B5F8928000DC427 /* OverlayTransitionManager.m in Sources */,
@@ -556,6 +581,7 @@
 				5658BA991B63FA35004F08BB /* CustomNavigationView.m in Sources */,
 				569513871B5D1F42008A649B /* main.m in Sources */,
 				567409FE1B60ED4700638FEF /* InfoViewController.m in Sources */,
+				5684B1D51B662135009EF346 /* ConcertRefreshControl.m in Sources */,
 				56740A091B60EE2700638FEF /* GeneralSettings.m in Sources */,
 				567409ED1B60DD3900638FEF /* OverlayViewController.m in Sources */,
 				5658BA9C1B63FE72004F08BB /* TabbingButton.m in Sources */,
@@ -571,9 +597,11 @@
 				567409EC1B60DD3900638FEF /* MenuViewController.m in Sources */,
 				5684B1C91B6619EC009EF346 /* TicketShopTableViewCell.m in Sources */,
 				5684B1BE1B6612C5009EF346 /* LoadingTableView.m in Sources */,
+				5684B1CF1B661DB3009EF346 /* TicketShopperClient.m in Sources */,
 				56D395E41B5F8C11000DC427 /* Reachability.m in Sources */,
 				56740A231B60F17C00638FEF /* FestivalTransitionAnimator.m in Sources */,
 				56740A031B60ED8B00638FEF /* BaseGradientViewController.m in Sources */,
+				5684B1D21B661DCB009EF346 /* ConcertModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

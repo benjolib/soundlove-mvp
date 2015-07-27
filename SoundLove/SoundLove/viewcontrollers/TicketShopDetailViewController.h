@@ -8,8 +8,7 @@
 
 #import "BaseGradientViewController.h"
 
-//@class FestivalModel, WhiteButton;
-@class RoundedButton, CustomNavigationView;
+@class ConcertModel, RoundedButton, CustomNavigationView;
 
 @interface TicketShopDetailViewController : BaseGradientViewController <UITableViewDataSource, UITableViewDelegate>
 
@@ -19,7 +18,7 @@
 @property (nonatomic, weak) IBOutlet UIButton *leftButton;
 @property (nonatomic, weak) IBOutlet CustomNavigationView *navigationView;
 
-//@property (nonatomic, weak) FestivalModel *festivalToDisplay;
+@property (nonatomic, weak) ConcertModel *concertToDisplay;
 
 - (IBAction)sendButtonTapped:(id)sender;
 

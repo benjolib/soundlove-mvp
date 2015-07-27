@@ -7,17 +7,17 @@
 //
 
 #import "TicketShopDetailViewController.h"
-//#import "FestivalModel.h"
+#import "ConcertModel.h"
 #import "RoundedButton.h"
 #import "TicketShopTableViewCell.h"
 #import "CustomNavigationView.h"
-//#import "TicketShopperClient.h"
+#import "TicketShopperClient.h"
 //#import "PopupView.h"
 #import "UIColor+GlobalColors.h"
 //#import "TrackingManager.h"
 
 @interface TicketShopDetailViewController () <UITextFieldDelegate>
-//@property (nonatomic, strong) TicketShopperClient *shopperClient;
+@property (nonatomic, strong) TicketShopperClient *shopperClient;
 //@property (nonatomic, strong) PopupView *confirmPopup;
 @end
 
@@ -41,18 +41,18 @@
         TicketShopTableViewCell *cell3 = (TicketShopTableViewCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
 
         // send the request
-//        self.shopperClient = [[TicketShopperClient alloc] init];
-//        [self.shopperClient sendTicketShopWithNumberOfTickets:[cell1.textfield.text integerValue]
-//                                                     festival:self.festivalToDisplay
-//                                                         name:cell2.textfield.text
-//                                                        email:cell3.textfield.text
-//                                              completionBlock:^(NSString *errorMessage, BOOL completed) {
-//                                                  if (completed) {
-//                                                      [self showConfirmationPopup];
-//                                                  } else {
-//                                                  // TODO: needs input
-//                                                  }
-//        }];
+        self.shopperClient = [[TicketShopperClient alloc] init];
+        [self.shopperClient sendTicketShopWithNumberOfTickets:[cell1.textfield.text integerValue]
+                                                     concert:self.concertToDisplay
+                                                         name:cell2.textfield.text
+                                                        email:cell3.textfield.text
+                                              completionBlock:^(NSString *errorMessage, BOOL completed) {
+                                                  if (completed) {
+                                                      [self showConfirmationPopup];
+                                                  } else {
+                                                      // TODO: needs input
+                                                  }
+        }];
     }
     else
     {
@@ -110,11 +110,7 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-//    if ([textField.superview.superview isKindOfClass:[TicketShopTableViewCell class]]) {
-//        TicketShopTableViewCell *cell = (TicketShopTableViewCell*)textField.superview.superview;
-////        [self.tableView reloadRowsAtIndexPaths:@[[self.tableView indexPathForCell:cell]] withRowAnimation:UITableViewRowAnimationAutomatic];
-        [self.tableView reloadData];
-//    }
+    [self.tableView reloadData];
 
     [self setTicketButtonEnabled:[self allFieldsAreValid]];
 }

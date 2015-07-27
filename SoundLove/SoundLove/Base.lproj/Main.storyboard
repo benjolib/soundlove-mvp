@@ -277,7 +277,7 @@
                                             <action selector="tabbuttonSelected:" destination="TSd-hq-GDC" eventType="touchUpInside" id="XRb-g6-6Fe"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N2C-fF-QfP" customClass="TabbingButton">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N2C-fF-QfP" customClass="TabbingButton">
                                         <rect key="frame" x="107" y="0.0" width="106" height="50"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="15"/>
                                         <state key="normal" title="Empfohlen">
@@ -290,7 +290,7 @@
                                             <action selector="tabbuttonSelected:" destination="TSd-hq-GDC" eventType="touchUpInside" id="hhf-P3-OhL"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qd7-3s-xC2" customClass="TabbingButton">
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qd7-3s-xC2" customClass="TabbingButton">
                                         <rect key="frame" x="213" y="0.0" width="107" height="50"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="15"/>
                                         <state key="normal" title="Alle">
@@ -407,19 +407,30 @@
                                     <outlet property="delegate" destination="TSd-hq-GDC" id="rVT-Ga-sjY"/>
                                 </connections>
                             </tableView>
+                            <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G3M-0M-5nV">
+                                <rect key="frame" x="0.0" y="458" width="320" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="xqq-xz-Sal"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="JXi-TK-IkR" firstAttribute="top" secondItem="LuD-cs-s1I" secondAttribute="bottom" id="3Y8-se-kuw"/>
                             <constraint firstItem="JXi-TK-IkR" firstAttribute="leading" secondItem="epi-WA-mRh" secondAttribute="leading" id="ASf-21-z9x"/>
                             <constraint firstAttribute="trailing" secondItem="JXi-TK-IkR" secondAttribute="trailing" id="CVY-EZ-XZM"/>
+                            <constraint firstItem="FFl-qm-afL" firstAttribute="top" secondItem="JXi-TK-IkR" secondAttribute="bottom" id="FHP-RL-2rN"/>
                             <constraint firstItem="LuD-cs-s1I" firstAttribute="leading" secondItem="epi-WA-mRh" secondAttribute="leading" id="JRU-ew-eh8"/>
+                            <constraint firstItem="FFl-qm-afL" firstAttribute="top" secondItem="G3M-0M-5nV" secondAttribute="bottom" id="bzn-qh-MUZ"/>
+                            <constraint firstAttribute="trailing" secondItem="G3M-0M-5nV" secondAttribute="trailing" id="e0c-8x-cNn"/>
+                            <constraint firstItem="G3M-0M-5nV" firstAttribute="leading" secondItem="epi-WA-mRh" secondAttribute="leading" id="kAb-Oo-bbL"/>
                             <constraint firstItem="LuD-cs-s1I" firstAttribute="top" secondItem="z3K-6X-k9E" secondAttribute="bottom" id="kba-e4-XPz"/>
-                            <constraint firstItem="FFl-qm-afL" firstAttribute="top" secondItem="JXi-TK-IkR" secondAttribute="bottom" id="sCn-P7-EFF"/>
                             <constraint firstAttribute="trailing" secondItem="LuD-cs-s1I" secondAttribute="trailing" id="x1F-54-p9l"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="filterSortView" destination="G3M-0M-5nV" id="ow1-Q1-FMH"/>
                         <outlet property="tableView" destination="JXi-TK-IkR" id="eqv-et-7nl"/>
                         <outletCollection property="tabbuttonsArray" destination="dQB-Ey-55k" id="xzl-It-2Yj"/>
                         <outletCollection property="tabbuttonsArray" destination="N2C-fF-QfP" id="bQG-ZP-u9z"/>

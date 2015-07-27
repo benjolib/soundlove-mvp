@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F6a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Montserrat-Bold.ttf">
+            <string>Montserrat-Bold</string>
+        </mutableArray>
+        <mutableArray key="Montserrat-Light.otf">
+            <string>Montserrat-Light</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TutorialPopupView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cU2-RC-lz9">
+                    <rect key="frame" x="250" y="0.0" width="70" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="70" id="l5g-Sy-stf"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="18"/>
+                    <state key="normal" title="OK">
+                        <color key="titleColor" red="0.88235294119999996" green="0.69019607839999997" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="actionButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="qT9-PX-S0p"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vie-eC-VfF">
+                    <rect key="frame" x="249" y="0.0" width="1" height="60"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="1" id="rjj-G3-ucX"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Suche nach Festivals, Künstlern, Orten oder Musik Genres" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="249" translatesAutoresizingMaskIntoConstraints="NO" id="C24-EM-8qv">
+                    <rect key="frame" x="10" y="10" width="229" height="40"/>
+                    <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="15"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="cU2-RC-lz9" secondAttribute="trailing" id="5X1-pe-HHv"/>
+                <constraint firstAttribute="bottom" secondItem="C24-EM-8qv" secondAttribute="bottom" constant="10" id="6bs-Sw-Fog"/>
+                <constraint firstItem="C24-EM-8qv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="BxI-MM-NUV"/>
+                <constraint firstAttribute="bottom" secondItem="cU2-RC-lz9" secondAttribute="bottom" id="M1E-RT-TIL"/>
+                <constraint firstItem="cU2-RC-lz9" firstAttribute="leading" secondItem="vie-eC-VfF" secondAttribute="trailing" id="OC4-Zs-kaG"/>
+                <constraint firstItem="vie-eC-VfF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="SQz-b2-EoH"/>
+                <constraint firstItem="vie-eC-VfF" firstAttribute="leading" secondItem="C24-EM-8qv" secondAttribute="trailing" constant="10" id="Tkp-BN-GAL"/>
+                <constraint firstItem="cU2-RC-lz9" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="gTz-Je-Ggn"/>
+                <constraint firstAttribute="bottom" secondItem="vie-eC-VfF" secondAttribute="bottom" id="i43-VG-n9n"/>
+                <constraint firstItem="C24-EM-8qv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="inY-FB-jL8"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="actionButton" destination="cU2-RC-lz9" id="ZVn-Gq-a7d"/>
+                <outlet property="separatorView" destination="vie-eC-VfF" id="JDz-Gk-Ut3"/>
+                <outlet property="textLabel" destination="C24-EM-8qv" id="pfd-uP-rlD"/>
+            </connections>
+            <point key="canvasLocation" x="315" y="369"/>
+        </view>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
