@@ -18,8 +18,12 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="61"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ce1-wo-1Pe">
+                    <rect key="frame" x="52" y="0.0" width="268" height="61"/>
+                    <color key="backgroundColor" red="0.058823529411764705" green="0.082352941176470587" blue="0.11764705882352941" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iAd-Rc-hUr" userLabel="menu button">
-                    <rect key="frame" x="0.0" y="11" width="44" height="40"/>
+                    <rect key="frame" x="5" y="11" width="44" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="4nQ-hC-P1P"/>
                         <constraint firstAttribute="width" constant="44" id="v1S-0j-yUm"/>
@@ -29,6 +33,42 @@
                     </state>
                     <connections>
                         <action selector="menuButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="pD6-Um-3v5"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="192" translatesAutoresizingMaskIntoConstraints="NO" id="13y-Ee-s9w">
+                    <rect key="frame" x="54" y="13" width="212" height="36"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="jcd-FM-Pbz"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="20"/>
+                    <color key="textColor" red="0.41176470588235292" green="0.60392156862745094" blue="0.35686274509803922" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Suche Dein Konzert" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="btR-Ji-PmC">
+                    <rect key="frame" x="80" y="13" width="162" height="36"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="L5e-5E-bC6"/>
+                    </constraints>
+                    <color key="textColor" red="0.41176470590000003" green="0.60392156860000001" blue="0.35686274509999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="16"/>
+                    <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
+                    <connections>
+                        <outlet property="delegate" destination="iN0-l3-epB" id="UFA-Bi-vGt"/>
+                    </connections>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bv1-bC-uX1">
+                    <rect key="frame" x="252" y="16" width="60" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="G7J-TF-Zx9"/>
+                        <constraint firstAttribute="height" constant="30" id="x7F-iq-6DN"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="10"/>
+                    <state key="normal" title="Abbrechen">
+                        <color key="titleColor" red="0.41176470590000003" green="0.60392156860000001" blue="0.35686274509999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="cancelButtonPressed" destination="iN0-l3-epB" eventType="touchUpInside" id="I3h-Nu-40z"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6L1-mI-601" userLabel="search button">
@@ -44,61 +84,30 @@
                         <action selector="searchButtonPressed" destination="iN0-l3-epB" eventType="touchUpInside" id="Tly-ri-ob7"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="192" translatesAutoresizingMaskIntoConstraints="NO" id="13y-Ee-s9w">
-                    <rect key="frame" x="54" y="13" width="212" height="36"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="36" id="jcd-FM-Pbz"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="20"/>
-                    <color key="textColor" red="0.41176470588235292" green="0.60392156862745094" blue="0.35686274509803922" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Suche Festivals" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="btR-Ji-PmC">
-                    <rect key="frame" x="54" y="13" width="176" height="36"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="36" id="L5e-5E-bC6"/>
-                    </constraints>
-                    <color key="textColor" red="0.41176470590000003" green="0.60392156860000001" blue="0.35686274509999999" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="16"/>
-                    <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
-                    <connections>
-                        <outlet property="delegate" destination="iN0-l3-epB" id="UFA-Bi-vGt"/>
-                    </connections>
-                </textField>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bv1-bC-uX1">
-                    <rect key="frame" x="240" y="16" width="72" height="30"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="72" id="G7J-TF-Zx9"/>
-                        <constraint firstAttribute="height" constant="30" id="x7F-iq-6DN"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="12"/>
-                    <state key="normal" title="Abbrechen">
-                        <color key="titleColor" red="0.41176470590000003" green="0.60392156860000001" blue="0.35686274509999999" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="cancelButtonPressed" destination="iN0-l3-epB" eventType="touchUpInside" id="I3h-Nu-40z"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="centerY" secondItem="13y-Ee-s9w" secondAttribute="centerY" id="4Dn-Q6-pk6"/>
                 <constraint firstItem="Bv1-bC-uX1" firstAttribute="leading" secondItem="btR-Ji-PmC" secondAttribute="trailing" constant="10" id="5k9-Bv-MrD"/>
-                <constraint firstItem="btR-Ji-PmC" firstAttribute="leading" secondItem="13y-Ee-s9w" secondAttribute="leading" id="8SY-da-zDW"/>
                 <constraint firstAttribute="centerY" secondItem="iAd-Rc-hUr" secondAttribute="centerY" id="9Ie-9r-xWh"/>
                 <constraint firstAttribute="trailing" secondItem="Bv1-bC-uX1" secondAttribute="trailing" constant="8" id="9S9-wo-M57"/>
-                <constraint firstItem="13y-Ee-s9w" firstAttribute="leading" secondItem="iAd-Rc-hUr" secondAttribute="trailing" constant="10" id="Gdh-ja-ddc"/>
+                <constraint firstAttribute="bottom" secondItem="Ce1-wo-1Pe" secondAttribute="bottom" id="Ecd-Wm-Tbn"/>
+                <constraint firstAttribute="trailing" secondItem="Ce1-wo-1Pe" secondAttribute="trailing" id="GdU-c8-eHr"/>
+                <constraint firstItem="13y-Ee-s9w" firstAttribute="leading" secondItem="iAd-Rc-hUr" secondAttribute="trailing" constant="5" id="Gdh-ja-ddc"/>
                 <constraint firstAttribute="centerY" secondItem="Bv1-bC-uX1" secondAttribute="centerY" id="QRb-PN-mhf"/>
                 <constraint firstAttribute="trailing" secondItem="6L1-mI-601" secondAttribute="trailing" id="S1r-S1-ibY"/>
+                <constraint firstItem="Ce1-wo-1Pe" firstAttribute="leading" secondItem="iAd-Rc-hUr" secondAttribute="trailing" constant="3" id="YXF-wz-sY1"/>
                 <constraint firstAttribute="centerY" secondItem="btR-Ji-PmC" secondAttribute="centerY" id="bJB-K1-cpu"/>
+                <constraint firstItem="Ce1-wo-1Pe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="e5t-3c-Tt1"/>
                 <constraint firstAttribute="centerY" secondItem="6L1-mI-601" secondAttribute="centerY" id="eNw-ou-lw8"/>
                 <constraint firstAttribute="centerX" secondItem="13y-Ee-s9w" secondAttribute="centerX" id="fWG-LZ-zL3"/>
-                <constraint firstItem="iAd-Rc-hUr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="yuO-QF-JWJ"/>
+                <constraint firstItem="btR-Ji-PmC" firstAttribute="leading" secondItem="iAd-Rc-hUr" secondAttribute="trailing" constant="31" id="ls5-wp-LRL"/>
+                <constraint firstItem="iAd-Rc-hUr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="5" id="yuO-QF-JWJ"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="activeSearchBackgroundView" destination="Ce1-wo-1Pe" id="nig-DZ-j6Z"/>
                 <outlet property="cancelButton" destination="Bv1-bC-uX1" id="8fI-ws-5hN"/>
                 <outlet property="menuButton" destination="iAd-Rc-hUr" id="Rys-aF-3tO"/>
                 <outlet property="searchButton" destination="6L1-mI-601" id="NUX-bB-KoT"/>
@@ -106,7 +115,7 @@
                 <outlet property="searchField" destination="btR-Ji-PmC" id="g6t-FP-fvD"/>
                 <outlet property="titleLabel" destination="13y-Ee-s9w" id="Z78-ZO-doa"/>
             </connections>
-            <point key="canvasLocation" x="352" y="219"/>
+            <point key="canvasLocation" x="326" y="346.5"/>
         </view>
     </objects>
     <resources>

@@ -41,12 +41,18 @@
 
 - (void)setupView
 {
+    self.activeSearchBackgroundView.alpha = 0.0;
     self.searchField.hidden = YES;
     self.searchField.tintColor = [UIColor globalGreenColor];
+    self.searchField.textColor = [UIColor globalGreenColor];
+    self.searchField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.searchField.placeholder
+                                                                             attributes:@{NSFontAttributeName:self.searchField.font, NSForegroundColorAttributeName:[UIColor globalGreenColorWithAlpha:0.4]}];
+
     self.cancelButton.hidden = YES;
     self.cancelButton.alpha = 0.0;
     self.titleLabel.textColor = [UIColor globalGreenColor];
 
+    [self.cancelButton setTitleColor:[UIColor globalGreenColor] forState:UIControlStateNormal];
     [self.cancelButton setTitleColor:[UIColor globalGreenColorWithAlpha:0.6] forState:UIControlStateHighlighted];
     [self.searchField addTarget:self action:@selector(searchTextChanged:) forControlEvents:UIControlEventEditingChanged];
 
@@ -61,7 +67,7 @@
         self.isSearching = YES;
 
         [self removeConstraint:self.searchButtonLeftConstraint];
-        self.searchButtonLeftConstraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.searchButton attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0.0];
+        self.searchButtonLeftConstraint = [NSLayoutConstraint constraintWithItem:self.activeSearchBackgroundView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.searchButton attribute:NSLayoutAttributeLeft multiplier:1.0 constant:5.0];
         [self removeConstraint:self.searchButtonRightConstraint];
         [self addConstraint:self.searchButtonLeftConstraint];
 
@@ -70,17 +76,18 @@
         [UIView animateKeyframesWithDuration:0.6 delay:0.0 options:UIViewKeyframeAnimationOptionLayoutSubviews animations:^{
             // fade out layers
             [UIView addKeyframeWithRelativeStartTime:0.0 relativeDuration:0.2 animations:^{
-                self.menuButton.alpha = 0.0;
                 self.titleLabel.alpha = 0.0;
             }];
             // animate the search button
             [UIView addKeyframeWithRelativeStartTime:0.2 relativeDuration:0.4 animations:^{
+                self.searchButton.transform = CGAffineTransformMakeScale(0.6, 0.6);
                 [self layoutIfNeeded];
             }];
             // animate the textfield & cancelButton
             [UIView addKeyframeWithRelativeStartTime:0.8 relativeDuration:0.2 animations:^{
                 self.searchField.alpha = 1.0;
                 self.cancelButton.alpha = 1.0;
+                self.activeSearchBackgroundView.alpha = 1.0;
             }];
 
         } completion:^(BOOL finished) {
@@ -104,13 +111,14 @@
                                       [UIView addKeyframeWithRelativeStartTime:0.1 relativeDuration:0.1 animations:^{
                                           self.cancelButton.alpha = 0.0;
                                           self.searchField.alpha = 0.0;
+                                          self.activeSearchBackgroundView.alpha = 0.0;
                                       }];
                                       [UIView addKeyframeWithRelativeStartTime:0.2 relativeDuration:0.4 animations:^{
+                                          self.searchButton.transform = CGAffineTransformIdentity;
                                           [self layoutIfNeeded];
                                       }];
 
                                       [UIView addKeyframeWithRelativeStartTime:0.8 relativeDuration:0.2 animations:^{
-                                          self.menuButton.alpha = 1.0;
                                           self.titleLabel.alpha = 1.0;
                                       }];
                                   }

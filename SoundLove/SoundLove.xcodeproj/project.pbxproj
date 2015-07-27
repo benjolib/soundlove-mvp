@@ -42,6 +42,9 @@
 		56740A261B61230500638FEF /* ProfilViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56740A251B61230500638FEF /* ProfilViewController.m */; };
 		56740A291B61232900638FEF /* BandsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56740A281B61232900638FEF /* BandsViewController.m */; };
 		56740A2C1B61234800638FEF /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56740A2B1B61234800638FEF /* CalendarViewController.m */; };
+		5684B1BE1B6612C5009EF346 /* LoadingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5684B1BD1B6612C5009EF346 /* LoadingTableView.m */; };
+		5684B1C21B6612D8009EF346 /* SearchEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5684B1C01B6612D8009EF346 /* SearchEmptyView.m */; };
+		5684B1C31B6612D8009EF346 /* SearchEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5684B1C11B6612D8009EF346 /* SearchEmptyView.xib */; };
 		569513871B5D1F42008A649B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 569513861B5D1F42008A649B /* main.m */; };
 		5695138A1B5D1F42008A649B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 569513891B5D1F42008A649B /* AppDelegate.m */; };
 		569513901B5D1F42008A649B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5695138E1B5D1F42008A649B /* Main.storyboard */; };
@@ -128,6 +131,11 @@
 		56740A281B61232900638FEF /* BandsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BandsViewController.m; sourceTree = "<group>"; };
 		56740A2A1B61234800638FEF /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
 		56740A2B1B61234800638FEF /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
+		5684B1BC1B6612C5009EF346 /* LoadingTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingTableView.h; sourceTree = "<group>"; };
+		5684B1BD1B6612C5009EF346 /* LoadingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingTableView.m; sourceTree = "<group>"; };
+		5684B1BF1B6612D8009EF346 /* SearchEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchEmptyView.h; sourceTree = "<group>"; };
+		5684B1C01B6612D8009EF346 /* SearchEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchEmptyView.m; sourceTree = "<group>"; };
+		5684B1C11B6612D8009EF346 /* SearchEmptyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchEmptyView.xib; sourceTree = "<group>"; };
 		569513811B5D1F42008A649B /* SoundLove.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoundLove.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		569513851B5D1F42008A649B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		569513861B5D1F42008A649B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -343,6 +351,8 @@
 				567409F21B60EB5700638FEF /* BadgeCounterView.m */,
 				56740A041B60EE0900638FEF /* BaseTableViewCell.h */,
 				56740A051B60EE0900638FEF /* BaseTableViewCell.m */,
+				5684B1BC1B6612C5009EF346 /* LoadingTableView.h */,
+				5684B1BD1B6612C5009EF346 /* LoadingTableView.m */,
 				567409EE1B60DD5A00638FEF /* MenuButton.h */,
 				567409EF1B60DD5A00638FEF /* MenuButton.m */,
 				56D395D11B5F806B000DC427 /* RoundedButton.h */,
@@ -350,6 +360,9 @@
 				5658BA911B63F757004F08BB /* SearchNavigationView.h */,
 				5658BA921B63F757004F08BB /* SearchNavigationView.m */,
 				5658BA931B63F757004F08BB /* SearchNavigationView.xib */,
+				5684B1BF1B6612D8009EF346 /* SearchEmptyView.h */,
+				5684B1C01B6612D8009EF346 /* SearchEmptyView.m */,
+				5684B1C11B6612D8009EF346 /* SearchEmptyView.xib */,
 				5658BA971B63FA35004F08BB /* CustomNavigationView.h */,
 				5658BA981B63FA35004F08BB /* CustomNavigationView.m */,
 				5658BA9A1B63FE72004F08BB /* TabbingButton.h */,
@@ -485,6 +498,7 @@
 				567409E11B60DC2100638FEF /* Montserrat-Regular.ttf in Resources */,
 				5658BA951B63F757004F08BB /* SearchNavigationView.xib in Resources */,
 				567409F71B60EC4400638FEF /* Montserrat-Black.otf in Resources */,
+				5684B1C31B6612D8009EF346 /* SearchEmptyView.xib in Resources */,
 				569513901B5D1F42008A649B /* Main.storyboard in Resources */,
 				569513921B5D1F42008A649B /* Images.xcassets in Resources */,
 				567409F91B60EC4400638FEF /* Montserrat-Light.otf in Resources */,
@@ -534,9 +548,11 @@
 				56D395E51B5F8C11000DC427 /* UIImage+ImageEffects.m in Sources */,
 				56740A2C1B61234800638FEF /* CalendarViewController.m in Sources */,
 				56740A221B60F17C00638FEF /* FestivalTransitionManager.m in Sources */,
+				5684B1C21B6612D8009EF346 /* SearchEmptyView.m in Sources */,
 				56740A171B60F07B00638FEF /* CoreDataHandler.m in Sources */,
 				56D395DE1B5F8988000DC427 /* OverlayTransitionAnimator.m in Sources */,
 				567409EC1B60DD3900638FEF /* MenuViewController.m in Sources */,
+				5684B1BE1B6612C5009EF346 /* LoadingTableView.m in Sources */,
 				56D395E41B5F8C11000DC427 /* Reachability.m in Sources */,
 				56740A231B60F17C00638FEF /* FestivalTransitionAnimator.m in Sources */,
 				56740A031B60ED8B00638FEF /* BaseGradientViewController.m in Sources */,

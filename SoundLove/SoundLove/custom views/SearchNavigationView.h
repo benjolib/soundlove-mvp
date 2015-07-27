@@ -26,6 +26,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak) IBOutlet UITextField *searchField;
 @property (nonatomic, weak) IBOutlet UIButton *cancelButton;
+@property (nonatomic, weak) IBOutlet UIView *activeSearchBackgroundView;
 
 @property (nonatomic, strong) NSLayoutConstraint *searchButtonLeftConstraint;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *searchButtonRightConstraint;
