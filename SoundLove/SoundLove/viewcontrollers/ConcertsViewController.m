@@ -14,9 +14,16 @@
 #import "GeneralSettings.h"
 #import "UIColor+GlobalColors.h"
 #import "TutorialPopupView.h"
+#import "ConcertDownloadClient.h"
+#import "ConcertModel.h"
 
 @interface ConcertsViewController ()
 @property (nonatomic, strong) ConcertRefreshControl *refreshController;
+@property (nonatomic, strong) ConcertDownloadClient *downloadClient;
+@property (nonatomic, strong) NSMutableArray *concertsArray;
+@property (nonatomic) NSInteger limit;
+@property (nonatomic) NSInteger startIndex;
+@property (nonatomic) BOOL isSearching;
 @end
 
 @implementation ConcertsViewController
@@ -36,14 +43,21 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10.0;
+    return self.concertsArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ConcertsTableViewCell *cell = (ConcertsTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"cell"];
 
-    
+    ConcertModel *concert = self.concertsArray[indexPath.row];
+
+    cell.concertTitleLabel.text = concert.name;
+    cell.locationLabel.text = concert.place;
+    cell.priceLabel.text = [concert priceString];
+    cell.dateLabel.text = [concert calendarDaysTillStartDateString];
+
+    cell.calendarButton.alpha = 0.5;
 
     return cell;
 }
@@ -51,6 +65,64 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+}
+
+#pragma mark - download methods
+- (void)refreshView
+{
+    self.startIndex = 0;
+    [self.refreshController startRefreshing];
+
+    [self downloadAllConcerts];
+}
+
+- (void)downloadAllConcerts
+{
+    if (!self.downloadClient) {
+        self.downloadClient = [[ConcertDownloadClient alloc] init];
+    }
+
+    if (!self.concertsArray) {
+        self.concertsArray = [NSMutableArray array];
+    }
+
+    self.limit = 40.0;
+
+    __weak typeof (self) weakSelf = self;
+    [self.downloadClient downloadConcertsFromIndex:self.startIndex limit:self.limit withFilters:nil searchText:nil completionBlock:^(NSString *errorMessage, NSArray *concertsArray) {
+        [weakSelf.tableView hideLoadingIndicator];
+        [weakSelf.refreshController endRefreshing];
+
+        if (weakSelf.tableView.contentOffset.y < 0) {
+            weakSelf.tableView.contentOffset = CGPointMake(0.0, 0.0);
+        }
+        if (errorMessage) {
+            [weakSelf handleDownloadErrorMessage:errorMessage];
+        } else {
+            [weakSelf handleDownloadedConcertsArray:concertsArray];
+        }
+    }];
+}
+
+- (void)handleDownloadedConcertsArray:(NSArray*)downloadedConcertsArray
+{
+    if (self.isSearching) {
+        self.concertsArray = [downloadedConcertsArray mutableCopy];
+    } else {
+        if (self.startIndex == 0) {
+            self.concertsArray = [downloadedConcertsArray mutableCopy];
+        } else {
+            [self.concertsArray addObjectsFromArray:downloadedConcertsArray];
+        }
+    }
+
+    [self.tableView reloadData];
+}
+
+- (void)handleDownloadErrorMessage:(NSString*)errorMessage
+{
+
 
 }
 
@@ -78,6 +150,8 @@
     }
 
     [self addRefreshController];
+    [self.tableView showLoadingIndicator];
+    [self refreshView];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -95,14 +169,8 @@
     [tutorial2 showWithText:@"Filtere die Ergebniss nach Musik Genre, Künstler oder Ort"
                     atPoint:CGPointMake(CGRectGetMidX(self.filterSortView.frame), CGRectGetMinY(self.filterSortView.frame)-50.0)
               highLightArea:self.filterSortView.frame];
-}
 
-- (void)refreshView
-{
-    [self.refreshController startRefreshing];
-
-    [self.refreshController endRefreshing];
-    [self.tableView hideLoadingIndicator];
+    [GeneralSettings setTutorialsShown];
 }
 
 - (void)addRefreshController

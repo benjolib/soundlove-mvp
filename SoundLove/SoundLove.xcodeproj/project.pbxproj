@@ -53,6 +53,8 @@
 		5684B1D51B662135009EF346 /* ConcertRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 5684B1D41B662135009EF346 /* ConcertRefreshControl.m */; };
 		5684B1D91B66220F009EF346 /* TutorialPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5684B1D71B66220F009EF346 /* TutorialPopupView.m */; };
 		5684B1DA1B66220F009EF346 /* TutorialPopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5684B1D81B66220F009EF346 /* TutorialPopupView.xib */; };
+		5684B1DD1B6649E7009EF346 /* NSDictionary+nonNullObjectForKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 5684B1DC1B6649E7009EF346 /* NSDictionary+nonNullObjectForKey.m */; };
+		5684B1E01B664B7C009EF346 /* ConcertDownloadClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5684B1DF1B664B7C009EF346 /* ConcertDownloadClient.m */; };
 		569513871B5D1F42008A649B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 569513861B5D1F42008A649B /* main.m */; };
 		5695138A1B5D1F42008A649B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 569513891B5D1F42008A649B /* AppDelegate.m */; };
 		569513901B5D1F42008A649B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5695138E1B5D1F42008A649B /* Main.storyboard */; };
@@ -159,6 +161,10 @@
 		5684B1D61B66220F009EF346 /* TutorialPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialPopupView.h; sourceTree = "<group>"; };
 		5684B1D71B66220F009EF346 /* TutorialPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialPopupView.m; sourceTree = "<group>"; };
 		5684B1D81B66220F009EF346 /* TutorialPopupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialPopupView.xib; sourceTree = "<group>"; };
+		5684B1DB1B6649E7009EF346 /* NSDictionary+nonNullObjectForKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+nonNullObjectForKey.h"; sourceTree = "<group>"; };
+		5684B1DC1B6649E7009EF346 /* NSDictionary+nonNullObjectForKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+nonNullObjectForKey.m"; sourceTree = "<group>"; };
+		5684B1DE1B664B7C009EF346 /* ConcertDownloadClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcertDownloadClient.h; sourceTree = "<group>"; };
+		5684B1DF1B664B7C009EF346 /* ConcertDownloadClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcertDownloadClient.m; sourceTree = "<group>"; };
 		569513811B5D1F42008A649B /* SoundLove.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoundLove.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		569513851B5D1F42008A649B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		569513861B5D1F42008A649B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -237,6 +243,8 @@
 				5658BAA51B640D6F004F08BB /* NetworkConstants.h */,
 				5658BAA61B640D77004F08BB /* AbstractClient.h */,
 				5658BAA71B640D77004F08BB /* AbstractClient.m */,
+				5684B1DE1B664B7C009EF346 /* ConcertDownloadClient.h */,
+				5684B1DF1B664B7C009EF346 /* ConcertDownloadClient.m */,
 				5684B1CD1B661DB3009EF346 /* TicketShopperClient.h */,
 				5684B1CE1B661DB3009EF346 /* TicketShopperClient.m */,
 			);
@@ -418,6 +426,8 @@
 				56D395D61B5F8133000DC427 /* UIColor+GlobalColors.m */,
 				5684B1CA1B661B0E009EF346 /* UITextField+Helper.h */,
 				5684B1CB1B661B0E009EF346 /* UITextField+Helper.m */,
+				5684B1DB1B6649E7009EF346 /* NSDictionary+nonNullObjectForKey.h */,
+				5684B1DC1B6649E7009EF346 /* NSDictionary+nonNullObjectForKey.m */,
 				56740A141B60F06C00638FEF /* Core Data */,
 				56D395D81B5F88DF000DC427 /* transitionManagers */,
 			);
@@ -592,9 +602,11 @@
 				5684B1C61B6619BD009EF346 /* TicketShopDetailViewController.m in Sources */,
 				56740A221B60F17C00638FEF /* FestivalTransitionManager.m in Sources */,
 				5684B1C21B6612D8009EF346 /* SearchEmptyView.m in Sources */,
+				5684B1E01B664B7C009EF346 /* ConcertDownloadClient.m in Sources */,
 				56740A171B60F07B00638FEF /* CoreDataHandler.m in Sources */,
 				56D395DE1B5F8988000DC427 /* OverlayTransitionAnimator.m in Sources */,
 				567409EC1B60DD3900638FEF /* MenuViewController.m in Sources */,
+				5684B1DD1B6649E7009EF346 /* NSDictionary+nonNullObjectForKey.m in Sources */,
 				5684B1C91B6619EC009EF346 /* TicketShopTableViewCell.m in Sources */,
 				5684B1BE1B6612C5009EF346 /* LoadingTableView.m in Sources */,
 				5684B1CF1B661DB3009EF346 /* TicketShopperClient.m in Sources */,

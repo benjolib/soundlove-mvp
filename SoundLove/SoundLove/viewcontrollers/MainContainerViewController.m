@@ -164,7 +164,7 @@
 
 - (void)setupSearchView
 {
-    self.searchView = [[SearchNavigationView alloc] initWithTitle:@"Festivals" andDelegate:self.mainViewController];
+    self.searchView = [[SearchNavigationView alloc] initWithTitle:@"Konzerte" andDelegate:self.mainViewController];
     self.searchView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.navigationView addSubview:self.searchView];
 

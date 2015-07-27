@@ -407,7 +407,7 @@
                                     <outlet property="delegate" destination="TSd-hq-GDC" id="rVT-Ga-sjY"/>
                                 </connections>
                             </tableView>
-                            <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G3M-0M-5nV">
+                            <view alpha="0.80000000000000016" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G3M-0M-5nV">
                                 <rect key="frame" x="0.0" y="458" width="320" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
