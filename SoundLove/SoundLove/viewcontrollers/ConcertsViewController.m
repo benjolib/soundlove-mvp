@@ -16,6 +16,7 @@
 #import "TutorialPopupView.h"
 #import "ConcertDownloadClient.h"
 #import "ConcertModel.h"
+#import "CoreDataHandler.h"
 
 @interface ConcertsViewController ()
 @property (nonatomic, strong) ConcertRefreshControl *refreshController;
@@ -33,6 +34,27 @@
     for (TabbingButton *button in self.tabbuttonsArray) {
         [button setButtonActive:(button == selectedButton)];
     }
+}
+
+- (IBAction)calenderButtonTapped:(UIButton*)button
+{
+    UIView *aSuperview = [button superview];
+    while (![aSuperview isKindOfClass:[ConcertsTableViewCell class]]) {
+        aSuperview = [aSuperview superview];
+    }
+
+    ConcertsTableViewCell *cell = (ConcertsTableViewCell*)aSuperview;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    ConcertModel *concertModel = self.concertsArray[indexPath.row];
+
+    BOOL alreadyExisting = [[CoreDataHandler sharedHandler] addConcertToFavorites:concertModel];
+    if (alreadyExisting) {
+//        [[TrackingManager sharedManager] trackUserRemovedFestival];
+    } else {
+//        [[TrackingManager sharedManager] trackUserAddedFestival];
+    }
+//    [self sendRankInformationAboutSelectedFestival:festival increment:!alreadyExisting];
+    [self.tableView reloadData];
 }
 
 #pragma mark - tableView methods
@@ -57,7 +79,7 @@
     cell.priceLabel.text = [concert priceString];
     cell.dateLabel.text = [concert calendarDaysTillStartDateString];
 
-    cell.calendarButton.alpha = 0.5;
+    [cell showSavedState:[[CoreDataHandler sharedHandler] isConcertSaved:concert]];
 
     return cell;
 }

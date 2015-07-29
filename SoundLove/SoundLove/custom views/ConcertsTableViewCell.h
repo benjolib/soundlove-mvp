@@ -19,6 +19,6 @@
 @property (nonatomic, weak) IBOutlet UIImageView *concertImageView;
 @property (nonatomic, weak) IBOutlet CalendarButton *calendarButton;
 
-
+- (void)showSavedState:(BOOL)saved;
 
 @end

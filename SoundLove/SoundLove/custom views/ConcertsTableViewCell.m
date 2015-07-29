@@ -32,6 +32,11 @@
     [self setup];
 }
 
+- (void)showSavedState:(BOOL)saved
+{
+    self.calendarButton.alpha = saved ? 1.0 : 0.4;
+}
+
 - (void)prepareForReuse
 {
     [super prepareForReuse];

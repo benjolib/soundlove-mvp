@@ -8,6 +8,12 @@
 
 #import "BaseGradientViewController.h"
 
-@interface CalendarViewController : BaseGradientViewController
+@class LoadingTableView, TabbingButton;
+
+@interface CalendarViewController : BaseGradientViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, weak) IBOutlet LoadingTableView *tableView;
+@property (nonatomic, weak) IBOutlet TabbingButton *eventsButton;
+@property (nonatomic, weak) IBOutlet TabbingButton *friendsButton;
 
 @end

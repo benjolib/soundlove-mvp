@@ -60,12 +60,24 @@
 		569513901B5D1F42008A649B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5695138E1B5D1F42008A649B /* Main.storyboard */; };
 		569513921B5D1F42008A649B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 569513911B5D1F42008A649B /* Images.xcassets */; };
 		569513A11B5D1F43008A649B /* SoundLoveTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 569513A01B5D1F43008A649B /* SoundLoveTests.m */; };
+		56A65C6A1B68A9E000619189 /* onboarding.mov in Resources */ = {isa = PBXBuildFile; fileRef = 56A65C691B68A9E000619189 /* onboarding.mov */; };
+		56A65C6C1B68AA0300619189 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56A65C6B1B68AA0300619189 /* AVFoundation.framework */; };
+		56A65C6F1B68AD0600619189 /* FacebookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A65C6E1B68AD0600619189 /* FacebookManager.m */; };
+		56A65C721B68AE2700619189 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56A65C701B68AE2700619189 /* FBSDKCoreKit.framework */; };
+		56A65C731B68AE2700619189 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56A65C711B68AE2700619189 /* FBSDKLoginKit.framework */; };
+		56A65C761B68B9C900619189 /* CalendarEventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A65C751B68B9C900619189 /* CalendarEventTableViewCell.m */; };
+		56A65C791B68E14F00619189 /* SoundLove.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 56A65C771B68E14F00619189 /* SoundLove.xcdatamodeld */; };
+		56A65C7C1B68E19C00619189 /* CDConcert.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A65C7B1B68E19C00619189 /* CDConcert.m */; };
+		56A65C7F1B68E60F00619189 /* CDConcert+ConcertHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A65C7E1B68E60F00619189 /* CDConcert+ConcertHelper.m */; };
+		56A65C821B691E4200619189 /* BasicButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A65C811B691E4200619189 /* BasicButton.m */; };
 		56D395D31B5F806B000DC427 /* RoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D395D21B5F806B000DC427 /* RoundedButton.m */; };
 		56D395D71B5F8133000DC427 /* UIColor+GlobalColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D395D61B5F8133000DC427 /* UIColor+GlobalColors.m */; };
 		56D395DB1B5F8928000DC427 /* OverlayTransitionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D395DA1B5F8928000DC427 /* OverlayTransitionManager.m */; };
 		56D395DE1B5F8988000DC427 /* OverlayTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D395DD1B5F8988000DC427 /* OverlayTransitionAnimator.m */; };
 		56D395E41B5F8C11000DC427 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D395E11B5F8C11000DC427 /* Reachability.m */; };
 		56D395E51B5F8C11000DC427 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D395E31B5F8C11000DC427 /* UIImage+ImageEffects.m */; };
+		56ECD1301B67B6B9008E11A0 /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56ECD12F1B67B6B9008E11A0 /* OnboardingViewController.m */; };
+		56ECD1351B67BB30008E11A0 /* FacebookButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 56ECD1341B67BB30008E11A0 /* FacebookButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -175,6 +187,21 @@
 		5695139A1B5D1F43008A649B /* SoundLoveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SoundLoveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5695139F1B5D1F43008A649B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		569513A01B5D1F43008A649B /* SoundLoveTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SoundLoveTests.m; sourceTree = "<group>"; };
+		56A65C691B68A9E000619189 /* onboarding.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = onboarding.mov; sourceTree = "<group>"; };
+		56A65C6B1B68AA0300619189 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		56A65C6D1B68AD0600619189 /* FacebookManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookManager.h; sourceTree = "<group>"; };
+		56A65C6E1B68AD0600619189 /* FacebookManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookManager.m; sourceTree = "<group>"; };
+		56A65C701B68AE2700619189 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../../../../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		56A65C711B68AE2700619189 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../../../../../Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		56A65C741B68B9C900619189 /* CalendarEventTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarEventTableViewCell.h; sourceTree = "<group>"; };
+		56A65C751B68B9C900619189 /* CalendarEventTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarEventTableViewCell.m; sourceTree = "<group>"; };
+		56A65C781B68E14F00619189 /* SoundLove.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SoundLove.xcdatamodel; sourceTree = "<group>"; };
+		56A65C7A1B68E19C00619189 /* CDConcert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDConcert.h; sourceTree = "<group>"; };
+		56A65C7B1B68E19C00619189 /* CDConcert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDConcert.m; sourceTree = "<group>"; };
+		56A65C7D1B68E60F00619189 /* CDConcert+ConcertHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CDConcert+ConcertHelper.h"; sourceTree = "<group>"; };
+		56A65C7E1B68E60F00619189 /* CDConcert+ConcertHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CDConcert+ConcertHelper.m"; sourceTree = "<group>"; };
+		56A65C801B691E4200619189 /* BasicButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicButton.h; sourceTree = "<group>"; };
+		56A65C811B691E4200619189 /* BasicButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicButton.m; sourceTree = "<group>"; };
 		56D395D11B5F806B000DC427 /* RoundedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedButton.h; sourceTree = "<group>"; };
 		56D395D21B5F806B000DC427 /* RoundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundedButton.m; sourceTree = "<group>"; };
 		56D395D51B5F8133000DC427 /* UIColor+GlobalColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+GlobalColors.h"; sourceTree = "<group>"; };
@@ -187,6 +214,10 @@
 		56D395E11B5F8C11000DC427 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		56D395E21B5F8C11000DC427 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		56D395E31B5F8C11000DC427 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		56ECD12E1B67B6B9008E11A0 /* OnboardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingViewController.h; sourceTree = "<group>"; };
+		56ECD12F1B67B6B9008E11A0 /* OnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingViewController.m; sourceTree = "<group>"; };
+		56ECD1331B67BB30008E11A0 /* FacebookButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookButton.h; sourceTree = "<group>"; };
+		56ECD1341B67BB30008E11A0 /* FacebookButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +225,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56A65C721B68AE2700619189 /* FBSDKCoreKit.framework in Frameworks */,
+				56A65C6C1B68AA0300619189 /* AVFoundation.framework in Frameworks */,
+				56A65C731B68AE2700619189 /* FBSDKLoginKit.framework in Frameworks */,
 				56740A0E1B60EE4200638FEF /* CoreData.framework in Frameworks */,
 				56740A0F1B60EE4200638FEF /* CoreLocation.framework in Frameworks */,
 				56740A0B1B60EE3900638FEF /* StoreKit.framework in Frameworks */,
@@ -233,6 +267,8 @@
 				56740A051B60EE0900638FEF /* BaseTableViewCell.m */,
 				5684B1C71B6619EC009EF346 /* TicketShopTableViewCell.h */,
 				5684B1C81B6619EC009EF346 /* TicketShopTableViewCell.m */,
+				56A65C741B68B9C900619189 /* CalendarEventTableViewCell.h */,
+				56A65C751B68B9C900619189 /* CalendarEventTableViewCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -247,6 +283,8 @@
 				5684B1DF1B664B7C009EF346 /* ConcertDownloadClient.m */,
 				5684B1CD1B661DB3009EF346 /* TicketShopperClient.h */,
 				5684B1CE1B661DB3009EF346 /* TicketShopperClient.m */,
+				56A65C6D1B68AD0600619189 /* FacebookManager.h */,
+				56A65C6E1B68AD0600619189 /* FacebookManager.m */,
 			);
 			path = networking;
 			sourceTree = "<group>";
@@ -265,6 +303,7 @@
 		56740A101B60EE4600638FEF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				56A65C6B1B68AA0300619189 /* AVFoundation.framework */,
 				56740A0C1B60EE4200638FEF /* CoreData.framework */,
 				56740A0D1B60EE4200638FEF /* CoreLocation.framework */,
 				56740A0A1B60EE3900638FEF /* StoreKit.framework */,
@@ -277,6 +316,11 @@
 			children = (
 				56740A151B60F07B00638FEF /* CoreDataHandler.h */,
 				56740A161B60F07B00638FEF /* CoreDataHandler.m */,
+				56A65C771B68E14F00619189 /* SoundLove.xcdatamodeld */,
+				56A65C7A1B68E19C00619189 /* CDConcert.h */,
+				56A65C7B1B68E19C00619189 /* CDConcert.m */,
+				56A65C7D1B68E60F00619189 /* CDConcert+ConcertHelper.h */,
+				56A65C7E1B68E60F00619189 /* CDConcert+ConcertHelper.m */,
 			);
 			name = "Core Data";
 			sourceTree = "<group>";
@@ -317,6 +361,9 @@
 		569513841B5D1F42008A649B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				56A65C701B68AE2700619189 /* FBSDKCoreKit.framework */,
+				56A65C711B68AE2700619189 /* FBSDKLoginKit.framework */,
+				56A65C691B68A9E000619189 /* onboarding.mov */,
 				56D395DF1B5F8C00000DC427 /* Third party */,
 				569513911B5D1F42008A649B /* Images.xcassets */,
 				5658BA961B63F7E3004F08BB /* Fonts */,
@@ -346,6 +393,7 @@
 		569513AA1B5D2048008A649B /* viewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				56ECD1311B67B6C9008E11A0 /* Onboarding */,
 				56740A011B60ED8B00638FEF /* BaseGradientViewController.h */,
 				56740A021B60ED8B00638FEF /* BaseGradientViewController.m */,
 				56740A1B1B60F12700638FEF /* MainContainerViewController.h */,
@@ -385,6 +433,7 @@
 		56D395D01B5F7FBF000DC427 /* Custom views */ = {
 			isa = PBXGroup;
 			children = (
+				56ECD1321B67BB16008E11A0 /* Buttons */,
 				5658BA9D1B640612004F08BB /* TableViewCells */,
 				567409F11B60EB5700638FEF /* BadgeCounterView.h */,
 				567409F21B60EB5700638FEF /* BadgeCounterView.m */,
@@ -392,10 +441,6 @@
 				5684B1D41B662135009EF346 /* ConcertRefreshControl.m */,
 				5684B1BC1B6612C5009EF346 /* LoadingTableView.h */,
 				5684B1BD1B6612C5009EF346 /* LoadingTableView.m */,
-				567409EE1B60DD5A00638FEF /* MenuButton.h */,
-				567409EF1B60DD5A00638FEF /* MenuButton.m */,
-				56D395D11B5F806B000DC427 /* RoundedButton.h */,
-				56D395D21B5F806B000DC427 /* RoundedButton.m */,
 				5658BA911B63F757004F08BB /* SearchNavigationView.h */,
 				5658BA921B63F757004F08BB /* SearchNavigationView.m */,
 				5658BA931B63F757004F08BB /* SearchNavigationView.xib */,
@@ -404,8 +449,6 @@
 				5684B1C11B6612D8009EF346 /* SearchEmptyView.xib */,
 				5658BA971B63FA35004F08BB /* CustomNavigationView.h */,
 				5658BA981B63FA35004F08BB /* CustomNavigationView.m */,
-				5658BA9A1B63FE72004F08BB /* TabbingButton.h */,
-				5658BA9B1B63FE72004F08BB /* TabbingButton.m */,
 				5684B1D61B66220F009EF346 /* TutorialPopupView.h */,
 				5684B1D71B66220F009EF346 /* TutorialPopupView.m */,
 				5684B1D81B66220F009EF346 /* TutorialPopupView.xib */,
@@ -460,6 +503,32 @@
 				56D395E31B5F8C11000DC427 /* UIImage+ImageEffects.m */,
 			);
 			name = "Third party";
+			sourceTree = "<group>";
+		};
+		56ECD1311B67B6C9008E11A0 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				56ECD12E1B67B6B9008E11A0 /* OnboardingViewController.h */,
+				56ECD12F1B67B6B9008E11A0 /* OnboardingViewController.m */,
+			);
+			name = Onboarding;
+			sourceTree = "<group>";
+		};
+		56ECD1321B67BB16008E11A0 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				56A65C801B691E4200619189 /* BasicButton.h */,
+				56A65C811B691E4200619189 /* BasicButton.m */,
+				567409EE1B60DD5A00638FEF /* MenuButton.h */,
+				567409EF1B60DD5A00638FEF /* MenuButton.m */,
+				56D395D11B5F806B000DC427 /* RoundedButton.h */,
+				56D395D21B5F806B000DC427 /* RoundedButton.m */,
+				5658BA9A1B63FE72004F08BB /* TabbingButton.h */,
+				5658BA9B1B63FE72004F08BB /* TabbingButton.m */,
+				56ECD1331B67BB30008E11A0 /* FacebookButton.h */,
+				56ECD1341B67BB30008E11A0 /* FacebookButton.m */,
+			);
+			name = Buttons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -551,6 +620,7 @@
 				569513901B5D1F42008A649B /* Main.storyboard in Resources */,
 				569513921B5D1F42008A649B /* Images.xcassets in Resources */,
 				567409F91B60EC4400638FEF /* Montserrat-Light.otf in Resources */,
+				56A65C6A1B68A9E000619189 /* onboarding.mov in Resources */,
 				567409DF1B60DC1C00638FEF /* Montserrat-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -570,6 +640,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				56740A1D1B60F12700638FEF /* MainContainerViewController.m in Sources */,
+				56A65C6F1B68AD0600619189 /* FacebookManager.m in Sources */,
 				56740A061B60EE0900638FEF /* BaseTableViewCell.m in Sources */,
 				5695138A1B5D1F42008A649B /* AppDelegate.m in Sources */,
 				567409F31B60EB5700638FEF /* BadgeCounterView.m in Sources */,
@@ -578,22 +649,27 @@
 				56740A261B61230500638FEF /* ProfilViewController.m in Sources */,
 				567409DD1B60DAEC00638FEF /* StoryboardManager.m in Sources */,
 				56D395DB1B5F8928000DC427 /* OverlayTransitionManager.m in Sources */,
+				56A65C7F1B68E60F00619189 /* CDConcert+ConcertHelper.m in Sources */,
 				567409EB1B60DD3900638FEF /* FavoriteConcertViewController.m in Sources */,
 				5658BAA31B640862004F08BB /* CalendarButton.m in Sources */,
 				567409FF1B60ED4700638FEF /* WhatWeDoViewController.m in Sources */,
 				56740A291B61232900638FEF /* BandsViewController.m in Sources */,
 				56740A1A1B60F0CA00638FEF /* ConcertsViewController.m in Sources */,
+				56A65C7C1B68E19C00619189 /* CDConcert.m in Sources */,
 				56D395D71B5F8133000DC427 /* UIColor+GlobalColors.m in Sources */,
 				5684B1CC1B661B0E009EF346 /* UITextField+Helper.m in Sources */,
+				56A65C791B68E14F00619189 /* SoundLove.xcdatamodeld in Sources */,
 				56D395D31B5F806B000DC427 /* RoundedButton.m in Sources */,
 				5658BA941B63F757004F08BB /* SearchNavigationView.m in Sources */,
 				56740A131B60EFEA00638FEF /* MenuTransitionManager.m in Sources */,
 				5658BA991B63FA35004F08BB /* CustomNavigationView.m in Sources */,
+				56A65C761B68B9C900619189 /* CalendarEventTableViewCell.m in Sources */,
 				569513871B5D1F42008A649B /* main.m in Sources */,
 				567409FE1B60ED4700638FEF /* InfoViewController.m in Sources */,
 				5684B1D51B662135009EF346 /* ConcertRefreshControl.m in Sources */,
 				56740A091B60EE2700638FEF /* GeneralSettings.m in Sources */,
 				567409ED1B60DD3900638FEF /* OverlayViewController.m in Sources */,
+				56A65C821B691E4200619189 /* BasicButton.m in Sources */,
 				5658BA9C1B63FE72004F08BB /* TabbingButton.m in Sources */,
 				567409F01B60DD5A00638FEF /* MenuButton.m in Sources */,
 				5658BAA01B64062C004F08BB /* ConcertsTableViewCell.m in Sources */,
@@ -604,6 +680,7 @@
 				5684B1C21B6612D8009EF346 /* SearchEmptyView.m in Sources */,
 				5684B1E01B664B7C009EF346 /* ConcertDownloadClient.m in Sources */,
 				56740A171B60F07B00638FEF /* CoreDataHandler.m in Sources */,
+				56ECD1351B67BB30008E11A0 /* FacebookButton.m in Sources */,
 				56D395DE1B5F8988000DC427 /* OverlayTransitionAnimator.m in Sources */,
 				567409EC1B60DD3900638FEF /* MenuViewController.m in Sources */,
 				5684B1DD1B6649E7009EF346 /* NSDictionary+nonNullObjectForKey.m in Sources */,
@@ -614,6 +691,7 @@
 				56740A231B60F17C00638FEF /* FestivalTransitionAnimator.m in Sources */,
 				56740A031B60ED8B00638FEF /* BaseGradientViewController.m in Sources */,
 				5684B1D21B661DCB009EF346 /* ConcertModel.m in Sources */,
+				56ECD1301B67B6B9008E11A0 /* OnboardingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -732,6 +810,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/sax155/Documents/FacebookSDK,
+				);
 				INFOPLIST_FILE = SoundLove/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -744,6 +826,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/sax155/Documents/FacebookSDK,
+				);
 				INFOPLIST_FILE = SoundLove/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -816,6 +902,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		56A65C771B68E14F00619189 /* SoundLove.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				56A65C781B68E14F00619189 /* SoundLove.xcdatamodel */,
+			);
+			currentVersion = 56A65C781B68E14F00619189 /* SoundLove.xcdatamodel */;
+			path = SoundLove.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 569513791B5D1F42008A649B /* Project object */;
 }

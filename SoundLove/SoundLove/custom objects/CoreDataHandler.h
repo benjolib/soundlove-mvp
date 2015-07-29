@@ -7,11 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
+
+@class ConcertModel, CDConcert;
 
 @interface CoreDataHandler : NSObject
+
+@property (readonly, strong, nonatomic) NSManagedObjectContext *mainManagedObjectContext;
 
 + (instancetype)sharedHandler;
 
 - (NSInteger)numberOfSavedConcerts;
+
+- (BOOL)addConcertToFavorites:(ConcertModel*)concertModel;
+- (void)removeConcertObject:(CDConcert*)concert;
+
+- (NSArray*)allSavedConcerts;
+- (BOOL)isConcertSaved:(ConcertModel*)concertModel;
+
 
 @end

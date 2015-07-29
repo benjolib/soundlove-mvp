@@ -57,6 +57,7 @@
 
 - (void)setHighlighted:(BOOL)highlighted
 {
+    [super setHighlighted:highlighted];
     if (highlighted) {
         self.imageView.tintColor = [UIColor menuButtonSelectedColor];
         [self setTitleColor:[UIColor menuButtonSelectedColor] forState:UIControlStateHighlighted];
