@@ -19,4 +19,7 @@ static NSString * const kTicketShop = @"tickets/order";
 static NSString * const kFestivalIncrement = @"rank/increment";
 static NSString * const kFestivalDecrement = @"rank/decrement";
 
+// To get recommended concerts
+// http://api-eventim.makers.do/events/likes/list?user_id=XXX&access_token=xxx
+
 #endif

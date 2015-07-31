@@ -31,8 +31,8 @@
 {
     self.counterLabel = [[UILabel alloc] init];
     self.counterLabel.textAlignment = NSTextAlignmentCenter;
-    self.counterLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-    self.counterLabel.font = [UIFont fontWithName:@"Montserrat-Regular" size:14.0];
+    self.counterLabel.textColor = [UIColor colorWithR:43 G:43 B:50];
+    self.counterLabel.font = [UIFont fontWithName:@"Montserrat" size:14.0];
     self.counterLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:self.counterLabel];
 }

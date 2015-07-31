@@ -43,7 +43,6 @@ static CGFloat const kBounceValue = 10.0f;
             NSLog(@"Pan Began at %@", NSStringFromCGPoint(self.panStartPoint));
 
             self.panStartPoint = [recognizer translationInView:self.slidingView];
-            self.panStartPoint = [recognizer translationInView:self.slidingView];
             self.startingRightLayoutConstraintConstant = self.contentViewRightConstraint.constant;
 
             break;
@@ -51,6 +50,13 @@ static CGFloat const kBounceValue = 10.0f;
         {
             CGPoint currentPoint = [recognizer translationInView:self.slidingView];
             CGFloat deltaX = currentPoint.x - self.panStartPoint.x;
+            CGFloat deltaY = currentPoint.y - self.panStartPoint.y;
+
+            // if vertical movement is bigger than horizontal, than it's not a swipe
+            if (fabs(deltaY) > fabs(deltaX)) {
+                return;
+            }
+
             BOOL panningLeft = NO;
             if (currentPoint.x < self.panStartPoint.x) {  //1
                 panningLeft = YES;

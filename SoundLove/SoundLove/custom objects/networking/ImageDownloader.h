@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface ImageDownloader : NSObject
+
+- (void)startDownloadingImage:(NSString*)urlString completionBlock:(void(^)(UIImage *image))completionBlock;
+- (void)cancelDownload;
 
 @end
