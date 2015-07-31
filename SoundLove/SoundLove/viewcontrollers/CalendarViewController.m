@@ -14,12 +14,14 @@
 #import "UIColor+GlobalColors.h"
 #import "ConcertModel.h"
 #import "CDConcert+ConcertHelper.h"
+#import "CDConcertImage.h"
 #import "LoadingTableView.h"
 
 @interface CalendarViewController () <NSFetchedResultsControllerDelegate, CalendarEventTableViewCellDelegate>
 @property (nonatomic, strong) NSArray *savedConcertsArray;
 @property (nonatomic, strong) NSFetchedResultsController *fetchController;
 @property (nonatomic, strong) NSMutableSet *cellsCurrentlyEditing;
+@property (nonatomic) BOOL isSearching;
 @end
 
 @implementation CalendarViewController
@@ -40,21 +42,62 @@
     [self loadAllSavedEvents];
 }
 
+#pragma mark - searching
+- (void)searchNavigationViewSearchButtonPressed:(NSString *)searchText
+{
+    [self searchWithText:searchText];
+}
+
+- (void)searchNavigationViewUserEnteredNewCharacter:(NSString *)searchText
+{
+    [self searchWithText:searchText];
+}
+
+- (void)searchNavigationViewCancelButtonPressed
+{
+    [self.tableView hideEmptyView];
+
+    [self.fetchController.fetchRequest setPredicate:nil];
+    [self loadAllSavedEvents];
+}
+
+- (void)searchWithText:(NSString*)searchText
+{
+    if (searchText.length > 0) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name contains[cd] %@", searchText];
+        [self.fetchController.fetchRequest setPredicate:predicate];
+        self.isSearching = YES;
+    } else {
+        [self.fetchController.fetchRequest setPredicate:nil];
+        self.isSearching = NO;
+    }
+
+    [self loadAllSavedEvents];
+
+    if (self.fetchController.fetchedObjects.count == 0) {
+        [self.tableView showEmptySearchView];
+    } else {
+        [self.tableView hideEmptyView];
+    }
+}
+
 #pragma mark - tableViewCell button actions
 - (IBAction)deleteButtonPressed:(UIButton*)button
 {
     NSIndexPath *indexPath = [self indexPathForButton:button];
-    CDConcert *concert = self.savedConcertsArray[indexPath.row];
+    CDConcert *concert = [self.fetchController objectAtIndexPath:indexPath];
 
     [self cellDidClose:(CalendarEventTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath]];
 
-    [[CoreDataHandler sharedHandler] removeConcertObject:concert];
+    if (concert) {
+        [[CoreDataHandler sharedHandler] removeConcertObject:concert];
+    }
 }
 
 - (IBAction)shareButtonPressed:(UIButton*)button
 {
     NSIndexPath *indexPath = [self indexPathForButton:button];
-    CDConcert *concert = self.savedConcertsArray[indexPath.row];
+    CDConcert *concert = [self.fetchController objectAtIndexPath:indexPath];
 
     NSString *stringToShare = [NSString stringWithFormat:@"%@", concert.name];
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[stringToShare]
@@ -217,6 +260,15 @@
     cell.priceLabel.text = [concert priceString];
     cell.dateLabel.text = [concert calendarDaysTillStartDateString];
 
+    dispatch_async(dispatch_queue_create("com.SoundLove.getImageFromCoreData", NULL), ^{
+        CDConcertImage *imageModel = savedConcert.image;
+        if (imageModel) {
+            UIImage *image = [UIImage imageWithData:imageModel.image];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                cell.concertImageView.image = image;
+            });
+        }
+    });
     return cell;
 }
 
@@ -243,6 +295,8 @@
 - (void)viewDidLoad
 {
     [self addGradientBackground];
+    self.view.backgroundColor = [UIColor clearColor];
+    self.tableView.backgroundColor = [UIColor clearColor];
 
     self.cellsCurrentlyEditing = [NSMutableSet new];
     [self.tableView showLoadingIndicator];

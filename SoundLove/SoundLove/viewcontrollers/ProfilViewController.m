@@ -7,7 +7,22 @@
 //
 
 #import "ProfilViewController.h"
+#import "FacebookManager.h"
+#import "CoreDataHandler.h"
+
+@interface ProfilViewController ()
+@property (nonatomic, strong) FacebookManager *facebookManager;
+@end
 
 @implementation ProfilViewController
+
+- (IBAction)logoutButtonPressed:(id)sender
+{
+    if (!self.facebookManager) {
+        self.facebookManager = [[FacebookManager alloc] init];
+    }
+    [self.facebookManager logoutUser];
+    [[CoreDataHandler sharedHandler] clearDatabase];
+}
 
 @end

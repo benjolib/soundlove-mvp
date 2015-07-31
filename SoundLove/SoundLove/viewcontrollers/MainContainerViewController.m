@@ -29,6 +29,16 @@
 
 @implementation MainContainerViewController
 
+- (IBAction)unwindFromFilteringViewByClosing:(UIStoryboardSegue*)segue
+{
+
+}
+
+- (IBAction)unwindFromFilteringViewByApplyingFilter:(UIStoryboardSegue*)segue
+{
+    // Do the filtering
+}
+
 - (IBAction)showOverlay:(id)sender
 {
     if (!self.overlayTransitionManager) {
@@ -77,6 +87,7 @@
         return;
     }
 
+    self.searchView.searchButton.hidden = NO;
     switch (menuItem)
     {
         case MenuItemConcerts: {
@@ -112,6 +123,7 @@
             [self startTransitionToViewController:profilViewController];
             self.currentMenuItem = menuItem;
             [self setParentTitle:@"Profil"];
+            self.searchView.searchButton.hidden = YES;
             break;
         }
         default:

@@ -10,4 +10,6 @@
 
 @interface ProfilViewController : BaseGradientViewController
 
+- (IBAction)logoutButtonPressed:(id)sender;
+
 @end

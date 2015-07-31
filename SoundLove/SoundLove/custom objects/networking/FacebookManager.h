@@ -11,6 +11,7 @@
 @interface FacebookManager : NSObject
 
 - (void)loginUserToFacebookWithCompletion:(void (^)(BOOL completed, NSString *errorMessage))completionBlock;
+- (void)logoutUser;
 
 + (BOOL)isUserLoggedInToFacebook;
 

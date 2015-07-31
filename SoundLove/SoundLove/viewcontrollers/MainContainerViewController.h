@@ -21,6 +21,9 @@ typedef NS_ENUM(NSUInteger, MenuItem) {
 @property (nonatomic, weak) IBOutlet UIView *containerView;
 @property (nonatomic, weak) IBOutlet UIView *navigationView;
 
+- (IBAction)unwindFromFilteringViewByClosing:(UIStoryboardSegue*)segue;
+- (IBAction)unwindFromFilteringViewByApplyingFilter:(UIStoryboardSegue*)segue;
+
 - (void)changeToMenuItem:(MenuItem)menuItem;
 
 - (void)setParentTitle:(NSString*)title;

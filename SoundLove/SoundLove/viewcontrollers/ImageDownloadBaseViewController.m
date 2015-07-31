@@ -7,31 +7,83 @@
 //
 
 #import "ImageDownloadBaseViewController.h"
+#import "LoadingTableView.h"
+#import "BaseImageModel.h"
+#import "ImageDownloader.h"
+#import "NSDictionary+nonNullObjectForKey.h"
 
-@interface ImageDownloadBaseViewController ()
-
+@interface ImageDownloadBaseViewController () <UIScrollViewDelegate>
+@property (nonatomic, strong) NSMutableDictionary *imageDownloadDictionary;
 @end
 
 @implementation ImageDownloadBaseViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.imageDownloadDictionary = [NSMutableDictionary dictionary];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self cancelAllImageDownloads];
 }
 
-/*
-#pragma mark - Navigation
+- (void)cancelAllImageDownloads
+{
+    NSArray *allDownloads = [self.imageDownloadDictionary allValues];
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    for (ImageDownloader *downloader in allDownloads) {
+        [downloader cancelDownload];
+    }
+
+    [self.imageDownloadDictionary removeAllObjects];
 }
-*/
+
+- (void)loadImagesForVisibleRows
+{
+    NSArray *visibleRows = [self.tableView indexPathsForVisibleRows];
+    for (NSIndexPath *indexpath in visibleRows) {
+        BaseImageModel *object = self.objectsToDisplay[indexpath.row];
+        if (!object.image) {
+            [self startImageDownloadForObject:object atIndexPath:indexpath];
+        }
+    }
+}
+
+- (void)startImageDownloadForObject:(BaseImageModel*)object atIndexPath:(NSIndexPath*)indexPath
+{
+    ImageDownloader *downloader = [self.imageDownloadDictionary nonNullObjectForKey:indexPath];
+    if (!downloader)
+    {
+        downloader = [ImageDownloader new];
+        __weak typeof(self) weakSelf = self;
+        [downloader startDownloadingImage:object.imageURL completionBlock:^(UIImage *image) {
+            [weakSelf updateTableViewCellAtIndexPath:indexPath image:image];
+            [weakSelf.imageDownloadDictionary removeObjectForKey:indexPath];
+        }];
+
+        self.imageDownloadDictionary[indexPath] = downloader;
+    }
+}
+
+- (void)updateTableViewCellAtIndexPath:(NSIndexPath*)indexPath image:(UIImage*)image
+{
+    // implement in subclasses
+}
+
+#pragma mark - scrollView methods
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [self loadImagesForVisibleRows];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if (!decelerate) {
+        [self loadImagesForVisibleRows];
+    }
+}
 
 @end

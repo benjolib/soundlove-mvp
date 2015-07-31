@@ -6,8 +6,16 @@
 //  Copyright (c) 2015 Zappdesigntemplates. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseGradientViewController.h"
 
-@interface ImageDownloadBaseViewController : UIViewController
+@class LoadingTableView, BaseImageModel;
+
+@interface ImageDownloadBaseViewController : BaseGradientViewController
+
+@property (nonatomic, weak) IBOutlet LoadingTableView *tableView;
+@property (nonatomic, strong) NSMutableArray *objectsToDisplay;
+
+- (void)startImageDownloadForObject:(BaseImageModel*)object atIndexPath:(NSIndexPath*)indexPath;
+- (void)updateTableViewCellAtIndexPath:(NSIndexPath*)indexPath image:(UIImage*)image;
 
 @end

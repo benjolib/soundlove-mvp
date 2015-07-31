@@ -17,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *questionButton;
 @property (weak, nonatomic) IBOutlet UIView *fadeView;
 
+- (IBAction)unwindToOnboardingView:(UIStoryboardSegue*)segue;
+
 - (IBAction)questionButtonPressed:(id)sender;
 - (IBAction)facebookButtonPressed:(id)sender;
 

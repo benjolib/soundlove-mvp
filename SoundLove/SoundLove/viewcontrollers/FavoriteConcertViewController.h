@@ -6,10 +6,12 @@
 //  Copyright (c) 2015 Zappdesigntemplates. All rights reserved.
 //
 
-#import "BaseGradientViewController.h"
+#import "ConcertsViewController.h"
 
 @class LoadingTableView;
 
-@interface FavoriteConcertViewController : BaseGradientViewController
+@interface FavoriteConcertViewController : ConcertsViewController
+
+
 
 @end

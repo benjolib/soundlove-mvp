@@ -10,7 +10,20 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
+@interface FacebookManager ()
+@property (nonatomic, strong) FBSDKLoginManager *loginManager;
+@end
+
 @implementation FacebookManager
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.loginManager = [[FBSDKLoginManager alloc] init];
+    }
+    return self;
+}
 
 - (void)loginUserToFacebookWithCompletion:(void (^)(BOOL completed, NSString *errorMessage))completionBlock
 {
@@ -22,8 +35,7 @@
     }
     else
     {
-        FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
-        [login logInWithReadPermissions:@[@"email"] handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+        [self.loginManager logInWithReadPermissions:@[@"email"] handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
             if (error) {
                 // Process error
                 if (completionBlock) {
@@ -35,6 +47,7 @@
                     completionBlock(NO, nil);
                 }
             } else {
+                [FBSDKAccessToken setCurrentAccessToken:result.token];
                 if (completionBlock) {
                     completionBlock(YES, nil);
                 }
@@ -46,6 +59,11 @@
             }
         }];
     }
+}
+
+- (void)logoutUser
+{
+    [self.loginManager logOut];
 }
 
 + (BOOL)isUserLoggedInToFacebook

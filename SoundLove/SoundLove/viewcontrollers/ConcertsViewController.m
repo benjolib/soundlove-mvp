@@ -17,26 +17,54 @@
 #import "ConcertDownloadClient.h"
 #import "ConcertModel.h"
 #import "CoreDataHandler.h"
+#import "StoryboardManager.h"
+#import "FilterNavigationController.h"
+#import "SortingViewController.h"
 
 @interface ConcertsViewController ()
 @property (nonatomic, strong) ConcertRefreshControl *refreshController;
 @property (nonatomic, strong) ConcertDownloadClient *downloadClient;
-@property (nonatomic, strong) NSMutableArray *concertsArray;
+
+@property (nonatomic, strong) NSMutableArray *favoriteConcertsArray;
+@property (nonatomic, strong) NSMutableArray *recommendedConcertsArray;
+@property (nonatomic, strong) NSMutableArray *allConcertsArray;
+
 @property (nonatomic) NSInteger limit;
 @property (nonatomic) NSInteger startIndex;
 @property (nonatomic) BOOL isSearching;
+@property (nonatomic) NSInteger selectedTabbarIndex;
 @end
 
 @implementation ConcertsViewController
+
+- (IBAction)unwindFromSortingView:(id)sender
+{
+
+}
 
 - (IBAction)tabbuttonSelected:(TabbingButton*)selectedButton
 {
     for (TabbingButton *button in self.tabbuttonsArray) {
         [button setButtonActive:(button == selectedButton)];
     }
+
+    self.selectedTabbarIndex = selectedButton.tag;
+    [self.tableView reloadData];
 }
 
-- (IBAction)calenderButtonTapped:(UIButton*)button
+- (IBAction)filterButtonPressed:(id)sender
+{
+    FilterNavigationController *filterNav = [StoryboardManager filterNavigationController];
+    [self presentViewController:filterNav animated:YES completion:nil];
+}
+
+- (IBAction)sortingButtonPressed:(id)sender
+{
+    SortingViewController *sortingViewController = [StoryboardManager sortingViewController];
+    [self presentViewController:sortingViewController animated:YES completion:nil];
+}
+
+- (void)calendarButtonTapped:(UIButton*)button
 {
     UIView *aSuperview = [button superview];
     while (![aSuperview isKindOfClass:[ConcertsTableViewCell class]]) {
@@ -45,7 +73,7 @@
 
     ConcertsTableViewCell *cell = (ConcertsTableViewCell*)aSuperview;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    ConcertModel *concertModel = self.concertsArray[indexPath.row];
+    ConcertModel *concertModel = self.objectsToDisplay[indexPath.row];
 
     BOOL alreadyExisting = [[CoreDataHandler sharedHandler] addConcertToFavorites:concertModel];
     if (alreadyExisting) {
@@ -57,6 +85,24 @@
     [self.tableView reloadData];
 }
 
+- (NSMutableArray*)objectsToDisplay
+{
+    switch (self.selectedTabbarIndex) {
+        case 0:
+            return self.favoriteConcertsArray;
+            break;
+        case 1:
+            return self.recommendedConcertsArray;
+            break;
+        case 2:
+            return self.allConcertsArray;
+            break;
+        default:
+            return [NSMutableArray array];
+            break;
+    }
+}
+
 #pragma mark - tableView methods
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -65,14 +111,17 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.concertsArray.count;
+    return self.objectsToDisplay.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ConcertsTableViewCell *cell = (ConcertsTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"cell"];
+    if (!cell) {
+        cell = [[ConcertsTableViewCell alloc] init];
+    }
 
-    ConcertModel *concert = self.concertsArray[indexPath.row];
+    ConcertModel *concert = self.objectsToDisplay[indexPath.row];
 
     cell.concertTitleLabel.text = concert.name;
     cell.locationLabel.text = concert.place;
@@ -80,6 +129,15 @@
     cell.dateLabel.text = [concert calendarDaysTillStartDateString];
 
     [cell showSavedState:[[CoreDataHandler sharedHandler] isConcertSaved:concert]];
+    [cell.calendarButton addTarget:self action:@selector(calendarButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+
+    if (concert.image) {
+        cell.concertImageView.image = concert.image;
+    } else {
+        if (!tableView.dragging && !tableView.decelerating) {
+            [super startImageDownloadForObject:concert atIndexPath:indexPath];
+        }
+    }
 
     return cell;
 }
@@ -87,7 +145,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 
+- (void)updateTableViewCellAtIndexPath:(NSIndexPath *)indexPath image:(UIImage *)image
+{
+    ConcertModel *concert = self.objectsToDisplay[indexPath.row];
+    concert.image = image;
+
+    ConcertsTableViewCell *cell = (ConcertsTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+    cell.concertImageView.image = image;
 }
 
 #pragma mark - download methods
@@ -105,8 +171,8 @@
         self.downloadClient = [[ConcertDownloadClient alloc] init];
     }
 
-    if (!self.concertsArray) {
-        self.concertsArray = [NSMutableArray array];
+    if (!self.allConcertsArray) {
+        self.allConcertsArray = [NSMutableArray array];
     }
 
     self.limit = 40.0;
@@ -130,12 +196,12 @@
 - (void)handleDownloadedConcertsArray:(NSArray*)downloadedConcertsArray
 {
     if (self.isSearching) {
-        self.concertsArray = [downloadedConcertsArray mutableCopy];
+        self.allConcertsArray = [downloadedConcertsArray mutableCopy];
     } else {
         if (self.startIndex == 0) {
-            self.concertsArray = [downloadedConcertsArray mutableCopy];
+            self.allConcertsArray = [downloadedConcertsArray mutableCopy];
         } else {
-            [self.concertsArray addObjectsFromArray:downloadedConcertsArray];
+            [self.allConcertsArray addObjectsFromArray:downloadedConcertsArray];
         }
     }
 
@@ -144,7 +210,6 @@
 
 - (void)handleDownloadErrorMessage:(NSString*)errorMessage
 {
-
 
 }
 
@@ -162,14 +227,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.tableView registerNib:[UINib nibWithNibName:@"ConcertsTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"cell"];
+
     self.view.backgroundColor = [UIColor clearColor];
     self.tableView.backgroundColor = [UIColor clearColor];
     self.filterSortView.backgroundColor = [UIColor navigationBarBackgroundColor];
     [self.tableView setContentInset:UIEdgeInsetsMake(0.0, 0.0, 50.0, 0.0)];
 
     for (TabbingButton *button in self.tabbuttonsArray) {
-        [button setButtonActive:button.tag == 0];
+        [button setButtonActive:button.tag == 2];
     }
+
+    self.selectedTabbarIndex = 2;
 
     [self addRefreshController];
     [self.tableView showLoadingIndicator];
