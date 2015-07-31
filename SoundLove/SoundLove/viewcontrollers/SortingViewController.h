@@ -6,8 +6,13 @@
 //  Copyright (c) 2015 Zappdesigntemplates. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseGradientViewController.h"
 
-@interface SortingViewController : UIViewController
+@class LoadingTableView, CustomNavigationView;
+
+@interface SortingViewController : BaseGradientViewController <UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic, weak) IBOutlet LoadingTableView *tableView;
+@property (nonatomic, weak) IBOutlet CustomNavigationView *navigationView;
 
 @end

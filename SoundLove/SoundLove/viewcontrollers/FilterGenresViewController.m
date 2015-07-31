@@ -9,25 +9,31 @@
 #import "FilterGenresViewController.h"
 #import "FilterTableViewCell.h"
 #import "Genre.h"
-#import "TrackingManager.h"
-#import "FestivalRefreshControl.h"
-#import "CategoryDownloadClient.h"
+//#import "TrackingManager.h"
+#import "ConcertRefreshControl.h"
+//#import "CategoryDownloadClient.h"
+#import "CustomNavigationView.h"
 
 @interface FilterGenresViewController ()
-@property (nonatomic, strong) CategoryDownloadClient *categoryDownloadClient;
+//@property (nonatomic, strong) CategoryDownloadClient *categoryDownloadClient;
 @property (nonatomic, strong) NSArray *allGenresArrayCopy;
 @property (nonatomic, strong) NSArray *tableData;
 @property (nonatomic, strong) NSArray *sectionIndexTitles;
 @property (nonatomic, strong) NSMutableArray *selectedGenresArray;
-@property (nonatomic, strong) FestivalRefreshControl *refreshController;
+@property (nonatomic, strong) ConcertRefreshControl *refreshController;
 @end
 
 @implementation FilterGenresViewController
 
+- (IBAction)closeButtonPressed:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)trashButtonPressed:(id)sender
 {
-    [[TrackingManager sharedManager] trackFilterTapsTrashIconDetail];
-    [FilterModel sharedModel].selectedGenresArray = nil;
+//    [[TrackingManager sharedManager] trackFilterTapsTrashIconDetail];
+//    [FilterModel sharedModel].selectedGenresArray = nil;
     [self.selectedGenresArray removeAllObjects];
     [self.tableView reloadData];
 
@@ -54,6 +60,7 @@
     return _sectionIndexTitles;
 }
 
+/*
 #pragma mark - search methods
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -119,6 +126,7 @@
         [self.searchWrapperView layoutIfNeeded];
     }];
 }
+*/
 
 #pragma mark - tableView methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -165,14 +173,14 @@
     if ([self.selectedGenresArray containsObject:selectedGenre]) {
         [self.selectedGenresArray removeObject:selectedGenre];
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        [[TrackingManager sharedManager] trackFilterSelectsGenreAgainToUnselect];
+//        [[TrackingManager sharedManager] trackFilterSelectsGenreAgainToUnselect];
     } else {
-        [[TrackingManager sharedManager] trackFilterSelectsGenre];
+//        [[TrackingManager sharedManager] trackFilterSelectsGenre];
         [self.selectedGenresArray addObject:selectedGenre];
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 
-    [[FilterModel sharedModel] setSelectedGenresArray:[self.selectedGenresArray copy]];
+//    [[FilterModel sharedModel] setSelectedGenresArray:[self.selectedGenresArray copy]];
     [self adjustButtonToFilterModel];
 }
 
@@ -225,11 +233,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"Musik Genres";
+    [self.navigationView setTitle:@"Musik Genres"];
 
-    [self setupSearchView];
+//    [self setupSearchView];
 
-    self.refreshController = [[FestivalRefreshControl alloc] initWithFrame:CGRectMake(0.0, -50.0, CGRectGetWidth(self.view.frame), 50.0)];
+    self.refreshController = [[ConcertRefreshControl alloc] initWithFrame:CGRectMake(0.0, -50.0, CGRectGetWidth(self.view.frame), 50.0)];
     [self.tableView addSubview:self.refreshController];
 
     [self.refreshController addTarget:self
@@ -260,7 +268,7 @@
 - (void)setupView
 {
     self.allGenresArrayCopy = [self.genresArray copy];
-    self.selectedGenresArray = [[[FilterModel sharedModel] selectedGenresArray] mutableCopy];
+//    self.selectedGenresArray = [[[FilterModel sharedModel] selectedGenresArray] mutableCopy];
     self.tableData = [self partitionObjects:self.allGenresArrayCopy collationStringSelector:@selector(name)];
     [self.tableView reloadData];
     [self.tableView hideLoadingIndicator];
@@ -268,17 +276,17 @@
 
 - (void)downloadGenresWithCompletionBlock:(void(^)())completionBlock
 {
-    self.categoryDownloadClient = [CategoryDownloadClient new];
-
-    __weak typeof(self) weakSelf = self;
-    [self.categoryDownloadClient downloadAllCategoriesWithCompletionBlock:^(NSArray *sortedCategories, NSString *errorMessage, BOOL completed) {
-        if (completed) {
-            weakSelf.genresArray = [sortedCategories copy];
-        }
-        if (completionBlock) {
-            completionBlock();
-        }
-    }];
+//    self.categoryDownloadClient = [CategoryDownloadClient new];
+//
+//    __weak typeof(self) weakSelf = self;
+//    [self.categoryDownloadClient downloadAllCategoriesWithCompletionBlock:^(NSArray *sortedCategories, NSString *errorMessage, BOOL completed) {
+//        if (completed) {
+//            weakSelf.genresArray = [sortedCategories copy];
+//        }
+//        if (completionBlock) {
+//            completionBlock();
+//        }
+//    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated

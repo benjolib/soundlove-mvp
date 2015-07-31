@@ -1,10 +1,9 @@
 #import "MARKRangeSlider.h"
+#import "UIColor+GlobalColors.h"
 
-static NSString * const kMARKRangeSliderThumbImage = @"leftSlide.png";
-static NSString * const kMARKRangeSliderTrackImage = @"rangeSliderTrack.png";
-static NSString * const kMARKRangeSliderTrackRangeImage = @"rangeSliderTrackRange.png";
+static NSString * const kMARKRangeSliderThumbImage = @"leftSlide";
 
-static CGFloat const kMARKRangeSliderTrackHeight = 2.0;
+static CGFloat const kMARKRangeSliderTrackHeight = 8.0;
 
 @interface MARKRangeSlider ()
 
@@ -72,12 +71,14 @@ static CGFloat const kMARKRangeSliderTrackHeight = 2.0;
 
     // Init track image
     self.trackImageView = [[UIImageView alloc] init];
-    self.trackImageView.backgroundColor = [UIColor redColor];
+    self.trackImageView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.2];
+    self.trackImageView.layer.cornerRadius = 4.0;
+    self.trackImageView.clipsToBounds = YES;
     [self addSubview:self.trackImageView];
 
     // Init range image
     self.rangeImageView = [[UIImageView alloc] init];
-    self.rangeImageView.backgroundColor = [UIColor greenColor];
+    self.rangeImageView.backgroundColor = [UIColor globalGreenColor];
     [self addSubview:self.rangeImageView];
 
     // Init left thumb image
@@ -204,25 +205,6 @@ static CGFloat const kMARKRangeSliderTrackHeight = 2.0;
 }
 
 #pragma mark - Getters
-
-- (UIImage *)trackImage
-{
-    if (!_trackImage) {
-        UIImage *image = [UIImage imageNamed:kMARKRangeSliderTrackImage];
-        _trackImage = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 2.0, 0.0, 2.0)];
-    }
-    return _trackImage;
-}
-
-- (UIImage *)rangeImage
-{
-    if (!_rangeImage) {
-        UIImage *image = [UIImage imageNamed:kMARKRangeSliderTrackRangeImage];
-        _rangeImage = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 2.0, 0.0, 2.0)];
-    }
-    return _rangeImage;
-}
-
 - (UIImage *)leftThumbImage
 {
     if (!_leftThumbImage) {
@@ -365,19 +347,6 @@ static CGFloat const kMARKRangeSliderTrackHeight = 2.0;
 }
 
 #pragma mark - Setters
-
-- (void)setTrackImage:(UIImage *)trackImage
-{
-//    _trackImage = trackImage;
-//    self.trackImageView.image = _trackImage;
-}
-
-- (void)setRangeImage:(UIImage *)rangeImage
-{
-//    _rangeImage = rangeImage;
-//    self.rangeImageView.image = _rangeImage;
-}
-
 - (void)setLeftThumbImage:(UIImage *)leftThumbImage
 {
     _leftThumbImage = leftThumbImage;

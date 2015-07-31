@@ -7,31 +7,101 @@
 //
 
 #import "FilterPreisViewController.h"
+#import "CustomNavigationView.h"
+#import "UIColor+GlobalColors.h"
+#import "MARKRangeSlider.h"
+#import "PriceContainerView.h"
 
 @interface FilterPreisViewController ()
-
+@property (nonatomic, strong) MARKRangeSlider *rangeSlider;
 @end
 
 @implementation FilterPreisViewController
 
-- (void)viewDidLoad {
+- (IBAction)closeButtonPressed:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)trashButtonPressed:(UIButton*)button
+{
+    [self.leftPriceView setActive:NO];
+    [self.rightPriceView setActive:NO];
+
+    self.rangeSlider.leftValue = 0.2;
+    self.rangeSlider.rightValue = 1.0;
+    self.defaultMinValue = 20;
+    self.defaultMaxValue = 100;
+    [self updateRangeText];
+
+    button.alpha = 0.4;
+    button.enabled = NO;
+}
+
+#pragma mark - view methods
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    [self setupView];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)setupView
+{
+    self.defaultMinValue = 20;
+    self.defaultMaxValue = 100;
+    [self.leftPriceView setActive:NO];
+    [self.rightPriceView setActive:NO];
+
+    self.rangeSlider = [[MARKRangeSlider alloc] initWithFrame:CGRectZero];
+    self.rangeSlider.backgroundColor = [UIColor clearColor];
+    [self.rangeSlider addTarget:self
+                         action:@selector(rangeSliderValueDidChange:)
+               forControlEvents:UIControlEventValueChanged];
+    self.rangeSlider.minimumValue = 0.0;
+    self.rangeSlider.maximumValue = 1.0;
+    self.rangeSlider.leftValue = 0.2; // Default: 20 €
+    self.rangeSlider.rightValue = 1.0; // Default: 100 €
+    self.rangeSlider.minimumDistance = 0.1;
+
+    [self updateRangeText];
+
+    [self.rangeControllerContainerView addSubview:self.rangeSlider];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    self.rangeSlider.frame = CGRectMake(0, 50.0, CGRectGetWidth(self.rangeControllerContainerView.frame), 40.0);
 }
-*/
+
+- (void)rangeSliderValueDidChange:(MARKRangeSlider *)slider
+{
+    [self updateRangeText];
+}
+
+- (void)updateRangeText
+{
+    NSLog(@"%0.2f - %0.2f", self.rangeSlider.leftValue, self.rangeSlider.rightValue);
+
+    CGFloat newLeftValue = self.rangeSlider.leftValue * 100;
+    CGFloat newRightValue = self.rangeSlider.rightValue * 100;
+
+    if (self.defaultMinValue != newLeftValue) {
+        self.defaultMinValue = newLeftValue;
+        [self.leftPriceView setActive:YES];
+    }
+
+    if (self.defaultMaxValue != newRightValue) {
+        self.defaultMaxValue = newRightValue;
+        [self.rightPriceView setActive:YES];
+    }
+
+    [self.leftPriceView setValueText:[NSString stringWithFormat:@"%.2f €", newLeftValue]];
+    [self.rightPriceView setValueText:[NSString stringWithFormat:@"%.2f €", newRightValue]];
+
+    self.trashButton.alpha = 1.0;
+    self.trashButton.enabled = YES;
+}
 
 @end

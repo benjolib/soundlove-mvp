@@ -18,21 +18,13 @@
 @end
 
 typedef NS_ENUM(NSInteger, FlatDatePickerMode) {
-    FlatDatePickerModeTime,           // Displays hour, minute, and optionally AM/PM designation depending on the locale setting (e.g. 6 | 53 | PM)
-    FlatDatePickerModeMonthAndYear,   // Displays month and year depending on the locale setting (e.g. 15 | 2007)
     FlatDatePickerModeDate,           // Displays month, day, and year depending on the locale setting (e.g. November | 15 | 2007)
-    FlatDatePickerModeDateAndTime    // Displays date, hour, minute, and optionally AM/PM designation depending on the locale setting (e.g. Wed Nov 15 | 6 | 53 | PM)
 };
 
 @interface FlatDatePicker : UIControl <UIScrollViewDelegate> {
     
     // Parent View :
     UIView *_parentView;
-    
-    // Header :
-    UILabel *_labelTitle;
-    UIButton *_buttonClose;
-    UIButton *_buttonValid;
     
     // ScrollView :
     UIScrollView *_scollViewDays;
@@ -74,11 +66,6 @@ typedef NS_ENUM(NSInteger, FlatDatePickerMode) {
     // Dates :
     NSMutableArray *_dates;
     
-    // Hours, Minutes, Seconds :
-    NSMutableArray *_hours;
-    NSMutableArray *_minutes;
-    NSMutableArray *_seconds;
-    
     // Labels :
     NSMutableArray *_labelsDays;
     NSMutableArray *_labelsMonths;
@@ -91,16 +78,11 @@ typedef NS_ENUM(NSInteger, FlatDatePickerMode) {
     NSMutableArray *_labelsSeconds;
     
     // Date selected :
-    int _selectedDay;
-    int _selectedMonth;
-    int _selectedYear;
+    NSInteger _selectedDay;
+    NSInteger _selectedMonth;
+    NSInteger _selectedYear;
     
     int _selectedDate;
-    
-    // Time selected :
-    int _selectedHour;
-    int _selectedMinute;
-    int _selectedSecond;
     
     // First init flag :
     BOOL _isInitialized;
@@ -116,8 +98,6 @@ typedef NS_ENUM(NSInteger, FlatDatePickerMode) {
 
 @property(nonatomic,retain) NSDate        *minimumDate;           // specify min/max date range. default is nil. When min > max, the values are ignored.
 @property(nonatomic,retain) NSDate        *maximumDate;           // default is nil
-
-@property(nonatomic,readonly) BOOL        isOpen;                 // read only property, indicate in datepicker is open.
 
 /**
  * Colors customization.
@@ -145,10 +125,7 @@ typedef NS_ENUM(NSInteger, FlatDatePickerMode) {
 
 - (id)initWithParentView:(UIView*)parentView;
 
-#pragma mark - Show and Dismiss
-
 - (void)show;
-- (void)dismiss;
 
 /**
  * Force to redraw the Picker. You should call this method after change the default colors.
@@ -163,11 +140,6 @@ typedef NS_ENUM(NSInteger, FlatDatePickerMode) {
 
 - (void)setMinimumDate:(NSDate*)date;
 - (void)setMaximumDate:(NSDate*)date;
-
-#pragma mark - Title DatePicker
-
-- (void)setTitle:(NSString *)title;
-- (NSString*)title;
 
 #pragma mark - Date
 

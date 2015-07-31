@@ -6,8 +6,19 @@
 //  Copyright (c) 2015 Zappdesigntemplates. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseGradientViewController.h"
 
-@interface FilterPreisViewController : UIViewController
+@class CustomNavigationView, PriceContainerView;
+
+@interface FilterPreisViewController : BaseGradientViewController
+
+@property (nonatomic, weak) IBOutlet CustomNavigationView *navigationView;
+@property (nonatomic, weak) IBOutlet UIView *rangeControllerContainerView;
+@property (nonatomic, weak) IBOutlet PriceContainerView *leftPriceView;
+@property (nonatomic, weak) IBOutlet PriceContainerView *rightPriceView;
+@property (nonatomic, weak) IBOutlet UIButton *trashButton;
+
+@property (nonatomic) CGFloat defaultMinValue;
+@property (nonatomic) CGFloat defaultMaxValue;
 
 @end

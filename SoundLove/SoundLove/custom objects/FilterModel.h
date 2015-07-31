@@ -10,4 +10,25 @@
 
 @interface FilterModel : NSObject
 
+@property (nonatomic, strong) NSArray *selectedGenresArray;
+@property (nonatomic, strong) NSArray *selectedBandsArray;
+
+@property (nonatomic) NSNumber *fromPrice;
+@property (nonatomic) NSNumber *toPrice;
+
+@property (nonatomic, strong) NSDate *startDate;
+@property (nonatomic, strong) NSDate *endDate;
+
++ (FilterModel*)copySettingsFromFilterModel:(FilterModel*)filterModel;
+
+- (void)clearFilters;
+
+- (BOOL)isFiltering;
+
+- (NSString*)bandsString;
+- (NSString*)genresString;
+
+- (NSString*)bandsStringForAPICall;
+- (NSString*)genresStringForAPICall;
+
 @end

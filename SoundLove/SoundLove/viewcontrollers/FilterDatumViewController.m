@@ -7,31 +7,103 @@
 //
 
 #import "FilterDatumViewController.h"
+#import "PriceContainerView.h"
+#import "CustomNavigationView.h"
+#import "FlatDatePicker.h"
 
-@interface FilterDatumViewController ()
-
+@interface FilterDatumViewController () <FlatDatePickerDelegate>
+@property (nonatomic, strong) FlatDatePicker *flatDatePicker;
+@property (nonatomic, strong) NSDateFormatter *dateFormatter;
 @end
 
 @implementation FilterDatumViewController
 
-- (void)viewDidLoad {
+- (IBAction)closeButtonPressed:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)trashButtonPressed:(UIButton*)button
+{
+    [self.leftDatePickerView setActive:NO];
+    [self.rightDatePickerView setActive:NO];
+
+    self.fromDate = nil;
+    self.toDate = nil;
+
+    [self.leftDatePickerView setValueText:@""];
+    [self.rightDatePickerView setValueText:@""];
+
+    button.alpha = 0.4;
+    button.enabled = NO;
+}
+
+- (NSDateFormatter*)dateFormatter
+{
+    if (!_dateFormatter) {
+        _dateFormatter = [[NSDateFormatter alloc] init];
+        _dateFormatter.dateFormat = @"dd.MM.YYY";
+    }
+    return _dateFormatter;
+}
+
+#pragma mark - date picker
+- (void)flatDatePicker:(FlatDatePicker *)datePicker dateDidChange:(NSDate *)date
+{
+    if ([self.leftDatePickerView isActive]) {
+        NSString *dateString = [self.dateFormatter stringFromDate:date];
+        self.fromDate = date;
+        [self.leftDatePickerView setValueText:dateString];
+    } else if ([self.rightDatePickerView isActive]) {
+        NSString *dateString = [self.dateFormatter stringFromDate:date];
+        self.toDate = date;
+        [self.rightDatePickerView setValueText:dateString];
+    }
+}
+
+#pragma mark - view methods
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    UITapGestureRecognizer *leftGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dateViewTapped:)];
+    UITapGestureRecognizer *rightGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dateViewTapped:)];
+    [self.leftDatePickerView addGestureRecognizer:leftGestureRecognizer];
+    [self.rightDatePickerView addGestureRecognizer:rightGestureRecognizer];
+
+    self.flatDatePicker = [[FlatDatePicker alloc] initWithParentView:self.view];
+    self.flatDatePicker.delegate = self;
+    self.flatDatePicker.datePickerMode = FlatDatePickerModeDate;
+    [self.flatDatePicker show];
+
+    CGFloat pickerHeight = CGRectGetHeight(self.flatDatePicker.frame);
+    self.flatDatePicker.frame = CGRectMake(0.0, CGRectGetHeight(self.view.frame)-pickerHeight-100.0, CGRectGetWidth(self.view.frame), pickerHeight);
+
+    [self.leftDatePickerView setActive:YES];
+
+    if (self.fromDate || self.toDate) {
+        self.trashButton.enabled = YES;
+    } else {
+        self.trashButton.enabled = NO;
+    }
+}
+
+- (void)dateViewTapped:(UITapGestureRecognizer*)recognizer
+{
+    UIView *view = [recognizer view];
+    if ([view isEqual:self.leftDatePickerView]) {
+        [self.leftDatePickerView setActive:YES];
+        [self.rightDatePickerView setActive:NO];
+    }
+
+    if ([view isEqual:self.rightDatePickerView]) {
+        [self.leftDatePickerView setActive:NO];
+        [self.rightDatePickerView setActive:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

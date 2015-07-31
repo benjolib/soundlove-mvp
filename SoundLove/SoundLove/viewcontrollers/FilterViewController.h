@@ -6,8 +6,19 @@
 //  Copyright (c) 2015 Zappdesigntemplates. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseGradientViewController.h"
+#import "LoadingTableView.h"
 
-@interface FilterViewController : UIViewController
+@class CustomNavigationView;
+
+@interface FilterViewController : BaseGradientViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, weak) IBOutlet CustomNavigationView *navigationView;
+@property (nonatomic, weak) IBOutlet LoadingTableView *tableView;
+
+@property (nonatomic, strong) NSArray *genresArray;
+@property (nonatomic, strong) NSArray *allBandsArray;
+
+- (void)adjustButtonToFilterModel;
 
 @end

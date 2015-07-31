@@ -8,8 +8,14 @@
         <attribute name="place" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="price" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sectionTitle" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="image" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDConcertImage" inverseName="concert" inverseEntity="CDConcertImage" syncable="YES"/>
+    </entity>
+    <entity name="CDConcertImage" representedClassName="CDConcertImage" syncable="YES">
+        <attribute name="image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <relationship name="concert" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDConcert" inverseName="image" inverseEntity="CDConcert" syncable="YES"/>
     </entity>
     <elements>
-        <element name="CDConcert" positionX="-63" positionY="-18" width="128" height="150"/>
+        <element name="CDConcert" positionX="-63" positionY="-18" width="128" height="165"/>
+        <element name="CDConcertImage" positionX="-63" positionY="36" width="128" height="75"/>
     </elements>
 </model>

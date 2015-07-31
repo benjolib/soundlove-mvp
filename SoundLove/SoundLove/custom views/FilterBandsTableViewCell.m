@@ -7,7 +7,7 @@
 //
 
 #import "FilterBandsTableViewCell.h"
-#import "UIFont+LatoFonts.h"
+#import "UIColor+GlobalColors.h"
 
 @implementation FilterBandsTableViewCell
 
@@ -15,10 +15,10 @@
 {
     [super awakeFromNib];
     self.backgroundColor = [UIColor clearColor];
-    self.nameLabel.textColor = [UIColor whiteColor];
-    self.bandDetailLabel.textColor = [UIColor whiteColor];
-    self.textLabel.font = [UIFont latoRegularFontWithSize:16];
-    self.nameLabel.font = [UIFont latoRegularFontWithSize:16];
+    self.nameLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+    self.bandDetailLabel.textColor = [UIColor globalGreenColor];
+//    self.textLabel.font = [UIFont latoRegularFontWithSize:16];
+//    self.nameLabel.font = [UIFont latoRegularFontWithSize:16];
 }
 
 @end

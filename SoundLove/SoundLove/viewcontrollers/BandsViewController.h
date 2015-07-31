@@ -8,6 +8,15 @@
 
 #import "BaseGradientViewController.h"
 
-@interface BandsViewController : BaseGradientViewController
+@class TabbingButton;
+
+@interface BandsViewController : BaseGradientViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+
+@property (nonatomic, weak) IBOutlet TabbingButton *favoriteButton;
+@property (nonatomic, weak) IBOutlet TabbingButton *recommendedButton;
+@property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
+
+- (IBAction)favoriteButtonPressed:(TabbingButton*)button;
+- (IBAction)recommendButtonPressed:(TabbingButton*)button;
 
 @end

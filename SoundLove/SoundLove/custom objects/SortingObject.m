@@ -10,4 +10,19 @@
 
 @implementation SortingObject
 
++ (SortingObject*)sortingWithName:(NSString*)name andKey:(NSString*)key
+{
+    return [[SortingObject alloc] initWithName:name andKey:key];
+}
+
+- (instancetype)initWithName:(NSString*)name andKey:(NSString*)key
+{
+    self = [super init];
+    if (self) {
+        self.name = name;
+        self.apiKey = key;
+    }
+    return self;
+}
+
 @end

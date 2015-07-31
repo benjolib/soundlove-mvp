@@ -10,4 +10,9 @@
 
 @interface SortingObject : NSObject
 
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *apiKey;
+
++ (SortingObject*)sortingWithName:(NSString*)name andKey:(NSString*)key;
+
 @end

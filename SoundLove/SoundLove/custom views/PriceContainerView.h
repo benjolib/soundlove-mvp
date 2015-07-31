@@ -10,4 +10,9 @@
 
 @interface PriceContainerView : UIView
 
+- (BOOL)isActive;
+
+- (void)setValueText:(NSString*)text;
+- (void)setActive:(BOOL)active;
+
 @end
