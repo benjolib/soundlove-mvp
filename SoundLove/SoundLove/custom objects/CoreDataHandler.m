@@ -8,6 +8,7 @@
 
 #import "CoreDataHandler.h"
 #import "CDConcert.h"
+#import "CDConcertImage.h"
 #import "ConcertModel.h"
 
 @interface CoreDataHandler ()
@@ -33,7 +34,13 @@
 
 - (NSInteger)numberOfSavedConcerts
 {
-    return 0;
+    NSFetchRequest *fetchRequest = [self fetchRequestForEntity:@"CDConcert" predicate:nil sortDescriptor:nil];
+    NSError *error = nil;
+    NSUInteger fetchedCount = [self.masterManagedObjectContext countForFetchRequest:fetchRequest error:&error];
+    if (error) {
+        NSLog(@"Error fetching recordings: %@", error.localizedDescription);
+    }
+    return fetchedCount;
 }
 
 /// Return YES, if it is already exists in Core Data, otherwise save it
@@ -51,6 +58,12 @@
     concert.place = concertModel.place;
     concert.city = concertModel.city;
     concert.date = concertModel.date;
+
+    if (concertModel.image) {
+        CDConcertImage *concertImage = [NSEntityDescription insertNewObjectForEntityForName:@"CDConcertImage" inManagedObjectContext:self.mainManagedObjectContext];
+        concertImage.image = UIImageJPEGRepresentation(concertModel.image, 1.0);
+        concert.image = concertImage;
+    }
 
     if (!self.sectionDateFormatter) {
         self.sectionDateFormatter = [[NSDateFormatter alloc] init];

@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 Zappdesigntemplates. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "BaseImageModel.h"
 
-@interface ConcertModel : NSObject
+@interface ConcertModel : BaseImageModel
 
 @property (nonatomic, copy) NSString *concertID;
 @property (nonatomic, copy) NSString *name;
@@ -18,7 +18,7 @@
 @property (nonatomic, copy) NSString *price;
 
 + (ConcertModel*)concertWithDictionary:(NSDictionary*)dictionary;
-- (instancetype)initWithName:(NSString*)name concertID:(NSString*)concertID city:(NSString*)city place:(NSString*)place price:(NSString*)price date:(NSDate*)date;
+- (instancetype)initWithName:(NSString*)name concertID:(NSString*)concertID city:(NSString*)city place:(NSString*)place price:(NSString*)price date:(NSDate*)date imageURL:(NSString*)imageURL;
 
 - (NSString*)priceString;
 - (NSString*)calendarDaysTillStartDateString;

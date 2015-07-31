@@ -19,11 +19,12 @@
     NSString *place = [dictionary nonNullObjectForKey:@"place"];
     NSString *price = [dictionary nonNullObjectForKey:@"price_from"];
     NSDate *date = [self convertDateStringToDate:[dictionary nonNullObjectForKey:@"date_ts"]];
+    NSString *imageURL = [dictionary nonNullObjectForKey:@"image_url"];
 
-    return [[ConcertModel alloc] initWithName:name concertID:concertID city:city place:place price:price date:date];
+    return [[ConcertModel alloc] initWithName:name concertID:concertID city:city place:place price:price date:date imageURL:imageURL];
 }
 
-- (instancetype)initWithName:(NSString*)name concertID:(NSString*)concertID city:(NSString*)city place:(NSString*)place price:(NSString*)price date:(NSDate*)date
+- (instancetype)initWithName:(NSString*)name concertID:(NSString*)concertID city:(NSString*)city place:(NSString*)place price:(NSString*)price date:(NSDate*)date imageURL:(NSString*)imageURL
 {
     self = [super init];
     if (self) {
@@ -33,6 +34,7 @@
         self.place = place;
         self.price = price;
         self.date = date;
+        self.imageURL = imageURL;
     }
     return self;
 }

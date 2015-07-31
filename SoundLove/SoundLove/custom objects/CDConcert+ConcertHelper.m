@@ -20,7 +20,6 @@
     concert.city = self.city;
     concert.concertID = self.concertID;
     concert.date = self.date;
-
     return concert;
 }
 

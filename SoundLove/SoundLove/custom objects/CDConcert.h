@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class NSManagedObject;
+@class CDConcertImage;
 
 @interface CDConcert : NSManagedObject
 
@@ -20,6 +20,6 @@
 @property (nonatomic, retain) NSString * place;
 @property (nonatomic, retain) NSString * price;
 @property (nonatomic, retain) NSString * sectionTitle;
-@property (nonatomic, retain) NSManagedObject *image;
+@property (nonatomic, retain) CDConcertImage *image;
 
 @end

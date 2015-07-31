@@ -25,5 +25,6 @@
 - (NSArray*)allSavedConcerts;
 - (BOOL)isConcertSaved:(ConcertModel*)concertModel;
 
+- (void)clearDatabase;
 
 @end
