@@ -13,6 +13,8 @@
 		5619A3141B6C0253000901F7 /* BaseImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5619A3131B6C0253000901F7 /* BaseImageModel.m */; };
 		5619A3181B6C2993000901F7 /* CDConcert.m in Sources */ = {isa = PBXBuildFile; fileRef = 5619A3171B6C2993000901F7 /* CDConcert.m */; };
 		5619A31B1B6C2993000901F7 /* CDConcertImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5619A31A1B6C2993000901F7 /* CDConcertImage.m */; };
+		5619A31F1B6C32FD000901F7 /* ConcertViewDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5619A31E1B6C32FD000901F7 /* ConcertViewDatasource.m */; };
+		5619A3221B6C3392000901F7 /* ConcertViewDatasourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5619A3211B6C3392000901F7 /* ConcertViewDatasourceManager.m */; };
 		564F24B21B6B9F9000172C16 /* FilterDatumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 564F24B11B6B9F9000172C16 /* FilterDatumViewController.m */; };
 		564F24B51B6BA13500172C16 /* FilterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 564F24B41B6BA13500172C16 /* FilterModel.m */; };
 		5658BA941B63F757004F08BB /* SearchNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5658BA921B63F757004F08BB /* SearchNavigationView.m */; };
@@ -126,6 +128,10 @@
 		5619A3171B6C2993000901F7 /* CDConcert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDConcert.m; sourceTree = "<group>"; };
 		5619A3191B6C2993000901F7 /* CDConcertImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDConcertImage.h; sourceTree = "<group>"; };
 		5619A31A1B6C2993000901F7 /* CDConcertImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDConcertImage.m; sourceTree = "<group>"; };
+		5619A31D1B6C32FD000901F7 /* ConcertViewDatasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcertViewDatasource.h; sourceTree = "<group>"; };
+		5619A31E1B6C32FD000901F7 /* ConcertViewDatasource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcertViewDatasource.m; sourceTree = "<group>"; };
+		5619A3201B6C3392000901F7 /* ConcertViewDatasourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcertViewDatasourceManager.h; sourceTree = "<group>"; };
+		5619A3211B6C3392000901F7 /* ConcertViewDatasourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcertViewDatasourceManager.m; sourceTree = "<group>"; };
 		564F24B01B6B9F9000172C16 /* FilterDatumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterDatumViewController.h; sourceTree = "<group>"; };
 		564F24B11B6B9F9000172C16 /* FilterDatumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterDatumViewController.m; sourceTree = "<group>"; };
 		564F24B31B6BA13500172C16 /* FilterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterModel.h; sourceTree = "<group>"; };
@@ -311,6 +317,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5619A31C1B6C32EA000901F7 /* Datasources */ = {
+			isa = PBXGroup;
+			children = (
+				5619A3201B6C3392000901F7 /* ConcertViewDatasourceManager.h */,
+				5619A3211B6C3392000901F7 /* ConcertViewDatasourceManager.m */,
+				5619A31D1B6C32FD000901F7 /* ConcertViewDatasource.h */,
+				5619A31E1B6C32FD000901F7 /* ConcertViewDatasource.m */,
+			);
+			name = Datasources;
+			sourceTree = "<group>";
+		};
 		5658BA961B63F7E3004F08BB /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -468,6 +485,7 @@
 		569513AA1B5D2048008A649B /* viewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				5619A31C1B6C32EA000901F7 /* Datasources */,
 				5619A30C1B6BFF90000901F7 /* ImageDownloadBaseViewController.h */,
 				5619A30D1B6BFF90000901F7 /* ImageDownloadBaseViewController.m */,
 				56A65C8D1B6974A400619189 /* Filter */,
@@ -787,6 +805,7 @@
 				5695138A1B5D1F42008A649B /* AppDelegate.m in Sources */,
 				567409F31B60EB5700638FEF /* BadgeCounterView.m in Sources */,
 				56A65C851B6957B000619189 /* BandCollectionViewCell.m in Sources */,
+				5619A31F1B6C32FD000901F7 /* ConcertViewDatasource.m in Sources */,
 				5658BAA81B640D77004F08BB /* AbstractClient.m in Sources */,
 				5684B1D91B66220F009EF346 /* TutorialPopupView.m in Sources */,
 				56740A261B61230500638FEF /* ProfilViewController.m in Sources */,
@@ -812,6 +831,7 @@
 				564F24B51B6BA13500172C16 /* FilterModel.m in Sources */,
 				5619A31B1B6C2993000901F7 /* CDConcertImage.m in Sources */,
 				5658BA941B63F757004F08BB /* SearchNavigationView.m in Sources */,
+				5619A3221B6C3392000901F7 /* ConcertViewDatasourceManager.m in Sources */,
 				56740A131B60EFEA00638FEF /* MenuTransitionManager.m in Sources */,
 				56A65C901B6974B900619189 /* FilterNavigationController.m in Sources */,
 				5658BA991B63FA35004F08BB /* CustomNavigationView.m in Sources */,

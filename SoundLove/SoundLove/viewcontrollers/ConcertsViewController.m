@@ -20,10 +20,12 @@
 #import "StoryboardManager.h"
 #import "FilterNavigationController.h"
 #import "SortingViewController.h"
+#import "ConcertViewDatasourceManager.h"
 
 @interface ConcertsViewController ()
 @property (nonatomic, strong) ConcertRefreshControl *refreshController;
 @property (nonatomic, strong) ConcertDownloadClient *downloadClient;
+@property (nonatomic, strong) ConcertViewDatasourceManager *datasourceManager;
 
 @property (nonatomic, strong) NSMutableArray *favoriteConcertsArray;
 @property (nonatomic, strong) NSMutableArray *recommendedConcertsArray;
@@ -47,6 +49,8 @@
     for (TabbingButton *button in self.tabbuttonsArray) {
         [button setButtonActive:(button == selectedButton)];
     }
+
+    [self.datasourceManager tabSelectedAtIndex:selectedButton.tag];
 
     self.selectedTabbarIndex = selectedButton.tag;
     [self.tableView reloadData];
@@ -243,6 +247,15 @@
     [self addRefreshController];
     [self.tableView showLoadingIndicator];
     [self refreshView];
+
+    self.datasourceManager = [[ConcertViewDatasourceManager alloc] init];
+    
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
