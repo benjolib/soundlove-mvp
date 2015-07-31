@@ -2,21 +2,23 @@
 //  CDConcert.m
 //  SoundLove
 //
-//  Created by Sztanyi Szabolcs on 29/07/15.
+//  Created by Sztanyi Szabolcs on 01/08/15.
 //  Copyright (c) 2015 Zappdesigntemplates. All rights reserved.
 //
 
 #import "CDConcert.h"
+#import "NSManagedObject.h"
 
 
 @implementation CDConcert
 
-@dynamic name;
-@dynamic concertID;
 @dynamic city;
-@dynamic place;
+@dynamic concertID;
 @dynamic date;
+@dynamic name;
+@dynamic place;
 @dynamic price;
 @dynamic sectionTitle;
+@dynamic image;
 
 @end
