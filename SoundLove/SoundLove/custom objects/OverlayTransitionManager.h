@@ -12,6 +12,6 @@
 
 @interface OverlayTransitionManager : NSObject <UIViewControllerTransitioningDelegate>
 
-- (void)presentOverlayViewWithType:(OverlayType)type onViewController:(UIViewController*)viewController;
+- (OverlayViewController*)presentOverlayViewWithType:(OverlayType)type onViewController:(UIViewController*)viewController;
 
 @end

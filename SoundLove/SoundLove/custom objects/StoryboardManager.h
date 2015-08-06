@@ -11,6 +11,7 @@
 @class OverlayViewController, MenuViewController;
 @class ConcertsViewController, FavoriteConcertViewController, CalendarViewController, BandsViewController, ProfilViewController;
 @class FilterNavigationController, SortingViewController;
+@class ConcertDetailInfoViewController, ConcertDetailLocationViewController, ConcertFriendsViewController;
 
 
 @interface StoryboardManager : NSObject
@@ -29,5 +30,9 @@
 + (ProfilViewController*)profilViewController;
 + (FilterNavigationController*)filterNavigationController;
 + (SortingViewController*)sortingViewController;
+
++ (ConcertDetailLocationViewController*)concertDetailLocationViewController;
++ (ConcertFriendsViewController*)concertDetailFriendsViewController;
++ (ConcertDetailInfoViewController*)concertDetailInfoViewController;
 
 @end

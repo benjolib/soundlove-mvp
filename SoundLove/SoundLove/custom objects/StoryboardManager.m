@@ -77,4 +77,20 @@
     return [[self filterStoryboard] instantiateViewControllerWithIdentifier:@"SortingViewController"];
 }
 
+#pragma mark - concert detail views
++ (ConcertDetailLocationViewController*)concertDetailLocationViewController
+{
+    return [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"ConcertDetailLocationViewController"];
+}
+
++ (ConcertFriendsViewController*)concertDetailFriendsViewController
+{
+    return [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"ConcertFriendsViewController"];
+}
+
++ (ConcertDetailInfoViewController*)concertDetailInfoViewController
+{
+    return [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"ConcertDetailInfoViewController"];
+}
+
 @end

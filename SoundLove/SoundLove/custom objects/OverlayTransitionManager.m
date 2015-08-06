@@ -12,12 +12,15 @@
 
 @implementation OverlayTransitionManager
 
-- (void)presentOverlayViewWithType:(OverlayType)type onViewController:(UIViewController*)viewController
+- (OverlayViewController*)presentOverlayViewWithType:(OverlayType)type onViewController:(UIViewController*)viewController
 {
     OverlayViewController *overlayViewController = [StoryboardManager overlayViewController];
     
     overlayViewController.transitioningDelegate = self;
+    overlayViewController.overlayTypeToDisplay = type;
     [viewController presentViewController:overlayViewController animated:YES completion:nil];
+
+    return overlayViewController;
 }
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
