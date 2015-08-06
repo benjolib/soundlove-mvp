@@ -58,7 +58,7 @@
 #pragma mark - tableView methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    return 5;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -96,6 +96,10 @@
             cell.nameLabel.text = @"Datum";
             [cell setCellActive:NO];
             break;
+        case 4:
+            cell.nameLabel.text = @"Ort";
+            [cell setCellActive:NO];
+            break;
         default:
             break;
     }
@@ -129,6 +133,9 @@
         case 3:
             [self performSegueWithIdentifier:@"openDateView" sender:indexPath];
             break;
+        case 4:
+            [self performSegueWithIdentifier:@"openLocationView" sender:indexPath];
+            break;
         default:
             break;
     }
@@ -160,12 +167,6 @@
                 case 1:
                     // bands
                     break;
-                case 2:
-                    // preis
-                    break;
-                case 3:
-                    // datum
-                    break;
                 default:
                     break;
             }
@@ -173,6 +174,8 @@
     } else if ([segue.identifier isEqualToString:@"openPreisView"]) {
         
     } else if ([segue.identifier isEqualToString:@"openDatum"]) {
+
+    } else if ([segue.identifier isEqualToString:@"openLocationView"]) {
 
     }
 }
@@ -186,11 +189,7 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     [self.tableView hideLoadingIndicator];
 
-    self.navigationView.layer.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5].CGColor;
-    self.navigationView.layer.shadowOffset = CGSizeMake(0.0, 2.0);
-    self.navigationView.layer.shadowRadius = 2.0;
-    self.navigationView.layer.shadowOpacity = 1.0;
-    self.navigationView.backgroundColor = [UIColor navigationBarBackgroundColor];
+    [self.navigationView setShadowActive:YES];
 }
 
 - (BOOL)prefersStatusBarHidden

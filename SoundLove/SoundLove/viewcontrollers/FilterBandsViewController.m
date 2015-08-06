@@ -10,8 +10,8 @@
 #import "BandsDownloadClient.h"
 #import "Band.h"
 #import "FilterTableViewCell.h"
-#import "TrackingManager.h"
-#import "FestivalRefreshControl.h"
+//#import "TrackingManager.h"
+#import "ConcertRefreshControl.h"
 
 @interface FilterBandsViewController ()
 @property (nonatomic, strong) NSArray *allBandsArrayCopy;
@@ -19,7 +19,7 @@
 @property (nonatomic, strong) NSArray *sectionIndexTitles;
 @property (nonatomic, strong) BandsDownloadClient *bandsDownloadClient;
 @property (nonatomic, strong) NSMutableArray *selectedBandsArray;
-@property (nonatomic, strong) FestivalRefreshControl *refreshController;
+@property (nonatomic, strong) ConcertRefreshControl *refreshController;
 @end
 
 @implementation FilterBandsViewController
@@ -46,8 +46,8 @@
 
 - (void)trashButtonPressed:(id)sender
 {
-    [[TrackingManager sharedManager] trackFilterTapsTrashIconDetail];
-    [FilterModel sharedModel].selectedBandsArray = nil;
+//    [[TrackingManager sharedManager] trackFilterTapsTrashIconDetail];
+//    [FilterModel sharedModel].selectedBandsArray = nil;
     [self.selectedBandsArray removeAllObjects];
     [self.tableView reloadData];
 
@@ -56,7 +56,7 @@
 
 - (NSMutableArray *)selectedBandsArray
 {
-    [self setTrashIconVisible:_selectedBandsArray.count > 0];
+//    [self setTrashIconVisible:_selectedBandsArray.count > 0];
     return _selectedBandsArray;
 }
 
@@ -69,13 +69,13 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    [[TrackingManager sharedManager] trackFilterSearches];
+//    [[TrackingManager sharedManager] trackFilterSearches];
 
-    self.searchWrapperViewTrailingConstraint.constant = 10.0;
-    self.searchCancelButtonWidthConstraint.constant = 70.0;
-    [UIView animateWithDuration:0.2 animations:^{
-        [self.searchWrapperView layoutIfNeeded];
-    }];
+//    self.searchWrapperViewTrailingConstraint.constant = 10.0;
+//    self.searchCancelButtonWidthConstraint.constant = 70.0;
+//    [UIView animateWithDuration:0.2 animations:^{
+//        [self.searchWrapperView layoutIfNeeded];
+//    }];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
@@ -107,7 +107,7 @@
     [self.view endEditing:YES];
     [self hideSearchCancelButton];
 
-    self.searchField.text = @"";
+//    self.searchField.text = @"";
     dispatch_async(dispatch_queue_create("com.festivalama.bandQueue", NULL), ^{
         _sectionIndexTitles = nil;
         self.allBandsArray = [self.allBandsArrayCopy copy];
@@ -120,11 +120,11 @@
 
 - (void)hideSearchCancelButton
 {
-    self.searchWrapperViewTrailingConstraint.constant = 0.0;
-    self.searchCancelButtonWidthConstraint.constant = 0.0;
-    [UIView animateWithDuration:0.2 animations:^{
-        [self.searchWrapperView layoutIfNeeded];
-    }];
+//    self.searchWrapperViewTrailingConstraint.constant = 0.0;
+//    self.searchCancelButtonWidthConstraint.constant = 0.0;
+//    [UIView animateWithDuration:0.2 animations:^{
+//        [self.searchWrapperView layoutIfNeeded];
+//    }];
 }
 
 #pragma mark - view methods
@@ -172,15 +172,15 @@
     if ([self.selectedBandsArray containsObject:selectedBand]) {
         [self.selectedBandsArray removeObject:selectedBand];
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        [[TrackingManager sharedManager] trackFilterSelectsBandAgainToUnselect];
+//        [[TrackingManager sharedManager] trackFilterSelectsBandAgainToUnselect];
     } else {
         [self.selectedBandsArray addObject:selectedBand];
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        [[TrackingManager sharedManager] trackFilterSelectsBand];
+//        [[TrackingManager sharedManager] trackFilterSelectsBand];
     }
 
-    [super setFilteringEnabled:self.selectedBandsArray.count != 0];
-    [[FilterModel sharedModel] setSelectedBandsArray:[self.selectedBandsArray copy]];
+//    [super setFilteringEnabled:self.selectedBandsArray.count != 0];
+//    [[FilterModel sharedModel] setSelectedBandsArray:[self.selectedBandsArray copy]];
 }
 
 #pragma mark - section index titles
@@ -221,12 +221,12 @@
 - (void)viewDidLoad
 {
     [super addGradientBackground];
-    [super setupTableView];
+//    [super setupTableView];
     self.title = @"Künstlern";
 
-    [self setupSearchView];
+//    [self setupSearchView];
 
-    self.refreshController = [[FestivalRefreshControl alloc] initWithFrame:CGRectMake(0.0, -50.0, CGRectGetWidth(self.view.frame), 50.0)];
+    self.refreshController = [[ConcertRefreshControl alloc] initWithFrame:CGRectMake(0.0, -50.0, CGRectGetWidth(self.view.frame), 50.0)];
     [self.tableView addSubview:self.refreshController];
 
     [self.refreshController addTarget:self
@@ -244,7 +244,7 @@
         dispatch_queue_t bandQeue = dispatch_queue_create("bandQeue", NULL);
         dispatch_async(bandQeue, ^{
             weakSelf.allBandsArrayCopy = [weakSelf.allBandsArray copy];
-            weakSelf.selectedBandsArray = [[[FilterModel sharedModel] selectedBandsArray] mutableCopy];
+//            weakSelf.selectedBandsArray = [[[FilterModel sharedModel] selectedBandsArray] mutableCopy];
             weakSelf.tableData = [weakSelf partitionObjects:weakSelf.allBandsArray collationStringSelector:@selector(name)];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [weakSelf.tableView reloadData];

@@ -11,11 +11,11 @@
 #import "Genre.h"
 //#import "TrackingManager.h"
 #import "ConcertRefreshControl.h"
-//#import "CategoryDownloadClient.h"
+#import "GenreDownloadClient.h"
 #import "CustomNavigationView.h"
 
 @interface FilterGenresViewController ()
-//@property (nonatomic, strong) CategoryDownloadClient *categoryDownloadClient;
+@property (nonatomic, strong) GenreDownloadClient *genreDownloadClient;
 @property (nonatomic, strong) NSArray *allGenresArrayCopy;
 @property (nonatomic, strong) NSArray *tableData;
 @property (nonatomic, strong) NSArray *sectionIndexTitles;
@@ -276,17 +276,17 @@
 
 - (void)downloadGenresWithCompletionBlock:(void(^)())completionBlock
 {
-//    self.categoryDownloadClient = [CategoryDownloadClient new];
-//
-//    __weak typeof(self) weakSelf = self;
-//    [self.categoryDownloadClient downloadAllCategoriesWithCompletionBlock:^(NSArray *sortedCategories, NSString *errorMessage, BOOL completed) {
-//        if (completed) {
-//            weakSelf.genresArray = [sortedCategories copy];
-//        }
-//        if (completionBlock) {
-//            completionBlock();
-//        }
-//    }];
+    self.genreDownloadClient = [GenreDownloadClient new];
+
+    __weak typeof(self) weakSelf = self;
+    [self.genreDownloadClient downloadAllGenresWithCompletionBlock:^(NSArray *sortedGenres, NSString *errorMessage, BOOL completed) {
+        if (completed) {
+            weakSelf.genresArray = [sortedGenres copy];
+        }
+        if (completionBlock) {
+            completionBlock();
+        }
+    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated
