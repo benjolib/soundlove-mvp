@@ -7,12 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FestivalModel.h"
+#import "ConcertModel.h"
 
-@interface FestivalDetailBaseViewController : UIViewController
+@interface ConcertDetailBaseViewController : UIViewController
 
-@property (nonatomic, weak) FestivalModel *festivalToDisplay;
+@property (nonatomic, weak) ConcertModel *concertToDisplay;
 
 - (void)refreshView;
+
+- (IBAction)shareButtonPressed:(id)sender;
+- (IBAction)ticketShopButtonPressed:(id)sender;
 
 @end

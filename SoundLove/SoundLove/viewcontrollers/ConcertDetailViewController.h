@@ -8,20 +8,17 @@
 
 #import "BaseGradientViewController.h"
 
-@class GreenButton, FestivalModel, InfoDetailSelectionButton;
+@class GreenButton, ConcertModel, TabbingButton, CustomNavigationView;
 
-@interface FestivalDetailViewController : BaseGradientViewController
+@interface ConcertDetailViewController : BaseGradientViewController
 
-@property (nonatomic, strong) FestivalModel *festivalToDisplay;
+@property (nonatomic, strong) ConcertModel *concertToDisplay;
 @property (nonatomic, weak) IBOutlet UIView *containerView;
-@property (nonatomic, weak) IBOutlet UILabel *titleLabel;
-@property (nonatomic, weak) IBOutlet GreenButton *ticketShopButton;
-@property (nonatomic, weak) IBOutlet InfoDetailSelectionButton *infoButton;
-@property (nonatomic, weak) IBOutlet InfoDetailSelectionButton *bandsButton;
-@property (nonatomic, weak) IBOutlet InfoDetailSelectionButton *locationButton;
+@property (nonatomic, weak) IBOutlet CustomNavigationView *navigationView;
+@property (nonatomic, weak) IBOutlet TabbingButton *concertButton;
+@property (nonatomic, weak) IBOutlet TabbingButton *locationButton;
+@property (nonatomic, weak) IBOutlet TabbingButton *friendsButton;
 
 - (IBAction)backButtonPressed:(id)sender;
-- (IBAction)shareButtonPressed:(id)sender;
-- (IBAction)ticketShopButtonPressed:(id)sender;
 
 @end

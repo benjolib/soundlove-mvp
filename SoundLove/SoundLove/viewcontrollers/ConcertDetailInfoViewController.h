@@ -6,24 +6,23 @@
 //  Copyright (c) 2015 Sztanyi Szabolcs. All rights reserved.
 //
 
-#import "FestivalDetailBaseViewController.h"
+#import "ConcertDetailBaseViewController.h"
 
-@interface FestivalDetailInfoViewController : FestivalDetailBaseViewController
+@interface ConcertDetailInfoViewController : ConcertDetailBaseViewController
 
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *infoTextLabelHeightConstraint;
-@property (nonatomic, weak) IBOutlet UILabel *infoTextLabel;
-@property (nonatomic, weak) IBOutlet UILabel *festivalTypeLabel;
-@property (nonatomic, weak) IBOutlet UILabel *festivalTimeLabel;
-@property (nonatomic, weak) IBOutlet UILabel *festivalLocationLabel;
-@property (nonatomic, weak) IBOutlet UILabel *festivalCostsLabel;
+@property (nonatomic, weak) IBOutlet UIView *imageWrapperView;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *imageWrapperViewHeightConstraint;
+@property (nonatomic, weak) IBOutlet UIImageView *blurredImageView;
+@property (nonatomic, weak) IBOutlet UIImageView *concertImageView;
+@property (nonatomic, weak) IBOutlet UILabel *concertNameLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *costTitleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *locationTitleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *timeTitleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *typeTitleLabel;
+@property (nonatomic, weak) IBOutlet UIView *bottomDetailWrapperView;
+@property (nonatomic, weak) IBOutlet UILabel *concertTimeLabel;
+@property (nonatomic, weak) IBOutlet UILabel *concertLocationLabel;
+@property (nonatomic, weak) IBOutlet UILabel *concertCostsLabel;
 
-@property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
-@property (nonatomic, weak) IBOutlet UIView *containerView;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *containerViewHeightConstraint;
+@property (nonatomic, weak) IBOutlet UILabel *concertTimeTitleLabel;
+@property (nonatomic, weak) IBOutlet UILabel *concertLocationTitleLabel;
+@property (nonatomic, weak) IBOutlet UILabel *concertCostsTitleLabel;
 
 @end
