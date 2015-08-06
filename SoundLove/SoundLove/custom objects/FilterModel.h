@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 
 @interface FilterModel : NSObject
 
@@ -18,6 +19,9 @@
 
 @property (nonatomic, strong) NSDate *startDate;
 @property (nonatomic, strong) NSDate *endDate;
+
+@property (nonatomic) CLLocationCoordinate2D *centerCoordinate;
+@property (nonatomic) float locationDiameter;
 
 + (FilterModel*)copySettingsFromFilterModel:(FilterModel*)filterModel;
 
