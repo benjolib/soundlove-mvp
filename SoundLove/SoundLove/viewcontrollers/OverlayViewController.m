@@ -11,7 +11,7 @@
 #import "UIColor+GlobalColors.h"
 
 @interface OverlayViewController ()
-@property (nonatomic) OverlayType overlayTypeToDisplay;
+
 @end
 
 @implementation OverlayViewController
@@ -27,7 +27,11 @@
 
 - (IBAction)confirmButtonPressed:(RoundedButton *)sender
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:^{
+        if ([self.delegate respondsToSelector:@selector(overlayViewControllerConfirmButtonPressed)]) {
+            [self.delegate overlayViewControllerConfirmButtonPressed];
+        }
+    }];
 }
 
 - (void)loadViewWithOverlayType:(OverlayType)type
@@ -51,6 +55,18 @@
             self.detailLabel.text = @"Sichere Dir die Möglichkeit an geschlossenen Vorverkaufs-Aktionen teilzunehmen.";
             self.iconImageView.image = [UIImage imageNamed:@"ontrack icon"];
             [self.confirmButton setTitle:@"Klar, warum nicht" forState:UIControlStateNormal];
+            break;
+        case OverlayTypeRSVP:
+            self.titleLabel.text = @"R.S.V.P";
+            self.detailLabel.text = @"Teile uns mit wie viele Tickets Du benötigst und wir schicken Dir das Angebot mit dem besten Preis innerhalb weniger Stunden per E-Mail";
+            self.iconImageView.image = [UIImage imageNamed:@"rsvp"];
+            [self.confirmButton setTitle:@"Ok" forState:UIControlStateNormal];
+            break;
+        case OverlayTypeTicket24:
+            self.titleLabel.text = @"Unser Versprechen";
+            self.detailLabel.text = @"Wir haben Deine Anfrage erhalten und Du erhältst innerhalb von 24 Stunden ein Angebot mit dem besten Preis per E-Mail";
+            self.iconImageView.image = [UIImage imageNamed:@"ticket24Icon"];
+            [self.confirmButton setTitle:@"Ok" forState:UIControlStateNormal];
             break;
         case OverlayTypeNoInternet:
             self.titleLabel.text = @"Sorry";
