@@ -8,6 +8,7 @@
 
 #import "ConcertViewDatasourceManager.h"
 #import "NetworkConstants.h"
+#import "FacebookManager.h"
 
 @implementation ConcertViewDatasourceManager
 
@@ -38,17 +39,51 @@
         self.allConcertDatasource.urlToDownloadFrom = kConcertsList;
     }
 
-    [self.allConcertDatasource downloadObjectsWithCompletionBlock:completionBlock];
+    __weak typeof(self) weakSelf = self;
+    [self.allConcertDatasource downloadObjectsWithCompletionBlock:^(BOOL completed, NSString *errorMesage) {
+        weakSelf.currentlyUsedObjectsArray = weakSelf.allConcertDatasource.objectsArray;
+        if (completionBlock) {
+            completionBlock(completed, errorMesage);
+        }
+    }];
 }
 
-- (void)downloadRecommendedConcertsWithCompletionBlock:(void(^)(BOOL completed))completionBlock
+- (void)downloadRecommendedConcertsWithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock
 {
+    if (!self.recommendedConcertDatasource) {
+        self.recommendedConcertDatasource = [[ConcertViewDatasource alloc] init];
+        self.recommendedConcertDatasource.startIndex = 0;
+        self.recommendedConcertDatasource.limit = 20.0;
 
+        NSString *urlString = [NSString stringWithFormat:@"%@?user_id=%@&access_token=%@", kConcertsRecommendedList, [FacebookManager currentUserID], [FacebookManager currentUserAccessToken]];
+        self.recommendedConcertDatasource.urlToDownloadFrom = urlString;
+    }
+
+    __weak typeof(self) weakSelf = self;
+    [self.recommendedConcertDatasource downloadObjectsWithCompletionBlock:^(BOOL completed, NSString *errorMesage) {
+        weakSelf.currentlyUsedObjectsArray = weakSelf.recommendedConcertDatasource.objectsArray;
+        if (completionBlock) {
+            completionBlock(completed, errorMesage);
+        }
+    }];
 }
 
-- (void)downloadFavoriteConcertsWithCompletionBlock:(void(^)(BOOL completed))completionBlock
+- (void)downloadFavoriteConcertsWithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock
 {
-    
+    if (!self.favoriteConcertDatasource) {
+        self.favoriteConcertDatasource = [[ConcertViewDatasource alloc] init];
+        self.favoriteConcertDatasource.startIndex = 0;
+        self.favoriteConcertDatasource.limit = 20.0;
+        self.favoriteConcertDatasource.urlToDownloadFrom = kFavoriteConcertsList;
+    }
+
+    __weak typeof(self) weakSelf = self;
+    [self.favoriteConcertDatasource downloadObjectsWithCompletionBlock:^(BOOL completed, NSString *errorMesage) {
+        weakSelf.currentlyUsedObjectsArray = weakSelf.favoriteConcertDatasource.objectsArray;
+        if (completionBlock) {
+            completionBlock(completed, errorMesage);
+        }
+    }];
 }
 
 @end

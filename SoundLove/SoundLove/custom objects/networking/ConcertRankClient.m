@@ -6,29 +6,29 @@
 //  Copyright (c) 2015 Sztanyi Szabolcs. All rights reserved.
 //
 
-#import "FestivalRankClient.h"
-#import "FestivalModel.h"
+#import "ConcertRankClient.h"
+#import "ConcertModel.h"
 
-@implementation FestivalRankClient
+@implementation ConcertRankClient
 
-- (void)sendRankingForFestival:(FestivalModel*)festival increment:(BOOL)increment withCompletionBlock:(void (^)(BOOL succeeded, NSString *errorMessage))completionBlock
+- (void)sendRankingForFestival:(ConcertModel*)concert increment:(BOOL)increment withCompletionBlock:(void (^)(BOOL succeeded, NSString *errorMessage))completionBlock
 {
     if (increment) {
-        [self incrementRankForFestival:festival withCompletionBlock:completionBlock];
+        [self incrementRankForFestival:concert withCompletionBlock:completionBlock];
     } else {
-        [self decrementRankForFestival:festival withCompletionBlock:completionBlock];
+        [self decrementRankForFestival:concert withCompletionBlock:completionBlock];
     }
 }
 
-- (void)incrementRankForFestival:(FestivalModel*)festival withCompletionBlock:(void (^)(BOOL succeeded, NSString *errorMessage))completionBlock
+- (void)incrementRankForFestival:(ConcertModel*)concert withCompletionBlock:(void (^)(BOOL succeeded, NSString *errorMessage))completionBlock
 {
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@?name=%@", kBaseURL, kFestivalIncrement, [festival.name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@?id=%@", kBaseURL, kConcertIncrement, concert.concertID]]];
     [self sendRequest:request withCompletionBlock:completionBlock];
 }
 
-- (void)decrementRankForFestival:(FestivalModel*)festival withCompletionBlock:(void (^)(BOOL succeeded, NSString *errorMessage))completionBlock
+- (void)decrementRankForFestival:(ConcertModel*)concert withCompletionBlock:(void (^)(BOOL succeeded, NSString *errorMessage))completionBlock
 {
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@?name=%@", kBaseURL, kFestivalDecrement, [festival.name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@?id=%@", kBaseURL, kConcertDecrement, concert.concertID]]];
     [self sendRequest:request withCompletionBlock:completionBlock];
 }
 

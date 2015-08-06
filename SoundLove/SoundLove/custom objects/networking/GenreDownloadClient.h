@@ -10,8 +10,8 @@
 
 /// Client to download the genres for the onboarding screens
 
-@interface CategoryDownloadClient : AbstractClient
+@interface GenreDownloadClient : AbstractClient
 
-- (void)downloadAllCategoriesWithCompletionBlock:(void (^)(NSArray *sortedCategories, NSString *errorMessage, BOOL completed))completionBlock;
+- (void)downloadAllGenresWithCompletionBlock:(void (^)(NSArray *sortedGenres, NSString *errorMessage, BOOL completed))completionBlock;
 
 @end

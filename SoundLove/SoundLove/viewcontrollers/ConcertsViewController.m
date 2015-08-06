@@ -21,20 +21,18 @@
 #import "FilterNavigationController.h"
 #import "SortingViewController.h"
 #import "ConcertViewDatasourceManager.h"
+#import "ConcertRankClient.h"
+#import "ConcertDetailViewController.h"
 
 @interface ConcertsViewController ()
+@property (nonatomic, strong) ConcertRankClient *rankClient;
 @property (nonatomic, strong) ConcertRefreshControl *refreshController;
 @property (nonatomic, strong) ConcertDownloadClient *downloadClient;
 @property (nonatomic, strong) ConcertViewDatasourceManager *datasourceManager;
 
-@property (nonatomic, strong) NSMutableArray *favoriteConcertsArray;
-@property (nonatomic, strong) NSMutableArray *recommendedConcertsArray;
-@property (nonatomic, strong) NSMutableArray *allConcertsArray;
-
 @property (nonatomic) NSInteger limit;
 @property (nonatomic) NSInteger startIndex;
 @property (nonatomic) BOOL isSearching;
-@property (nonatomic) NSInteger selectedTabbarIndex;
 @end
 
 @implementation ConcertsViewController
@@ -50,10 +48,23 @@
         [button setButtonActive:(button == selectedButton)];
     }
 
-    [self.datasourceManager tabSelectedAtIndex:selectedButton.tag];
-
-    self.selectedTabbarIndex = selectedButton.tag;
     [self.tableView reloadData];
+    [self.datasourceManager tabSelectedAtIndex:selectedButton.tag];
+    // TODO:
+
+    switch (selectedButton.tag) {
+        case 0:
+            [self downloadFavoriteConcerts];
+            break;
+        case 1:
+            [self downloadRecommendedConcerts];
+            break;
+        case 2:
+            [self downloadAllConcerts];
+            break;
+        default:
+            break;
+    }
 }
 
 - (IBAction)filterButtonPressed:(id)sender
@@ -85,26 +96,23 @@
     } else {
 //        [[TrackingManager sharedManager] trackUserAddedFestival];
     }
-//    [self sendRankInformationAboutSelectedFestival:festival increment:!alreadyExisting];
+    [self sendRankInformationAboutSelectedConcert:concertModel increment:!alreadyExisting];
     [self.tableView reloadData];
+}
+
+- (void)sendRankInformationAboutSelectedConcert:(ConcertModel*)concert increment:(BOOL)increment
+{
+    self.rankClient = [[ConcertRankClient alloc] init];
+    [self.rankClient sendRankingForFestival:concert increment:increment withCompletionBlock:^(BOOL succeeded, NSString *errorMessage) {
+        if (!succeeded) {
+            // TODO: error handling
+        }
+    }];
 }
 
 - (NSMutableArray*)objectsToDisplay
 {
-    switch (self.selectedTabbarIndex) {
-        case 0:
-            return self.favoriteConcertsArray;
-            break;
-        case 1:
-            return self.recommendedConcertsArray;
-            break;
-        case 2:
-            return self.allConcertsArray;
-            break;
-        default:
-            return [NSMutableArray array];
-            break;
-    }
+   return [self.datasourceManager currentlyUsedObjectsArray];
 }
 
 #pragma mark - tableView methods
@@ -149,6 +157,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self performSegueWithIdentifier:@"openDetailView" sender:indexPath];
 }
 
 - (void)updateTableViewCellAtIndexPath:(NSIndexPath *)indexPath image:(UIImage *)image
@@ -158,6 +167,21 @@
 
     ConcertsTableViewCell *cell = (ConcertsTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
     cell.concertImageView.image = image;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"openDetailView"])
+    {
+        if ([sender isKindOfClass:[NSIndexPath class]])
+        {
+            NSIndexPath *indexPath = (NSIndexPath*)sender;
+
+            ConcertModel *concertModel = self.objectsToDisplay[indexPath.row];
+            ConcertDetailViewController *detailViewController = (ConcertDetailViewController*)[segue destinationViewController];
+            detailViewController.concertToDisplay = concertModel;
+        }
+    }
 }
 
 #pragma mark - download methods
@@ -171,44 +195,48 @@
 
 - (void)downloadAllConcerts
 {
-    if (!self.downloadClient) {
-        self.downloadClient = [[ConcertDownloadClient alloc] init];
-    }
-
-    if (!self.allConcertsArray) {
-        self.allConcertsArray = [NSMutableArray array];
-    }
-
-    self.limit = 40.0;
-
     __weak typeof (self) weakSelf = self;
-    [self.downloadClient downloadConcertsFromIndex:self.startIndex limit:self.limit withFilters:nil searchText:nil completionBlock:^(NSString *errorMessage, NSArray *concertsArray) {
-        [weakSelf.tableView hideLoadingIndicator];
-        [weakSelf.refreshController endRefreshing];
-
-        if (weakSelf.tableView.contentOffset.y < 0) {
-            weakSelf.tableView.contentOffset = CGPointMake(0.0, 0.0);
-        }
-        if (errorMessage) {
-            [weakSelf handleDownloadErrorMessage:errorMessage];
+    [self.datasourceManager downloadAllConcertsWithCompletionBlock:^(BOOL completed, NSString *errorMesage) {
+        if (completed) {
+            [weakSelf handleDownloadedConcerts];
         } else {
-            [weakSelf handleDownloadedConcertsArray:concertsArray];
+            [weakSelf handleDownloadErrorMessage:errorMesage];
         }
     }];
 }
 
-- (void)handleDownloadedConcertsArray:(NSArray*)downloadedConcertsArray
+- (void)downloadRecommendedConcerts
 {
-    if (self.isSearching) {
-        self.allConcertsArray = [downloadedConcertsArray mutableCopy];
-    } else {
-        if (self.startIndex == 0) {
-            self.allConcertsArray = [downloadedConcertsArray mutableCopy];
+    __weak typeof (self) weakSelf = self;
+    [self.datasourceManager downloadRecommendedConcertsWithCompletionBlock:^(BOOL completed, NSString *errorMesage) {
+        if (completed) {
+            [weakSelf handleDownloadedConcerts];
         } else {
-            [self.allConcertsArray addObjectsFromArray:downloadedConcertsArray];
+            [weakSelf handleDownloadErrorMessage:errorMesage];
         }
-    }
+    }];
+}
 
+- (void)downloadFavoriteConcerts
+{
+    __weak typeof (self) weakSelf = self;
+    [self.datasourceManager downloadFavoriteConcertsWithCompletionBlock:^(BOOL completed, NSString *errorMesage) {
+        if (completed) {
+            [weakSelf handleDownloadedConcerts];
+        } else {
+            [weakSelf handleDownloadErrorMessage:errorMesage];
+        }
+    }];
+}
+
+- (void)handleDownloadedConcerts
+{
+    [self.tableView hideLoadingIndicator];
+    [self.refreshController endRefreshing];
+
+    if (self.tableView.contentOffset.y < 0) {
+        self.tableView.contentOffset = CGPointMake(0.0, 0.0);
+    }
     [self.tableView reloadData];
 }
 
@@ -242,14 +270,11 @@
         [button setButtonActive:button.tag == 2];
     }
 
-    self.selectedTabbarIndex = 2;
+    self.datasourceManager = [[ConcertViewDatasourceManager alloc] init];
 
     [self addRefreshController];
     [self.tableView showLoadingIndicator];
     [self refreshView];
-
-    self.datasourceManager = [[ConcertViewDatasourceManager alloc] init];
-    
 }
 
 - (void)didReceiveMemoryWarning

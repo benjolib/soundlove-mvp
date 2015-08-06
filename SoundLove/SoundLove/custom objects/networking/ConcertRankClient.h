@@ -8,10 +8,10 @@
 
 #import "AbstractClient.h"
 
-@class FestivalModel;
+@class ConcertModel;
 
-@interface FestivalRankClient : AbstractClient
+@interface ConcertRankClient : AbstractClient
 
-- (void)sendRankingForFestival:(FestivalModel*)festival increment:(BOOL)increment withCompletionBlock:(void (^)(BOOL succeeded, NSString *errorMessage))completionBlock;
+- (void)sendRankingForFestival:(ConcertModel*)concert increment:(BOOL)increment withCompletionBlock:(void (^)(BOOL succeeded, NSString *errorMessage))completionBlock;
 
 @end

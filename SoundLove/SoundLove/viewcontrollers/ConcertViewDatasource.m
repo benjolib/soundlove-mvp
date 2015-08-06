@@ -23,6 +23,9 @@
 - (void)downloadObjectsWithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock
 {
     NSMutableString *urlString = [NSMutableString stringWithFormat:@"%@%@?start=%ld&limit=%ld", kBaseURL, self.urlToDownloadFrom, (long)self.startIndex, (long)self.limit];
+
+    NSLog(@"Url the request was sent to: %@", urlString);
+
     [self downloadConcertsWithURL:[NSURL URLWithString:urlString] completionBlock:^(NSString *errorMessage, NSArray *concertsArray) {
         if (errorMessage) {
             if (completionBlock) {
