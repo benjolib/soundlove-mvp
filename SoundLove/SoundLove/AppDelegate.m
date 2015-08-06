@@ -24,12 +24,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     UIViewController *rootViewController = nil;
-    if ([FacebookManager isUserLoggedInToFacebook]) {
-        rootViewController = [StoryboardManager mainNavigationController];
-    } else {
+//    if ([FacebookManager isUserLoggedInToFacebook]) {
+//        rootViewController = [StoryboardManager mainNavigationController];
+//    } else {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         rootViewController = [storyboard instantiateInitialViewController];
-    }
+//    }
 
     self.window.rootViewController = rootViewController;
 

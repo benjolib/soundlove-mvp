@@ -35,7 +35,7 @@
     }
     else
     {
-        [self.loginManager logInWithReadPermissions:@[@"email"] handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+        [self.loginManager logInWithReadPermissions:@[@"email", @"public_profile", @"user_friends"] handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
             if (error) {
                 // Process error
                 if (completionBlock) {
@@ -47,6 +47,10 @@
                     completionBlock(NO, nil);
                 }
             } else {
+
+                NSString *userID = result.token.userID;
+                NSString *accessToken = result.token.tokenString;
+
                 [FBSDKAccessToken setCurrentAccessToken:result.token];
                 if (completionBlock) {
                     completionBlock(YES, nil);
@@ -64,6 +68,17 @@
 - (void)logoutUser
 {
     [self.loginManager logOut];
+}
+
+#pragma mark - class methods
++ (NSString*)currentUserID
+{
+    return [FBSDKAccessToken currentAccessToken].userID;
+}
+
++ (NSString*)currentUserAccessToken
+{
+    return [FBSDKAccessToken currentAccessToken].tokenString;
 }
 
 + (BOOL)isUserLoggedInToFacebook

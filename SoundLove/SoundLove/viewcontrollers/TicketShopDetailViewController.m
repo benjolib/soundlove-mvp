@@ -12,13 +12,15 @@
 #import "TicketShopTableViewCell.h"
 #import "CustomNavigationView.h"
 #import "TicketShopperClient.h"
-//#import "PopupView.h"
+#import "OverlayViewController.h"
+#import "OverlayTransitionManager.h"
 #import "UIColor+GlobalColors.h"
 //#import "TrackingManager.h"
 
-@interface TicketShopDetailViewController () <UITextFieldDelegate>
+@interface TicketShopDetailViewController () <UITextFieldDelegate, OverlayViewControllerDelegate>
 @property (nonatomic, strong) TicketShopperClient *shopperClient;
-//@property (nonatomic, strong) PopupView *confirmPopup;
+@property (nonatomic, strong) OverlayTransitionManager *overlayTransitionManager;
+@property (nonatomic, strong) OverlayViewController *overlayViewController;
 @end
 
 @implementation TicketShopDetailViewController
@@ -82,19 +84,15 @@
 
 - (void)showConfirmationPopup
 {
-//    self.confirmPopup = [[PopupView alloc] initWithDelegate:self];
-//    [self.confirmPopup setupWithConfirmButtonTitle:@"OK"
-//                                cancelButtonTitle:nil
-//                                        viewTitle:@"Unser Versprechen"
-//                                             text:@"Wir haben deine Anfrage erhalten und Du erhältst innerhalb 24 Stunden ein Angebot mit dem besten Preis per E-Mail"
-//                                             icon:[UIImage imageNamed:@"iconEmail"] showFestivalamaLogo:NO];
-//    [self.confirmPopup showPopupViewAnimationOnView:self.view withBlurredBackground:YES];
+    self.overlayTransitionManager = [[OverlayTransitionManager alloc] init];
+    self.overlayViewController = [self.overlayTransitionManager presentOverlayViewWithType:OverlayTypeTicket24 onViewController:self];
+    self.overlayViewController.delegate = self;
 }
 
-//- (void)popupViewConfirmButtonPressed:(PopupView *)popupView
-//{
-//    [self.navigationController popViewControllerAnimated:YES];
-//}
+- (void)overlayViewControllerConfirmButtonPressed
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 - (void)setTicketButtonEnabled:(BOOL)enabled
 {
@@ -155,7 +153,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationView.titleLabel.text = @"";
+    self.navigationView.titleLabel.text = self.concertToDisplay.name;
 
     [self setTicketButtonEnabled:NO];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];

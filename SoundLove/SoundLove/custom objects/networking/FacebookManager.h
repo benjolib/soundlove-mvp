@@ -14,5 +14,7 @@
 - (void)logoutUser;
 
 + (BOOL)isUserLoggedInToFacebook;
++ (NSString*)currentUserAccessToken;
++ (NSString*)currentUserID;
 
 @end
