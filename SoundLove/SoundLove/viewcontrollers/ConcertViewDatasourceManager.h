@@ -18,8 +18,8 @@
 @property (nonatomic, strong) NSMutableArray *currentlyUsedObjectsArray;
 
 - (void)downloadAllConcertsWithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock;
-- (void)downloadRecommendedConcertsWithCompletionBlock:(void(^)(BOOL completed))completionBlock;
-- (void)downloadFavoriteConcertsWithCompletionBlock:(void(^)(BOOL completed))completionBlock;
+- (void)downloadRecommendedConcertsWithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock;
+- (void)downloadFavoriteConcertsWithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock;
 
 - (void)tabSelectedAtIndex:(NSInteger)index;
 
