@@ -16,4 +16,6 @@
 - (void)setTitle:(NSString*)title;
 - (void)setButtonTarget:(id)target selector:(SEL)selector;
 
+- (void)setShadowActive:(BOOL)activateShadow;
+
 @end

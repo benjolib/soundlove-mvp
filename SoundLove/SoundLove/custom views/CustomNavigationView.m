@@ -33,4 +33,17 @@
     [self.backButton addTarget:target action:selector forControlEvents:UIControlEventTouchUpInside];
 }
 
+- (void)setShadowActive:(BOOL)activateShadow
+{
+    if (activateShadow) {
+        self.layer.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5].CGColor;
+        self.layer.shadowOffset = CGSizeMake(0.0, 2.0);
+        self.layer.shadowRadius = 2.0;
+        self.layer.shadowOpacity = 1.0;
+        self.backgroundColor = [UIColor navigationBarBackgroundColor];
+    } else {
+        self.layer.shadowColor = [UIColor clearColor].CGColor;
+    }
+}
+
 @end

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OnboardingPageControlView : UIView
+@interface CustomPageControlView : UIView
 
 - (void)setNumberOfDots:(NSInteger)totalDots;
 
