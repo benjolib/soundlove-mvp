@@ -15,7 +15,6 @@
 #import "ConcertsViewController.h"
 #import "FavoriteConcertViewController.h"
 #import "BandsViewController.h"
-#import "ProfilViewController.h"
 #import "CalendarViewController.h"
 #import "UIColor+GlobalColors.h"
 #import "SearchNavigationView.h"
@@ -116,14 +115,6 @@
             [self startTransitionToViewController:bandsViewController];
             self.currentMenuItem = menuItem;
             [self setParentTitle:@"Künstler"];
-            break;
-        }
-        case MenuItemProfil: {
-            ProfilViewController *profilViewController = [StoryboardManager profilViewController];
-            [self startTransitionToViewController:profilViewController];
-            self.currentMenuItem = menuItem;
-            [self setParentTitle:@"Profil"];
-            self.searchView.searchButton.hidden = YES;
             break;
         }
         default:

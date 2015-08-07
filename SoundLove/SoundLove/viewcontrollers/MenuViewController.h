@@ -18,7 +18,7 @@
 @property (nonatomic, weak) IBOutlet MenuButton *calendarButton;
 @property (nonatomic, weak) IBOutlet MenuButton *favoriteConcertButton;
 @property (nonatomic, weak) IBOutlet MenuButton *bandsButton;
-@property (nonatomic, weak) IBOutlet MenuButton *profilButton;
+@property (nonatomic, weak) IBOutlet MenuButton *logoutButton;
 
 @property (nonatomic, weak) IBOutlet UIButton *infoButton;
 

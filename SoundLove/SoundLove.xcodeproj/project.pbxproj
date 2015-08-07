@@ -49,7 +49,6 @@
 		56740A1D1B60F12700638FEF /* MainContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56740A1C1B60F12700638FEF /* MainContainerViewController.m */; };
 		56740A221B60F17C00638FEF /* FestivalTransitionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 56740A1F1B60F17C00638FEF /* FestivalTransitionManager.m */; };
 		56740A231B60F17C00638FEF /* FestivalTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 56740A211B60F17C00638FEF /* FestivalTransitionAnimator.m */; };
-		56740A261B61230500638FEF /* ProfilViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56740A251B61230500638FEF /* ProfilViewController.m */; };
 		56740A291B61232900638FEF /* BandsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56740A281B61232900638FEF /* BandsViewController.m */; };
 		56740A2C1B61234800638FEF /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56740A2B1B61234800638FEF /* CalendarViewController.m */; };
 		567C6F461B72BAA800F3BFA3 /* InviteFriendButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 567C6F451B72BAA800F3BFA3 /* InviteFriendButton.m */; };
@@ -207,8 +206,6 @@
 		56740A1F1B60F17C00638FEF /* FestivalTransitionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FestivalTransitionManager.m; sourceTree = "<group>"; };
 		56740A201B60F17C00638FEF /* FestivalTransitionAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FestivalTransitionAnimator.h; sourceTree = "<group>"; };
 		56740A211B60F17C00638FEF /* FestivalTransitionAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FestivalTransitionAnimator.m; sourceTree = "<group>"; };
-		56740A241B61230500638FEF /* ProfilViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfilViewController.h; sourceTree = "<group>"; };
-		56740A251B61230500638FEF /* ProfilViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfilViewController.m; sourceTree = "<group>"; };
 		56740A271B61232900638FEF /* BandsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BandsViewController.h; sourceTree = "<group>"; };
 		56740A281B61232900638FEF /* BandsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BandsViewController.m; sourceTree = "<group>"; };
 		56740A2A1B61234800638FEF /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
@@ -557,8 +554,6 @@
 				56740A2B1B61234800638FEF /* CalendarViewController.m */,
 				56740A271B61232900638FEF /* BandsViewController.h */,
 				56740A281B61232900638FEF /* BandsViewController.m */,
-				56740A241B61230500638FEF /* ProfilViewController.h */,
-				56740A251B61230500638FEF /* ProfilViewController.m */,
 				567409E91B60DD3900638FEF /* OverlayViewController.h */,
 				567409EA1B60DD3900638FEF /* OverlayViewController.m */,
 				56740A001B60ED4B00638FEF /* Info views */,
@@ -891,7 +886,6 @@
 				5619A31F1B6C32FD000901F7 /* ConcertViewDatasource.m in Sources */,
 				5658BAA81B640D77004F08BB /* AbstractClient.m in Sources */,
 				5684B1D91B66220F009EF346 /* TutorialPopupView.m in Sources */,
-				56740A261B61230500638FEF /* ProfilViewController.m in Sources */,
 				56A65CB51B6A6FCC00619189 /* MARKRangeSlider.m in Sources */,
 				567409DD1B60DAEC00638FEF /* StoryboardManager.m in Sources */,
 				56A65C8A1B69728A00619189 /* FilterButton.m in Sources */,

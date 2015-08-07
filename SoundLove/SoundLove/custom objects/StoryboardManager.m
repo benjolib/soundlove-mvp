@@ -61,11 +61,6 @@
     return [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"BandsViewController"];
 }
 
-+ (ProfilViewController*)profilViewController
-{
-    return [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"ProfilViewController"];
-}
-
 #pragma mark - filter views
 + (FilterNavigationController*)filterNavigationController
 {

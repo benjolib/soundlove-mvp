@@ -13,7 +13,6 @@ typedef NS_ENUM(NSUInteger, MenuItem) {
     MenuItemFavoriteConcerts,
     MenuItemCalendar,
     MenuItemBands,
-    MenuItemProfil
 };
 
 @interface MainContainerViewController : UIViewController

@@ -16,15 +16,45 @@
 #import "FavoriteConcertViewController.h"
 #import "CalendarViewController.h"
 #import "BandsViewController.h"
-#import "ProfilViewController.h"
+#import "FacebookManager.h"
 
-@interface MenuViewController ()
+@interface MenuViewController () <UIAlertViewDelegate>
 @property (nonatomic, strong) UITapGestureRecognizer *tapRecognizer;
 @property (nonatomic, weak) UIViewController *sourceViewController;
 @property (nonatomic, strong) FestivalTransitionManager *transitionManager;
+@property (nonatomic, strong) FacebookManager *facebookManager;
 @end
 
 @implementation MenuViewController
+
+#pragma mark - user log out
+- (void)userWantsToLogout
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Abmelden"
+                                                        message:@"Are you sure you want to log out?!vknfdkjfd"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Nein"
+                                              otherButtonTitles:@"Abmelden", nil];
+    [alertView show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex != alertView.cancelButtonIndex) {
+        [self logoutUser];
+    }
+}
+
+- (void)logoutUser
+{
+    if (!self.facebookManager) {
+        self.facebookManager = [[FacebookManager alloc] init];
+    }
+    [self.facebookManager logoutUser];
+    [[CoreDataHandler sharedHandler] clearDatabase];
+
+    [self performSegueWithIdentifier:@"userLoggedOutSegue" sender:nil];
+}
 
 - (void)updateCalendarButton
 {
@@ -66,8 +96,8 @@
     else if ([button isEqual:self.bandsButton]) {
         [self switchCurrentSourceWithMenuItem:MenuItemBands];
     }
-    else if ([button isEqual:self.profilButton]) {
-        [self switchCurrentSourceWithMenuItem:MenuItemProfil];
+    else if ([button isEqual:self.logoutButton]) {
+        [self userWantsToLogout];
     }
 }
 
@@ -118,7 +148,7 @@
     } else if ([self.sourceViewController isMemberOfClass:[BandsViewController class]]) {
         [self activateButton:self.bandsButton];
     } else {
-        [self activateButton:self.profilButton];
+        [self activateButton:self.logoutButton];
     }
 }
 
