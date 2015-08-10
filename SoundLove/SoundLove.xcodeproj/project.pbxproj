@@ -117,6 +117,8 @@
 		56DF682C1B72B7350025DBB1 /* WebsiteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DF682B1B72B7350025DBB1 /* WebsiteButton.m */; };
 		56ECD1301B67B6B9008E11A0 /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56ECD12F1B67B6B9008E11A0 /* OnboardingViewController.m */; };
 		56ECD1351B67BB30008E11A0 /* FacebookButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 56ECD1341B67BB30008E11A0 /* FacebookButton.m */; };
+		56F509B11B7955DD004AF51C /* ConcertLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F509B01B7955DD004AF51C /* ConcertLocation.m */; };
+		56F509B41B795E6E004AF51C /* ConcertLoadMoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F509B31B795E6E004AF51C /* ConcertLoadMoreTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -332,6 +334,10 @@
 		56ECD12F1B67B6B9008E11A0 /* OnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingViewController.m; sourceTree = "<group>"; };
 		56ECD1331B67BB30008E11A0 /* FacebookButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookButton.h; sourceTree = "<group>"; };
 		56ECD1341B67BB30008E11A0 /* FacebookButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookButton.m; sourceTree = "<group>"; };
+		56F509AF1B7955DD004AF51C /* ConcertLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcertLocation.h; sourceTree = "<group>"; };
+		56F509B01B7955DD004AF51C /* ConcertLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcertLocation.m; sourceTree = "<group>"; };
+		56F509B21B795E6E004AF51C /* ConcertLoadMoreTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcertLoadMoreTableViewCell.h; sourceTree = "<group>"; };
+		56F509B31B795E6E004AF51C /* ConcertLoadMoreTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcertLoadMoreTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -389,6 +395,8 @@
 				5658BA9E1B64062C004F08BB /* ConcertsTableViewCell.h */,
 				5658BA9F1B64062C004F08BB /* ConcertsTableViewCell.m */,
 				56A65C861B696FE500619189 /* ConcertsTableViewCell.xib */,
+				56F509B21B795E6E004AF51C /* ConcertLoadMoreTableViewCell.h */,
+				56F509B31B795E6E004AF51C /* ConcertLoadMoreTableViewCell.m */,
 				5658BAA11B640862004F08BB /* CalendarButton.h */,
 				5658BAA21B640862004F08BB /* CalendarButton.m */,
 				56740A041B60EE0900638FEF /* BaseTableViewCell.h */,
@@ -657,6 +665,8 @@
 				5619A3131B6C0253000901F7 /* BaseImageModel.m */,
 				5684B1D01B661DCB009EF346 /* ConcertModel.h */,
 				5684B1D11B661DCB009EF346 /* ConcertModel.m */,
+				56F509AF1B7955DD004AF51C /* ConcertLocation.h */,
+				56F509B01B7955DD004AF51C /* ConcertLocation.m */,
 				56A65C9E1B6A173200619189 /* Band.h */,
 				56A65C9F1B6A173200619189 /* Band.m */,
 				56A65CA01B6A173200619189 /* Genre.h */,
@@ -875,10 +885,12 @@
 				56740A1D1B60F12700638FEF /* MainContainerViewController.m in Sources */,
 				56A65C9A1B6A12B300619189 /* FilterBandsTableViewCell.m in Sources */,
 				56DF68231B7223A40025DBB1 /* ConcertDetailLocationViewController.m in Sources */,
+				56F509B11B7955DD004AF51C /* ConcertLocation.m in Sources */,
 				56A65CB91B6A759200619189 /* PriceContainerView.m in Sources */,
 				56A65C6F1B68AD0600619189 /* FacebookManager.m in Sources */,
 				56740A061B60EE0900638FEF /* BaseTableViewCell.m in Sources */,
 				5619A30E1B6BFF90000901F7 /* ImageDownloadBaseViewController.m in Sources */,
+				56F509B41B795E6E004AF51C /* ConcertLoadMoreTableViewCell.m in Sources */,
 				56A65C991B6A12B300619189 /* FilterTableViewCell.m in Sources */,
 				5695138A1B5D1F42008A649B /* AppDelegate.m in Sources */,
 				567409F31B60EB5700638FEF /* BadgeCounterView.m in Sources */,

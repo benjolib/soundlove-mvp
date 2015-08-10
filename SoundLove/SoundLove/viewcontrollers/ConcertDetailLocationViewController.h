@@ -11,7 +11,7 @@
 
 @class WebsiteButton;
 
-@interface ConcertDetailLocationViewController : ConcertDetailBaseViewController
+@interface ConcertDetailLocationViewController : ConcertDetailBaseViewController <MKMapViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UILabel *locationNameLabel;
 @property (nonatomic, weak) IBOutlet UILabel *streetLabel;

@@ -21,7 +21,9 @@
     NSDate *date = [self convertDateStringToDate:[dictionary nonNullObjectForKey:@"date_ts"]];
     NSString *imageURL = [dictionary nonNullObjectForKey:@"image_url"];
 
-    return [[ConcertModel alloc] initWithName:name concertID:concertID city:city place:place price:price date:date imageURL:imageURL];
+    ConcertModel *concert = [[ConcertModel alloc] initWithName:name concertID:concertID city:city place:place price:price date:date imageURL:imageURL];
+    concert.concertLocation = [ConcertLocation concertLocationWithDictionary:dictionary];
+    return concert;
 }
 
 - (instancetype)initWithName:(NSString*)name concertID:(NSString*)concertID city:(NSString*)city place:(NSString*)place price:(NSString*)price date:(NSDate*)date imageURL:(NSString*)imageURL
@@ -55,6 +57,16 @@
         return [NSString stringWithFormat:@"Jetzt"];
     }
     return [NSString stringWithFormat:@"In %ld Tagen", (long)numberOfDaysLeft];
+}
+
+- (NSString*)formattedAddress
+{
+    return [self.concertLocation formattedAddress];
+}
+
+- (CLLocationCoordinate2D)coordinate
+{
+    return CLLocationCoordinate2DMake(self.concertLocation.latitude.doubleValue, self.concertLocation.longitude.doubleValue);
 }
 
 #pragma mark - private methods

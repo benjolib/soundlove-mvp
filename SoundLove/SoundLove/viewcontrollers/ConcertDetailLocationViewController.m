@@ -30,10 +30,44 @@
 - (void)refreshView
 {
     [super refreshView];
-//    self.locationNameLabel.text = self.festivalToDisplay.locationName;
-//    self.streetLabel.text = self.festivalToDisplay.address;
-//    self.postCodeLabel.text = self.festivalToDisplay.postcode;
     self.cityLabel.text = self.concertToDisplay.city;
+    self.streetLabel.text = self.concertToDisplay.concertLocation.street;
+    self.postCodeLabel.text = self.concertToDisplay.concertLocation.zip;
+    self.locationNameLabel.text = self.concertToDisplay.place;
+
+    [self refreshMapView];
+}
+
+- (void)refreshMapView
+{
+    CLLocationCoordinate2D coordinate = [self.concertToDisplay coordinate];
+
+    [self.mapView setCenterCoordinate:coordinate];
+    [self.mapView setRegion:MKCoordinateRegionMake(coordinate, MKCoordinateSpanMake(0.1, 0.1))];
+
+    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+    annotation.coordinate = coordinate;
+    [self.mapView addAnnotation:annotation];
+}
+
+#pragma mark - mapView delegate methods
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+{
+    MKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"annotation"];
+    if (!annotationView) {
+        annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"annotation"];
+    }
+
+    annotationView.annotation = annotation;
+    annotationView.image = [UIImage imageNamed:@"location-pin"];
+    annotationView.canShowCallout = NO;
+    return annotationView;
+}
+
+- (void)dealloc
+{
+    self.mapView.delegate = nil;
+    self.mapView = nil;
 }
 
 @end

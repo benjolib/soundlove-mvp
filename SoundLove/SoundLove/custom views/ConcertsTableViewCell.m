@@ -69,7 +69,7 @@
 
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
 {
-//    [super setHighlighted:highlighted animated:animated];
+    [super setHighlighted:highlighted animated:animated];
     if (highlighted) {
         self.backgroundColor = [[UIColor tabbingButtonActiveColor] colorWithAlphaComponent:0.4];
     } else {
