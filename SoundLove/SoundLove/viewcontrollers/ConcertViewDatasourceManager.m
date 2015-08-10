@@ -12,6 +12,15 @@
 
 @implementation ConcertViewDatasourceManager
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.currentLimit = 20.0;
+    }
+    return self;
+}
+
 - (void)tabSelectedAtIndex:(NSInteger)index
 {
     switch (index) {
@@ -35,7 +44,7 @@
     if (!self.allConcertDatasource) {
         self.allConcertDatasource = [[ConcertViewDatasource alloc] init];
         self.allConcertDatasource.startIndex = 0;
-        self.allConcertDatasource.limit = 20.0;
+        self.allConcertDatasource.limit = self.currentLimit;
         self.allConcertDatasource.urlToDownloadFrom = kConcertsList;
     }
 
@@ -53,7 +62,7 @@
     if (!self.recommendedConcertDatasource) {
         self.recommendedConcertDatasource = [[ConcertViewDatasource alloc] init];
         self.recommendedConcertDatasource.startIndex = 0;
-        self.recommendedConcertDatasource.limit = 20.0;
+        self.recommendedConcertDatasource.limit = self.currentLimit;
 
         NSString *urlString = [NSString stringWithFormat:@"%@?user_id=%@&access_token=%@", kConcertsRecommendedList, [FacebookManager currentUserID], [FacebookManager currentUserAccessToken]];
         self.recommendedConcertDatasource.urlToDownloadFrom = urlString;
@@ -73,7 +82,7 @@
     if (!self.favoriteConcertDatasource) {
         self.favoriteConcertDatasource = [[ConcertViewDatasource alloc] init];
         self.favoriteConcertDatasource.startIndex = 0;
-        self.favoriteConcertDatasource.limit = 20.0;
+        self.favoriteConcertDatasource.limit = self.currentLimit;
         self.favoriteConcertDatasource.urlToDownloadFrom = kFavoriteConcertsList;
     }
 

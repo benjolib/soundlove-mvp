@@ -6,13 +6,14 @@
 //  Copyright (c) 2015 Sztanyi Szabolcs. All rights reserved.
 //
 
-#import "FestivalLoadMoreTableViewCell.h"
+#import "ConcertLoadMoreTableViewCell.h"
+#import "UIColor+GlobalColors.h"
 
-@interface FestivalLoadMoreTableViewCell ()
+@interface ConcertLoadMoreTableViewCell ()
 @property (nonatomic, strong) UIImageView *loadingIndicatorView;
 @end
 
-@implementation FestivalLoadMoreTableViewCell
+@implementation ConcertLoadMoreTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -32,6 +33,7 @@
 - (void)setupView
 {
     self.loadingIndicatorView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"reloadIcon"]];
+    self.loadingIndicatorView.tintColor = [UIColor globalGreenColor];
     self.loadingIndicatorView.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:self.loadingIndicatorView];
 

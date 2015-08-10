@@ -23,6 +23,7 @@
 #import "ConcertViewDatasourceManager.h"
 #import "ConcertRankClient.h"
 #import "ConcertDetailViewController.h"
+#import "ConcertLoadMoreTableViewCell.h"
 
 @interface ConcertsViewController ()
 @property (nonatomic, strong) ConcertRankClient *rankClient;
@@ -30,7 +31,7 @@
 @property (nonatomic, strong) ConcertDownloadClient *downloadClient;
 @property (nonatomic, strong) ConcertViewDatasourceManager *datasourceManager;
 
-@property (nonatomic) NSInteger limit;
+@property (nonatomic) BOOL showLoadingIndicatorCell;
 @property (nonatomic) NSInteger startIndex;
 @property (nonatomic) BOOL isSearching;
 @end
@@ -118,16 +119,32 @@
 #pragma mark - tableView methods
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row == [self objectsToDisplay].count && self.showLoadingIndicatorCell) {
+        return 44.0;
+    }
     return 70.0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (self.showLoadingIndicatorCell) {
+        return self.objectsToDisplay.count + 1;
+    }
     return self.objectsToDisplay.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (self.showLoadingIndicatorCell && indexPath.row == [self objectsToDisplay].count)
+    {
+        ConcertLoadMoreTableViewCell *reloadCell = (ConcertLoadMoreTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"reloadCell"];
+        if (!reloadCell) {
+            reloadCell = [[ConcertLoadMoreTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"reloadCell"];
+        }
+        reloadCell.backgroundColor = [UIColor clearColor];
+        return reloadCell;
+    }
+
     ConcertsTableViewCell *cell = (ConcertsTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
         cell = [[ConcertsTableViewCell alloc] init];
@@ -154,10 +171,33 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger lastRowIndex = [tableView numberOfRowsInSection:0] - 1;
+    if ((indexPath.row == lastRowIndex) && ([self objectsToDisplay].count >= self.datasourceManager.currentLimit) && !self.isSearching)
+    {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            UITableViewCell *reloadCell = [tableView cellForRowAtIndexPath:indexPath];
+            if ([reloadCell isKindOfClass:[ConcertLoadMoreTableViewCell class]])
+            {
+                ConcertLoadMoreTableViewCell *cell = (ConcertLoadMoreTableViewCell*)reloadCell;
+                [cell startRefreshing];
+            }
+
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self downloadNextConcerts];
+            });
+        });
+    }
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self performSegueWithIdentifier:@"openDetailView" sender:indexPath];
+    if (indexPath.row != [self objectsToDisplay].count)
+    {
+        [self performSegueWithIdentifier:@"openDetailView" sender:indexPath];
+    }
 }
 
 - (void)updateTableViewCellAtIndexPath:(NSIndexPath *)indexPath image:(UIImage *)image
@@ -191,6 +231,11 @@
     [self.refreshController startRefreshing];
 
     [self downloadAllConcerts];
+}
+
+- (void)downloadNextConcerts
+{
+
 }
 
 - (void)downloadAllConcerts
@@ -234,6 +279,8 @@
     [self.tableView hideLoadingIndicator];
     [self.refreshController endRefreshing];
 
+    self.showLoadingIndicatorCell = [self objectsToDisplay].count == self.datasourceManager.currentLimit;
+
     if (self.tableView.contentOffset.y < 0) {
         self.tableView.contentOffset = CGPointMake(0.0, 0.0);
     }
@@ -260,6 +307,7 @@
 {
     [super viewDidLoad];
     [self.tableView registerNib:[UINib nibWithNibName:@"ConcertsTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"cell"];
+    self.showLoadingIndicatorCell = NO;
 
     self.view.backgroundColor = [UIColor clearColor];
     self.tableView.backgroundColor = [UIColor clearColor];

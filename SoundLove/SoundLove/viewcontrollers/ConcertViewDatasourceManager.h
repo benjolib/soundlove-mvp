@@ -15,6 +15,7 @@
 @property (nonatomic, strong) ConcertViewDatasource *favoriteConcertDatasource;
 @property (nonatomic, strong) ConcertViewDatasource *recommendedConcertDatasource;
 
+@property (nonatomic) float currentLimit;
 @property (nonatomic, strong) NSMutableArray *currentlyUsedObjectsArray;
 
 - (void)downloadAllConcertsWithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock;

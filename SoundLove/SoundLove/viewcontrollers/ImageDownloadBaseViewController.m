@@ -45,9 +45,12 @@
 {
     NSArray *visibleRows = [self.tableView indexPathsForVisibleRows];
     for (NSIndexPath *indexpath in visibleRows) {
-        BaseImageModel *object = self.objectsToDisplay[indexpath.row];
-        if (!object.image) {
-            [self startImageDownloadForObject:object atIndexPath:indexpath];
+        if (indexpath.row < self.objectsToDisplay.count )
+        {
+            BaseImageModel *object = self.objectsToDisplay[indexpath.row];
+            if (!object.image) {
+                [self startImageDownloadForObject:object atIndexPath:indexpath];
+            }
         }
     }
 }

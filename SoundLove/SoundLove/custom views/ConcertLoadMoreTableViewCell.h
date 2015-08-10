@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FestivalLoadMoreTableViewCell : UITableViewCell
+@interface ConcertLoadMoreTableViewCell : UITableViewCell
 
 - (void)startRefreshing;
 
