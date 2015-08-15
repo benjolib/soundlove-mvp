@@ -2,12 +2,14 @@
 //  CDConcert.m
 //  SoundLove
 //
-//  Created by Sztanyi Szabolcs on 01/08/15.
+//  Created by Sztanyi Szabolcs on 12/08/15.
 //  Copyright (c) 2015 Zappdesigntemplates. All rights reserved.
 //
 
 #import "CDConcert.h"
 #import "CDConcertImage.h"
+#import "CDConcertLocation.h"
+
 
 @implementation CDConcert
 
@@ -19,5 +21,6 @@
 @dynamic price;
 @dynamic sectionTitle;
 @dynamic image;
+@dynamic location;
 
 @end
