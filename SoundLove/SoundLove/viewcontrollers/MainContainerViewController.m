@@ -94,6 +94,7 @@
             [self startTransitionToViewController:concertsViewController];
             self.currentMenuItem = menuItem;
             [self setParentTitle:@"Konzerte"];
+            self.searchView.searchButton.hidden = NO;
             break;
         }
         case MenuItemFavoriteConcerts: {
@@ -101,6 +102,7 @@
             [self startTransitionToViewController:favoriteConcertViewController];
             self.currentMenuItem = menuItem;
             [self setParentTitle:@"Beliebte Konzerte"];
+            self.searchView.searchButton.hidden = NO;
             break;
         }
         case MenuItemCalendar: {
@@ -108,6 +110,7 @@
             [self startTransitionToViewController:calendarViewController];
             self.currentMenuItem = menuItem;
             [self setParentTitle:@"Kalender"];
+            self.searchView.searchButton.hidden = NO;
             break;
         }
         case MenuItemBands: {
@@ -115,6 +118,7 @@
             [self startTransitionToViewController:bandsViewController];
             self.currentMenuItem = menuItem;
             [self setParentTitle:@"Künstler"];
+            self.searchView.searchButton.hidden = YES;
             break;
         }
         default:

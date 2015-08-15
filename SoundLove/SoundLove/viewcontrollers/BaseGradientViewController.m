@@ -12,7 +12,7 @@
 @implementation BaseGradientViewController
 
 #pragma mark - searchnavigation view delegate methods
-- (void)searchNavigationViewSearchButtonPressed:(NSString *)searchText
+- (void)searchNavigationViewSearchButtonPressed:(NSString *)searchText searchField:(UITextField *)searchField
 {
 
 }
@@ -22,7 +22,7 @@
 
 }
 
-- (void)searchNavigationViewCancelButtonPressed
+- (void)searchNavigationViewCancelButtonPressedSearchField:(UITextField *)searchField
 {
 
 }

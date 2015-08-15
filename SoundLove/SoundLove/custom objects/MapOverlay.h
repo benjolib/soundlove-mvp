@@ -7,7 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
 
-@interface MapOverlay : NSObject
+@interface MapOverlay : NSObject <MKOverlay>
+
+@property (nonatomic, assign) CLLocationCoordinate2D coordinate;
+@property (nonatomic, assign) CLLocationDistance radius;
+@property (nonatomic, assign) BOOL editingCoordinate;
+@property (nonatomic, assign) BOOL editingRadius;
+
+- (instancetype)initWithCenterCoordinate:(CLLocationCoordinate2D)coordinate radius:(CLLocationDistance)radius;
 
 @end

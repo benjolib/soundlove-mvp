@@ -10,4 +10,11 @@
 
 @implementation NSDate (DateHelper)
 
+- (NSDateComponents*)dateComponents
+{
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekOfMonthCalendarUnit | NSDayCalendarUnit fromDate:self];
+    return components;
+}
+
 @end

@@ -18,16 +18,23 @@
 
 @implementation ImageDownloadBaseViewController
 
-- (void)viewDidLoad
+- (NSMutableDictionary*)imageDownloadDictionary
 {
-    [super viewDidLoad];
-    self.imageDownloadDictionary = [NSMutableDictionary dictionary];
+    if (!_imageDownloadDictionary) {
+        _imageDownloadDictionary = [NSMutableDictionary dictionary];
+    }
+    return _imageDownloadDictionary;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [self cancelAllImageDownloads];
+}
+
+- (NSMutableArray*)objectsToDisplay
+{
+    return nil;
 }
 
 - (void)cancelAllImageDownloads
@@ -45,7 +52,7 @@
 {
     NSArray *visibleRows = [self.tableView indexPathsForVisibleRows];
     for (NSIndexPath *indexpath in visibleRows) {
-        if (indexpath.row < self.objectsToDisplay.count )
+        if (indexpath.row < [self objectsToDisplay].count )
         {
             BaseImageModel *object = self.objectsToDisplay[indexpath.row];
             if (!object.image) {
@@ -58,7 +65,7 @@
 - (void)startImageDownloadForObject:(BaseImageModel*)object atIndexPath:(NSIndexPath*)indexPath
 {
     ImageDownloader *downloader = [self.imageDownloadDictionary nonNullObjectForKey:indexPath];
-    if (!downloader)
+    if (!downloader && object.imageURL)
     {
         downloader = [ImageDownloader new];
         __weak typeof(self) weakSelf = self;

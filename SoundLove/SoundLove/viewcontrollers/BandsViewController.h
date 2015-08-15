@@ -6,15 +6,16 @@
 //  Copyright (c) 2015 Zappdesigntemplates. All rights reserved.
 //
 
-#import "BaseGradientViewController.h"
+#import "ImageDownloadBaseViewController.h"
 
-@class TabbingButton;
+@class CustomNavigationView, LoadingCollectionView, TabbingButton;
 
-@interface BandsViewController : BaseGradientViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface BandsViewController : ImageDownloadBaseViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, weak) IBOutlet TabbingButton *favoriteButton;
 @property (nonatomic, weak) IBOutlet TabbingButton *recommendedButton;
-@property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, weak) IBOutlet LoadingCollectionView *collectionView;
+@property (nonatomic, weak) IBOutlet CustomNavigationView *customNavigationView;
 
 - (IBAction)favoriteButtonPressed:(TabbingButton*)button;
 - (IBAction)recommendButtonPressed:(TabbingButton*)button;

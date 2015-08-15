@@ -10,12 +10,15 @@
 
 @class LoadingTableView, BaseImageModel;
 
-@interface ImageDownloadBaseViewController : BaseGradientViewController
+@interface ImageDownloadBaseViewController : BaseGradientViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, weak) IBOutlet LoadingTableView *tableView;
-@property (nonatomic, strong) NSMutableArray *objectsToDisplay;
+
+- (NSMutableArray*)objectsToDisplay;
 
 - (void)startImageDownloadForObject:(BaseImageModel*)object atIndexPath:(NSIndexPath*)indexPath;
 - (void)updateTableViewCellAtIndexPath:(NSIndexPath*)indexPath image:(UIImage*)image;
+
+- (void)cancelAllImageDownloads;
 
 @end

@@ -11,18 +11,13 @@
 #import "FilterTableViewCell.h"
 #import "SortingObject.h"
 #import "CustomNavigationView.h"
+#import "SortingButton.h"
 
 @interface SortingViewController ()
 @property (nonatomic, strong) NSArray *sortingOptions;
-@property (nonatomic, strong) NSMutableSet *selectedSortingOptions;
 @end
 
 @implementation SortingViewController
-
-- (IBAction)closeButtonPressed:(id)sender
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 #pragma mark - tableView methods
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -33,7 +28,7 @@
     SortingObject *sortingObj = self.sortingOptions[indexPath.row];
     cell.nameLabel.text = sortingObj.name;
 
-    if ([self.selectedSortingOptions containsObject:sortingObj]) {
+    if ([self.selectedSortingObject isEqual:sortingObj]) {
         [cell setCellActive:YES];
     } else {
         [cell setCellActive:NO];
@@ -52,12 +47,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     SortingObject *sortingObj = self.sortingOptions[indexPath.row];
-    if ([self.selectedSortingOptions containsObject:sortingObj]) {
-        [self.selectedSortingOptions removeAllObjects];
-    } else {
-        [self.selectedSortingOptions removeAllObjects];
-        [self.selectedSortingOptions addObject:sortingObj];
-    }
+    self.selectedSortingObject = sortingObj;
 
     [tableView reloadData];
 }
@@ -75,17 +65,16 @@
     [self.navigationView setTitle:@"Sortieren"];
     [self.tableView hideLoadingIndicator];
     [self populateArray];
-    self.selectedSortingOptions = [NSMutableSet set];
     [self.tableView reloadData];
 }
 
 - (void)populateArray
 {
-    self.sortingOptions = @[[SortingObject sortingWithName:@"Keine Sortierung" andKey:@""],
-                           [SortingObject sortingWithName:@"Preis (hoch zu niedrig)" andKey:@""],
-                           [SortingObject sortingWithName:@"Preis (niedrig zu hoch)" andKey:@""],
-                           [SortingObject sortingWithName:@"Date (bald bis in weiter Zukunft)" andKey:@""],
-                           [SortingObject sortingWithName:@"Date (bald bis in weiter Zukunft)" andKey:@""]];
+    self.sortingOptions = @[[SortingObject sortingWithName:@"Keine Sortierung" andKey:@"" orderDir:@""],
+                           [SortingObject sortingWithName:@"Preis (hoch zu niedrig)" andKey:@"price_from" orderDir:@"DESC"],
+                           [SortingObject sortingWithName:@"Preis (niedrig zu hoch)" andKey:@"price_from" orderDir:@"ASC"],
+                           [SortingObject sortingWithName:@"Date (bald bis in weiter Zukunft)" andKey:@"date_ts" orderDir:@"DESC"],
+                           [SortingObject sortingWithName:@"Date (bald bis in weiter Zukunft)" andKey:@"date_ts" orderDir:@"ASC"]];
 }
 
 - (void)didReceiveMemoryWarning {

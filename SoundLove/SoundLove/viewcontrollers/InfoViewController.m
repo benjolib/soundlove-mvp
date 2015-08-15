@@ -12,6 +12,7 @@
 //#import "TrackingManager.h"
 #import "GeneralSettings.h"
 #import "CustomNavigationView.h"
+#import "BaseTableViewCell.h"
 
 @interface InfoViewController () <SKStoreProductViewControllerDelegate>
 @property (nonatomic, strong) NSArray *cellTitlesArray;
@@ -45,7 +46,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    BaseTableViewCell *cell = (BaseTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"cell"];
+    
     cell.textLabel.text = self.cellTitlesArray[indexPath.row];
     cell.textLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
     UIImageView *accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"disclosureIcon"]];

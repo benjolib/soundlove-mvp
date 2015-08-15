@@ -16,6 +16,7 @@
 #import "CDConcert+ConcertHelper.h"
 #import "CDConcertImage.h"
 #import "LoadingTableView.h"
+#import "ConcertDetailViewController.h"
 
 @interface CalendarViewController () <NSFetchedResultsControllerDelegate, CalendarEventTableViewCellDelegate>
 @property (nonatomic, strong) NSArray *savedConcertsArray;
@@ -238,7 +239,7 @@
     titleLabel.textColor = [UIColor colorWithR:128 G:128 B:128];
     titleLabel.text = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
     titleLabel.textAlignment = NSTextAlignmentLeft;
-//    titleLabel.font = [UIFont latoBoldFontWithSize:17.0];
+    titleLabel.font = [UIFont fontWithName:@"Montserrat" size:16.0];
     [headerView addSubview:titleLabel];
     return headerView;
 }
@@ -267,6 +268,10 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 cell.concertImageView.image = image;
             });
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                cell.concertImageView.image = [UIImage imageNamed:@"placeholder"];
+            });
         }
     });
     return cell;
@@ -276,8 +281,24 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    [self performSegueWithIdentifier:@"openFestivalDetailView" sender:cell];
+    [self performSegueWithIdentifier:@"openDetailView" sender:indexPath];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"openDetailView"])
+    {
+        if ([sender isKindOfClass:[NSIndexPath class]])
+        {
+            NSIndexPath *indexPath = (NSIndexPath*)sender;
+
+            CDConcert *concertModel = [self.fetchController objectAtIndexPath:indexPath];
+            ConcertModel *concert = [concertModel concertModel];
+
+            ConcertDetailViewController *detailViewController = (ConcertDetailViewController*)[segue destinationViewController];
+            detailViewController.concertToDisplay = concert;
+        }
+    }
 }
 
 #pragma mark - tableView cell delegate methods

@@ -10,4 +10,6 @@
 
 @interface NSDate (DateHelper)
 
+- (NSDateComponents*)dateComponents;
+
 @end
