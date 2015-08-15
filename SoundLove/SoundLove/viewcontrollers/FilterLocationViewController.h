@@ -8,16 +8,19 @@
 
 #import "BaseGradientViewController.h"
 #import <MapKit/MapKit.h>
+#import "FilterViewController.h"
 
-@class CustomNavigationView;
+@interface FilterLocationViewController : FilterViewController <MKMapViewDelegate, UITextFieldDelegate>
 
-@interface FilterLocationViewController : BaseGradientViewController
-
-@property (nonatomic, weak) IBOutlet CustomNavigationView *navigationView;
-@property (nonatomic, weak) IBOutlet UIButton *trashButton;
 @property (nonatomic, weak) IBOutlet UISlider *slider;
 @property (nonatomic, weak) IBOutlet MKMapView *mapView;
 
+@property (nonatomic, weak) IBOutlet UIView *searchWrapperView;
+@property (nonatomic, weak) IBOutlet UITextField *searchField;
+@property (nonatomic, weak) IBOutlet UIButton *cancelButton;
+@property (nonatomic, weak) IBOutlet UITableView *searchResultTableView;
+
 - (IBAction)sliderValueChanged:(UISlider*)slider;
+- (IBAction)userCancelledSearch:(id)sender;
 
 @end

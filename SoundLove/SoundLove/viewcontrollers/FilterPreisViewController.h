@@ -7,16 +7,15 @@
 //
 
 #import "BaseGradientViewController.h"
+#import "FilterViewController.h"
 
 @class CustomNavigationView, PriceContainerView;
 
-@interface FilterPreisViewController : BaseGradientViewController
+@interface FilterPreisViewController : FilterViewController
 
-@property (nonatomic, weak) IBOutlet CustomNavigationView *navigationView;
 @property (nonatomic, weak) IBOutlet UIView *rangeControllerContainerView;
 @property (nonatomic, weak) IBOutlet PriceContainerView *leftPriceView;
 @property (nonatomic, weak) IBOutlet PriceContainerView *rightPriceView;
-@property (nonatomic, weak) IBOutlet UIButton *trashButton;
 
 @property (nonatomic) CGFloat defaultMinValue;
 @property (nonatomic) CGFloat defaultMaxValue;

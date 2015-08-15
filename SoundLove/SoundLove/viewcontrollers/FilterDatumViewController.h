@@ -7,17 +7,15 @@
 //
 
 #import "BaseGradientViewController.h"
+#import "FilterViewController.h"
 
 @class PriceContainerView, CustomNavigationView;
 
-@interface FilterDatumViewController : BaseGradientViewController
+@interface FilterDatumViewController : FilterViewController
 
-@property (nonatomic, weak) IBOutlet CustomNavigationView *navigationView;
 @property (nonatomic, weak) IBOutlet PriceContainerView *leftDatePickerView;
 @property (nonatomic, weak) IBOutlet PriceContainerView *rightDatePickerView;
-@property (nonatomic, weak) IBOutlet UIButton *trashButton;
 @property (nonatomic, strong) NSDate *fromDate;
 @property (nonatomic, strong) NSDate *toDate;
-
 
 @end

@@ -18,11 +18,6 @@
 
 @implementation FilterPreisViewController
 
-- (IBAction)closeButtonPressed:(id)sender
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 - (IBAction)trashButtonPressed:(UIButton*)button
 {
     [self.leftPriceView setActive:NO];
@@ -34,15 +29,13 @@
     self.defaultMaxValue = 100;
     [self updateRangeText];
 
-    button.alpha = 0.4;
-    button.enabled = NO;
+    [self setTrashIconVisible:NO];
 }
 
 #pragma mark - view methods
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
     [self setupView];
 }
 
@@ -60,12 +53,24 @@
                forControlEvents:UIControlEventValueChanged];
     self.rangeSlider.minimumValue = 0.0;
     self.rangeSlider.maximumValue = 1.0;
-    self.rangeSlider.leftValue = 0.2; // Default: 20 €
-    self.rangeSlider.rightValue = 1.0; // Default: 100 €
     self.rangeSlider.minimumDistance = 0.1;
 
-    [self updateRangeText];
+    [self setTrashIconVisible:NO];
+    if (self.filterModel.fromPrice != 0) {
+        self.rangeSlider.leftValue = self.filterModel.fromPrice.doubleValue / 100;
+        [self setTrashIconVisible:YES];
+    } else {
+        self.rangeSlider.leftValue = 0.2; // Default: 20 €
+    }
 
+    if (self.filterModel.toPrice != 0) {
+        self.rangeSlider.rightValue = self.filterModel.toPrice.doubleValue / 100;
+        [self setTrashIconVisible:YES];
+    } else {
+        self.rangeSlider.rightValue = 1.0; // Default: 100 €
+    }
+
+    [self updateRangeText];
     [self.rangeControllerContainerView addSubview:self.rangeSlider];
 }
 
@@ -78,6 +83,13 @@
 - (void)rangeSliderValueDidChange:(MARKRangeSlider *)slider
 {
     [self updateRangeText];
+    [self setTrashIconVisible:YES];
+
+    CGFloat newLeftValue = self.rangeSlider.leftValue * 100;
+    CGFloat newRightValue = self.rangeSlider.rightValue * 100;
+
+    self.filterModel.fromPrice = @(newLeftValue);
+    self.filterModel.toPrice = @(newRightValue);
 }
 
 - (void)updateRangeText
@@ -99,9 +111,6 @@
 
     [self.leftPriceView setValueText:[NSString stringWithFormat:@"%.2f €", newLeftValue]];
     [self.rightPriceView setValueText:[NSString stringWithFormat:@"%.2f €", newRightValue]];
-
-    self.trashButton.alpha = 1.0;
-    self.trashButton.enabled = YES;
 }
 
 @end

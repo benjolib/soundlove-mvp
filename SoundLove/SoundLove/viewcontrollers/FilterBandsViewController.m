@@ -12,6 +12,7 @@
 #import "FilterTableViewCell.h"
 //#import "TrackingManager.h"
 #import "ConcertRefreshControl.h"
+#import "UIColor+GlobalColors.h"
 
 @interface FilterBandsViewController ()
 @property (nonatomic, strong) NSArray *allBandsArrayCopy;
@@ -47,7 +48,8 @@
 - (void)trashButtonPressed:(id)sender
 {
 //    [[TrackingManager sharedManager] trackFilterTapsTrashIconDetail];
-//    [FilterModel sharedModel].selectedBandsArray = nil;
+
+    self.filterModel.selectedBandsArray = nil;
     [self.selectedBandsArray removeAllObjects];
     [self.tableView reloadData];
 
@@ -56,7 +58,7 @@
 
 - (NSMutableArray *)selectedBandsArray
 {
-//    [self setTrashIconVisible:_selectedBandsArray.count > 0];
+    [self setTrashIconVisible:_selectedBandsArray.count > 0];
     return _selectedBandsArray;
 }
 
@@ -71,11 +73,11 @@
 {
 //    [[TrackingManager sharedManager] trackFilterSearches];
 
-//    self.searchWrapperViewTrailingConstraint.constant = 10.0;
-//    self.searchCancelButtonWidthConstraint.constant = 70.0;
-//    [UIView animateWithDuration:0.2 animations:^{
-//        [self.searchWrapperView layoutIfNeeded];
-//    }];
+    self.searchWrapperViewTrailingConstraint.constant = 10.0;
+    self.searchCancelButtonWidthConstraint.constant = 70.0;
+    [UIView animateWithDuration:0.2 animations:^{
+        [self.searchWrapperView layoutIfNeeded];
+    }];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
@@ -107,7 +109,7 @@
     [self.view endEditing:YES];
     [self hideSearchCancelButton];
 
-//    self.searchField.text = @"";
+    self.searchField.text = @"";
     dispatch_async(dispatch_queue_create("com.festivalama.bandQueue", NULL), ^{
         _sectionIndexTitles = nil;
         self.allBandsArray = [self.allBandsArrayCopy copy];
@@ -120,11 +122,11 @@
 
 - (void)hideSearchCancelButton
 {
-//    self.searchWrapperViewTrailingConstraint.constant = 0.0;
-//    self.searchCancelButtonWidthConstraint.constant = 0.0;
-//    [UIView animateWithDuration:0.2 animations:^{
-//        [self.searchWrapperView layoutIfNeeded];
-//    }];
+    self.searchWrapperViewTrailingConstraint.constant = 0.0;
+    self.searchCancelButtonWidthConstraint.constant = 0.0;
+    [UIView animateWithDuration:0.2 animations:^{
+        [self.searchWrapperView layoutIfNeeded];
+    }];
 }
 
 #pragma mark - view methods
@@ -151,12 +153,9 @@
     cell.textLabel.text = band.name;
 
     if ([self.selectedBandsArray containsObject:band]) {
-        UIImageView *accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"checkMarkIcon"]];
-        cell.accessoryView = accessoryView;
-        cell.textLabel.textColor = [UIColor whiteColor];
+        [cell setCellActive:YES];
     } else {
-        cell.accessoryView = nil;
-        cell.textLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+        [cell setCellActive:NO];
     }
     return cell;
 }
@@ -179,22 +178,10 @@
 //        [[TrackingManager sharedManager] trackFilterSelectsBand];
     }
 
-//    [super setFilteringEnabled:self.selectedBandsArray.count != 0];
-//    [[FilterModel sharedModel] setSelectedBandsArray:[self.selectedBandsArray copy]];
+    [self.filterModel setSelectedBandsArray:[self.selectedBandsArray copy]];
 }
 
 #pragma mark - section index titles
-- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
-{
-    //sectionForSectionIndexTitleAtIndex: is a bit buggy, but is still useable
-    return [[UILocalizedIndexedCollation currentCollation] sectionForSectionIndexTitleAtIndex:index];
-}
-
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
-{
-    return [[UILocalizedIndexedCollation currentCollation] sectionIndexTitles];
-}
-
 - (NSArray *)partitionObjects:(NSArray *)array collationStringSelector:(SEL)selector
 {
     UILocalizedIndexedCollation *collation = [UILocalizedIndexedCollation currentCollation];
@@ -209,22 +196,14 @@
         NSInteger index = [collation sectionForObject:object collationStringSelector:selector];
         [[unsortedSections objectAtIndex:index] addObject:object];
     }
-    NSMutableArray *sections = [NSMutableArray arrayWithCapacity:sectionCount];
-    //sort each section
-    for (NSMutableArray *section in unsortedSections) {
-        [sections addObject:[collation sortedArrayFromArray:section collationStringSelector:selector]];
-    }
-    return sections;
+    return unsortedSections;
 }
 
 #pragma mark - view methods
 - (void)viewDidLoad
 {
     [super addGradientBackground];
-//    [super setupTableView];
-    self.title = @"Künstlern";
-
-//    [self setupSearchView];
+    [self setupSearchView];
 
     self.refreshController = [[ConcertRefreshControl alloc] initWithFrame:CGRectMake(0.0, -50.0, CGRectGetWidth(self.view.frame), 50.0)];
     [self.tableView addSubview:self.refreshController];
@@ -235,25 +214,24 @@
 
     [self.tableView showLoadingIndicator];
     [self refreshView];
+
+    [self addIndexView];
 }
 
 - (void)refreshView
 {
     __weak typeof(self) weakSelf = self;
     [self downloadBandsWithCompletionBlock:^{
-        dispatch_queue_t bandQeue = dispatch_queue_create("bandQeue", NULL);
-        dispatch_async(bandQeue, ^{
-            weakSelf.allBandsArrayCopy = [weakSelf.allBandsArray copy];
-//            weakSelf.selectedBandsArray = [[[FilterModel sharedModel] selectedBandsArray] mutableCopy];
-            weakSelf.tableData = [weakSelf partitionObjects:weakSelf.allBandsArray collationStringSelector:@selector(name)];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf.tableView reloadData];
-                [weakSelf.tableView hideLoadingIndicator];
-                [weakSelf.refreshController endRefreshing];
-                if (weakSelf.tableView.contentOffset.y < 0) {
-                    weakSelf.tableView.contentOffset = CGPointMake(0.0, 0.0);
-                }
-            });
+        weakSelf.allBandsArrayCopy = [weakSelf.allBandsArray copy];
+        weakSelf.selectedBandsArray = [[self.filterModel selectedBandsArray] mutableCopy];
+        weakSelf.tableData = [weakSelf partitionObjects:weakSelf.allBandsArray collationStringSelector:@selector(name)];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf.tableView hideLoadingIndicator];
+            [weakSelf.refreshController endRefreshing];
+            if (weakSelf.tableView.contentOffset.y < 0) {
+                weakSelf.tableView.contentOffset = CGPointMake(0.0, 0.0);
+            }
+            [weakSelf.tableView reloadData];
         });
     }];
 }

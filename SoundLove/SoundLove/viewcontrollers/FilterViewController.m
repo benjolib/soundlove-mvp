@@ -14,20 +14,28 @@
 
 #define IS_iOS8 [[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0
 
-@interface FilterViewController ()
-@end
-
 @implementation FilterViewController
+
+- (IBAction)unwindFromSubViewControllers:(UIStoryboardSegue*)unwindSegue
+{
+    FilterViewController *subViewController = unwindSegue.sourceViewController;
+    self.filterModel = subViewController.filterModel;
+
+    [self.tableView reloadData];
+}
 
 - (void)adjustButtonToFilterModel
 {
-//    if ([[FilterModel sharedModel] isFiltering]) {
-//        [self setTrashIconVisible:YES];
-//        [self.applyButton setTitle:@"Suchen" forState:UIControlStateNormal];
-//    } else {
-//        [self setTrashIconVisible:NO];
-//        [self.applyButton setTitle:@"Suchen" forState:UIControlStateNormal];
-//    }
+    if ([self.filterModel isFiltering]) {
+        [self setTrashIconVisible:YES];
+    } else {
+        [self setTrashIconVisible:NO];
+    }
+}
+
+- (void)setTrashIconVisible:(BOOL)visible
+{
+    self.trashButton.alpha = visible ? 1.0 : 0.2;
 }
 
 - (void)cellTrashButtonPressed:(UIButton*)button
@@ -40,19 +48,24 @@
     FilterBandsTableViewCell *cell = (FilterBandsTableViewCell*)aSuperview;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
 
-//    if (indexPath.row == 0) {
-//        [FilterModel sharedModel].selectedGenresArray = [NSArray array];
-//    } else if (indexPath.row == 1) {
-//        [FilterModel sharedModel].selectedBandsArray = [NSArray array];
-//    } else if (indexPath.row == 2) {
-//        [FilterModel sharedModel].selectedPostcodesArray = [NSArray array];
-//        [FilterModel sharedModel].selectedCountriesArray = [NSArray array];
-//    }
-//
+    if (indexPath.row == 0) {
+        self.filterModel.selectedGenresArray = [NSArray array];
+    } else if (indexPath.row == 1) {
+        self.filterModel.selectedBandsArray = [NSArray array];
+    } else if (indexPath.row == 2) {
+        self.filterModel.fromPrice = 0;
+        self.filterModel.toPrice = 0;
+    } else if (indexPath.row == 3) {
+        self.filterModel.startDate = nil;
+        self.filterModel.endDate = nil;
+    } else {
+        self.filterModel.locationDiameter = 0;
+    }
+
 //    [[TrackingManager sharedManager] trackFilterTapsTrashIconOnMainBandCell];
-//    [self.tableView reloadData];
-//
-//    [self adjustButtonToFilterModel];
+    [self.tableView reloadData];
+
+    [self adjustButtonToFilterModel];
 }
 
 #pragma mark - tableView methods
@@ -80,25 +93,40 @@
 
     switch (indexPath.row)
     {
-        case 0:
+        case 0: {
             cell.nameLabel.text = @"Musik Genre";
-            [cell setCellActive:NO];
+            enableTrashIcon = self.filterModel.selectedGenresArray.count > 0;
+            NSString *genresString = [self.filterModel genresString];
+            cell.bandDetailLabel.text = genresString;
+            [cell setCellActive:enableTrashIcon];
             break;
-        case 1:
+        }
+        case 1: {
             cell.nameLabel.text = @"Nach Künstlern";
-            [cell setCellActive:NO];
+            enableTrashIcon = self.filterModel.selectedBandsArray.count > 0;
+            NSString *bandString = [self.filterModel bandsString];
+            cell.nameLabel.text = @"Nach Musik Genre";
+            cell.bandDetailLabel.text = bandString;
+            [cell setCellActive:enableTrashIcon];
             break;
+        }
         case 2:
             cell.nameLabel.text = @"Preis";
-            [cell setCellActive:NO];
+            cell.bandDetailLabel.text = [self.filterModel priceString];
+            enableTrashIcon = (self.filterModel.fromPrice || self.filterModel.toPrice) != 0;
+            [cell setCellActive:enableTrashIcon];
             break;
         case 3:
             cell.nameLabel.text = @"Datum";
-            [cell setCellActive:NO];
+            cell.bandDetailLabel.text = [self.filterModel dateString];
+            enableTrashIcon = self.filterModel.startDate || self.filterModel.endDate;
+            [cell setCellActive:enableTrashIcon];
             break;
         case 4:
             cell.nameLabel.text = @"Ort";
-            [cell setCellActive:NO];
+            cell.bandDetailLabel.text = [self.filterModel locationString];
+            enableTrashIcon = [self.filterModel isLocationFilteringSet];
+            [cell setCellActive:enableTrashIcon];
             break;
         default:
             break;
@@ -125,7 +153,7 @@
             [self performSegueWithIdentifier:@"openListView" sender:indexPath];
             break;
         case 1:
-
+            [self performSegueWithIdentifier:@"openBands" sender:indexPath];
             break;
         case 2:
             [self performSegueWithIdentifier:@"openPreisView" sender:indexPath];
@@ -139,44 +167,17 @@
         default:
             break;
     }
-
-//    if (indexPath.row == 0) {
-////        [self performSegueWithIdentifier:@"openGenres" sender:nil];
-////        [[TrackingManager sharedManager] trackFilterSelectsGenreView];
-//    } else if (indexPath.row == 1) {
-////        [[TrackingManager sharedManager] trackFilterSelectsBandsView];
-////        [self performSegueWithIdentifier:@"openBands" sender:nil];
-//    } else if (indexPath.row == 2){
-////        [[TrackingManager sharedManager] trackFilterSelectsPlaceView];
-////        [self performSegueWithIdentifier:@"showLocation" sender:nil];
-//    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"openListView"])
-    {
-        if ([sender isKindOfClass:[NSIndexPath class]])
-        {
-            NSIndexPath *indexPath = (NSIndexPath*)sender;
-            switch (indexPath.row)
-            {
-                case 0:
-                    // genres
-                    break;
-                case 1:
-                    // bands
-                    break;
-                default:
-                    break;
-            }
-        }
-    } else if ([segue.identifier isEqualToString:@"openPreisView"]) {
-        
-    } else if ([segue.identifier isEqualToString:@"openDatum"]) {
+    if ([segue.identifier isEqualToString:@"closeFilter"]) {
+        return;
+    }
 
-    } else if ([segue.identifier isEqualToString:@"openLocationView"]) {
-
+    if (![segue.identifier isEqualToString:@"applyFilter"] || ![segue.identifier isEqualToString:@"showSortView"]) {
+        FilterViewController *viewController = segue.destinationViewController;
+        viewController.filterModel = self.filterModel;
     }
 }
 
@@ -189,7 +190,12 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     [self.tableView hideLoadingIndicator];
 
+    [self adjustButtonToFilterModel];
     [self.navigationView setShadowActive:YES];
+
+    if (!self.filterModel) {
+        self.filterModel = [[FilterModel alloc] init];
+    }
 }
 
 - (BOOL)prefersStatusBarHidden

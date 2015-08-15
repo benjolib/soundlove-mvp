@@ -13,6 +13,7 @@
 #import "ConcertRefreshControl.h"
 #import "GenreDownloadClient.h"
 #import "CustomNavigationView.h"
+#import "UIColor+GlobalColors.h"
 
 @interface FilterGenresViewController ()
 @property (nonatomic, strong) GenreDownloadClient *genreDownloadClient;
@@ -25,15 +26,11 @@
 
 @implementation FilterGenresViewController
 
-- (IBAction)closeButtonPressed:(id)sender
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 - (void)trashButtonPressed:(id)sender
 {
 //    [[TrackingManager sharedManager] trackFilterTapsTrashIconDetail];
-//    [FilterModel sharedModel].selectedGenresArray = nil;
+    
+    self.filterModel.selectedGenresArray = nil;
     [self.selectedGenresArray removeAllObjects];
     [self.tableView reloadData];
 
@@ -60,7 +57,6 @@
     return _sectionIndexTitles;
 }
 
-/*
 #pragma mark - search methods
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -70,7 +66,8 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    [[TrackingManager sharedManager] trackFilterSearches];
+//    [[TrackingManager sharedManager] trackFilterSearches];
+    
     self.searchWrapperViewTrailingConstraint.constant = 10.0;
     self.searchCancelButtonWidthConstraint.constant = 70.0;
     [UIView animateWithDuration:0.2 animations:^{
@@ -126,7 +123,7 @@
         [self.searchWrapperView layoutIfNeeded];
     }];
 }
-*/
+
 
 #pragma mark - tableView methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -139,11 +136,6 @@
     return [[self.tableData objectAtIndex:section] count];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 44.0;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FilterTableViewCell *cell = (FilterTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"cell"];
@@ -152,12 +144,9 @@
     cell.textLabel.text = genre.name;
 
     if ([self.selectedGenresArray containsObject:genre]) {
-        UIImageView *accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"checkMarkIcon"]];
-        cell.accessoryView = accessoryView;
-        cell.textLabel.textColor = [UIColor whiteColor];
+        [cell setCellActive:YES];
     } else {
-        cell.accessoryView = nil;
-        cell.textLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+        [cell setCellActive:NO];
     }
     return cell;
 }
@@ -180,21 +169,21 @@
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 
-//    [[FilterModel sharedModel] setSelectedGenresArray:[self.selectedGenresArray copy]];
+    self.filterModel.selectedGenresArray = [self.selectedGenresArray copy];
     [self adjustButtonToFilterModel];
 }
 
 #pragma mark - section index titles
-- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
-{
-    //sectionForSectionIndexTitleAtIndex: is a bit buggy, but is still useable
-    return [[UILocalizedIndexedCollation currentCollation] sectionForSectionIndexTitleAtIndex:index];
-}
-
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
-{
-    return [[UILocalizedIndexedCollation currentCollation] sectionIndexTitles];
-}
+//- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
+//{
+//    //sectionForSectionIndexTitleAtIndex: is a bit buggy, but is still useable
+//    return [[UILocalizedIndexedCollation currentCollation] sectionForSectionIndexTitleAtIndex:index];
+//}
+//
+//- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+//{
+//    return [[UILocalizedIndexedCollation currentCollation] sectionIndexTitles];
+//}
 
 - (NSArray *)partitionObjects:(NSArray *)array collationStringSelector:(SEL)selector
 {
@@ -229,13 +218,38 @@
     [self.refreshController parentScrollViewDidEndDragging:scrollView];
 }
 
+#pragma mark - indexView methods
+- (void)addIndexView
+{
+    self.indexView = [[RGIndexView alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.view.frame)-30.0, CGRectGetMaxY(self.searchWrapperView.frame), 30.0, CGRectGetHeight(self.view.frame)-CGRectGetHeight(self.searchWrapperView.frame)-CGRectGetHeight(self.filterButtonWrapperView.frame))];
+    self.indexView.delegate = self;
+    self.indexView.displayMode = RGIndexViewDisplayModeFull;
+    [self.view insertSubview:self.indexView aboveSubview:self.tableView];
+    [self.indexView reloadIndex];
+}
+
+#pragma mark - indexView delegate methods
+- (NSInteger)numberOfItemsInIndexView
+{
+    return [[[UILocalizedIndexedCollation currentCollation] sectionTitles] count];
+}
+
+- (NSString *)textForIndex:(NSInteger)index
+{
+    return [[[UILocalizedIndexedCollation currentCollation] sectionTitles] objectAtIndex:index];
+}
+
+- (void)indexView:(RGIndexView *)indexView didSelectIndex:(NSInteger)index
+{
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:index] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+}
+
 #pragma mark - view methods
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+    [self addGradientBackground];
     [self.navigationView setTitle:@"Musik Genres"];
-
-//    [self setupSearchView];
+    [self setupSearchView];
 
     self.refreshController = [[ConcertRefreshControl alloc] initWithFrame:CGRectMake(0.0, -50.0, CGRectGetWidth(self.view.frame), 50.0)];
     [self.tableView addSubview:self.refreshController];
@@ -245,10 +259,7 @@
                      forControlEvents:UIControlEventValueChanged];
 
     [self.tableView showLoadingIndicator];
-    __weak typeof(self) weakSelf = self;
-    [self downloadGenresWithCompletionBlock:^{
-        [weakSelf refreshView];
-    }];
+    [self refreshView];
 }
 
 - (void)refreshView
@@ -259,6 +270,7 @@
         [weakSelf.refreshController endRefreshing];
         [weakSelf.tableView hideLoadingIndicator];
         [weakSelf setupView];
+        [weakSelf addIndexView];
         if (weakSelf.tableView.contentOffset.y < 0) {
             weakSelf.tableView.contentOffset = CGPointMake(0.0, 0.0);
         }
@@ -268,10 +280,40 @@
 - (void)setupView
 {
     self.allGenresArrayCopy = [self.genresArray copy];
-//    self.selectedGenresArray = [[[FilterModel sharedModel] selectedGenresArray] mutableCopy];
+    self.selectedGenresArray = [[self.filterModel selectedGenresArray] mutableCopy];
     self.tableData = [self partitionObjects:self.allGenresArrayCopy collationStringSelector:@selector(name)];
+
     [self.tableView reloadData];
     [self.tableView hideLoadingIndicator];
+}
+
+- (void)setupSearchView
+{
+    self.searchWrapperView.backgroundColor = [UIColor clearColor];
+    self.searchField.layer.cornerRadius = 6.0;
+    self.searchField.layer.borderWidth = 1.0;
+    self.searchField.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:0.2].CGColor;
+    self.searchField.textColor = [UIColor globalGreenColor];
+    self.searchField.tintColor = [UIColor globalGreenColor];
+
+    self.searchField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.searchField.placeholder
+                                                                             attributes:@{NSForegroundColorAttributeName: [UIColor colorWithWhite:1.0 alpha:0.3]}];
+
+    UIView *leftSpacerView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 10.0, 0.0)];
+    leftSpacerView.backgroundColor = [UIColor clearColor];
+    self.searchField.leftView = leftSpacerView;
+    self.searchField.leftViewMode = UITextFieldViewModeAlways;
+
+    [self.searchField addTarget:self
+                         action:@selector(searchFieldTextChanged:)
+               forControlEvents:UIControlEventEditingChanged];
+
+    [self.searchCancelButton setTitleColor:[UIColor globalGreenColor] forState:UIControlStateNormal];
+    [self.searchCancelButton setTitleColor:[[UIColor globalGreenColor] colorWithAlphaComponent:0.4] forState:UIControlStateHighlighted];
+
+    self.searchWrapperViewTrailingConstraint.constant = 0.0;
+    self.searchCancelButtonWidthConstraint.constant = 0.0;
+    [self.searchWrapperView layoutIfNeeded];
 }
 
 - (void)downloadGenresWithCompletionBlock:(void(^)())completionBlock
