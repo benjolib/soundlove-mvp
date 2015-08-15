@@ -7,13 +7,14 @@
 //
 
 #import "ConcertDetailBaseViewController.h"
+#import "LoadingCollectionView.h"
 
 @class CustomPageControlView;
 
 @interface ConcertFriendsViewController : ConcertDetailBaseViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, weak) IBOutlet UIView *wrapperView;
-@property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, weak) IBOutlet LoadingCollectionView *collectionView;
 @property (nonatomic, weak) IBOutlet CustomPageControlView *pageControl;
 
 @end

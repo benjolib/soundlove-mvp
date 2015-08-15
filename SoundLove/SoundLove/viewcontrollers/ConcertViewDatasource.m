@@ -11,31 +11,26 @@
 
 @implementation ConcertViewDatasource
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        self.objectsArray = [NSMutableArray array];
-    }
-    return self;
-}
-
 - (void)downloadObjectsWithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock
 {
     NSMutableString *urlString = [NSMutableString stringWithFormat:@"%@%@?start=%ld&limit=%ld", kBaseURL, self.urlToDownloadFrom, (long)self.startIndex, (long)self.limit];
 
     NSLog(@"Url the request was sent to: %@", urlString);
 
+    __weak typeof(self) weakSelf = self;
     [self downloadConcertsWithURL:[NSURL URLWithString:urlString] completionBlock:^(NSString *errorMessage, NSArray *concertsArray) {
         if (errorMessage) {
             if (completionBlock) {
                 completionBlock(NO, errorMessage);
             }
         } else {
-            if (self.startIndex == 0) {
-                self.objectsArray = [concertsArray mutableCopy];
+            if (!weakSelf.objectsArray) {
+                weakSelf.objectsArray = [NSMutableArray array];
+            }
+            if (weakSelf.startIndex == 0) {
+                weakSelf.objectsArray = [concertsArray mutableCopy];
             } else {
-                [self.objectsArray addObjectsFromArray:concertsArray];
+                [weakSelf.objectsArray addObjectsFromArray:concertsArray];
             }
 
             if (completionBlock) {

@@ -30,17 +30,25 @@
 @property (nonatomic, strong) ConcertRefreshControl *refreshController;
 @property (nonatomic, strong) ConcertDownloadClient *downloadClient;
 @property (nonatomic, strong) ConcertViewDatasourceManager *datasourceManager;
+@property (nonatomic) NSInteger currentlySelectedTabIndex;
 
 @property (nonatomic) BOOL showLoadingIndicatorCell;
-@property (nonatomic) NSInteger startIndex;
 @property (nonatomic) BOOL isSearching;
 @end
 
 @implementation ConcertsViewController
 
-- (IBAction)unwindFromSortingView:(id)sender
+- (IBAction)unwindFromSortingView:(UIStoryboardSegue*)unwindSegue
 {
+    SortingViewController *sortingViewController = unwindSegue.sourceViewController;
+    self.filterModel.sortingObject = sortingViewController.selectedSortingObject;
 
+    [self applySortingOptionToConcerts];
+}
+
+- (IBAction)unwindFromSortingViewWithClosing:(UIStoryboardSegue*)unwindSegue
+{
+    // do nothing here, user closed the sorting view
 }
 
 - (IBAction)tabbuttonSelected:(TabbingButton*)selectedButton
@@ -50,22 +58,15 @@
     }
 
     [self.tableView reloadData];
-    [self.datasourceManager tabSelectedAtIndex:selectedButton.tag];
-    // TODO:
+    self.currentlySelectedTabIndex = selectedButton.tag;
 
-    switch (selectedButton.tag) {
-        case 0:
-            [self downloadFavoriteConcerts];
-            break;
-        case 1:
-            [self downloadRecommendedConcerts];
-            break;
-        case 2:
-            [self downloadAllConcerts];
-            break;
-        default:
-            break;
-    }
+    [self.datasourceManager loadObjectsAtIndex:selectedButton.tag WithCompletionBlock:^(BOOL completed, NSString *errorMesage) {
+        if (completed) {
+            [self handleDownloadedConcerts];
+        } else {
+            [self handleDownloadErrorMessage:errorMesage];
+        }
+    }];
 }
 
 - (IBAction)filterButtonPressed:(id)sender
@@ -74,10 +75,18 @@
     [self presentViewController:filterNav animated:YES completion:nil];
 }
 
-- (IBAction)sortingButtonPressed:(id)sender
+- (void)applySortingOptionToConcerts
 {
-    SortingViewController *sortingViewController = [StoryboardManager sortingViewController];
-    [self presentViewController:sortingViewController animated:YES completion:nil];
+    // TODO:
+    self.datasourceManager.currentSortingObject = self.filterModel.sortingObject;
+
+    [self.datasourceManager loadObjectsAtIndex:self.currentlySelectedTabIndex WithCompletionBlock:^(BOOL completed, NSString *errorMesage) {
+        if (completed) {
+            [self handleDownloadedConcerts];
+        } else {
+            [self handleDownloadErrorMessage:errorMesage];
+        }
+    }];
 }
 
 - (void)calendarButtonTapped:(UIButton*)button
@@ -114,6 +123,45 @@
 - (NSMutableArray*)objectsToDisplay
 {
    return [self.datasourceManager currentlyUsedObjectsArray];
+}
+
+#pragma mark - searchnavigation view delegate methods
+- (void)searchNavigationViewSearchButtonPressed:(NSString *)searchText searchField:(UITextField *)searchField
+{
+//    self.isSearching = YES;
+//    self.searchText = searchText;
+//    [self searchWithSearchText:searchText];
+}
+
+- (void)searchNavigationViewUserEnteredNewCharacter:(NSString *)searchText
+{
+    [self cancelAllImageDownloads];
+
+//    self.isSearching = YES;
+//    self.searchText = searchText;
+//    [self searchWithSearchText:searchText];
+}
+
+- (void)searchNavigationViewCancelButtonPressedSearchField:(UITextField *)searchField
+{
+//    self.isSearching = NO;
+//    self.searchText = @"";
+//    [self.tableView reloadData];
+}
+
+- (void)searchWithSearchText:(NSString*)searchText
+{
+//    dispatch_async(dispatch_queue_create("com.SoundLove.searching", NULL), ^{
+//        if (searchText.length > 0) {
+//            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name contains[cd] %@", searchText];
+//            self.searchConcertsArray = [[[self baseObjectsForSearching] filteredArrayUsingPredicate:predicate] mutableCopy];
+//        } else {
+//            self.searchConcertsArray = [self baseObjectsForSearching];
+//        }
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [self.tableView reloadData];
+//        });
+//    });
 }
 
 #pragma mark - tableView methods
@@ -174,19 +222,29 @@
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger lastRowIndex = [tableView numberOfRowsInSection:0] - 1;
-    if ((indexPath.row == lastRowIndex) && ([self objectsToDisplay].count >= self.datasourceManager.currentLimit) && !self.isSearching)
+    if ((indexPath.row == lastRowIndex) && self.showLoadingIndicatorCell)
     {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             UITableViewCell *reloadCell = [tableView cellForRowAtIndexPath:indexPath];
-            if ([reloadCell isKindOfClass:[ConcertLoadMoreTableViewCell class]])
-            {
+            if ([reloadCell isKindOfClass:[ConcertLoadMoreTableViewCell class]]) {
                 ConcertLoadMoreTableViewCell *cell = (ConcertLoadMoreTableViewCell*)reloadCell;
                 [cell startRefreshing];
             }
 
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self downloadNextConcerts];
-            });
+        });
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [super scrollViewDidEndDecelerating:scrollView];
+
+    NSInteger currentOffset = scrollView.contentOffset.y;
+    NSInteger maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height;
+
+    if (maximumOffset - currentOffset <= -40 && !self.isSearching && ([self objectsToDisplay].count >= self.datasourceManager.currentLimit)) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self downloadNextConcerts];
         });
     }
 }
@@ -203,10 +261,12 @@
 - (void)updateTableViewCellAtIndexPath:(NSIndexPath *)indexPath image:(UIImage *)image
 {
     ConcertModel *concert = self.objectsToDisplay[indexPath.row];
-    concert.image = image;
 
     ConcertsTableViewCell *cell = (ConcertsTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
-    cell.concertImageView.image = image;
+    if (image) {
+        concert.image = image;
+        cell.concertImageView.image = image;
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -221,53 +281,45 @@
             ConcertDetailViewController *detailViewController = (ConcertDetailViewController*)[segue destinationViewController];
             detailViewController.concertToDisplay = concertModel;
         }
+    } else if ([segue.identifier isEqualToString:@"showSortingView"]) {
+        SortingViewController *sortingViewController = (SortingViewController*)segue.destinationViewController;
+        sortingViewController.selectedSortingObject = self.filterModel.sortingObject;
     }
 }
 
 #pragma mark - download methods
 - (void)refreshView
 {
-    self.startIndex = 0;
     [self.refreshController startRefreshing];
 
+    self.currentlySelectedTabIndex = SelectedTabIndexAll;
     [self downloadAllConcerts];
 }
 
 - (void)downloadNextConcerts
 {
+    NSInteger selectedTabIndexBeforRequest = self.currentlySelectedTabIndex;
 
+    __weak typeof(self) weakSelf = self;
+    [self.datasourceManager downloadNextConcertsAtIndex:self.currentlySelectedTabIndex WithCompletionBlock:^(BOOL completed, NSString *errorMesage) {
+        if (completed) {
+            if (selectedTabIndexBeforRequest == weakSelf.currentlySelectedTabIndex) {
+                [weakSelf handleDownloadedConcerts];
+            }
+        } else {
+            [weakSelf handleDownloadErrorMessage:errorMesage];
+        }
+    }];
 }
 
 - (void)downloadAllConcerts
 {
     __weak typeof (self) weakSelf = self;
-    [self.datasourceManager downloadAllConcertsWithCompletionBlock:^(BOOL completed, NSString *errorMesage) {
+    [self.datasourceManager loadObjectsAtIndex:SelectedTabIndexAll WithCompletionBlock:^(BOOL completed, NSString *errorMesage) {
         if (completed) {
-            [weakSelf handleDownloadedConcerts];
-        } else {
-            [weakSelf handleDownloadErrorMessage:errorMesage];
-        }
-    }];
-}
-
-- (void)downloadRecommendedConcerts
-{
-    __weak typeof (self) weakSelf = self;
-    [self.datasourceManager downloadRecommendedConcertsWithCompletionBlock:^(BOOL completed, NSString *errorMesage) {
-        if (completed) {
-            [weakSelf handleDownloadedConcerts];
-        } else {
-            [weakSelf handleDownloadErrorMessage:errorMesage];
-        }
-    }];
-}
-
-- (void)downloadFavoriteConcerts
-{
-    __weak typeof (self) weakSelf = self;
-    [self.datasourceManager downloadFavoriteConcertsWithCompletionBlock:^(BOOL completed, NSString *errorMesage) {
-        if (completed) {
-            [weakSelf handleDownloadedConcerts];
+            if (weakSelf.currentlySelectedTabIndex == SelectedTabIndexAll) {
+                [weakSelf handleDownloadedConcerts];
+            }
         } else {
             [weakSelf handleDownloadErrorMessage:errorMesage];
         }
@@ -285,6 +337,12 @@
         self.tableView.contentOffset = CGPointMake(0.0, 0.0);
     }
     [self.tableView reloadData];
+
+    if ([self objectsToDisplay].count == 0) {
+        [self.tableView showEmptySearchView];
+    } else {
+        [self.tableView hideEmptyView];
+    }
 }
 
 - (void)handleDownloadErrorMessage:(NSString*)errorMessage
@@ -300,6 +358,7 @@
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
+    [super scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
     [self.refreshController parentScrollViewDidEndDragging:scrollView];
 }
 
@@ -320,6 +379,7 @@
 
     self.datasourceManager = [[ConcertViewDatasourceManager alloc] init];
 
+    self.filterModel = [[FilterModel alloc] init];
     [self addRefreshController];
     [self.tableView showLoadingIndicator];
     [self refreshView];
@@ -328,7 +388,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -343,8 +402,8 @@
 - (void)showTutorialPopup
 {
     TutorialPopupView *tutorial2 = [[TutorialPopupView alloc] init];
-    [tutorial2 showWithText:@"Filtere die Ergebniss nach Musik Genre, Künstler oder Ort"
-                    atPoint:CGPointMake(CGRectGetMidX(self.filterSortView.frame), CGRectGetMinY(self.filterSortView.frame)-50.0)
+    [tutorial2 showWithText:@"Filtere die Ergebnisse nach Musik Genre, Künstler oder Ort"
+                    atPoint:CGPointMake(CGRectGetMidX(self.filterSortView.frame), CGRectGetMinY(self.filterSortView.frame)-30.0)
               highLightArea:self.filterSortView.frame];
 
     [GeneralSettings setTutorialsShown];

@@ -21,17 +21,75 @@
     return self;
 }
 
-- (void)tabSelectedAtIndex:(NSInteger)index
+#pragma mark - loading methods
+- (void)loadObjectsAtIndex:(NSInteger)index WithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock
 {
     switch (index) {
-        case 0:
-            self.currentlyUsedObjectsArray = self.favoriteConcertDatasource.objectsArray;
+        case SelectedTabIndexFavorites:
+            [self loadFavoriteConcertsWithCompletionBlock:(completionBlock ? completionBlock : nil)];
+            self.currentLimit = self.favoriteConcertDatasource.startIndex  + self.favoriteConcertDatasource.limit;
             break;
-        case 1:
-            self.currentlyUsedObjectsArray = self.recommendedConcertDatasource.objectsArray;
+        case SelectedTabIndexRecommended:
+            [self loadRecommendedConcertsWithCompletionBlock:(completionBlock ? completionBlock : nil)];
+            self.currentLimit = self.recommendedConcertDatasource.startIndex  + self.recommendedConcertDatasource.limit;
             break;
-        case 2:
-            self.currentlyUsedObjectsArray = self.allConcertDatasource.objectsArray;
+        case SelectedTabIndexAll:
+            [self loadAllConcertsWithCompletionBlock:(completionBlock ? completionBlock : nil)];
+            self.currentLimit = self.allConcertDatasource.startIndex + self.allConcertDatasource.limit;
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)loadFavoriteConcertsWithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock
+{
+    if (self.favoriteConcertDatasource.objectsArray) {
+        self.currentlyUsedObjectsArray = self.favoriteConcertDatasource.objectsArray;
+        completionBlock(YES, nil);
+    } else {
+        [self downloadFavoriteConcertsWithCompletionBlock:completionBlock];
+    }
+}
+
+- (void)loadRecommendedConcertsWithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock
+{
+    if (self.recommendedConcertDatasource.objectsArray) {
+        self.currentlyUsedObjectsArray = self.recommendedConcertDatasource.objectsArray;
+        completionBlock(YES, nil);
+    } else {
+        [self downloadRecommendedConcertsWithCompletionBlock:completionBlock];
+    }
+}
+
+- (void)loadAllConcertsWithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock;
+{
+    if (self.allConcertDatasource.objectsArray) {
+        self.currentlyUsedObjectsArray = self.allConcertDatasource.objectsArray;
+        completionBlock(YES, nil);
+    } else {
+        [self downloadAllConcertsWithCompletionBlock:completionBlock];
+    }
+}
+
+#pragma mark - downloading next concerts
+- (void)downloadNextConcertsAtIndex:(NSInteger)index WithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock
+{
+    switch (index) {
+        case SelectedTabIndexFavorites:
+            self.favoriteConcertDatasource.startIndex = self.favoriteConcertDatasource.objectsArray.count;
+            self.currentLimit = self.favoriteConcertDatasource.startIndex  + self.favoriteConcertDatasource.limit;
+            [self downloadFavoriteConcertsWithCompletionBlock:completionBlock];
+            break;
+        case SelectedTabIndexRecommended:
+            self.recommendedConcertDatasource.startIndex = self.recommendedConcertDatasource.objectsArray.count;
+            self.currentLimit = self.recommendedConcertDatasource.startIndex  + self.recommendedConcertDatasource.limit;
+            [self downloadRecommendedConcertsWithCompletionBlock:completionBlock];
+            break;
+        case SelectedTabIndexAll:
+            self.allConcertDatasource.startIndex = self.allConcertDatasource.objectsArray.count;
+            self.currentLimit = self.allConcertDatasource.startIndex  + self.allConcertDatasource.limit;
+            [self downloadAllConcertsWithCompletionBlock:completionBlock];
             break;
         default:
             break;
@@ -44,7 +102,7 @@
     if (!self.allConcertDatasource) {
         self.allConcertDatasource = [[ConcertViewDatasource alloc] init];
         self.allConcertDatasource.startIndex = 0;
-        self.allConcertDatasource.limit = self.currentLimit;
+        self.allConcertDatasource.limit = 20;
         self.allConcertDatasource.urlToDownloadFrom = kConcertsList;
     }
 
@@ -62,7 +120,7 @@
     if (!self.recommendedConcertDatasource) {
         self.recommendedConcertDatasource = [[ConcertViewDatasource alloc] init];
         self.recommendedConcertDatasource.startIndex = 0;
-        self.recommendedConcertDatasource.limit = self.currentLimit;
+        self.recommendedConcertDatasource.limit = 20;
 
         NSString *urlString = [NSString stringWithFormat:@"%@?user_id=%@&access_token=%@", kConcertsRecommendedList, [FacebookManager currentUserID], [FacebookManager currentUserAccessToken]];
         self.recommendedConcertDatasource.urlToDownloadFrom = urlString;
@@ -82,7 +140,7 @@
     if (!self.favoriteConcertDatasource) {
         self.favoriteConcertDatasource = [[ConcertViewDatasource alloc] init];
         self.favoriteConcertDatasource.startIndex = 0;
-        self.favoriteConcertDatasource.limit = self.currentLimit;
+        self.favoriteConcertDatasource.limit = 20;
         self.favoriteConcertDatasource.urlToDownloadFrom = kFavoriteConcertsList;
     }
 

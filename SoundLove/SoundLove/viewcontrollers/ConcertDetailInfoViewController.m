@@ -56,13 +56,13 @@
 
     self.concertTimeLabel.text = [NSString stringWithFormat:@"%@\n%@", [dateFormatter stringFromDate:self.concertToDisplay.date], [self.concertToDisplay calendarDaysTillStartDateString]];
 
-    if (self.concertToDisplay.image || self.concertToDisplay.imageURL) {
+    if (self.concertToDisplay.image) {
         [self blurConcertImage];
     } else {
-        [self hideImageWrapperView];
-
         if (self.concertToDisplay.imageURL) {
             [self downloadImageForConcert];
+        } else {
+            [self hideImageWrapperView];
         }
     }
 }
@@ -97,7 +97,6 @@
         if (image) {
             self.concertToDisplay.image = image;
             [self blurConcertImage];
-            [self showImageWrapperView];
         } else {
             [self hideImageWrapperView];
         }

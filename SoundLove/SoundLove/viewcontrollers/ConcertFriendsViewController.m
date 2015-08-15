@@ -10,8 +10,12 @@
 #import "BandCollectionViewCell.h"
 #import "CustomPageControlView.h"
 #import "UIColor+GlobalColors.h"
+#import "ConcertDownloadClient.h"
+#import "FriendObject.h"
 
 @interface ConcertFriendsViewController ()
+@property (nonatomic, strong) ConcertDownloadClient *friendsDownloadClient;
+@property (nonatomic, strong) NSArray *friendsArray;
 @end
 
 @implementation ConcertFriendsViewController
@@ -64,14 +68,40 @@
 {
     [super viewDidLoad];
     self.wrapperView.backgroundColor = [UIColor tabbingButtonActiveColor];
+
+    [self.collectionView showLoadingIndicator];
+    __weak typeof(self) weakSelf = self;
+    self.friendsDownloadClient = [[ConcertDownloadClient alloc] init];
+    [self.friendsDownloadClient downloadListOfFriendsGoingToConcert:self.concertToDisplay withCompletionBlock:^(NSArray *listOfFriends, BOOL completed, NSString *errorMessage) {
+        [self.collectionView hideLoadingIndicator];
+        if (completed) {
+            weakSelf.friendsArray = listOfFriends;
+            [weakSelf.collectionView reloadData];
+            [weakSelf adjustPageControl];
+        } else {
+            if (errorMessage) {
+                // TODO: handle error message
+            }
+        }
+    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [self adjustPageControl];
+}
+
+- (void)adjustPageControl
+{
     NSInteger numberOfScreens = self.collectionView.contentSize.width / CGRectGetWidth(self.view.frame);
-    [self.pageControl setNumberOfDots:numberOfScreens];
-    [self.pageControl setCurrentDotIndex:0];
+    if (numberOfScreens <= 1) {
+        self.pageControl.hidden = YES;
+    } else {
+        self.pageControl.hidden = NO;
+        [self.pageControl setNumberOfDots:numberOfScreens];
+        [self.pageControl setCurrentDotIndex:0];
+    }
 }
 
 @end

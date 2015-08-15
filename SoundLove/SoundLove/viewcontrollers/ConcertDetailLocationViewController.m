@@ -16,7 +16,8 @@
 - (IBAction)openWebsiteButtonPressed:(id)sender
 {
 //    [[TrackingManager sharedManager] trackUserSelectsWebsiteButton];
-//    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.concertToDisplay.website]];
+
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.concertToDisplay.detailsURL]];
 }
 
 #pragma mark - view methods

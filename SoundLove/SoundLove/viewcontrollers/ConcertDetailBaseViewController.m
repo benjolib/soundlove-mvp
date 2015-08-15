@@ -17,7 +17,6 @@
 @end
 
 @implementation ConcertDetailBaseViewController
-@synthesize concertToDisplay = _concertToDisplay;
 
 - (IBAction)shareButtonPressed:(id)sender
 {
@@ -27,7 +26,7 @@
 
     //    [[TrackingManager sharedManager] trackUserSelectsShareButton];
 
-    NSString *stringToShare = [NSString stringWithFormat:@"WHAT TO SHARE HERE?????? %@", self.concertToDisplay.name];
+    NSString *stringToShare = [NSString stringWithFormat:@"WHAT TO SHARE HERE?????? %@", self.concertToDisplay.detailsURL];
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[stringToShare]
                                                                                          applicationActivities:nil];
     activityViewController.excludedActivityTypes = @[UIActivityTypePostToWeibo,
@@ -74,12 +73,6 @@
 - (void)overlayViewControllerConfirmButtonPressed
 {
     [self performSegueWithIdentifier:@"showTicketShop" sender:nil];
-}
-
-- (void)setConcertToDisplay:(ConcertModel *)concertToDisplay
-{
-    _concertToDisplay = concertToDisplay;
-    [self refreshView];
 }
 
 - (void)refreshView
