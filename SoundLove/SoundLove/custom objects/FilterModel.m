@@ -9,8 +9,32 @@
 #import "FilterModel.h"
 #import "Genre.h"
 #import "Band.h"
+#import "SortingObject.h"
+
+@interface FilterModel ()
+@property (nonatomic, strong) NSDateFormatter *dateFormatter;
+@end
 
 @implementation FilterModel
+
++ (instancetype)sharedModel
+{
+    static FilterModel *sharedModel = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedModel = [[FilterModel alloc] init];
+    });
+    return sharedModel;
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.sortingObject = [SortingObject sortingWithName:@"Keine Sortierung" andKey:@"" orderDir:@""];
+    }
+    return self;
+}
 
 + (FilterModel*)copySettingsFromFilterModel:(FilterModel*)filterModel
 {
@@ -34,6 +58,7 @@
     self.endDate = nil;
     self.selectedGenresArray = nil;
     self.selectedBandsArray = nil;
+    self.locationDiameter = 0;
 }
 
 - (BOOL)isFiltering
@@ -50,9 +75,16 @@
         return YES;
     } else if (self.endDate) {
         return YES;
+    } else if ([self isLocationFilteringSet]){
+        return YES;
     } else {
         return NO;
     }
+}
+
+- (BOOL)isLocationFilteringSet
+{
+    return self.centerCoordinate.latitude != 0 || self.locationDiameter != 0;
 }
 
 #pragma mark - string methods
@@ -84,6 +116,43 @@
     return genresString;
 }
 
+- (NSString*)priceString
+{
+    NSString *priceString = @"";
+    if (self.fromPrice) {
+        if (self.toPrice) {
+            priceString = [NSString stringWithFormat:@"Ab %.2f € bis %.2f €", self.fromPrice.floatValue, self.toPrice.floatValue];
+        } else {
+            priceString = [NSString stringWithFormat:@"Ab %.2f €", self.fromPrice.floatValue];
+        }
+    } else if (self.toPrice) {
+        priceString = [NSString stringWithFormat:@"Bis %.2f €", self.toPrice.floatValue];
+    }
+
+    return priceString;
+}
+
+- (NSString*)dateString
+{
+    NSString *dateString = @"";
+    if (self.startDate) {
+        if (self.endDate) {
+            dateString = [NSString stringWithFormat:@"Von %@ bis %@", [self.dateFormatter stringFromDate:self.startDate], [self.dateFormatter stringFromDate:self.endDate]];
+        } else {
+            dateString = [NSString stringWithFormat:@"Von %@", [self.dateFormatter stringFromDate:self.startDate]];
+        }
+    } else if (self.endDate) {
+        dateString = [NSString stringWithFormat:@"Bis %@", [self.dateFormatter stringFromDate:self.endDate]];
+    }
+
+    return dateString;
+}
+
+- (NSString*)locationString
+{
+    return @"";
+}
+
 - (NSString*)bandsStringForAPICall
 {
     return [[self bandsString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -92,6 +161,15 @@
 - (NSString*)genresStringForAPICall
 {
     return [[self genresString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+}
+
+- (NSDateFormatter*)dateFormatter
+{
+    if (!_dateFormatter) {
+        _dateFormatter = [[NSDateFormatter alloc] init];
+        _dateFormatter.dateFormat = @"dd.MM.YYY";
+    }
+    return _dateFormatter;
 }
 
 @end

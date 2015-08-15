@@ -7,9 +7,6 @@
 //
 
 #import "CDConcert.h"
-#import "CDConcertImage.h"
-#import "CDConcertLocation.h"
-
 
 @implementation CDConcert
 

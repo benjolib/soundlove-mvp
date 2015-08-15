@@ -20,9 +20,11 @@
     NSString *price = [dictionary nonNullObjectForKey:@"price_from"];
     NSDate *date = [self convertDateStringToDate:[dictionary nonNullObjectForKey:@"date_ts"]];
     NSString *imageURL = [dictionary nonNullObjectForKey:@"image_url"];
+    NSString *detailsURL = [dictionary nonNullObjectForKey:@"details_url"];
 
     ConcertModel *concert = [[ConcertModel alloc] initWithName:name concertID:concertID city:city place:place price:price date:date imageURL:imageURL];
     concert.concertLocation = [ConcertLocation concertLocationWithDictionary:dictionary];
+    concert.detailsURL = detailsURL;
     return concert;
 }
 

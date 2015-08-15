@@ -10,4 +10,10 @@
 
 @interface ArtistModel : BaseImageModel
 
+@property (nonatomic, copy) NSString *name;
+
++ (ArtistModel*)artistWithName:(NSString*)name imageURL:(NSString*)imageURL;
+
++ (NSArray*)artistArrayFromStringArray:(NSArray*)array;
+
 @end

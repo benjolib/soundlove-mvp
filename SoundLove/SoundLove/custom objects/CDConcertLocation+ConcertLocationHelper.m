@@ -10,4 +10,12 @@
 
 @implementation CDConcertLocation (ConcertLocationHelper)
 
+- (ConcertLocation*)concertLocation
+{
+    ConcertLocation *concertLocation = [[ConcertLocation alloc] initWithCity:self.city country:self.country latitude:self.latitude longitude:self.longitude
+                                                                      street:self.street formattedAddress:self.formattedAddress rawAddress:self.rawAddress
+                                                                     zipcode:self.zip house:self.house];
+    return concertLocation;
+}
+
 @end

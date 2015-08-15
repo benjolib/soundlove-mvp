@@ -10,4 +10,11 @@
 
 @interface FriendObject : NSObject
 
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *imageURL;
+@property (nonatomic, copy) NSString *userID;
+
++ (FriendObject*)friendObjectWithDictionary:(NSDictionary*)dictionary;
+- (instancetype)initWithName:(NSString*)name imageURL:(NSString*)imageURL userID:(NSString*)userID;
+
 @end

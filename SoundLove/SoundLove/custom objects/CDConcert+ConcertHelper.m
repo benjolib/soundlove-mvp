@@ -20,6 +20,9 @@
     concert.city = self.city;
     concert.concertID = self.concertID;
     concert.date = self.date;
+    concert.concertLocation = [self.location concertLocation];
+
+    concert.image = [UIImage imageWithData:self.image.image];
     return concert;
 }
 

@@ -7,7 +7,10 @@
 //
 
 #import "CDConcertLocation.h"
+#import "ConcertLocation.h"
 
 @interface CDConcertLocation (ConcertLocationHelper)
+
+- (ConcertLocation*)concertLocation;
 
 @end

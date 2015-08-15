@@ -8,6 +8,7 @@
 
 #import "CoreDataHandler.h"
 #import "CDConcert.h"
+#import "CDConcertLocation.h"
 #import "CDConcertImage.h"
 #import "ConcertModel.h"
 
@@ -30,6 +31,14 @@
         sharedHandler = [[self alloc] init];
     });
     return sharedHandler;
+}
+
+- (NSDateFormatter *)sectionDateFormatter {
+    if (!_sectionDateFormatter) {
+        _sectionDateFormatter = [[NSDateFormatter alloc] init];
+        _sectionDateFormatter.dateFormat = @"MMM YYYY"; // twitter date format
+    }
+    return _sectionDateFormatter;
 }
 
 - (NSInteger)numberOfSavedConcerts
@@ -58,12 +67,26 @@
     concert.place = concertModel.place;
     concert.city = concertModel.city;
     concert.date = concertModel.date;
+    concert.price = concertModel.price;
 
     if (concertModel.image) {
         CDConcertImage *concertImage = [NSEntityDescription insertNewObjectForEntityForName:@"CDConcertImage" inManagedObjectContext:self.mainManagedObjectContext];
         concertImage.image = UIImageJPEGRepresentation(concertModel.image, 1.0);
-        concert.image = concertImage;
+        [concert setImage:concertImage];
     }
+
+    CDConcertLocation *concertLocation = [NSEntityDescription insertNewObjectForEntityForName:@"CDConcertLocation" inManagedObjectContext:self.mainManagedObjectContext];
+    concertLocation.city = concert.location.city;
+    concertLocation.country = concert.location.country;
+    concertLocation.zip = concert.location.zip;
+    concertLocation.formattedAddress = concert.location.formattedAddress;
+    concertLocation.rawAddress = concert.location.rawAddress;
+    concertLocation.latitude = concert.location.latitude;
+    concertLocation.longitude = concert.location.longitude;
+    concertLocation.street = concert.location.street;
+    concertLocation.house = concert.location.house;
+
+    [concert setLocation:concertLocation];
 
     if (!self.sectionDateFormatter) {
         self.sectionDateFormatter = [[NSDateFormatter alloc] init];

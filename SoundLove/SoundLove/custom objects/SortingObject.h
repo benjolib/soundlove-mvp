@@ -12,7 +12,8 @@
 
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *apiKey;
+@property (nonatomic, copy) NSString *orderDir;
 
-+ (SortingObject*)sortingWithName:(NSString*)name andKey:(NSString*)key;
++ (SortingObject*)sortingWithName:(NSString*)name andKey:(NSString*)key orderDir:(NSString*)orderDir;
 
 @end
