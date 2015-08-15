@@ -15,9 +15,9 @@
 {
     [super awakeFromNib];
     self.nameLabel.textColor = [UIColor globalGreenColor];
-    self.imageView.layer.borderWidth = 1.0;
-    self.imageView.layer.borderColor = [UIColor colorWithR:24.0 G:28.0 B:39.0].CGColor;
-    self.imageView.layer.cornerRadius = CGRectGetHeight(self.imageView.frame)/2;
+    self.artistImageView.layer.borderWidth = 1.0;
+    self.artistImageView.layer.borderColor = [UIColor colorWithR:24.0 G:28.0 B:39.0].CGColor;
+    self.artistImageView.layer.cornerRadius = CGRectGetHeight(self.artistImageView.frame)/2;
 }
 
 @end

@@ -11,7 +11,7 @@
 
 @interface PriceContainerView ()
 @property (nonatomic, strong) UILabel *valueLabel;
-@property (nonatomic) BOOL isActive;
+@property (nonatomic, readwrite) BOOL isActive;
 @end
 
 @implementation PriceContainerView
@@ -54,14 +54,10 @@
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.valueLabel attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0]];
 }
 
-- (BOOL)isActive
-{
-    return _isActive;
-}
-
 #pragma mark - setting methods
 - (void)setActive:(BOOL)active
 {
+    self.isActive = active;
     if (active) {
         self.valueLabel.textColor = [UIColor globalGreenColor];
         self.backgroundColor = [UIColor colorWithR:24.0 G:30.0 B:39.0];
@@ -70,8 +66,6 @@
         self.layer.borderColor = [UIColor colorWithR:39.0 G:48.0 B:62.0].CGColor;
         self.backgroundColor = [UIColor clearColor];
     }
-    
-    self.isActive = active;
 }
 
 - (void)setValueText:(NSString*)text

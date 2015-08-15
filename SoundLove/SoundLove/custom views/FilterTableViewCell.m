@@ -14,17 +14,14 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.backgroundColor = [UIColor clearColor];
-    self.textLabel.textColor = [UIColor whiteColor];
-    self.nameLabel.textColor = [UIColor whiteColor];
-//    self.textLabel.font = [UIFont latoRegularFontWithSize:16];
-//    self.nameLabel.font = [UIFont latoRegularFontWithSize:16];
+    self.textLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.2];
+    self.nameLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.2];
 }
 
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
 {
-    [super setHighlighted:highlighted animated:animated];
     if (highlighted) {
-        self.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.2];
+        self.backgroundColor = [[UIColor tabbingButtonInactiveColor] colorWithAlphaComponent:0.6];
     } else {
         self.backgroundColor = [UIColor clearColor];
     }
@@ -33,9 +30,11 @@
 - (void)setCellActive:(BOOL)active
 {
     if (active) {
+        self.textLabel.textColor = [UIColor globalGreenColor];
         self.nameLabel.textColor = [UIColor globalGreenColor];
     } else {
-        self.nameLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+        self.textLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.2];
+        self.nameLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.2];
     }
 }
 

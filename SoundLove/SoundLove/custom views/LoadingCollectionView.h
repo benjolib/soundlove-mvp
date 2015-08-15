@@ -10,4 +10,12 @@
 
 @interface LoadingCollectionView : UICollectionView
 
+- (void)showLoadingIndicator;
+- (void)hideLoadingIndicator;
+
+- (void)showEmptySearchView;
+- (void)showEmptyFilterView;
+- (void)showEmptyCalendarView;
+- (void)hideEmptyView;
+
 @end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F6a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F25a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -57,6 +57,7 @@
             <nil key="simulatedStatusBarMetrics"/>
             <connections>
                 <outlet property="textLabel" destination="fp1-Kd-8di" id="Yq0-oF-iv6"/>
+                <outlet property="titleLabel" destination="GNc-9P-4lM" id="g9W-Lr-Hfz"/>
             </connections>
             <point key="canvasLocation" x="390" y="385"/>
         </view>

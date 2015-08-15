@@ -40,7 +40,7 @@
 - (void)prepareForReuse
 {
     [super prepareForReuse];
-    self.concertImageView.image = nil;
+    self.concertImageView.image = [UIImage imageNamed:@"placeholder"];
 }
 
 - (void)setup
@@ -69,9 +69,8 @@
 
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
 {
-    [super setHighlighted:highlighted animated:animated];
     if (highlighted) {
-        self.backgroundColor = [[UIColor tabbingButtonActiveColor] colorWithAlphaComponent:0.4];
+        self.backgroundColor = [[UIColor tabbingButtonInactiveColor] colorWithAlphaComponent:0.6];
     } else {
         self.backgroundColor = [UIColor tabbingButtonActiveColor];
     }

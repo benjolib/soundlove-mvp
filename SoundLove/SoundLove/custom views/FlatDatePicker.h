@@ -27,15 +27,9 @@ typedef NS_ENUM(NSInteger, FlatDatePickerMode) {
     UIView *_parentView;
     
     // ScrollView :
-    UIScrollView *_scollViewDays;
-    UIScrollView *_scollViewMonths;
-    UIScrollView *_scollViewYears;
-    
-    UIScrollView *_scollViewDates;
-    
-    UIScrollView *_scollViewHours;
-    UIScrollView *_scollViewMinutes;
-    UIScrollView *_scollViewSeconds;
+    UIScrollView *_scrollViewDays;
+    UIScrollView *_scrollViewMonths;
+    UIScrollView *_scrollViewYears;
     
     // Lines :
     UIView *_lineDaysTop;
@@ -44,17 +38,15 @@ typedef NS_ENUM(NSInteger, FlatDatePickerMode) {
     UIView *_lineMonthsBottom;
     UIView *_lineYearsTop;
     UIView *_lineYearsBottom;
-    
-    UIView *_lineDatesTop;
-    UIView *_lineDatesBottom;
-    
-    UIView *_lineHoursTop;
-    UIView *_lineHoursBottom;
-    UIView *_lineMinutesTop;
-    UIView *_lineMinutesBottom;
-    UIView *_lineSecondsTop;
-    UIView *_lineSecondsBottom;
-    
+
+    // Arrows:
+    UIImageView *_yearsTopArrow;
+    UIImageView *_yearsBottomArrow;
+    UIImageView *_monthsTopArrow;
+    UIImageView *_monthsBottomArrow;
+    UIImageView *_daysTopArrow;
+    UIImageView *_daysBottomArrow;
+
     // Title :
     NSString *_title;
     
@@ -70,12 +62,6 @@ typedef NS_ENUM(NSInteger, FlatDatePickerMode) {
     NSMutableArray *_labelsDays;
     NSMutableArray *_labelsMonths;
     NSMutableArray *_labelsYears;
-    
-    NSMutableArray *_labelsDates;
-    
-    NSMutableArray *_labelsHours;
-    NSMutableArray *_labelsMinutes;
-    NSMutableArray *_labelsSeconds;
     
     // Date selected :
     NSInteger _selectedDay;
@@ -143,7 +129,7 @@ typedef NS_ENUM(NSInteger, FlatDatePickerMode) {
 
 #pragma mark - Date
 
-- (void)setDate:(NSDate *)date animated:(BOOL)animated;
+- (void)setDate:(NSDate *)date animated:(BOOL)animated withDelegateCallback:(BOOL)delegateCallback;
 - (NSDate*)getDate;
 
 @end

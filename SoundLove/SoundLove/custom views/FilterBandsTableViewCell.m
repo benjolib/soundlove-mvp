@@ -17,8 +17,6 @@
     self.backgroundColor = [UIColor clearColor];
     self.nameLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
     self.bandDetailLabel.textColor = [UIColor globalGreenColor];
-//    self.textLabel.font = [UIFont latoRegularFontWithSize:16];
-//    self.nameLabel.font = [UIFont latoRegularFontWithSize:16];
 }
 
 @end

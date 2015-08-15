@@ -7,6 +7,7 @@
 //
 
 #import "BaseTableViewCell.h"
+#import "UIColor+GlobalColors.h"
 
 @interface BaseTableViewCell ()
 @property (nonatomic, strong) CALayer *bottomBorderLayer;
@@ -53,6 +54,15 @@
     CGFloat scaleOfMainScreen = [UIScreen mainScreen].scale;
     CGFloat alwaysOnePixelInPoints = 1.0 / scaleOfMainScreen;
     self.bottomBorderLayer.frame = CGRectMake(0.0, CGRectGetHeight(self.frame)-alwaysOnePixelInPoints, CGRectGetWidth(self.frame), alwaysOnePixelInPoints);
+}
+
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
+{
+    if (highlighted) {
+        self.backgroundColor = [[UIColor tabbingButtonInactiveColor] colorWithAlphaComponent:0.6];
+    } else {
+        self.backgroundColor = [UIColor tabbingButtonActiveColor];
+    }
 }
 
 @end
