@@ -29,11 +29,12 @@
 //
 
 #import "RGIndexView.h"
+#import "UIColor+GlobalColors.h"
 
 @interface RGIndexView() {
-    int _numberOfItems;
-    int _lastSelectedIndex;
-    int _numberOfItemsToDisplay;
+    NSInteger _numberOfItems;
+    NSInteger _lastSelectedIndex;
+    NSInteger _numberOfItemsToDisplay;
 }
 
 @end
@@ -80,7 +81,7 @@ static int kRGIndexViewIndexLabelBaseTag = 10;
     }
 }
 
-- (CGSize)indexLabelSizeForCount:(int)count {
+- (CGSize)indexLabelSizeForCount:(NSInteger)count {
     if (self.vertical) {
         return CGSizeMake(self.frame.size.width,
                           self.frame.size.height / count);
@@ -91,7 +92,7 @@ static int kRGIndexViewIndexLabelBaseTag = 10;
     }
 }
 
-- (CGRect)frameForLabelAtIndex:(int)index {
+- (CGRect)frameForLabelAtIndex:(NSInteger)index {
     CGSize labelSize = [self indexLabelSizeForCount:_numberOfItemsToDisplay];
     
     if (self.vertical) {
@@ -110,10 +111,10 @@ static int kRGIndexViewIndexLabelBaseTag = 10;
 
 - (void)reloadIndex {
     if (_font == nil) {
-        self.font = [UIFont systemFontOfSize:17];
+        self.font = [UIFont fontWithName:@"Montserrat-Light" size:16.0];
     }
     if (_textColor == nil) {
-        self.textColor = [UIColor blackColor];
+        self.textColor = [UIColor colorWithWhite:1.0 alpha:0.2];
     }
     
     _numberOfItems = [_delegate numberOfItemsInIndexView];
@@ -133,7 +134,7 @@ static int kRGIndexViewIndexLabelBaseTag = 10;
         indexLabel.backgroundColor = [UIColor clearColor];
         indexLabel.textColor = _textColor;
         indexLabel.font = _font;
-        indexLabel.textAlignment = UITextAlignmentCenter;
+        indexLabel.textAlignment = NSTextAlignmentCenter;
         if (self.willTruncate) {
             indexLabel.text = i % 2 == 1 ? @"·" : [_delegate textForIndex:[self getIndexFromSelectableIndex:i]];
         }
@@ -145,14 +146,14 @@ static int kRGIndexViewIndexLabelBaseTag = 10;
     }
 }
 
-- (int)getIndexFromSelectableIndex:(int)selectableIndex {
+- (NSInteger)getIndexFromSelectableIndex:(NSInteger)selectableIndex {
     float si = selectableIndex;
     NSNumber* index = [NSNumber numberWithDouble: (si / _numberOfItemsToDisplay) * _numberOfItems];
-    return index.intValue;
+    return index.integerValue;
 }
 
-- (int)getSelectedIndexFromTouch:(UITouch*)touch {
-    int index;
+- (NSInteger)getSelectedIndexFromTouch:(UITouch*)touch {
+    NSInteger index;
     CGSize elementSize = [self indexLabelSizeForCount:_numberOfItemsToDisplay];
     CGPoint positionInView = [touch locationInView:self];
     CGFloat itemSize = self.vertical ? elementSize.height : elementSize.width;
@@ -164,7 +165,7 @@ static int kRGIndexViewIndexLabelBaseTag = 10;
     }
     index = MAX(MIN(index, _numberOfItemsToDisplay - 1), 0);
     
-    NSLog(@"index changed to %i", index);
+    NSLog(@"index changed to %li", (long)index);
     return index;
 }
 
@@ -182,7 +183,7 @@ static int kRGIndexViewIndexLabelBaseTag = 10;
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [touches anyObject];
-    int selectedIndex = [self getSelectedIndexFromTouch:touch];
+    NSInteger selectedIndex = [self getSelectedIndexFromTouch:touch];
     if (selectedIndex != _lastSelectedIndex) {
         _lastSelectedIndex = selectedIndex;
         if ([_delegate respondsToSelector:@selector(indexView:didSelectIndex:)]) {

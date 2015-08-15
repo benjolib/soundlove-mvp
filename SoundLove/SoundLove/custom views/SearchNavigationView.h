@@ -11,8 +11,8 @@
 @protocol SearchNavigationViewDelegate <NSObject>
 
 - (void)searchNavigationViewMenuButtonPressed;
-- (void)searchNavigationViewCancelButtonPressed;
-- (void)searchNavigationViewSearchButtonPressed:(NSString*)searchText;
+- (void)searchNavigationViewCancelButtonPressedSearchField:(UITextField*)searchField;
+- (void)searchNavigationViewSearchButtonPressed:(NSString*)searchText searchField:(UITextField*)searchField;
 - (void)searchNavigationViewUserEnteredNewCharacter:(NSString*)searchText;
 
 @end

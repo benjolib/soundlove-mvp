@@ -162,16 +162,16 @@
 - (IBAction)cancelButtonPressed
 {
     [self setSearchModeActive:NO];
-    if ([self.delegate respondsToSelector:@selector(searchNavigationViewCancelButtonPressed)]) {
-        [self.delegate searchNavigationViewCancelButtonPressed];
+    if ([self.delegate respondsToSelector:@selector(searchNavigationViewCancelButtonPressedSearchField:)]) {
+        [self.delegate searchNavigationViewCancelButtonPressedSearchField:self.searchField];
     }
 }
 
 #pragma mark - textfield delegate methods
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    if ([self.delegate respondsToSelector:@selector(searchNavigationViewSearchButtonPressed:)]) {
-        [self.delegate searchNavigationViewSearchButtonPressed:textField.text];
+    if ([self.delegate respondsToSelector:@selector(searchNavigationViewSearchButtonPressed:searchField:)]) {
+        [self.delegate searchNavigationViewSearchButtonPressed:textField.text searchField:self.searchField];
     }
     [textField resignFirstResponder];
     return YES;

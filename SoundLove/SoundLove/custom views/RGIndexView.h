@@ -56,14 +56,14 @@ typedef enum {
 
 @required
 
-- (NSString*)textForIndex:(int)index;
-- (int)numberOfItemsInIndexView;
+- (NSString*)textForIndex:(NSInteger)index;
+- (NSInteger)numberOfItemsInIndexView;
 
 
 @optional
 
-- (void)indexView:(RGIndexView*)indexView didSelectIndex:(int)index;
-- (void)indexView:(RGIndexView*)indexView didBeginSelectingAtIndex:(int)index;
-- (void)indexView:(RGIndexView*)indexView didEndSelectingAtIndex:(int)index;
+- (void)indexView:(RGIndexView*)indexView didSelectIndex:(NSInteger)index;
+- (void)indexView:(RGIndexView*)indexView didBeginSelectingAtIndex:(NSInteger)index;
+- (void)indexView:(RGIndexView*)indexView didEndSelectingAtIndex:(NSInteger)index;
 
 @end

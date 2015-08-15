@@ -85,20 +85,12 @@ typedef NS_ENUM(NSUInteger, PointerPosition) {
 
     CGRect viewFrame = self.frame;
     viewFrame.size.height = viewHeight;
-    viewFrame.origin.x = 15.0;
     viewFrame.size.width = CGRectGetWidth(window.frame) - 30.0;
-
-    if (point.y < CGRectGetHeight(window.frame)/2) {
-        // above middle line
-        [self drawArrowLayerToPoint:point];
-        viewFrame.origin.y = point.y + 5.0;
-    } else {
-        // below middle line
-        [self drawArrowLayerToPoint:point];
-        viewFrame.origin.y = point.y + 5.0;
-    }
-
+    viewFrame.origin.x = 15.0;
+    viewFrame.origin.y = point.y;
     self.frame = viewFrame;
+
+    [self drawArrowLayerToPoint:point];
 
     [window addSubview:[self dimmViewOnWindow:window withHighlightedArea:highlightedArea]];
     [window insertSubview:self aboveSubview:self.dimmView];
@@ -116,7 +108,7 @@ typedef NS_ENUM(NSUInteger, PointerPosition) {
     }
 
     UIView *view = [[UIView alloc] initWithFrame:dimmViewFrame];
-    view.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.3];
+    view.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.4];
 
     self.dimmView = view;
     return self.dimmView;
@@ -125,7 +117,7 @@ typedef NS_ENUM(NSUInteger, PointerPosition) {
 #pragma mark - private methods
 - (void)drawArrowLayerToPoint:(CGPoint)point
 {
-    UIView *pointerView = [[UIView alloc] initWithFrame:CGRectMake(0.0, CGRectGetHeight(self.frame)-1.0, CGRectGetWidth(self.frame), 1.0)];
+    UIView *pointerView = [[UIView alloc] initWithFrame:CGRectMake(0.0, CGRectGetHeight(self.frame), CGRectGetWidth(self.frame), 1.0)];
     pointerView.backgroundColor = [UIColor clearColor];
 
     PointerPosition position = PointerPositionCenter;
@@ -136,7 +128,7 @@ typedef NS_ENUM(NSUInteger, PointerPosition) {
         pointerView.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.frame), 1.0);
     } else {
         position = PointerPositionCenter;
-        pointerView.frame = CGRectMake(0.0, CGRectGetHeight(self.frame)-1.0, CGRectGetWidth(self.frame), 1.0);
+        pointerView.frame = CGRectMake(0.0, CGRectGetHeight(self.frame), CGRectGetWidth(self.frame), 1.0);
     }
 
     CAShapeLayer *arrowLayer = [CAShapeLayer layer];
