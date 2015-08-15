@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet FacebookButton *facebookButton;
 @property (weak, nonatomic) IBOutlet UIButton *questionButton;
 @property (weak, nonatomic) IBOutlet UIView *fadeView;
+@property (weak, nonatomic) IBOutlet UIImageView *logoImageView;
 
 - (IBAction)unwindToOnboardingView:(UIStoryboardSegue*)segue;
 

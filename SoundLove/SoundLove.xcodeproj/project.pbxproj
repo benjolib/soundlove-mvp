@@ -11,7 +11,6 @@
 		5619A30E1B6BFF90000901F7 /* ImageDownloadBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5619A30D1B6BFF90000901F7 /* ImageDownloadBaseViewController.m */; };
 		5619A3111B6BFFB5000901F7 /* ImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5619A3101B6BFFB5000901F7 /* ImageDownloader.m */; };
 		5619A3141B6C0253000901F7 /* BaseImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5619A3131B6C0253000901F7 /* BaseImageModel.m */; };
-		5619A3181B6C2993000901F7 /* CDConcert.m in Sources */ = {isa = PBXBuildFile; fileRef = 5619A3171B6C2993000901F7 /* CDConcert.m */; };
 		5619A31B1B6C2993000901F7 /* CDConcertImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5619A31A1B6C2993000901F7 /* CDConcertImage.m */; };
 		5619A31F1B6C32FD000901F7 /* ConcertViewDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5619A31E1B6C32FD000901F7 /* ConcertViewDatasource.m */; };
 		5619A3221B6C3392000901F7 /* ConcertViewDatasourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5619A3211B6C3392000901F7 /* ConcertViewDatasourceManager.m */; };
@@ -109,6 +108,25 @@
 		56D395DE1B5F8988000DC427 /* OverlayTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D395DD1B5F8988000DC427 /* OverlayTransitionAnimator.m */; };
 		56D395E41B5F8C11000DC427 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D395E11B5F8C11000DC427 /* Reachability.m */; };
 		56D395E51B5F8C11000DC427 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D395E31B5F8C11000DC427 /* UIImage+ImageEffects.m */; };
+		56D676651B7BA267003DC597 /* FavoriteConcertsClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D676641B7BA267003DC597 /* FavoriteConcertsClient.m */; };
+		56D676681B7BA65B003DC597 /* CDConcertLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D676671B7BA65B003DC597 /* CDConcertLocation.m */; };
+		56D6766B1B7BA66D003DC597 /* CDConcert.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D6766A1B7BA66D003DC597 /* CDConcert.m */; };
+		56D6766E1B7BA6BC003DC597 /* CDConcertLocation+ConcertLocationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D6766D1B7BA6BC003DC597 /* CDConcertLocation+ConcertLocationHelper.m */; };
+		56D676721B7BD02F003DC597 /* NSDate+DateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D676711B7BD02F003DC597 /* NSDate+DateHelper.m */; };
+		56D6F2941B7CBCC2006D765D /* MapOverlayRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D6F2931B7CBCC2006D765D /* MapOverlayRenderer.m */; };
+		56D6F2971B7CBE69006D765D /* FilterLocationAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D6F2961B7CBE69006D765D /* FilterLocationAnnotation.m */; };
+		56D6F29A1B7CBEDA006D765D /* FilterLocationAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D6F2991B7CBEDA006D765D /* FilterLocationAnnotationView.m */; };
+		56D6F29D1B7CC363006D765D /* MapOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D6F29C1B7CC363006D765D /* MapOverlay.m */; };
+		56D6F2A21B7CC9D0006D765D /* DBMapSelectorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D6F29F1B7CC9D0006D765D /* DBMapSelectorManager.m */; };
+		56D6F2A31B7CC9D0006D765D /* DBMapSelectorGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D6F2A11B7CC9D0006D765D /* DBMapSelectorGestureRecognizer.m */; };
+		56D857E11B7DD84D006B5C85 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 56D857E01B7DD84D006B5C85 /* iTunesArtwork.png */; };
+		56D857E41B7DD90C006B5C85 /* RGIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D857E31B7DD90C006B5C85 /* RGIndexView.m */; };
+		56D857E71B7DF759006B5C85 /* FriendObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D857E61B7DF759006B5C85 /* FriendObject.m */; };
+		56D857EA1B7DF9B3006B5C85 /* LoadingCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D857E91B7DF9B3006B5C85 /* LoadingCollectionView.m */; };
+		56D857ED1B7E2D68006B5C85 /* ArtistDownloadClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D857EC1B7E2D68006B5C85 /* ArtistDownloadClient.m */; };
+		56D857F01B7E2DB2006B5C85 /* ArtistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D857EF1B7E2DB2006B5C85 /* ArtistModel.m */; };
+		56D857F31B7E3E5E006B5C85 /* TrackingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D857F21B7E3E5E006B5C85 /* TrackingManager.m */; };
+		56D857F61B7EB32F006B5C85 /* SortingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D857F51B7EB32F006B5C85 /* SortingButton.m */; };
 		56DF68201B7223A40025DBB1 /* ConcertDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DF68191B7223A40025DBB1 /* ConcertDetailViewController.m */; };
 		56DF68211B7223A40025DBB1 /* ConcertDetailBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DF681B1B7223A40025DBB1 /* ConcertDetailBaseViewController.m */; };
 		56DF68221B7223A40025DBB1 /* ConcertDetailInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DF681D1B7223A40025DBB1 /* ConcertDetailInfoViewController.m */; };
@@ -140,8 +158,6 @@
 		5619A3101B6BFFB5000901F7 /* ImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDownloader.m; sourceTree = "<group>"; };
 		5619A3121B6C0253000901F7 /* BaseImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseImageModel.h; sourceTree = "<group>"; };
 		5619A3131B6C0253000901F7 /* BaseImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseImageModel.m; sourceTree = "<group>"; };
-		5619A3161B6C2993000901F7 /* CDConcert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDConcert.h; sourceTree = "<group>"; };
-		5619A3171B6C2993000901F7 /* CDConcert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDConcert.m; sourceTree = "<group>"; };
 		5619A3191B6C2993000901F7 /* CDConcertImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDConcertImage.h; sourceTree = "<group>"; };
 		5619A31A1B6C2993000901F7 /* CDConcertImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDConcertImage.m; sourceTree = "<group>"; };
 		5619A31D1B6C32FD000901F7 /* ConcertViewDatasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcertViewDatasource.h; sourceTree = "<group>"; };
@@ -318,6 +334,43 @@
 		56D395E11B5F8C11000DC427 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		56D395E21B5F8C11000DC427 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		56D395E31B5F8C11000DC427 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		56D676631B7BA267003DC597 /* FavoriteConcertsClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteConcertsClient.h; sourceTree = "<group>"; };
+		56D676641B7BA267003DC597 /* FavoriteConcertsClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteConcertsClient.m; sourceTree = "<group>"; };
+		56D676661B7BA65B003DC597 /* CDConcertLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDConcertLocation.h; sourceTree = "<group>"; };
+		56D676671B7BA65B003DC597 /* CDConcertLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDConcertLocation.m; sourceTree = "<group>"; };
+		56D676691B7BA66D003DC597 /* CDConcert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDConcert.h; sourceTree = "<group>"; };
+		56D6766A1B7BA66D003DC597 /* CDConcert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDConcert.m; sourceTree = "<group>"; };
+		56D6766C1B7BA6BC003DC597 /* CDConcertLocation+ConcertLocationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CDConcertLocation+ConcertLocationHelper.h"; sourceTree = "<group>"; };
+		56D6766D1B7BA6BC003DC597 /* CDConcertLocation+ConcertLocationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CDConcertLocation+ConcertLocationHelper.m"; sourceTree = "<group>"; };
+		56D676701B7BD02F003DC597 /* NSDate+DateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+DateHelper.h"; sourceTree = "<group>"; };
+		56D676711B7BD02F003DC597 /* NSDate+DateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+DateHelper.m"; sourceTree = "<group>"; };
+		56D6F2921B7CBCC2006D765D /* MapOverlayRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapOverlayRenderer.h; sourceTree = "<group>"; };
+		56D6F2931B7CBCC2006D765D /* MapOverlayRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapOverlayRenderer.m; sourceTree = "<group>"; };
+		56D6F2951B7CBE69006D765D /* FilterLocationAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterLocationAnnotation.h; path = "SoundLove/custom objects/FilterLocationAnnotation.h"; sourceTree = SOURCE_ROOT; };
+		56D6F2961B7CBE69006D765D /* FilterLocationAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterLocationAnnotation.m; path = "SoundLove/custom objects/FilterLocationAnnotation.m"; sourceTree = SOURCE_ROOT; };
+		56D6F2981B7CBEDA006D765D /* FilterLocationAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterLocationAnnotationView.h; path = "SoundLove/custom objects/FilterLocationAnnotationView.h"; sourceTree = SOURCE_ROOT; };
+		56D6F2991B7CBEDA006D765D /* FilterLocationAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterLocationAnnotationView.m; path = "SoundLove/custom objects/FilterLocationAnnotationView.m"; sourceTree = SOURCE_ROOT; };
+		56D6F29B1B7CC363006D765D /* MapOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapOverlay.h; path = "SoundLove/custom objects/MapOverlay.h"; sourceTree = SOURCE_ROOT; };
+		56D6F29C1B7CC363006D765D /* MapOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapOverlay.m; path = "SoundLove/custom objects/MapOverlay.m"; sourceTree = SOURCE_ROOT; };
+		56D6F29E1B7CC9D0006D765D /* DBMapSelectorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBMapSelectorManager.h; sourceTree = "<group>"; };
+		56D6F29F1B7CC9D0006D765D /* DBMapSelectorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBMapSelectorManager.m; sourceTree = "<group>"; };
+		56D6F2A01B7CC9D0006D765D /* DBMapSelectorGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBMapSelectorGestureRecognizer.h; sourceTree = "<group>"; };
+		56D6F2A11B7CC9D0006D765D /* DBMapSelectorGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBMapSelectorGestureRecognizer.m; sourceTree = "<group>"; };
+		56D857E01B7DD84D006B5C85 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
+		56D857E21B7DD90C006B5C85 /* RGIndexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RGIndexView.h; sourceTree = "<group>"; };
+		56D857E31B7DD90C006B5C85 /* RGIndexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RGIndexView.m; sourceTree = "<group>"; };
+		56D857E51B7DF759006B5C85 /* FriendObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendObject.h; sourceTree = "<group>"; };
+		56D857E61B7DF759006B5C85 /* FriendObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendObject.m; sourceTree = "<group>"; };
+		56D857E81B7DF9B3006B5C85 /* LoadingCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingCollectionView.h; sourceTree = "<group>"; };
+		56D857E91B7DF9B3006B5C85 /* LoadingCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingCollectionView.m; sourceTree = "<group>"; };
+		56D857EB1B7E2D68006B5C85 /* ArtistDownloadClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtistDownloadClient.h; sourceTree = "<group>"; };
+		56D857EC1B7E2D68006B5C85 /* ArtistDownloadClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtistDownloadClient.m; sourceTree = "<group>"; };
+		56D857EE1B7E2DB2006B5C85 /* ArtistModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtistModel.h; sourceTree = "<group>"; };
+		56D857EF1B7E2DB2006B5C85 /* ArtistModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtistModel.m; sourceTree = "<group>"; };
+		56D857F11B7E3E5E006B5C85 /* TrackingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackingManager.h; sourceTree = "<group>"; };
+		56D857F21B7E3E5E006B5C85 /* TrackingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackingManager.m; sourceTree = "<group>"; };
+		56D857F41B7EB32F006B5C85 /* SortingButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortingButton.h; sourceTree = "<group>"; };
+		56D857F51B7EB32F006B5C85 /* SortingButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SortingButton.m; sourceTree = "<group>"; };
 		56DF68181B7223A40025DBB1 /* ConcertDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcertDetailViewController.h; sourceTree = "<group>"; };
 		56DF68191B7223A40025DBB1 /* ConcertDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcertDetailViewController.m; sourceTree = "<group>"; };
 		56DF681A1B7223A40025DBB1 /* ConcertDetailBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcertDetailBaseViewController.h; sourceTree = "<group>"; };
@@ -417,6 +470,8 @@
 				5658BAA51B640D6F004F08BB /* NetworkConstants.h */,
 				5658BAA61B640D77004F08BB /* AbstractClient.h */,
 				5658BAA71B640D77004F08BB /* AbstractClient.m */,
+				56D857EB1B7E2D68006B5C85 /* ArtistDownloadClient.h */,
+				56D857EC1B7E2D68006B5C85 /* ArtistDownloadClient.m */,
 				567D7B5B1B709CFD0015EBB3 /* BandsDownloadClient.h */,
 				567D7B5C1B709CFD0015EBB3 /* BandsDownloadClient.m */,
 				567D7B641B70AF070015EBB3 /* GenreDownloadClient.h */,
@@ -425,6 +480,8 @@
 				5684B1DF1B664B7C009EF346 /* ConcertDownloadClient.m */,
 				567D7B581B709CF40015EBB3 /* ConcertRankClient.h */,
 				567D7B591B709CF40015EBB3 /* ConcertRankClient.m */,
+				56D676631B7BA267003DC597 /* FavoriteConcertsClient.h */,
+				56D676641B7BA267003DC597 /* FavoriteConcertsClient.m */,
 				5684B1CD1B661DB3009EF346 /* TicketShopperClient.h */,
 				5684B1CE1B661DB3009EF346 /* TicketShopperClient.m */,
 				56A65C6D1B68AD0600619189 /* FacebookManager.h */,
@@ -466,10 +523,14 @@
 				56A65C771B68E14F00619189 /* SoundLove.xcdatamodeld */,
 				56A65C7D1B68E60F00619189 /* CDConcert+ConcertHelper.h */,
 				56A65C7E1B68E60F00619189 /* CDConcert+ConcertHelper.m */,
+				56D676691B7BA66D003DC597 /* CDConcert.h */,
+				56D6766A1B7BA66D003DC597 /* CDConcert.m */,
 				5619A3191B6C2993000901F7 /* CDConcertImage.h */,
 				5619A31A1B6C2993000901F7 /* CDConcertImage.m */,
-				5619A3161B6C2993000901F7 /* CDConcert.h */,
-				5619A3171B6C2993000901F7 /* CDConcert.m */,
+				56D676661B7BA65B003DC597 /* CDConcertLocation.h */,
+				56D676671B7BA65B003DC597 /* CDConcertLocation.m */,
+				56D6766C1B7BA6BC003DC597 /* CDConcertLocation+ConcertLocationHelper.h */,
+				56D6766D1B7BA6BC003DC597 /* CDConcertLocation+ConcertLocationHelper.m */,
 			);
 			name = "Core Data";
 			sourceTree = "<group>";
@@ -510,12 +571,11 @@
 		569513841B5D1F42008A649B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				56A65C701B68AE2700619189 /* FBSDKCoreKit.framework */,
-				56A65C711B68AE2700619189 /* FBSDKLoginKit.framework */,
+				56D857E01B7DD84D006B5C85 /* iTunesArtwork.png */,
 				56A65C691B68A9E000619189 /* onboarding.mov */,
 				56D395DF1B5F8C00000DC427 /* Third party */,
-				569513911B5D1F42008A649B /* Images.xcassets */,
 				5658BA961B63F7E3004F08BB /* Fonts */,
+				569513911B5D1F42008A649B /* Images.xcassets */,
 				569513851B5D1F42008A649B /* Info.plist */,
 				569513861B5D1F42008A649B /* main.m */,
 			);
@@ -555,6 +615,8 @@
 				567409E81B60DD3900638FEF /* MenuViewController.m */,
 				5684B1C41B6619BD009EF346 /* TicketShopDetailViewController.h */,
 				5684B1C51B6619BD009EF346 /* TicketShopDetailViewController.m */,
+				56740A181B60F0CA00638FEF /* ConcertsViewController.h */,
+				56740A191B60F0CA00638FEF /* ConcertsViewController.m */,
 				56DF68171B7223490025DBB1 /* Concert and detail views */,
 				567409E51B60DD3900638FEF /* FavoriteConcertViewController.h */,
 				567409E61B60DD3900638FEF /* FavoriteConcertViewController.m */,
@@ -640,6 +702,8 @@
 				5684B1D41B662135009EF346 /* ConcertRefreshControl.m */,
 				5684B1BC1B6612C5009EF346 /* LoadingTableView.h */,
 				5684B1BD1B6612C5009EF346 /* LoadingTableView.m */,
+				56D857E81B7DF9B3006B5C85 /* LoadingCollectionView.h */,
+				56D857E91B7DF9B3006B5C85 /* LoadingCollectionView.m */,
 				567C6F471B72CB1100F3BFA3 /* CustomPageControlView.h */,
 				567C6F481B72CB1100F3BFA3 /* CustomPageControlView.m */,
 				5658BA911B63F757004F08BB /* SearchNavigationView.h */,
@@ -653,6 +717,9 @@
 				5684B1D61B66220F009EF346 /* TutorialPopupView.h */,
 				5684B1D71B66220F009EF346 /* TutorialPopupView.m */,
 				5684B1D81B66220F009EF346 /* TutorialPopupView.xib */,
+				56D857E21B7DD90C006B5C85 /* RGIndexView.h */,
+				56D857E31B7DD90C006B5C85 /* RGIndexView.m */,
+				56D6F2911B7CBC9F006D765D /* Filter Location views */,
 			);
 			name = "Custom views";
 			path = "custom views";
@@ -663,6 +730,8 @@
 			children = (
 				5619A3121B6C0253000901F7 /* BaseImageModel.h */,
 				5619A3131B6C0253000901F7 /* BaseImageModel.m */,
+				56D857EE1B7E2DB2006B5C85 /* ArtistModel.h */,
+				56D857EF1B7E2DB2006B5C85 /* ArtistModel.m */,
 				5684B1D01B661DCB009EF346 /* ConcertModel.h */,
 				5684B1D11B661DCB009EF346 /* ConcertModel.m */,
 				56F509AF1B7955DD004AF51C /* ConcertLocation.h */,
@@ -671,6 +740,8 @@
 				56A65C9F1B6A173200619189 /* Band.m */,
 				56A65CA01B6A173200619189 /* Genre.h */,
 				56A65CA11B6A173200619189 /* Genre.m */,
+				56D857E51B7DF759006B5C85 /* FriendObject.h */,
+				56D857E61B7DF759006B5C85 /* FriendObject.m */,
 				564F24B31B6BA13500172C16 /* FilterModel.h */,
 				564F24B41B6BA13500172C16 /* FilterModel.m */,
 				56A65CA71B6A1B7600619189 /* SortingObject.h */,
@@ -680,14 +751,11 @@
 				5658BAA41B640D67004F08BB /* networking */,
 				56740A071B60EE2700638FEF /* GeneralSettings.h */,
 				56740A081B60EE2700638FEF /* GeneralSettings.m */,
-				56D395D51B5F8133000DC427 /* UIColor+GlobalColors.h */,
-				56D395D61B5F8133000DC427 /* UIColor+GlobalColors.m */,
-				5684B1CA1B661B0E009EF346 /* UITextField+Helper.h */,
-				5684B1CB1B661B0E009EF346 /* UITextField+Helper.m */,
-				5684B1DB1B6649E7009EF346 /* NSDictionary+nonNullObjectForKey.h */,
-				5684B1DC1B6649E7009EF346 /* NSDictionary+nonNullObjectForKey.m */,
+				56D6766F1B7BD020003DC597 /* Categories */,
 				56740A141B60F06C00638FEF /* Core Data */,
 				56D395D81B5F88DF000DC427 /* transitionManagers */,
+				56D857F11B7E3E5E006B5C85 /* TrackingManager.h */,
+				56D857F21B7E3E5E006B5C85 /* TrackingManager.m */,
 			);
 			path = "custom objects";
 			sourceTree = "<group>";
@@ -712,6 +780,8 @@
 		56D395DF1B5F8C00000DC427 /* Third party */ = {
 			isa = PBXGroup;
 			children = (
+				56A65C701B68AE2700619189 /* FBSDKCoreKit.framework */,
+				56A65C711B68AE2700619189 /* FBSDKLoginKit.framework */,
 				56D395E01B5F8C11000DC427 /* Reachability.h */,
 				56D395E11B5F8C11000DC427 /* Reachability.m */,
 				56D395E21B5F8C11000DC427 /* UIImage+ImageEffects.h */,
@@ -720,11 +790,44 @@
 			name = "Third party";
 			sourceTree = "<group>";
 		};
+		56D6766F1B7BD020003DC597 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				56D395D51B5F8133000DC427 /* UIColor+GlobalColors.h */,
+				56D395D61B5F8133000DC427 /* UIColor+GlobalColors.m */,
+				5684B1CA1B661B0E009EF346 /* UITextField+Helper.h */,
+				5684B1CB1B661B0E009EF346 /* UITextField+Helper.m */,
+				5684B1DB1B6649E7009EF346 /* NSDictionary+nonNullObjectForKey.h */,
+				5684B1DC1B6649E7009EF346 /* NSDictionary+nonNullObjectForKey.m */,
+				56D676701B7BD02F003DC597 /* NSDate+DateHelper.h */,
+				56D676711B7BD02F003DC597 /* NSDate+DateHelper.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		56D6F2911B7CBC9F006D765D /* Filter Location views */ = {
+			isa = PBXGroup;
+			children = (
+				56D6F29E1B7CC9D0006D765D /* DBMapSelectorManager.h */,
+				56D6F29F1B7CC9D0006D765D /* DBMapSelectorManager.m */,
+				56D6F2A01B7CC9D0006D765D /* DBMapSelectorGestureRecognizer.h */,
+				56D6F2A11B7CC9D0006D765D /* DBMapSelectorGestureRecognizer.m */,
+				56D6F29B1B7CC363006D765D /* MapOverlay.h */,
+				56D6F29C1B7CC363006D765D /* MapOverlay.m */,
+				56D6F2921B7CBCC2006D765D /* MapOverlayRenderer.h */,
+				56D6F2931B7CBCC2006D765D /* MapOverlayRenderer.m */,
+				56D6F2951B7CBE69006D765D /* FilterLocationAnnotation.h */,
+				56D6F2961B7CBE69006D765D /* FilterLocationAnnotation.m */,
+				56D6F2981B7CBEDA006D765D /* FilterLocationAnnotationView.h */,
+				56D6F2991B7CBEDA006D765D /* FilterLocationAnnotationView.m */,
+			);
+			name = "Filter Location views";
+			path = ../viewcontrollers;
+			sourceTree = "<group>";
+		};
 		56DF68171B7223490025DBB1 /* Concert and detail views */ = {
 			isa = PBXGroup;
 			children = (
-				56740A181B60F0CA00638FEF /* ConcertsViewController.h */,
-				56740A191B60F0CA00638FEF /* ConcertsViewController.m */,
 				56DF68181B7223A40025DBB1 /* ConcertDetailViewController.h */,
 				56DF68191B7223A40025DBB1 /* ConcertDetailViewController.m */,
 				56DF681A1B7223A40025DBB1 /* ConcertDetailBaseViewController.h */,
@@ -765,6 +868,8 @@
 				56D395D21B5F806B000DC427 /* RoundedButton.m */,
 				5658BA9A1B63FE72004F08BB /* TabbingButton.h */,
 				5658BA9B1B63FE72004F08BB /* TabbingButton.m */,
+				56D857F41B7EB32F006B5C85 /* SortingButton.h */,
+				56D857F51B7EB32F006B5C85 /* SortingButton.m */,
 				56DF682A1B72B7350025DBB1 /* WebsiteButton.h */,
 				56DF682B1B72B7350025DBB1 /* WebsiteButton.m */,
 			);
@@ -862,6 +967,7 @@
 				5684B1DA1B66220F009EF346 /* TutorialPopupView.xib in Resources */,
 				569513901B5D1F42008A649B /* Main.storyboard in Resources */,
 				569513921B5D1F42008A649B /* Images.xcassets in Resources */,
+				56D857E11B7DD84D006B5C85 /* iTunesArtwork.png in Resources */,
 				567409F91B60EC4400638FEF /* Montserrat-Light.otf in Resources */,
 				56A65C6A1B68A9E000619189 /* onboarding.mov in Resources */,
 				567409DF1B60DC1C00638FEF /* Montserrat-Bold.ttf in Resources */,
@@ -890,16 +996,24 @@
 				56A65C6F1B68AD0600619189 /* FacebookManager.m in Sources */,
 				56740A061B60EE0900638FEF /* BaseTableViewCell.m in Sources */,
 				5619A30E1B6BFF90000901F7 /* ImageDownloadBaseViewController.m in Sources */,
+				56D676721B7BD02F003DC597 /* NSDate+DateHelper.m in Sources */,
+				56D6766E1B7BA6BC003DC597 /* CDConcertLocation+ConcertLocationHelper.m in Sources */,
+				56D857F01B7E2DB2006B5C85 /* ArtistModel.m in Sources */,
 				56F509B41B795E6E004AF51C /* ConcertLoadMoreTableViewCell.m in Sources */,
 				56A65C991B6A12B300619189 /* FilterTableViewCell.m in Sources */,
 				5695138A1B5D1F42008A649B /* AppDelegate.m in Sources */,
+				56D6F2A21B7CC9D0006D765D /* DBMapSelectorManager.m in Sources */,
 				567409F31B60EB5700638FEF /* BadgeCounterView.m in Sources */,
+				56D6766B1B7BA66D003DC597 /* CDConcert.m in Sources */,
 				56A65C851B6957B000619189 /* BandCollectionViewCell.m in Sources */,
 				5619A31F1B6C32FD000901F7 /* ConcertViewDatasource.m in Sources */,
 				5658BAA81B640D77004F08BB /* AbstractClient.m in Sources */,
 				5684B1D91B66220F009EF346 /* TutorialPopupView.m in Sources */,
 				56A65CB51B6A6FCC00619189 /* MARKRangeSlider.m in Sources */,
+				56D6F29A1B7CBEDA006D765D /* FilterLocationAnnotationView.m in Sources */,
+				56D857E41B7DD90C006B5C85 /* RGIndexView.m in Sources */,
 				567409DD1B60DAEC00638FEF /* StoryboardManager.m in Sources */,
+				56D857E71B7DF759006B5C85 /* FriendObject.m in Sources */,
 				56A65C8A1B69728A00619189 /* FilterButton.m in Sources */,
 				567D7B5D1B709CFD0015EBB3 /* BandsDownloadClient.m in Sources */,
 				56D395DB1B5F8928000DC427 /* OverlayTransitionManager.m in Sources */,
@@ -913,18 +1027,25 @@
 				56740A1A1B60F0CA00638FEF /* ConcertsViewController.m in Sources */,
 				56A65C9D1B6A16F500619189 /* FilterGenresViewController.m in Sources */,
 				56D395D71B5F8133000DC427 /* UIColor+GlobalColors.m in Sources */,
+				56D6F2A31B7CC9D0006D765D /* DBMapSelectorGestureRecognizer.m in Sources */,
 				5684B1CC1B661B0E009EF346 /* UITextField+Helper.m in Sources */,
 				56DF68261B723B040025DBB1 /* ConcertFriendsViewController.m in Sources */,
 				56A65CA31B6A173200619189 /* Genre.m in Sources */,
 				56A65C791B68E14F00619189 /* SoundLove.xcdatamodeld in Sources */,
+				56D857F31B7E3E5E006B5C85 /* TrackingManager.m in Sources */,
+				56D6F2941B7CBCC2006D765D /* MapOverlayRenderer.m in Sources */,
 				5619A3111B6BFFB5000901F7 /* ImageDownloader.m in Sources */,
 				56D395D31B5F806B000DC427 /* RoundedButton.m in Sources */,
 				564F24B51B6BA13500172C16 /* FilterModel.m in Sources */,
+				56D6F29D1B7CC363006D765D /* MapOverlay.m in Sources */,
 				56DF68221B7223A40025DBB1 /* ConcertDetailInfoViewController.m in Sources */,
 				567D7B631B70AEA00015EBB3 /* FilterBandsViewController.m in Sources */,
+				56D6F2971B7CBE69006D765D /* FilterLocationAnnotation.m in Sources */,
 				5619A31B1B6C2993000901F7 /* CDConcertImage.m in Sources */,
 				5658BA941B63F757004F08BB /* SearchNavigationView.m in Sources */,
 				5619A3221B6C3392000901F7 /* ConcertViewDatasourceManager.m in Sources */,
+				56D857F61B7EB32F006B5C85 /* SortingButton.m in Sources */,
+				56D857ED1B7E2D68006B5C85 /* ArtistDownloadClient.m in Sources */,
 				56740A131B60EFEA00638FEF /* MenuTransitionManager.m in Sources */,
 				56A65C901B6974B900619189 /* FilterNavigationController.m in Sources */,
 				5658BA991B63FA35004F08BB /* CustomNavigationView.m in Sources */,
@@ -934,6 +1055,7 @@
 				567409FE1B60ED4700638FEF /* InfoViewController.m in Sources */,
 				5684B1D51B662135009EF346 /* ConcertRefreshControl.m in Sources */,
 				56740A091B60EE2700638FEF /* GeneralSettings.m in Sources */,
+				56D857EA1B7DF9B3006B5C85 /* LoadingCollectionView.m in Sources */,
 				567409ED1B60DD3900638FEF /* OverlayViewController.m in Sources */,
 				56A65C821B691E4200619189 /* BasicButton.m in Sources */,
 				56DF68201B7223A40025DBB1 /* ConcertDetailViewController.m in Sources */,
@@ -949,6 +1071,7 @@
 				56740A221B60F17C00638FEF /* FestivalTransitionManager.m in Sources */,
 				5684B1C21B6612D8009EF346 /* SearchEmptyView.m in Sources */,
 				5684B1E01B664B7C009EF346 /* ConcertDownloadClient.m in Sources */,
+				56D676651B7BA267003DC597 /* FavoriteConcertsClient.m in Sources */,
 				567C6F461B72BAA800F3BFA3 /* InviteFriendButton.m in Sources */,
 				5619A30B1B6BE231000901F7 /* FlatDatePicker.m in Sources */,
 				56740A171B60F07B00638FEF /* CoreDataHandler.m in Sources */,
@@ -962,10 +1085,10 @@
 				56A65CA61B6A18D300619189 /* SortingViewController.m in Sources */,
 				5684B1DD1B6649E7009EF346 /* NSDictionary+nonNullObjectForKey.m in Sources */,
 				5684B1C91B6619EC009EF346 /* TicketShopTableViewCell.m in Sources */,
-				5619A3181B6C2993000901F7 /* CDConcert.m in Sources */,
 				56A65C931B69763300619189 /* FilterViewController.m in Sources */,
 				5684B1BE1B6612C5009EF346 /* LoadingTableView.m in Sources */,
 				5684B1CF1B661DB3009EF346 /* TicketShopperClient.m in Sources */,
+				56D676681B7BA65B003DC597 /* CDConcertLocation.m in Sources */,
 				56D395E41B5F8C11000DC427 /* Reachability.m in Sources */,
 				567D7B5A1B709CF40015EBB3 /* ConcertRankClient.m in Sources */,
 				56740A231B60F17C00638FEF /* FestivalTransitionAnimator.m in Sources */,

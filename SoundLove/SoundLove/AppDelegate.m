@@ -23,18 +23,19 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
+
     UIViewController *rootViewController = nil;
-//    if ([FacebookManager isUserLoggedInToFacebook]) {
-//        rootViewController = [StoryboardManager mainNavigationController];
-//    } else {
+    if ([FacebookManager isUserLoggedInToFacebook]) {
+        rootViewController = [StoryboardManager mainNavigationController];
+    } else {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         rootViewController = [storyboard instantiateInitialViewController];
-//    }
+    }
 
     self.window.rootViewController = rootViewController;
 
-    return [[FBSDKApplicationDelegate sharedInstance] application:application
-                                    didFinishLaunchingWithOptions:launchOptions];
+    return YES;
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -75,18 +76,25 @@
     }
 }
 
-//- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
-//{
-//    // Store the deviceToken in the current installation and save it to Parse.
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    // Store the deviceToken in the current installation and save it to Parse.
 //    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
 //    [currentInstallation setDeviceTokenFromData:deviceToken];
 //    [currentInstallation saveInBackground];
-//}
-//
-//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
-//{
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"userRegisteredForNotifications" object:nil];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
 //    [PFPush handlePush:userInfo];
-//}
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"userRegisteredForNotifications" object:nil];
+}
 
 #pragma mark - rating the app
 - (void)rateTheApp
