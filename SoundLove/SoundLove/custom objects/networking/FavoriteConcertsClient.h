@@ -10,4 +10,6 @@
 
 @interface FavoriteConcertsClient : AbstractClient
 
+- (void)downloadConcertsWithCompletionBlock:(void (^)(NSString *errorMessage, NSArray *concertsArray))completionBlock;
+
 @end

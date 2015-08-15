@@ -10,4 +10,6 @@
 
 @interface ArtistDownloadClient : AbstractClient
 
+- (void)downloadFavoriteArtistsWithCompletionBlock:(void (^)(NSArray *artists, BOOL completed, NSString *errorMessage))completionBlock;
+
 @end

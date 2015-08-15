@@ -9,9 +9,38 @@
 #import "FacebookManager.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import "AbstractClient.h"
+
+@interface FacebookLoginClient : AbstractClient
+- (void)sendFacebookLoginDataToServer:(NSString*)accessToken userID:(NSString*)userID completionBlock:(void (^)(BOOL completed, NSString *errorMessage))completionBlock;
+@end
+
+@implementation FacebookLoginClient
+
+- (void)sendFacebookLoginDataToServer:(NSString*)accessToken userID:(NSString*)userID completionBlock:(void (^)(BOOL completed, NSString *errorMessage))completionBlock
+{
+    NSString *deviceID = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+
+    NSString *urlString = [NSString stringWithFormat:@"%@device_id=%@&user_id=%@", kFacebookConnectURL, deviceID, userID];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[self defaultSessionConfiguration]];
+
+    [super startDataTaskWithRequest:request forSession:session withCompletionBlock:^(NSData *data, NSString *errorMessage, BOOL completed) {
+        if (completionBlock) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionBlock(completed, errorMessage);
+            });
+        }
+    }];
+}
+
+@end
+
+
 
 @interface FacebookManager ()
 @property (nonatomic, strong) FBSDKLoginManager *loginManager;
+@property (nonatomic, strong) FacebookLoginClient *facebookLoginClient;
 @end
 
 @implementation FacebookManager
@@ -35,6 +64,7 @@
     }
     else
     {
+        __weak typeof(self) weakSelf = self;
         [self.loginManager logInWithReadPermissions:@[@"email", @"public_profile", @"user_friends"] handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
             if (error) {
                 // Process error
@@ -47,19 +77,11 @@
                     completionBlock(NO, nil);
                 }
             } else {
-
                 NSString *userID = result.token.userID;
                 NSString *accessToken = result.token.tokenString;
-
                 [FBSDKAccessToken setCurrentAccessToken:result.token];
-                if (completionBlock) {
-                    completionBlock(YES, nil);
-                }
-//                // If you ask for multiple permissions at once, you
-//                // should check if specific permissions missing
-//                if ([result.grantedPermissions containsObject:@"email"]) {
-//                    // Do work
-//                }
+
+                [weakSelf sendFacebookLoginDataToServer:accessToken userID:userID completionBlock:completionBlock];
             }
         }];
     }
@@ -68,6 +90,16 @@
 - (void)logoutUser
 {
     [self.loginManager logOut];
+}
+
+#pragma mark - server login
+- (void)sendFacebookLoginDataToServer:(NSString*)accessToken userID:(NSString*)userID completionBlock:(void (^)(BOOL completed, NSString *errorMessage))completionBlock
+{
+    if (self.facebookLoginClient) {
+        self.facebookLoginClient = nil;
+    }
+    self.facebookLoginClient = [[FacebookLoginClient alloc] init];
+    [self.facebookLoginClient sendFacebookLoginDataToServer:accessToken userID:userID completionBlock:completionBlock];
 }
 
 #pragma mark - class methods
@@ -83,7 +115,7 @@
 
 + (BOOL)isUserLoggedInToFacebook
 {
-    return [FBSDKAccessToken currentAccessToken];
+    return [FBSDKAccessToken currentAccessToken].tokenString.length != 0;
 }
 
 @end

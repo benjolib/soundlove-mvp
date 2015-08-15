@@ -20,6 +20,8 @@
 
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
+    NSLog(@"URL for image loading: %@", urlString);
+
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     self.downloadTask = [session downloadTaskWithRequest:request completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {

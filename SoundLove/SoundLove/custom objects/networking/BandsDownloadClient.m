@@ -21,10 +21,7 @@
         if (completed)
         {
             NSArray *bandsArray = [weakSelf parseJSONData:data];
-
-            dispatch_async(dispatch_get_main_queue(), ^{
-                completionBlock(bandsArray, errorMessage, YES);
-            });
+            completionBlock(bandsArray, errorMessage, YES);
         }
         else
         {
