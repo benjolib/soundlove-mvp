@@ -8,11 +8,11 @@
 
 #import "DBMapSelectorGestureRecognizer.h"
 
-#import "DBMapSelectorAnnotation.h"
-#import "DBMapSelectorOverlay.h"
-#import "DBMapSelectorOverlayRenderer.h"
+#import "FilterLocationAnnotation.h"
+#import "FilterLocationAnnotationView.h"
+#import "MapOverlay.h"
+#import "MapOverlayRenderer.h"
 #import "DBMapSelectorManager.h"
-
 
 NSInteger const defaultRadius       = 1000;
 NSInteger const defaultMinDistance  = 100;
@@ -21,8 +21,8 @@ NSInteger const defaultMaxDistance  = 10000;
 
 @interface DBMapSelectorManager () {
     BOOL                            _isFirstTimeApplySelectorSettings;
-    DBMapSelectorOverlay            *_selectorOverlay;
-    DBMapSelectorOverlayRenderer    *_selectorOverlayRenderer;
+    MapOverlay            *_selectorOverlay;
+    MapOverlayRenderer    *_selectorOverlayRenderer;
     
     BOOL                            _mapViewGestureEnabled;
     MKMapPoint                      _prevMapPoint;
@@ -50,7 +50,7 @@ NSInteger const defaultMaxDistance  = 10000;
 - (void)prepareForFirstUse {
     [self selectorSetDefaults];
     
-    _selectorOverlay = [[DBMapSelectorOverlay alloc] initWithCenterCoordinate:_circleCoordinate radius:_circleRadius];
+    _selectorOverlay = [[MapOverlay alloc] initWithCenterCoordinate:_circleCoordinate radius:_circleRadius];
 
 #ifdef DEBUG
     _radiusTouchView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -267,17 +267,6 @@ NSInteger const defaultMaxDistance  = 10000;
     }
 }
 
-- (void)setFillInside:(BOOL)fillInside {
-    if (_fillInside != fillInside) {
-        _fillInside = fillInside;
-        _selectorOverlay.fillInside = fillInside;
-    }
-}
-
-- (void)setShouldShowRadiusText:(BOOL)shouldShowRadiusText {
-    _selectorOverlay.shouldShowRadiusText = shouldShowRadiusText;
-}
-
 - (void)setShouldLongPressGesture:(BOOL)shouldLongPressGesture {
     if (_shouldLongPressGesture != shouldLongPressGesture) {
         _shouldLongPressGesture = shouldLongPressGesture;
@@ -313,13 +302,13 @@ NSInteger const defaultMaxDistance  = 10000;
 
 - (void)displaySelectorAnnotationIfNeeded {
     for (id<MKAnnotation> annotation in self.mapView.annotations) {
-        if ([annotation isKindOfClass:[DBMapSelectorAnnotation class]]) {
+        if ([annotation isKindOfClass:[FilterLocationAnnotation class]]) {
             [self.mapView removeAnnotation:annotation];
         }
     }
     
     if (_hidden == NO && ((_editingType == DBMapSelectorEditingTypeFull) || (_editingType == DBMapSelectorEditingTypeCoordinateOnly))) {
-        DBMapSelectorAnnotation *selectorAnnotation = [[DBMapSelectorAnnotation alloc] init];
+        FilterLocationAnnotation *selectorAnnotation = [[FilterLocationAnnotation alloc] init];
         selectorAnnotation.coordinate = _circleCoordinate;
         [self.mapView addAnnotation:selectorAnnotation];
     }
@@ -328,15 +317,15 @@ NSInteger const defaultMaxDistance  = 10000;
 #pragma mark - MKMapView Delegate
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
-    if ([annotation isKindOfClass:[DBMapSelectorAnnotation class]]) {
-        static NSString *selectorIdentifier = @"DBMapSelectorAnnotationView";
-        MKPinAnnotationView *selectorAnnotationView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:selectorIdentifier];
+    if ([annotation isKindOfClass:[MKUserLocation class]]) {
+        static NSString *selectorIdentifier = @"FilterLocationAnnotation";
+        FilterLocationAnnotationView *selectorAnnotationView = (FilterLocationAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:selectorIdentifier];
         if (selectorAnnotationView) {
             selectorAnnotationView.annotation = annotation;
         } else {
-            selectorAnnotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:selectorIdentifier];
-            selectorAnnotationView.pinColor = MKPinAnnotationColorGreen;
+            selectorAnnotationView = [[FilterLocationAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:selectorIdentifier];
             selectorAnnotationView.draggable = YES;
+            selectorAnnotationView.annotation = annotation;
         }
         selectorAnnotationView.selected = YES;
         return selectorAnnotationView;
@@ -361,10 +350,8 @@ NSInteger const defaultMaxDistance  = 10000;
 
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
     MKOverlayRenderer *overlayRenderer;
-    if ([overlay isKindOfClass:[DBMapSelectorOverlay class]]) {
-        _selectorOverlayRenderer = [[DBMapSelectorOverlayRenderer alloc] initWithSelectorOverlay:(DBMapSelectorOverlay *)overlay];
-        _selectorOverlayRenderer.fillColor = _fillColor;
-        _selectorOverlayRenderer.strokeColor = _strokeColor;
+    if ([overlay isKindOfClass:[MapOverlay class]]) {
+        _selectorOverlayRenderer = [[MapOverlayRenderer alloc] initWithSelectorOverlay:(MapOverlay *)overlay];
         overlayRenderer = _selectorOverlayRenderer;
     } else if ([overlay isKindOfClass:[MKTileOverlay class]]) {
         overlayRenderer = [[MKTileOverlayRenderer alloc] initWithTileOverlay:overlay];

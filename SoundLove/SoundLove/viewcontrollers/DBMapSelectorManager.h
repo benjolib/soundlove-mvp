@@ -28,7 +28,6 @@ typedef NS_ENUM(NSInteger, DBMapSelectorEditingType) {
 
 @end
 
-@class DBMapSelectorOverlay;
 @interface DBMapSelectorManager : NSObject
 
 @property (nonatomic, weak) id<DBMapSelectorManagerDelegate> delegate;

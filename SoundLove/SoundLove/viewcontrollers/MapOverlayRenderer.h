@@ -8,6 +8,10 @@
 
 #import <MapKit/MapKit.h>
 
+@class MapOverlay;
+
 @interface MapOverlayRenderer : MKCircleRenderer
+
+- (instancetype)initWithSelectorOverlay:(MapOverlay *)selectorOverlay;
 
 @end
