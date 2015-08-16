@@ -15,7 +15,7 @@
 @property (nonatomic, weak) IBOutlet TabbingButton *favoriteButton;
 @property (nonatomic, weak) IBOutlet TabbingButton *recommendedButton;
 @property (nonatomic, weak) IBOutlet LoadingCollectionView *collectionView;
-@property (nonatomic, weak) IBOutlet CustomNavigationView *customNavigationView;
+@property (nonatomic, weak) IBOutlet UIView *wrapperView;
 
 - (IBAction)favoriteButtonPressed:(TabbingButton*)button;
 - (IBAction)recommendButtonPressed:(TabbingButton*)button;

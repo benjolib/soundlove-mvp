@@ -96,6 +96,24 @@
     }
 }
 
+- (BOOL)isLocationValid:(CLLocation*)location
+{
+    if (location.horizontalAccuracy < 0) {
+        return NO;
+    }
+
+    if (location.coordinate.latitude == 0.0 && location.coordinate.longitude == 0.0) {
+        return NO;
+    }
+
+    if (!CLLocationCoordinate2DIsValid(location.coordinate)) {
+        return NO;
+    }
+
+    // newLocation is good to use
+    return YES;
+}
+
 - (void)dealloc
 {
     _locationManager.delegate = nil;

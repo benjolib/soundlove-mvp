@@ -59,9 +59,33 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    switch (indexPath.row) {
+        case 0:
+            [self performSegueWithIdentifier:@"openWhatWeDo" sender:nil];
+            break;
+        case 1:
+            [self shareTheApp];
+            break;
+        case 2:
+            [self rateTheApp];
+            break;
+        case 3:
+            [self openFestivalamaApp];
+            break;
+        case 4:
+            [self openOurApps];
+            break;
+        case 5:
+            [self openJobSearch];
+            break;
+        default:
+            break;
+    }
+
+
     if (indexPath.row == 0) {
 //        [[TrackingManager sharedManager] trackUserSelectsWasWirMachen];
-        [self performSegueWithIdentifier:@"openWhatWeDo" sender:nil];
+
     } else if (indexPath.row == 1) {
 //        [[TrackingManager sharedManager] trackUserSelectsTeileDieApp];
         [self shareTheApp];
@@ -90,10 +114,30 @@
 
 - (void)rateTheApp
 {
+    [self presentAppStoreViewWithAppID:[GeneralSettings appStoreID]];
+}
+
+- (void)openFestivalamaApp
+{
+    [self presentAppStoreViewWithAppID:@"1013815740"];
+}
+
+- (void)openOurApps
+{
+
+}
+
+- (void)openJobSearch
+{
+
+}
+
+- (void)presentAppStoreViewWithAppID:(NSString*)appStoreID
+{
     SKStoreProductViewController *storeProductViewController = [[SKStoreProductViewController alloc] init];
     [storeProductViewController setDelegate:self];
 
-    [storeProductViewController loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier : [GeneralSettings appStoreID]} completionBlock:^(BOOL result, NSError *error) {
+    [storeProductViewController loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier : appStoreID} completionBlock:^(BOOL result, NSError *error) {
         if (error) {
             NSLog(@"Error %@ with User Info %@.", error, [error userInfo]);
 

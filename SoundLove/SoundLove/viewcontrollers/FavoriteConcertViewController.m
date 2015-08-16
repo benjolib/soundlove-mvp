@@ -136,7 +136,7 @@
     NSDateComponents *todayDateComponents = [todayDate dateComponents];
     NSInteger currentYear = todayDateComponents.year;
     NSInteger currentMonth = todayDateComponents.month;
-    NSInteger currentWeek = todayDateComponents.weekOfMonth;
+    NSInteger currentWeek = todayDateComponents.weekOfYear;
     NSInteger currentDay = todayDateComponents.day;
 
     for (ConcertModel *concert in concertsArray)
@@ -146,7 +146,7 @@
         NSDateComponents *components = [concertDate dateComponents];
         NSInteger year = components.year;
         NSInteger month = components.month;
-        NSInteger week = components.weekOfMonth;
+        NSInteger week = components.weekOfYear;
         NSInteger day = components.day;
 
         if (year == currentYear)

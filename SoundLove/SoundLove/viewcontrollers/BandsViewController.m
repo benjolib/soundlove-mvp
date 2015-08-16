@@ -13,10 +13,12 @@
 #import "ArtistDownloadClient.h"
 #import "LoadingCollectionView.h"
 #import "ArtistModel.h"
+#import "ArtistRecommendView.h"
 
-@interface BandsViewController ()
+@interface BandsViewController () <ArtistRecommendViewDelegate>
 @property (nonatomic, strong) NSMutableArray *artistsArray;
 @property (nonatomic, strong) ArtistDownloadClient *artistDownloadClient;
+@property (nonatomic, strong) ArtistRecommendView *recommendedView;
 @end
 
 @implementation BandsViewController
@@ -25,17 +27,69 @@
 {
     [self.recommendedButton setButtonActive:NO];
     [button setButtonActive:YES];
+    [self switchSubviewsToRecommend:NO];
 }
 
 - (IBAction)recommendButtonPressed:(TabbingButton*)button
 {
     [self.favoriteButton setButtonActive:NO];
     [button setButtonActive:YES];
+
+    [self createRecommendView];
+    [self switchSubviewsToRecommend:YES];
 }
 
 - (NSMutableArray *)objectsToDisplay
 {
     return self.artistsArray;
+}
+
+- (void)switchSubviewsToRecommend:(BOOL)displayRecommendView
+{
+    if (displayRecommendView) {
+        [UIView transitionFromView:self.collectionView
+                            toView:self.recommendedView
+                          duration:0.3
+                           options:UIViewAnimationOptionLayoutSubviews | UIViewAnimationOptionShowHideTransitionViews
+                        completion:^(BOOL finished) {
+                            self.recommendedView.alpha = 1.0;
+                            [self.recommendedView setNeedsLayout];
+                        }];
+    } else {
+        [UIView transitionFromView:self.recommendedView
+                            toView:self.collectionView
+                          duration:0.3
+                           options:UIViewAnimationOptionLayoutSubviews | UIViewAnimationOptionShowHideTransitionViews
+                        completion:^(BOOL finished) {
+                            [self downloadArtists];
+                        }];
+
+    }
+}
+
+#pragma mark - recommend view methods
+- (void)createRecommendView
+{
+    self.recommendedView = [[ArtistRecommendView alloc] init];
+    self.recommendedView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.recommendedView.delegate = self;
+    [self.wrapperView addSubview:self.recommendedView];
+    self.recommendedView.alpha = 0.0;
+
+    [self.wrapperView addConstraint:[NSLayoutConstraint constraintWithItem:self.wrapperView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.recommendedView attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0.0]];
+    [self.wrapperView addConstraint:[NSLayoutConstraint constraintWithItem:self.wrapperView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.recommendedView attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0.0]];
+    [self.wrapperView addConstraint:[NSLayoutConstraint constraintWithItem:self.wrapperView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.recommendedView attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0.0]];
+    [self.wrapperView addConstraint:[NSLayoutConstraint constraintWithItem:self.wrapperView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.recommendedView attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0]];
+}
+
+- (void)artistRecommendViewFadeOutSelected:(ArtistModel *)artistModel
+{
+
+}
+
+- (void)artistRecommendViewFadeInSelected:(ArtistModel *)artistModel
+{
+
 }
 
 #pragma mark - collectionView methods

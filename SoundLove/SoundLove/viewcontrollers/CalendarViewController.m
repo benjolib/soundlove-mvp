@@ -20,9 +20,12 @@
 
 @interface CalendarViewController () <NSFetchedResultsControllerDelegate, CalendarEventTableViewCellDelegate>
 @property (nonatomic, strong) NSArray *savedConcertsArray;
+@property (nonatomic, strong) NSArray *friendsArray;
+
 @property (nonatomic, strong) NSFetchedResultsController *fetchController;
 @property (nonatomic, strong) NSMutableSet *cellsCurrentlyEditing;
 @property (nonatomic) BOOL isSearching;
+@property (nonatomic) BOOL savedEventsSelected;
 @end
 
 @implementation CalendarViewController
@@ -32,6 +35,7 @@
     [button setButtonActive:YES];
     [self.eventsButton setButtonActive:NO];
 
+    self.savedEventsSelected = NO;
     [self loadFriends];
 }
 
@@ -40,11 +44,12 @@
     [button setButtonActive:YES];
     [self.friendsButton setButtonActive:NO];
 
+    self.savedEventsSelected = YES;
     [self loadAllSavedEvents];
 }
 
 #pragma mark - searching
-- (void)searchNavigationViewSearchButtonPressed:(NSString *)searchText
+- (void)searchNavigationViewSearchButtonPressed:(NSString *)searchText searchField:(UITextField *)searchField
 {
     [self searchWithText:searchText];
 }
@@ -54,11 +59,12 @@
     [self searchWithText:searchText];
 }
 
-- (void)searchNavigationViewCancelButtonPressed
+- (void)searchNavigationViewCancelButtonPressedSearchField:(UITextField *)searchField
 {
     [self.tableView hideEmptyView];
 
     [self.fetchController.fetchRequest setPredicate:nil];
+    self.isSearching = NO;
     [self loadAllSavedEvents];
 }
 
@@ -201,13 +207,21 @@
 #pragma mark - tableView methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchController.sections objectAtIndex:section];
-    return [sectionInfo numberOfObjects];
+    if (self.savedEventsSelected) {
+        id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchController.sections objectAtIndex:section];
+        return [sectionInfo numberOfObjects];
+    } else {
+        return self.friendsArray.count;
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return self.fetchController.sections.count;
+    if (self.savedEventsSelected) {
+        return self.fetchController.sections.count;
+    } else {
+        return 1;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -339,7 +353,8 @@
 
 - (void)loadFriends
 {
-
+    // TODO:
+    
     [self.tableView hideLoadingIndicator];
     [self.tableView reloadData];
 }

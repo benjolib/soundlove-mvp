@@ -12,4 +12,7 @@
 
 - (void)setButtonActive:(BOOL)active;
 
+- (void)showBadgeWithValue:(NSInteger)value;
+- (void)hideBadgeView;
+
 @end

@@ -10,7 +10,7 @@
 #import <MapKit/MapKit.h>
 #import "FilterViewController.h"
 
-@interface FilterLocationViewController : FilterViewController <MKMapViewDelegate, UITextFieldDelegate>
+@interface FilterLocationViewController : FilterViewController <MKMapViewDelegate, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UISlider *slider;
 @property (nonatomic, weak) IBOutlet MKMapView *mapView;

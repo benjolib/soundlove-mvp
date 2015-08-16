@@ -8,6 +8,31 @@
 
 #import "FilterLocationHelper.h"
 
+@interface FilterLocationHelper ()
+@property (nonatomic, strong) CLGeocoder *geocoder;
+@end
+
 @implementation FilterLocationHelper
+
+- (void)locationForCityName:(NSString*)name withCompletionBlock:(void(^)(NSArray *placeMarks))completionBlock
+{
+    self.geocoder = [[CLGeocoder alloc] init];
+    [self.geocoder geocodeAddressString:name completionHandler:^(NSArray *placemarks, NSError* error){
+        if (!error) {
+            if (completionBlock) {
+                completionBlock(placemarks);
+            }
+        } else {
+            if (completionBlock) {
+                completionBlock(nil);
+            }
+        }
+    }];
+}
+
+- (void)cancelGeocoding
+{
+    [self.geocoder cancelGeocode];
+}
 
 @end

@@ -15,4 +15,6 @@
 - (void)startLocationDiscoveryWithCompletionBlock:(void(^)(CLLocation *userLocation, NSString *errorMessage))completionBlock;
 - (void)stopLocationDiscovery;
 
+- (BOOL)isLocationValid:(CLLocation*)location;
+
 @end

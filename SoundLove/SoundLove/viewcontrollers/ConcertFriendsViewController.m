@@ -12,6 +12,8 @@
 #import "UIColor+GlobalColors.h"
 #import "ConcertDownloadClient.h"
 #import "FriendObject.h"
+#import "TabbingButton.h"
+#import "ConcertDetailViewController.h"
 
 @interface ConcertFriendsViewController ()
 @property (nonatomic, strong) ConcertDownloadClient *friendsDownloadClient;
@@ -23,36 +25,51 @@
 #pragma mark - collectionView methods
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 30; //self.bandsArray.count;
+    return self.friendsArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     BandCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
 
+    FriendObject *friend = self.friendsArray[indexPath.row];
+    cell.nameLabel.text = friend.name;
+
+    if (friend.image) {
+        cell.artistImageView.image = friend.image;
+    } else {
+        if (!collectionView.dragging && !collectionView.decelerating) {
+            [super startImageDownloadForObject:friend atIndexPath:indexPath];
+        }
+    }
+
     return cell;
+}
+
+- (void)updateTableViewCellAtIndexPath:(NSIndexPath *)indexPath image:(UIImage *)image
+{
+    FriendObject *friendObject = self.friendsArray[indexPath.row];
+
+    BandCollectionViewCell *cell = (BandCollectionViewCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
+    if (image) {
+        friendObject.image = image;
+        cell.artistImageView.image = image;
+    }
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
-
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    CGFloat width = (CGRectGetWidth(collectionView.frame) - 40.0)/3;
-    return CGSizeMake(width, width);
+    return UIEdgeInsetsMake(0.0, 10.0, 0.0, 10.0);
 }
-
-//- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
-//{
-//    return 10.0;
-//}
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 10.0;
+    return (CGRectGetWidth(collectionView.frame) - 3*100)/3;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -76,6 +93,7 @@
         [self.collectionView hideLoadingIndicator];
         if (completed) {
             weakSelf.friendsArray = listOfFriends;
+            [weakSelf setFriendsBadgeVisible];
             [weakSelf.collectionView reloadData];
             [weakSelf adjustPageControl];
         } else {
@@ -84,6 +102,14 @@
             }
         }
     }];
+}
+
+- (void)setFriendsBadgeVisible
+{
+    if ([self.parentViewController isKindOfClass:[ConcertDetailViewController class]]) {
+        ConcertDetailViewController *parentVC = (ConcertDetailViewController*)self.parentViewController;
+        [parentVC.friendsButton showBadgeWithValue:self.friendsArray.count];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated

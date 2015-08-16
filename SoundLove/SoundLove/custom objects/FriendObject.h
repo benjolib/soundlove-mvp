@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BaseImageModel.h"
 
-@interface FriendObject : NSObject
+@interface FriendObject : BaseImageModel
 
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSString *imageURL;
 @property (nonatomic, copy) NSString *userID;
 
 + (FriendObject*)friendObjectWithDictionary:(NSDictionary*)dictionary;

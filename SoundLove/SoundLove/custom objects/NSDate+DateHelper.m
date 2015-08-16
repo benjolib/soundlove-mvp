@@ -13,7 +13,9 @@
 - (NSDateComponents*)dateComponents
 {
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *components = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekOfMonthCalendarUnit | NSDayCalendarUnit fromDate:self];
+    calendar.timeZone = [NSTimeZone localTimeZone];
+    calendar.locale = [NSLocale currentLocale];
+    NSDateComponents *components = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekOfMonthCalendarUnit | NSWeekOfYearCalendarUnit | NSDayCalendarUnit fromDate:self];
     return components;
 }
 

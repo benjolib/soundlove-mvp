@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 
 @interface FilterLocationHelper : NSObject
+
+- (void)locationForCityName:(NSString*)name withCompletionBlock:(void(^)(NSArray *placeMarks))completionBlock;
+- (void)cancelGeocoding;
 
 @end

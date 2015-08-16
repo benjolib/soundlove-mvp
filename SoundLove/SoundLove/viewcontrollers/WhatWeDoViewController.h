@@ -8,8 +8,13 @@
 
 #import "BaseGradientViewController.h"
 
+@class CustomNavigationView;
+
 @interface WhatWeDoViewController : BaseGradientViewController
 
 @property (nonatomic, weak) IBOutlet UIWebView *webview;
+@property (nonatomic, weak) IBOutlet CustomNavigationView *navigationView;
+
+- (IBAction)closeView:(id)sender;
 
 @end

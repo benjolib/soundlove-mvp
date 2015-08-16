@@ -37,6 +37,7 @@
 - (void)setNumberOfDots:(NSInteger)totalDots
 {
     self.totalNumberOfDots = totalDots;
+    [self setNeedsDisplay];
 }
 
 - (void)setCurrentDotIndex:(NSInteger)currentDotIndex

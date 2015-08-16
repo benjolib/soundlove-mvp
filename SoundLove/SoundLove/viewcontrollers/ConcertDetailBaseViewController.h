@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "ConcertModel.h"
+#import "ImageDownloadBaseViewController.h"
 
-@interface ConcertDetailBaseViewController : UIViewController
+@interface ConcertDetailBaseViewController : ImageDownloadBaseViewController
 
 @property (nonatomic, weak) ConcertModel *concertToDisplay;
 
