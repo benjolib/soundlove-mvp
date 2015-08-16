@@ -70,11 +70,9 @@
 
 - (void)populateArray
 {
-    self.sortingOptions = @[[SortingObject sortingWithName:@"Keine Sortierung" andKey:@"" orderDir:@""],
-                           [SortingObject sortingWithName:@"Preis (hoch zu niedrig)" andKey:@"price_from" orderDir:@"DESC"],
-                           [SortingObject sortingWithName:@"Preis (niedrig zu hoch)" andKey:@"price_from" orderDir:@"ASC"],
-                           [SortingObject sortingWithName:@"Date (bald bis in weiter Zukunft)" andKey:@"date_ts" orderDir:@"DESC"],
-                           [SortingObject sortingWithName:@"Date (bald bis in weiter Zukunft)" andKey:@"date_ts" orderDir:@"ASC"]];
+    self.sortingOptions = @[[SortingObject sortingWithType:SortingTypeNone], [SortingObject sortingWithType:SortingTypePreisDESC], [SortingObject sortingWithType:SortingTypePreisASC],
+                            [SortingObject sortingWithType:SortingTypeDateDESC], [SortingObject sortingWithType:SortingTypeDateASC]];
+
 }
 
 - (void)didReceiveMemoryWarning {

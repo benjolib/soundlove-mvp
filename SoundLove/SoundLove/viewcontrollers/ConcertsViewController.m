@@ -33,6 +33,8 @@
 @property (nonatomic) NSInteger currentlySelectedTabIndex;
 
 @property (nonatomic) BOOL showLoadingIndicatorCell;
+@property (nonatomic, strong) NSTimer *searchTimer;
+@property (nonatomic, copy) NSString *searchText;
 @property (nonatomic) BOOL isSearching;
 @end
 
@@ -60,13 +62,7 @@
     [self.tableView reloadData];
     self.currentlySelectedTabIndex = selectedButton.tag;
 
-    [self.datasourceManager loadObjectsAtIndex:selectedButton.tag WithCompletionBlock:^(BOOL completed, NSString *errorMesage) {
-        if (completed) {
-            [self handleDownloadedConcerts];
-        } else {
-            [self handleDownloadErrorMessage:errorMesage];
-        }
-    }];
+    [self downloadConcertsAccordingToSelection];
 }
 
 - (IBAction)filterButtonPressed:(id)sender
@@ -77,16 +73,8 @@
 
 - (void)applySortingOptionToConcerts
 {
-    // TODO:
     self.datasourceManager.currentSortingObject = self.filterModel.sortingObject;
-
-    [self.datasourceManager loadObjectsAtIndex:self.currentlySelectedTabIndex WithCompletionBlock:^(BOOL completed, NSString *errorMesage) {
-        if (completed) {
-            [self handleDownloadedConcerts];
-        } else {
-            [self handleDownloadErrorMessage:errorMesage];
-        }
-    }];
+    [self.tableView reloadData];
 }
 
 - (void)calendarButtonTapped:(UIButton*)button
@@ -128,40 +116,54 @@
 #pragma mark - searchnavigation view delegate methods
 - (void)searchNavigationViewSearchButtonPressed:(NSString *)searchText searchField:(UITextField *)searchField
 {
-//    self.isSearching = YES;
-//    self.searchText = searchText;
-//    [self searchWithSearchText:searchText];
+    self.isSearching = YES;
+    self.searchText = searchText;
+    self.datasourceManager.isSearching = YES;
+
+    [self stopSearchTimer];
+    [self searchForConcerts];
 }
 
 - (void)searchNavigationViewUserEnteredNewCharacter:(NSString *)searchText
 {
     [self cancelAllImageDownloads];
 
-//    self.isSearching = YES;
-//    self.searchText = searchText;
-//    [self searchWithSearchText:searchText];
+    self.isSearching = YES;
+    self.searchText = searchText;
+
+    [self stopSearchTimer];
+    [self startSearchTimer];
 }
 
 - (void)searchNavigationViewCancelButtonPressedSearchField:(UITextField *)searchField
 {
-//    self.isSearching = NO;
-//    self.searchText = @"";
-//    [self.tableView reloadData];
+    self.isSearching = NO;
+    self.searchText = @"";
+
+    self.datasourceManager.isSearching = NO;
+    self.datasourceManager.forceRedownload = NO;
+    self.datasourceManager.searchText = @"";
+    [self downloadConcertsAccordingToSelection];
 }
 
-- (void)searchWithSearchText:(NSString*)searchText
+- (void)searchForConcerts
 {
-//    dispatch_async(dispatch_queue_create("com.SoundLove.searching", NULL), ^{
-//        if (searchText.length > 0) {
-//            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name contains[cd] %@", searchText];
-//            self.searchConcertsArray = [[[self baseObjectsForSearching] filteredArrayUsingPredicate:predicate] mutableCopy];
-//        } else {
-//            self.searchConcertsArray = [self baseObjectsForSearching];
-//        }
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [self.tableView reloadData];
-//        });
-//    });
+    self.datasourceManager.isSearching = YES;
+    self.datasourceManager.forceRedownload = YES;
+    self.datasourceManager.searchText = self.searchText;
+    [self downloadConcertsAccordingToSelection];
+}
+
+- (void)startSearchTimer
+{
+    [self stopSearchTimer];
+    self.searchTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(searchForConcerts) userInfo:nil repeats:NO];
+}
+
+- (void)stopSearchTimer
+{
+    [self.searchTimer invalidate];
+    self.searchTimer = nil;
 }
 
 #pragma mark - tableView methods
@@ -242,7 +244,7 @@
     NSInteger currentOffset = scrollView.contentOffset.y;
     NSInteger maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height;
 
-    if (maximumOffset - currentOffset <= -40 && !self.isSearching && ([self objectsToDisplay].count >= self.datasourceManager.currentLimit)) {
+    if (maximumOffset - currentOffset <= -40 && ([self objectsToDisplay].count >= self.datasourceManager.currentLimit)) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self downloadNextConcerts];
         });
@@ -326,6 +328,17 @@
     }];
 }
 
+- (void)downloadConcertsAccordingToSelection
+{
+    [self.datasourceManager loadObjectsAtIndex:self.currentlySelectedTabIndex WithCompletionBlock:^(BOOL completed, NSString *errorMesage) {
+        if (completed) {
+            [self handleDownloadedConcerts];
+        } else {
+            [self handleDownloadErrorMessage:errorMesage];
+        }
+    }];
+}
+
 - (void)handleDownloadedConcerts
 {
     [self.tableView hideLoadingIndicator];
@@ -378,6 +391,7 @@
     }
 
     self.datasourceManager = [[ConcertViewDatasourceManager alloc] init];
+    self.datasourceManager.currentSortingObject = [SortingObject sortingWithType:SortingTypeNone];
 
     self.filterModel = [[FilterModel alloc] init];
     [self addRefreshController];

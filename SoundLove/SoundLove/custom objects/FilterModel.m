@@ -31,7 +31,7 @@
 {
     self = [super init];
     if (self) {
-        self.sortingObject = [SortingObject sortingWithName:@"Keine Sortierung" andKey:@"" orderDir:@""];
+        self.sortingObject = [SortingObject sortingWithType:SortingTypeNone];
     }
     return self;
 }

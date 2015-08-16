@@ -9,6 +9,7 @@
 #import "ConcertViewDatasourceManager.h"
 #import "NetworkConstants.h"
 #import "FacebookManager.h"
+#import "SortingObject.h"
 
 @implementation ConcertViewDatasourceManager
 
@@ -19,6 +20,30 @@
         self.currentLimit = 20.0;
     }
     return self;
+}
+
+- (void)setCurrentSortingObject:(SortingObject *)currentSortingObject
+{
+    _currentSortingObject = currentSortingObject;
+
+    self.favoriteConcertDatasource.sortingObject = _currentSortingObject;
+    self.recommendedConcertDatasource.sortingObject = _currentSortingObject;
+    self.allConcertDatasource.sortingObject = _currentSortingObject;
+
+    if (_currentSortingObject.sortingType != SortingTypeNone)
+    {
+        self.currentlyUsedObjectsArray = [self sortArray:self.currentlyUsedObjectsArray usingSortingObject:_currentSortingObject];
+    }
+}
+
+- (void)setIsSearching:(BOOL)isSearching
+{
+    _isSearching = isSearching;
+    if (!isSearching) {
+        [self.favoriteConcertDatasource resetDatasource];
+        [self.recommendedConcertDatasource resetDatasource];
+        [self.allConcertDatasource resetDatasource];
+    }
 }
 
 #pragma mark - loading methods
@@ -44,8 +69,8 @@
 
 - (void)loadFavoriteConcertsWithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock
 {
-    if (self.favoriteConcertDatasource.objectsArray) {
-        self.currentlyUsedObjectsArray = self.favoriteConcertDatasource.objectsArray;
+    if (self.favoriteConcertDatasource.objectsArray && !self.forceRedownload) {
+        self.currentlyUsedObjectsArray = [self sortArray:self.favoriteConcertDatasource.objectsArray usingSortingObject:self.currentSortingObject];
         completionBlock(YES, nil);
     } else {
         [self downloadFavoriteConcertsWithCompletionBlock:completionBlock];
@@ -54,8 +79,8 @@
 
 - (void)loadRecommendedConcertsWithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock
 {
-    if (self.recommendedConcertDatasource.objectsArray) {
-        self.currentlyUsedObjectsArray = self.recommendedConcertDatasource.objectsArray;
+    if (self.recommendedConcertDatasource.objectsArray && !self.forceRedownload) {
+        self.currentlyUsedObjectsArray = [self sortArray:self.recommendedConcertDatasource.objectsArray usingSortingObject:self.currentSortingObject];
         completionBlock(YES, nil);
     } else {
         [self downloadRecommendedConcertsWithCompletionBlock:completionBlock];
@@ -64,12 +89,32 @@
 
 - (void)loadAllConcertsWithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock;
 {
-    if (self.allConcertDatasource.objectsArray) {
-        self.currentlyUsedObjectsArray = self.allConcertDatasource.objectsArray;
+    if (self.allConcertDatasource.objectsArray && !self.forceRedownload) {
+        self.currentlyUsedObjectsArray = [self sortArray:self.allConcertDatasource.objectsArray usingSortingObject:self.currentSortingObject];
         completionBlock(YES, nil);
     } else {
         [self downloadAllConcertsWithCompletionBlock:completionBlock];
     }
+}
+
+- (NSMutableArray*)sortArray:(NSMutableArray*)array usingSortingObject:(SortingObject*)sortingObject
+{
+    NSString *sortingKey = sortingObject.apiKey;
+    switch (sortingObject.sortingType) {
+        case SortingTypeNone:
+            break;
+        case SortingTypePreisDESC:
+        case SortingTypePreisASC:
+            sortingKey = @"price";
+            break;
+        case SortingTypeDateDESC:
+        case SortingTypeDateASC:
+            sortingKey = @"date";
+            break;
+    }
+
+    NSMutableArray *sortedArray = [[array sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:sortingKey ascending:[sortingObject isAscending]]]] mutableCopy];
+    return sortedArray;
 }
 
 #pragma mark - downloading next concerts
@@ -106,6 +151,8 @@
         self.allConcertDatasource.urlToDownloadFrom = kConcertsList;
     }
 
+    self.allConcertDatasource.searchText = self.searchText;
+    self.allConcertDatasource.sortingObject = self.currentSortingObject;
     __weak typeof(self) weakSelf = self;
     [self.allConcertDatasource downloadObjectsWithCompletionBlock:^(BOOL completed, NSString *errorMesage) {
         weakSelf.currentlyUsedObjectsArray = weakSelf.allConcertDatasource.objectsArray;
@@ -126,6 +173,9 @@
         self.recommendedConcertDatasource.urlToDownloadFrom = urlString;
     }
 
+    self.recommendedConcertDatasource.searchText = self.searchText;
+    self.recommendedConcertDatasource.sortingObject = self.currentSortingObject;
+
     __weak typeof(self) weakSelf = self;
     [self.recommendedConcertDatasource downloadObjectsWithCompletionBlock:^(BOOL completed, NSString *errorMesage) {
         weakSelf.currentlyUsedObjectsArray = weakSelf.recommendedConcertDatasource.objectsArray;
@@ -144,6 +194,8 @@
         self.favoriteConcertDatasource.urlToDownloadFrom = kFavoriteConcertsList;
     }
 
+    self.favoriteConcertDatasource.searchText = self.searchText;
+    self.favoriteConcertDatasource.sortingObject = self.currentSortingObject;
     __weak typeof(self) weakSelf = self;
     [self.favoriteConcertDatasource downloadObjectsWithCompletionBlock:^(BOOL completed, NSString *errorMesage) {
         weakSelf.currentlyUsedObjectsArray = weakSelf.favoriteConcertDatasource.objectsArray;

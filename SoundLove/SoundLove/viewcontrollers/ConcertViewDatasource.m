@@ -8,12 +8,26 @@
 
 #import "ConcertViewDatasource.h"
 #import "ConcertModel.h"
+#import "SortingObject.h"
 
 @implementation ConcertViewDatasource
 
 - (void)downloadObjectsWithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock
 {
-    NSMutableString *urlString = [NSMutableString stringWithFormat:@"%@%@?start=%ld&limit=%ld", kBaseURL, self.urlToDownloadFrom, (long)self.startIndex, (long)self.limit];
+    NSMutableString *urlString = nil;
+
+    // if there is sorting option selected
+    if (self.sortingObject.sortingType != SortingTypeNone) {
+        NSString *sortingKey = self.sortingObject.apiKey;
+        NSString *sortingDir = self.sortingObject.orderDir;
+        urlString = [NSMutableString stringWithFormat:@"%@%@?start=%ld&limit=%ld&orderProperty=%@&orderDir=%@", kBaseURL, self.urlToDownloadFrom, (long)self.startIndex, (long)self.limit, sortingKey, sortingDir];
+    } else {
+        urlString = [NSMutableString stringWithFormat:@"%@%@?start=%ld&limit=%ld", kBaseURL, self.urlToDownloadFrom, (long)self.startIndex, (long)self.limit];
+    }
+
+    if (self.searchText.length > 0) {
+        [urlString appendString:[NSString stringWithFormat:@"&artist=%@", [self.searchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+    }
 
     NSLog(@"Url the request was sent to: %@", urlString);
 
@@ -40,9 +54,11 @@
     }];
 }
 
-- (void)downloadNextObjectsWithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock
+- (void)resetDatasource
 {
-
+    [self.objectsArray removeAllObjects];
+    self.objectsArray = nil;
+    self.startIndex = 0;
 }
 
 #pragma mark - private methods

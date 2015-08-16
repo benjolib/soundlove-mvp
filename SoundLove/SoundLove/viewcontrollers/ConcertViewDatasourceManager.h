@@ -26,6 +26,10 @@ typedef NS_ENUM(NSUInteger, SelectedTabIndex) {
 @property (nonatomic) float currentLimit;
 @property (nonatomic, strong) NSMutableArray *currentlyUsedObjectsArray;
 
+@property (nonatomic, copy) NSString *searchText;
+@property (nonatomic) BOOL forceRedownload;
+@property (nonatomic) BOOL isSearching;
+
 - (void)loadObjectsAtIndex:(NSInteger)index WithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock;
 - (void)downloadNextConcertsAtIndex:(NSInteger)index WithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock;
 

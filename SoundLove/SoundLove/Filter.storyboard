@@ -928,6 +928,7 @@
                                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
+                                                    <action selector="searchFieldTextChanged:" destination="kGq-ex-II6" eventType="editingChanged" id="g5V-13-hBN"/>
                                                     <outlet property="delegate" destination="kGq-ex-II6" id="v8x-cT-Dzc"/>
                                                 </connections>
                                             </textField>
@@ -967,6 +968,30 @@
                                     <constraint firstAttribute="bottom" secondItem="WNg-mj-yBh" secondAttribute="bottom" constant="5" id="vGP-l2-zQU"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="kU1-aJ-4O6" customClass="LoadingTableView">
+                                <rect key="frame" x="0.0" y="104" width="320" height="414"/>
+                                <color key="backgroundColor" red="0.050980392156862744" green="0.058823529411764705" blue="0.090196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="JZE-4F-Ihb" style="IBUITableViewCellStyleDefault" id="Tg1-SF-KW8" customClass="FilterTableViewCell">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tg1-SF-KW8" id="9Ou-Do-8VV">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JZE-4F-Ihb">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="kGq-ex-II6" id="egC-Gj-XW0"/>
+                                    <outlet property="delegate" destination="kGq-ex-II6" id="zN1-k3-8EF"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -980,8 +1005,12 @@
                             <constraint firstItem="JgS-05-nW8" firstAttribute="top" secondItem="Nh7-rY-e3f" secondAttribute="bottom" id="O1R-cD-4BR"/>
                             <constraint firstItem="Cf9-NB-pjl" firstAttribute="leading" secondItem="jEu-PH-cq5" secondAttribute="leading" id="OAK-LH-s8l"/>
                             <constraint firstAttribute="trailing" secondItem="Cf9-NB-pjl" secondAttribute="trailing" id="Q7k-ab-pv1"/>
+                            <constraint firstItem="gBY-Tk-Gs6" firstAttribute="top" secondItem="kU1-aJ-4O6" secondAttribute="bottom" id="SFy-Gk-yWC"/>
+                            <constraint firstAttribute="trailing" secondItem="kU1-aJ-4O6" secondAttribute="trailing" id="W9a-Eq-yro"/>
+                            <constraint firstItem="kU1-aJ-4O6" firstAttribute="top" secondItem="cGI-Je-W4O" secondAttribute="bottom" id="ZdC-wa-flu"/>
                             <constraint firstAttribute="trailing" secondItem="gBY-Tk-Gs6" secondAttribute="trailing" id="Zni-yO-wsm"/>
                             <constraint firstAttribute="trailing" secondItem="JgS-05-nW8" secondAttribute="trailing" id="pPN-6U-qDm"/>
+                            <constraint firstItem="kU1-aJ-4O6" firstAttribute="leading" secondItem="jEu-PH-cq5" secondAttribute="leading" id="prZ-dQ-GXt"/>
                             <constraint firstItem="JgS-05-nW8" firstAttribute="leading" secondItem="jEu-PH-cq5" secondAttribute="leading" id="ukf-4b-fMg"/>
                         </constraints>
                     </view>
@@ -993,6 +1022,7 @@
                         <outlet property="searchField" destination="xlB-MR-skn" id="ylb-yP-H2w"/>
                         <outlet property="searchWrapperView" destination="cGI-Je-W4O" id="GKv-Y5-vhU"/>
                         <outlet property="slider" destination="euF-NG-AaS" id="AZ4-Pl-IHT"/>
+                        <outlet property="tableView" destination="kU1-aJ-4O6" id="kkt-AY-bQs"/>
                         <outlet property="trashButton" destination="aS0-rG-rNl" id="zWy-wP-b2L"/>
                     </connections>
                 </viewController>

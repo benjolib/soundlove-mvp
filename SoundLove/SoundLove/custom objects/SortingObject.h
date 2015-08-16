@@ -8,12 +8,23 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSUInteger, SortingType) {
+    SortingTypeNone,
+    SortingTypePreisASC,
+    SortingTypePreisDESC,
+    SortingTypeDateASC,
+    SortingTypeDateDESC
+};
+
 @interface SortingObject : NSObject
 
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *apiKey;
 @property (nonatomic, copy) NSString *orderDir;
+@property (nonatomic) SortingType sortingType;
 
-+ (SortingObject*)sortingWithName:(NSString*)name andKey:(NSString*)key orderDir:(NSString*)orderDir;
++ (SortingObject*)sortingWithType:(SortingType)sortingType;
+
+- (BOOL)isAscending;
 
 @end
