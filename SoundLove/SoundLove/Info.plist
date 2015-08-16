@@ -25,18 +25,34 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb588457274627524</string>
+				<string>fb506435659506380</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>1.2</string>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>1d51b53af02fba35c7d36bac44c720bfdda833c4</string>
+		<key>Kits</key>
+		<array>
+			<dict>
+				<key>KitInfo</key>
+				<dict/>
+				<key>KitName</key>
+				<string>Crashlytics</string>
+			</dict>
+		</array>
+	</dict>
 	<key>FacebookAppID</key>
-	<string>588457274627524</string>
+	<string>506435659506380</string>
 	<key>FacebookDisplayName</key>
-	<string>SoundLoveTestApp</string>
+	<string>SoundLove</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>The application will use your GPS to determine your location.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Montserrat-Bold.ttf</string>
@@ -53,8 +69,6 @@
 	</array>
 	<key>UIStatusBarHidden</key>
 	<true/>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>The application will use your GPS to determine your location.</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

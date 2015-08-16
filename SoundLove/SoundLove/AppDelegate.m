@@ -12,9 +12,11 @@
 #import "FacebookManager.h"
 #import "StoryboardManager.h"
 #import "GeneralSettings.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
+#import <Parse/Parse.h>
 
 @interface AppDelegate () <SKStoreProductViewControllerDelegate>
-
 @end
 
 #define IS_iOS8 [[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0
@@ -23,6 +25,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [Fabric with:@[CrashlyticsKit]];
+    [Parse setApplicationId:@"26hpoVG7s5u7auIoBhXUKTLg4ZGmez2SfQ05ttSh"
+                  clientKey:@"QtTaZxLKrkEJmebzcKXQMs4NsI08mbiDvISPqGXj"];
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+
     [[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
 
     UIViewController *rootViewController = nil;
@@ -79,16 +86,16 @@
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
     // Store the deviceToken in the current installation and save it to Parse.
-//    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-//    [currentInstallation setDeviceTokenFromData:deviceToken];
-//    [currentInstallation saveInBackground];
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    [currentInstallation saveInBackground];
 
     [[NSNotificationCenter defaultCenter] postNotificationName:@"userRegisteredForNotifications" object:nil];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
-//    [PFPush handlePush:userInfo];
+    [PFPush handlePush:userInfo];
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error

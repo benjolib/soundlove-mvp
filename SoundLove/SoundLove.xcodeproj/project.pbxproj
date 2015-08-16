@@ -127,6 +127,11 @@
 		56D857F01B7E2DB2006B5C85 /* ArtistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D857EF1B7E2DB2006B5C85 /* ArtistModel.m */; };
 		56D857F31B7E3E5E006B5C85 /* TrackingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D857F21B7E3E5E006B5C85 /* TrackingManager.m */; };
 		56D857F61B7EB32F006B5C85 /* SortingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D857F51B7EB32F006B5C85 /* SortingButton.m */; };
+		56D857F91B7EBE59006B5C85 /* ArtistRecommendView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D857F81B7EBE59006B5C85 /* ArtistRecommendView.m */; };
+		56D9DD411B7FA4B5007BA2E7 /* ArtistRecommendView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56D9DD401B7FA4B5007BA2E7 /* ArtistRecommendView.xib */; };
+		56D9DD451B7FA5ED007BA2E7 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56D9DD431B7FA5ED007BA2E7 /* Fabric.framework */; };
+		56D9DD461B7FA5ED007BA2E7 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56D9DD441B7FA5ED007BA2E7 /* Crashlytics.framework */; };
+		56D9DD4C1B7FC5F9007BA2E7 /* FilterLocationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D9DD4B1B7FC5F9007BA2E7 /* FilterLocationHelper.m */; };
 		56DF68201B7223A40025DBB1 /* ConcertDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DF68191B7223A40025DBB1 /* ConcertDetailViewController.m */; };
 		56DF68211B7223A40025DBB1 /* ConcertDetailBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DF681B1B7223A40025DBB1 /* ConcertDetailBaseViewController.m */; };
 		56DF68221B7223A40025DBB1 /* ConcertDetailInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DF681D1B7223A40025DBB1 /* ConcertDetailInfoViewController.m */; };
@@ -137,6 +142,16 @@
 		56ECD1351B67BB30008E11A0 /* FacebookButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 56ECD1341B67BB30008E11A0 /* FacebookButton.m */; };
 		56F509B11B7955DD004AF51C /* ConcertLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F509B01B7955DD004AF51C /* ConcertLocation.m */; };
 		56F509B41B795E6E004AF51C /* ConcertLoadMoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F509B31B795E6E004AF51C /* ConcertLoadMoreTableViewCell.m */; };
+		56FD78971B80DD4900B3CBB1 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56FD78951B80DD4900B3CBB1 /* Bolts.framework */; };
+		56FD78981B80DD4900B3CBB1 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56FD78961B80DD4900B3CBB1 /* Parse.framework */; };
+		56FD78A11B80DD7C00B3CBB1 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56FD78991B80DD7C00B3CBB1 /* AudioToolbox.framework */; };
+		56FD78A21B80DD7C00B3CBB1 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56FD789A1B80DD7C00B3CBB1 /* CFNetwork.framework */; };
+		56FD78A31B80DD7C00B3CBB1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56FD789B1B80DD7C00B3CBB1 /* CoreGraphics.framework */; };
+		56FD78A41B80DD7C00B3CBB1 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 56FD789C1B80DD7C00B3CBB1 /* libsqlite3.dylib */; };
+		56FD78A51B80DD7C00B3CBB1 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 56FD789D1B80DD7C00B3CBB1 /* libz.dylib */; };
+		56FD78A61B80DD7C00B3CBB1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56FD789E1B80DD7C00B3CBB1 /* QuartzCore.framework */; };
+		56FD78A71B80DD7C00B3CBB1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56FD789F1B80DD7C00B3CBB1 /* Security.framework */; };
+		56FD78A81B80DD7C00B3CBB1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56FD78A01B80DD7C00B3CBB1 /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -371,6 +386,13 @@
 		56D857F21B7E3E5E006B5C85 /* TrackingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackingManager.m; sourceTree = "<group>"; };
 		56D857F41B7EB32F006B5C85 /* SortingButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortingButton.h; sourceTree = "<group>"; };
 		56D857F51B7EB32F006B5C85 /* SortingButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SortingButton.m; sourceTree = "<group>"; };
+		56D857F71B7EBE59006B5C85 /* ArtistRecommendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtistRecommendView.h; sourceTree = "<group>"; };
+		56D857F81B7EBE59006B5C85 /* ArtistRecommendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtistRecommendView.m; sourceTree = "<group>"; };
+		56D9DD401B7FA4B5007BA2E7 /* ArtistRecommendView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArtistRecommendView.xib; sourceTree = "<group>"; };
+		56D9DD431B7FA5ED007BA2E7 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
+		56D9DD441B7FA5ED007BA2E7 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
+		56D9DD4A1B7FC5F9007BA2E7 /* FilterLocationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterLocationHelper.h; sourceTree = "<group>"; };
+		56D9DD4B1B7FC5F9007BA2E7 /* FilterLocationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterLocationHelper.m; sourceTree = "<group>"; };
 		56DF68181B7223A40025DBB1 /* ConcertDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcertDetailViewController.h; sourceTree = "<group>"; };
 		56DF68191B7223A40025DBB1 /* ConcertDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcertDetailViewController.m; sourceTree = "<group>"; };
 		56DF681A1B7223A40025DBB1 /* ConcertDetailBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcertDetailBaseViewController.h; sourceTree = "<group>"; };
@@ -391,6 +413,16 @@
 		56F509B01B7955DD004AF51C /* ConcertLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcertLocation.m; sourceTree = "<group>"; };
 		56F509B21B795E6E004AF51C /* ConcertLoadMoreTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcertLoadMoreTableViewCell.h; sourceTree = "<group>"; };
 		56F509B31B795E6E004AF51C /* ConcertLoadMoreTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcertLoadMoreTableViewCell.m; sourceTree = "<group>"; };
+		56FD78951B80DD4900B3CBB1 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		56FD78961B80DD4900B3CBB1 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		56FD78991B80DD7C00B3CBB1 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		56FD789A1B80DD7C00B3CBB1 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		56FD789B1B80DD7C00B3CBB1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		56FD789C1B80DD7C00B3CBB1 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		56FD789D1B80DD7C00B3CBB1 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		56FD789E1B80DD7C00B3CBB1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		56FD789F1B80DD7C00B3CBB1 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		56FD78A01B80DD7C00B3CBB1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -398,13 +430,25 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				567D7B681B70B7890015EBB3 /* MapKit.framework in Frameworks */,
-				56A65C721B68AE2700619189 /* FBSDKCoreKit.framework in Frameworks */,
-				56A65C6C1B68AA0300619189 /* AVFoundation.framework in Frameworks */,
-				56A65C731B68AE2700619189 /* FBSDKLoginKit.framework in Frameworks */,
-				56740A0E1B60EE4200638FEF /* CoreData.framework in Frameworks */,
+				56FD78A11B80DD7C00B3CBB1 /* AudioToolbox.framework in Frameworks */,
+				56FD78A21B80DD7C00B3CBB1 /* CFNetwork.framework in Frameworks */,
+				56FD78A31B80DD7C00B3CBB1 /* CoreGraphics.framework in Frameworks */,
+				56FD78A41B80DD7C00B3CBB1 /* libsqlite3.dylib in Frameworks */,
+				56FD78A51B80DD7C00B3CBB1 /* libz.dylib in Frameworks */,
+				56FD78A61B80DD7C00B3CBB1 /* QuartzCore.framework in Frameworks */,
+				56FD78A71B80DD7C00B3CBB1 /* Security.framework in Frameworks */,
+				56FD78A81B80DD7C00B3CBB1 /* SystemConfiguration.framework in Frameworks */,
 				56740A0F1B60EE4200638FEF /* CoreLocation.framework in Frameworks */,
 				56740A0B1B60EE3900638FEF /* StoreKit.framework in Frameworks */,
+				567D7B681B70B7890015EBB3 /* MapKit.framework in Frameworks */,
+				56D9DD461B7FA5ED007BA2E7 /* Crashlytics.framework in Frameworks */,
+				56A65C721B68AE2700619189 /* FBSDKCoreKit.framework in Frameworks */,
+				56A65C6C1B68AA0300619189 /* AVFoundation.framework in Frameworks */,
+				56D9DD451B7FA5ED007BA2E7 /* Fabric.framework in Frameworks */,
+				56FD78971B80DD4900B3CBB1 /* Bolts.framework in Frameworks */,
+				56FD78981B80DD4900B3CBB1 /* Parse.framework in Frameworks */,
+				56A65C731B68AE2700619189 /* FBSDKLoginKit.framework in Frameworks */,
+				56740A0E1B60EE4200638FEF /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,6 +550,14 @@
 		56740A101B60EE4600638FEF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				56FD78991B80DD7C00B3CBB1 /* AudioToolbox.framework */,
+				56FD789A1B80DD7C00B3CBB1 /* CFNetwork.framework */,
+				56FD789B1B80DD7C00B3CBB1 /* CoreGraphics.framework */,
+				56FD789C1B80DD7C00B3CBB1 /* libsqlite3.dylib */,
+				56FD789D1B80DD7C00B3CBB1 /* libz.dylib */,
+				56FD789E1B80DD7C00B3CBB1 /* QuartzCore.framework */,
+				56FD789F1B80DD7C00B3CBB1 /* Security.framework */,
+				56FD78A01B80DD7C00B3CBB1 /* SystemConfiguration.framework */,
 				567D7B671B70B7890015EBB3 /* MapKit.framework */,
 				56A65C6B1B68AA0300619189 /* AVFoundation.framework */,
 				56740A0C1B60EE4200638FEF /* CoreData.framework */,
@@ -559,10 +611,10 @@
 			children = (
 				569513881B5D1F42008A649B /* AppDelegate.h */,
 				569513891B5D1F42008A649B /* AppDelegate.m */,
-				569513AB1B5D2057008A649B /* Storyboards */,
 				56D395D41B5F8117000DC427 /* custom objects */,
 				56D395D01B5F7FBF000DC427 /* Custom views */,
 				569513AA1B5D2048008A649B /* viewControllers */,
+				569513AB1B5D2057008A649B /* Storyboards */,
 				569513841B5D1F42008A649B /* Supporting Files */,
 			);
 			path = SoundLove;
@@ -602,13 +654,13 @@
 		569513AA1B5D2048008A649B /* viewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				5619A31C1B6C32EA000901F7 /* Datasources */,
-				5619A30C1B6BFF90000901F7 /* ImageDownloadBaseViewController.h */,
-				5619A30D1B6BFF90000901F7 /* ImageDownloadBaseViewController.m */,
-				56A65C8D1B6974A400619189 /* Filter */,
-				56ECD1311B67B6C9008E11A0 /* Onboarding */,
 				56740A011B60ED8B00638FEF /* BaseGradientViewController.h */,
 				56740A021B60ED8B00638FEF /* BaseGradientViewController.m */,
+				5619A30C1B6BFF90000901F7 /* ImageDownloadBaseViewController.h */,
+				5619A30D1B6BFF90000901F7 /* ImageDownloadBaseViewController.m */,
+				5619A31C1B6C32EA000901F7 /* Datasources */,
+				56A65C8D1B6974A400619189 /* Filter */,
+				56ECD1311B67B6C9008E11A0 /* Onboarding */,
 				56740A1B1B60F12700638FEF /* MainContainerViewController.h */,
 				56740A1C1B60F12700638FEF /* MainContainerViewController.m */,
 				567409E71B60DD3900638FEF /* MenuViewController.h */,
@@ -696,6 +748,9 @@
 				56A65CB61B6A757700619189 /* Filter view, preis */,
 				56ECD1321B67BB16008E11A0 /* Buttons */,
 				5658BA9D1B640612004F08BB /* TableViewCells */,
+				56D857F71B7EBE59006B5C85 /* ArtistRecommendView.h */,
+				56D857F81B7EBE59006B5C85 /* ArtistRecommendView.m */,
+				56D9DD401B7FA4B5007BA2E7 /* ArtistRecommendView.xib */,
 				567409F11B60EB5700638FEF /* BadgeCounterView.h */,
 				567409F21B60EB5700638FEF /* BadgeCounterView.m */,
 				5684B1D31B662135009EF346 /* ConcertRefreshControl.h */,
@@ -744,6 +799,8 @@
 				56D857E61B7DF759006B5C85 /* FriendObject.m */,
 				564F24B31B6BA13500172C16 /* FilterModel.h */,
 				564F24B41B6BA13500172C16 /* FilterModel.m */,
+				56D9DD4A1B7FC5F9007BA2E7 /* FilterLocationHelper.h */,
+				56D9DD4B1B7FC5F9007BA2E7 /* FilterLocationHelper.m */,
 				56A65CA71B6A1B7600619189 /* SortingObject.h */,
 				56A65CA81B6A1B7600619189 /* SortingObject.m */,
 				567D7B691B70BB900015EBB3 /* LocationManager.h */,
@@ -780,6 +837,10 @@
 		56D395DF1B5F8C00000DC427 /* Third party */ = {
 			isa = PBXGroup;
 			children = (
+				56FD78951B80DD4900B3CBB1 /* Bolts.framework */,
+				56FD78961B80DD4900B3CBB1 /* Parse.framework */,
+				56D9DD431B7FA5ED007BA2E7 /* Fabric.framework */,
+				56D9DD441B7FA5ED007BA2E7 /* Crashlytics.framework */,
 				56A65C701B68AE2700619189 /* FBSDKCoreKit.framework */,
 				56A65C711B68AE2700619189 /* FBSDKLoginKit.framework */,
 				56D395E01B5F8C11000DC427 /* Reachability.h */,
@@ -886,6 +947,7 @@
 				5695137D1B5D1F42008A649B /* Sources */,
 				5695137E1B5D1F42008A649B /* Frameworks */,
 				5695137F1B5D1F42008A649B /* Resources */,
+				56D9DD421B7FA5D4007BA2E7 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -925,7 +987,7 @@
 				TargetAttributes = {
 					569513801B5D1F42008A649B = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = NDMF32TPPR;
+						DevelopmentTeam = ER2R6PB292;
 					};
 					569513991B5D1F43008A649B = {
 						CreatedOnToolsVersion = 6.4;
@@ -961,6 +1023,7 @@
 				567409F81B60EC4400638FEF /* Montserrat-Hairline.otf in Resources */,
 				567409E11B60DC2100638FEF /* Montserrat-Regular.ttf in Resources */,
 				56A65C871B696FE500619189 /* ConcertsTableViewCell.xib in Resources */,
+				56D9DD411B7FA4B5007BA2E7 /* ArtistRecommendView.xib in Resources */,
 				5658BA951B63F757004F08BB /* SearchNavigationView.xib in Resources */,
 				567409F71B60EC4400638FEF /* Montserrat-Black.otf in Resources */,
 				5684B1C31B6612D8009EF346 /* SearchEmptyView.xib in Resources */,
@@ -982,6 +1045,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		56D9DD421B7FA5D4007BA2E7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 1d51b53af02fba35c7d36bac44c720bfdda833c4 7fdf75fd42c95b14e051ec66332f17d7cdc35ae86aa008908120c26bdceb32a2";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5695137D1B5D1F42008A649B /* Sources */ = {
@@ -1023,6 +1102,7 @@
 				5658BAA31B640862004F08BB /* CalendarButton.m in Sources */,
 				567409FF1B60ED4700638FEF /* WhatWeDoViewController.m in Sources */,
 				56740A291B61232900638FEF /* BandsViewController.m in Sources */,
+				56D9DD4C1B7FC5F9007BA2E7 /* FilterLocationHelper.m in Sources */,
 				5619A3141B6C0253000901F7 /* BaseImageModel.m in Sources */,
 				56740A1A1B60F0CA00638FEF /* ConcertsViewController.m in Sources */,
 				56A65C9D1B6A16F500619189 /* FilterGenresViewController.m in Sources */,
@@ -1093,6 +1173,7 @@
 				567D7B5A1B709CF40015EBB3 /* ConcertRankClient.m in Sources */,
 				56740A231B60F17C00638FEF /* FestivalTransitionAnimator.m in Sources */,
 				56740A031B60ED8B00638FEF /* BaseGradientViewController.m in Sources */,
+				56D857F91B7EBE59006B5C85 /* ArtistRecommendView.m in Sources */,
 				567D7B661B70AF070015EBB3 /* GenreDownloadClient.m in Sources */,
 				5684B1D21B661DCB009EF346 /* ConcertModel.m in Sources */,
 				56ECD1301B67B6B9008E11A0 /* OnboardingViewController.m in Sources */,
@@ -1219,6 +1300,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/sax155/Documents/FacebookSDK,
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/SoundLove",
 				);
 				INFOPLIST_FILE = SoundLove/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -1238,6 +1321,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/sax155/Documents/FacebookSDK,
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/SoundLove",
 				);
 				INFOPLIST_FILE = SoundLove/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
