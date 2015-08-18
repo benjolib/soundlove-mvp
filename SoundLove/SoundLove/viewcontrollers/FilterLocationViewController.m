@@ -19,6 +19,9 @@
 #import "FilterLocationHelper.h"
 #import "FilterModel.h"
 
+#define kSliderMiddleValue 130000 // 130 km
+#define kSliderMaxValue 1000000 // 1000 km
+
 @interface FilterLocationViewController () <DBMapSelectorManagerDelegate>
 @property (nonatomic, strong) LocationManager *locationManager;
 @property (nonatomic, strong) MapOverlayRenderer *selectorOverlayRenderer;
@@ -32,18 +35,33 @@
 
 - (IBAction)trashButtonPressed:(UIButton*)button
 {
-    self.filterModel.locationDiameter = 0;
+    [self.filterModel resetFiterLocation];
+
+    [self.slider setValue:0.0 animated:NO];
+    [self changeSliderToValue:0.0];
     [self setTrashIconVisible:NO];
 }
 
 - (IBAction)sliderValueChanged:(UISlider*)slider
 {
-    float currentValue = slider.value;
+    [self changeSliderToValue:slider.value];
+}
 
-    float currentMetering = currentValue * 100;
-    if (currentValue >= 0.98) {
-//        currentMetering = 
+- (void)changeSliderToValue:(float)value
+{
+    float currentDiameter = 0;
+    float currentValue = value;
+
+    if (currentValue <= 0.01) {
+        currentDiameter = 1000.0;
+    } else if (currentValue > 0.01 && currentValue <= 0.5) {
+        currentDiameter = 2 * (kSliderMiddleValue * currentValue);
+    } else {
+        currentDiameter = kSliderMiddleValue + (currentValue - 0.5) * (kSliderMaxValue - kSliderMiddleValue);
     }
+
+    self.mapSelectorManager.circleRadius = currentDiameter;
+    [self.mapSelectorManager updateMapRegionForMapSelector];
 }
 
 #pragma mark - searching methods
@@ -123,31 +141,15 @@
 }
 
 - (void)mapSelectorManager:(DBMapSelectorManager *)mapSelectorManager didChangeCoordinate:(CLLocationCoordinate2D)coordinate {
-//    _coordinateLabel.text = [NSString stringWithFormat:@"Coordinate = {%.5f, %.5f}", coordinate.latitude, coordinate.longitude];
     self.filterModel.centerCoordinate = coordinate;
+
+    [self setTrashIconVisible:YES];
 }
 
 - (void)mapSelectorManager:(DBMapSelectorManager *)mapSelectorManager didChangeRadius:(CLLocationDistance)radius {
-//    NSString *radiusStr = (radius >= 1000) ? [NSString stringWithFormat:@"%.1f km", radius * .001f] : [NSString stringWithFormat:@"%.0f m", radius];
     NSLog(@"Radius: %.2f km", radius * 0.001);
 
     self.filterModel.locationDiameter = radius;
-
-    if (radius <= 150000) // 150km, half of the slider
-    {
-        if (radius == 150000) {
-            [self.slider setValue:0.5];
-        } else if (radius <= 1000) {
-            [self.slider setValue:0];
-        } else {
-            float value = (radius / 150000) / 2;
-            [self.slider setValue:value];
-        }
-    }
-    else // above 150km
-    {
-        [self.slider setValue:0.5];
-    }
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
@@ -168,8 +170,18 @@
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
-    self.mapSelectorManager.circleCoordinate = self.mapView.userLocation.coordinate;
+    self.mapSelectorManager.circleCoordinate = userLocation.coordinate;
     [self.mapSelectorManager applySelectorSettings];
+}
+
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
+{
+    view.transform = CGAffineTransformMakeScale(1.2, 1.2);
+}
+
+- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view
+{
+    view.transform = CGAffineTransformIdentity;
 }
 
 #pragma mark - location methods
@@ -185,8 +197,9 @@
                 if ([weakSelf.locationManager isLocationValid:userLocation]) {
                     [weakSelf.locationManager stopLocationDiscovery];
                 }
-                [weakSelf.mapView setShowsUserLocation:YES];
-                [weakSelf.mapView setCenterCoordinate:userLocation.coordinate animated:YES];
+
+                weakSelf.mapSelectorManager.circleCoordinate = userLocation.coordinate;
+                [weakSelf.mapSelectorManager applySelectorSettings];
             }
         }
     }];
@@ -200,8 +213,6 @@
     [self.slider setThumbImage:[UIImage imageNamed:@"locationSlider"] forState:UIControlStateNormal];
     [self.slider setMinimumTrackImage:[UIImage imageNamed:@"sliderLeft"] forState:UIControlStateNormal];
     [self.slider setMaximumTrackImage:[UIImage imageNamed:@"sliderRight"] forState:UIControlStateNormal];
-
-    self.mapView.showsUserLocation = YES;
 
     // Set map selector settings
     self.mapSelectorManager.circleCoordinate = self.mapView.userLocation.coordinate;

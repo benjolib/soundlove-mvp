@@ -84,7 +84,13 @@
 
 - (BOOL)isLocationFilteringSet
 {
-    return self.centerCoordinate.latitude != 0 || self.locationDiameter != 0;
+    return CLLocationCoordinate2DIsValid(self.centerCoordinate);
+}
+
+- (void)resetFiterLocation
+{
+    self.locationDiameter = 0;
+    self.centerCoordinate = CLLocationCoordinate2DMake(5000.0, 5000.0);
 }
 
 #pragma mark - string methods
@@ -146,11 +152,6 @@
     }
 
     return dateString;
-}
-
-- (NSString*)locationString
-{
-    return @"";
 }
 
 - (NSString*)bandsStringForAPICall

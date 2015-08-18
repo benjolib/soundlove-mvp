@@ -32,7 +32,7 @@ NSInteger const defaultMaxDistance  = 10000;
     
     UILongPressGestureRecognizer    *_longPressGestureRecognizer;
 }
-
+@property (nonatomic, strong) UITapGestureRecognizer *tapRecognizer;
 @end
 
 @implementation DBMapSelectorManager
@@ -52,18 +52,50 @@ NSInteger const defaultMaxDistance  = 10000;
     
     _selectorOverlay = [[MapOverlay alloc] initWithCenterCoordinate:_circleCoordinate radius:_circleRadius];
 
-#ifdef DEBUG
-    _radiusTouchView = [[UIView alloc] initWithFrame:CGRectZero];
-    _radiusTouchView.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:.5f];
-    _radiusTouchView.userInteractionEnabled = NO;
-//    [self.mapView addSubview:_radiusTouchView];
-#endif
+//#ifdef DEBUG
+//    _radiusTouchView = [[UIView alloc] initWithFrame:CGRectZero];
+//    _radiusTouchView.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:.5f];
+//    _radiusTouchView.userInteractionEnabled = NO;
+////    [self.mapView addSubview:_radiusTouchView];
+//#endif
 
     _longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressGestureRecognizer:)];
     
     _mapViewGestureEnabled = YES;
     [self.mapView addGestureRecognizer:[self selectorGestureRecognizer]];
-    
+
+    UITapGestureRecognizer *singleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTapGesture:)];
+    singleTapRecognizer.numberOfTapsRequired = 1;
+    singleTapRecognizer.numberOfTouchesRequired = 1;
+    [self.mapView addGestureRecognizer:singleTapRecognizer];
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    // Returning YES ensures that double-tap gestures propogate to the MKMapView
+    return YES;
+}
+
+#pragma mark UIGestureRecognizer handlers
+
+- (void)handleSingleTapGesture:(UIGestureRecognizer *)gestureRecognizer
+{
+    if (gestureRecognizer.state != UIGestureRecognizerStateEnded) {
+        return;
+    }
+
+    CGPoint touchPoint = [gestureRecognizer locationInView:self.mapView];
+    [self moveAnnotationToCoordinate:[self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView]];
+}
+
+- (void)moveAnnotationToCoordinate:(CLLocationCoordinate2D)coordinate
+{
+    for (NSObject<MKAnnotation> *annotation in self.mapView.annotations) {
+        if ([annotation isKindOfClass:[FilterLocationAnnotation class]]) {
+            annotation.coordinate = coordinate;
+            [self setCircleCoordinate:coordinate];
+        }
+    }
 }
 
 #pragma mark Defaults
@@ -315,18 +347,23 @@ NSInteger const defaultMaxDistance  = 10000;
 }
 
 #pragma mark - MKMapView Delegate
-
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+{
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
+        return nil;
+    }
+    else if ([annotation isKindOfClass:[FilterLocationAnnotation class]])
+    {
         static NSString *selectorIdentifier = @"FilterLocationAnnotation";
         FilterLocationAnnotationView *selectorAnnotationView = (FilterLocationAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:selectorIdentifier];
         if (selectorAnnotationView) {
             selectorAnnotationView.annotation = annotation;
         } else {
             selectorAnnotationView = [[FilterLocationAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:selectorIdentifier];
-            selectorAnnotationView.draggable = YES;
             selectorAnnotationView.annotation = annotation;
         }
+
+        selectorAnnotationView.draggable = YES;
         selectorAnnotationView.selected = YES;
         return selectorAnnotationView;
     } else {

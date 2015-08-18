@@ -59,7 +59,7 @@
         self.filterModel.startDate = nil;
         self.filterModel.endDate = nil;
     } else {
-        self.filterModel.locationDiameter = 0;
+        [self.filterModel resetFiterLocation];
     }
 
 //    [[TrackingManager sharedManager] trackFilterTapsTrashIconOnMainBandCell];
@@ -123,7 +123,7 @@
             break;
         case 4:
             cell.nameLabel.text = @"Ort";
-            cell.bandDetailLabel.text = [self.filterModel locationString];
+            cell.bandDetailLabel.text = @"";
             enableTrashIcon = [self.filterModel isLocationFilteringSet];
             [cell setCellActive:enableTrashIcon];
             break;

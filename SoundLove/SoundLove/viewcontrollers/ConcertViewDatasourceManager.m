@@ -114,6 +114,11 @@
             break;
     }
 
+    // don't sort the array if no key is selected
+    if (sortingKey.length <= 0) {
+        return array;
+    }
+
     NSMutableArray *sortedArray = [[array sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:sortingKey ascending:[sortingObject isAscending]]]] mutableCopy];
     return sortedArray;
 }

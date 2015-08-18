@@ -1652,7 +1652,7 @@
                                         <rect key="frame" x="30" y="200" width="260" height="69"/>
                                         <string key="text">Deine Freunde-Liste ist leider leer, da bischer keine Freundezu diesem Konzert hinzugefügt wurden. lade jetzt Deine Freunde ein.</string>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
-                                        <color key="textColor" red="0.41176470590000003" green="0.91107859260000001" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.38039215686274508" green="0.6470588235294118" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>

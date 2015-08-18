@@ -86,6 +86,8 @@
     [super viewDidLoad];
     self.wrapperView.backgroundColor = [UIColor tabbingButtonActiveColor];
 
+    self.emptyViewLabel.hidden = YES;
+
     [self.collectionView showLoadingIndicator];
     __weak typeof(self) weakSelf = self;
     self.friendsDownloadClient = [[ConcertDownloadClient alloc] init];

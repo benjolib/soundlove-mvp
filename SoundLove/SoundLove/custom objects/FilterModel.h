@@ -30,7 +30,7 @@
 + (FilterModel*)copySettingsFromFilterModel:(FilterModel*)filterModel;
 + (instancetype)sharedModel;
 
-
+- (void)resetFiterLocation;
 - (void)clearFilters;
 
 - (BOOL)isFiltering;
@@ -41,7 +41,6 @@
 - (NSString*)genresString;
 - (NSString*)priceString;
 - (NSString*)dateString;
-- (NSString*)locationString;
 
 - (NSString*)bandsStringForAPICall;
 - (NSString*)genresStringForAPICall;

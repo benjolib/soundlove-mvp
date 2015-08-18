@@ -87,6 +87,7 @@ typedef NS_ENUM(NSInteger, DBMapSelectorEditingType) {
 
 - (instancetype)initWithMapView:(MKMapView *)mapView;
 - (void)applySelectorSettings;
+- (void)updateMapRegionForMapSelector;
 
 #pragma mark - MKMapViewDelegate (forward when relevant)
 

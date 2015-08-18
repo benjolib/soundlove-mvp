@@ -36,7 +36,7 @@
     NSString *rawAddress = [dictionary nonNullObjectForKey:@"geo_raw_address"];
     NSNumber *latitude = [dictionary nonNullObjectForKey:@"geo_lat"];
     NSNumber *longitude = [dictionary nonNullObjectForKey:@"geo_lng"];
-    NSString *street = [dictionary nonNullObjectForKey:@"geo_city"];
+    NSString *street = [dictionary nonNullObjectForKey:@"geo_street"];
     NSString *house = [dictionary nonNullObjectForKey:@"geo_street_number"];
     NSString *zip = [dictionary nonNullObjectForKey:@"geo_zip"];
 
