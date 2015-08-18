@@ -105,7 +105,6 @@
             cell.nameLabel.text = @"Nach Künstlern";
             enableTrashIcon = self.filterModel.selectedBandsArray.count > 0;
             NSString *bandString = [self.filterModel bandsString];
-            cell.nameLabel.text = @"Nach Musik Genre";
             cell.bandDetailLabel.text = bandString;
             [cell setCellActive:enableTrashIcon];
             break;

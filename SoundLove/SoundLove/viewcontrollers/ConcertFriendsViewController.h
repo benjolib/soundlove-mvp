@@ -16,5 +16,6 @@
 @property (nonatomic, weak) IBOutlet UIView *wrapperView;
 @property (nonatomic, weak) IBOutlet LoadingCollectionView *collectionView;
 @property (nonatomic, weak) IBOutlet CustomPageControlView *pageControl;
+@property (nonatomic, weak) IBOutlet UILabel *emptyViewLabel;
 
 @end

@@ -93,6 +93,11 @@
         [self.collectionView hideLoadingIndicator];
         if (completed) {
             weakSelf.friendsArray = listOfFriends;
+            if (weakSelf.friendsArray.count == 0) {
+                weakSelf.emptyViewLabel.hidden = NO;
+            } else {
+                weakSelf.emptyViewLabel.hidden = YES;
+            }
             [weakSelf setFriendsBadgeVisible];
             [weakSelf.collectionView reloadData];
             [weakSelf adjustPageControl];

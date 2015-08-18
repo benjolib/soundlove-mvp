@@ -14,5 +14,6 @@
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, weak) IBOutlet CustomNavigationView *customNavigationView;
+@property (nonatomic, weak) IBOutlet UILabel *versionNumberLabel;
 
 @end

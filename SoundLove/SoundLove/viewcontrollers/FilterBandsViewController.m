@@ -73,8 +73,7 @@
 {
 //    [[TrackingManager sharedManager] trackFilterSearches];
 
-    self.searchWrapperViewTrailingConstraint.constant = 10.0;
-    self.searchCancelButtonWidthConstraint.constant = 70.0;
+    self.searchCancelButtonWidthConstraint.priority = 250.0;
     [UIView animateWithDuration:0.2 animations:^{
         [self.searchWrapperView layoutIfNeeded];
     }];
@@ -122,8 +121,7 @@
 
 - (void)hideSearchCancelButton
 {
-    self.searchWrapperViewTrailingConstraint.constant = 0.0;
-    self.searchCancelButtonWidthConstraint.constant = 0.0;
+    self.searchCancelButtonWidthConstraint.priority = 999.0;
     [UIView animateWithDuration:0.2 animations:^{
         [self.searchWrapperView layoutIfNeeded];
     }];

@@ -5,15 +5,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="Lato-Light.ttf">
-            <string>Lato-Light</string>
-            <string>Lato-Light</string>
-        </mutableArray>
-        <mutableArray key="Lato-Regular.ttf">
-            <string>Lato-Regular</string>
-            <string>Lato-Regular</string>
-        </mutableArray>
         <mutableArray key="Montserrat-Light.otf">
+            <string>Montserrat-Light</string>
+            <string>Montserrat-Light</string>
+            <string>Montserrat-Light</string>
+            <string>Montserrat-Light</string>
             <string>Montserrat-Light</string>
             <string>Montserrat-Light</string>
             <string>Montserrat-Light</string>
@@ -240,7 +236,7 @@
                         <segue destination="IIe-Bo-2so" kind="push" identifier="openPreisView" id="jpN-6T-JlY"/>
                         <segue destination="kuh-j2-70F" kind="push" identifier="openDateView" id="Oqf-CA-KX3"/>
                         <segue destination="kGq-ex-II6" kind="push" identifier="openLocationView" id="Qo3-pK-XCV"/>
-                        <segue destination="AcZ-Cp-gdL" kind="push" identifier="openBands" id="Qhx-6a-w3e"/>
+                        <segue destination="AcZ-Cp-gdL" kind="push" identifier="openBands" id="GF5-ko-cbv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="daD-ue-iFL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -292,19 +288,20 @@
                                 <rect key="frame" x="0.0" y="60" width="320" height="44"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="200" horizontalCompressionResistancePriority="800" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Suche" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fuw-uU-4FX">
-                                        <rect key="frame" x="10" y="7" width="220" height="30"/>
-                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                                        <rect key="frame" x="10" y="7" width="214" height="30"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                         <connections>
                                             <outlet property="delegate" destination="qiA-hq-Te1" id="sNe-j2-orN"/>
                                         </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AnZ-8P-ayh">
-                                        <rect key="frame" x="240" y="8" width="70" height="28"/>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AnZ-8P-ayh">
+                                        <rect key="frame" x="234" y="8" width="76" height="28"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="70" id="4UR-jo-M4i"/>
+                                            <constraint firstAttribute="width" priority="250" id="1RL-N8-tn9"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="12"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" title="Abbrechen">
                                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </state>
@@ -421,7 +418,7 @@
                         <outlet property="filterButtonWrapperView" destination="952-H3-DTP" id="qPL-79-WUw"/>
                         <outlet property="navigationView" destination="HzB-KV-pvd" id="h0v-Vm-3He"/>
                         <outlet property="searchCancelButton" destination="AnZ-8P-ayh" id="A0u-al-Jzr"/>
-                        <outlet property="searchCancelButtonWidthConstraint" destination="4UR-jo-M4i" id="saq-AP-HHc"/>
+                        <outlet property="searchCancelButtonWidthConstraint" destination="1RL-N8-tn9" id="M1Z-SR-7yp"/>
                         <outlet property="searchField" destination="fuw-uU-4FX" id="6hZ-S8-7Mj"/>
                         <outlet property="searchWrapperView" destination="wxS-zX-hjc" id="v7q-fK-Jft"/>
                         <outlet property="searchWrapperViewTrailingConstraint" destination="Qqg-w1-ZF0" id="AWc-ha-hf6"/>
@@ -980,7 +977,7 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JZE-4F-Ihb">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -1095,19 +1092,20 @@
                                 <rect key="frame" x="0.0" y="60" width="320" height="44"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="200" horizontalCompressionResistancePriority="800" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Suche" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uly-Ac-WuX">
-                                        <rect key="frame" x="10" y="7" width="220" height="30"/>
-                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                                        <rect key="frame" x="10" y="7" width="214" height="30"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                         <connections>
                                             <outlet property="delegate" destination="AcZ-Cp-gdL" id="ZQT-l2-VkE"/>
                                         </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0mW-7r-irs">
-                                        <rect key="frame" x="240" y="8" width="70" height="28"/>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0mW-7r-irs">
+                                        <rect key="frame" x="234" y="8" width="76" height="28"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="70" id="oxt-Lh-Sg6"/>
+                                            <constraint firstAttribute="width" priority="250" id="sxk-yy-qjd"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="12"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" title="Abbrechen">
                                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </state>
@@ -1223,11 +1221,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="BlB-sJ-tr6"/>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="filterButtonWrapperView" destination="666-wu-Uc3" id="yak-ha-f9I"/>
                         <outlet property="navigationView" destination="aDx-hC-2bG" id="OTB-br-Scs"/>
                         <outlet property="searchCancelButton" destination="0mW-7r-irs" id="IXG-UH-lY1"/>
-                        <outlet property="searchCancelButtonWidthConstraint" destination="oxt-Lh-Sg6" id="33B-Cf-dSN"/>
+                        <outlet property="searchCancelButtonWidthConstraint" destination="sxk-yy-qjd" id="P9b-Nl-xxO"/>
                         <outlet property="searchField" destination="Uly-Ac-WuX" id="XuG-43-5Pn"/>
                         <outlet property="searchWrapperView" destination="9bL-fd-lUS" id="oX6-L9-xhM"/>
                         <outlet property="searchWrapperViewTrailingConstraint" destination="elx-hL-ChC" id="nmE-iy-GoB"/>

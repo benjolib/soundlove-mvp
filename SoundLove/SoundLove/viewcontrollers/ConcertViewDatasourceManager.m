@@ -102,6 +102,7 @@
     NSString *sortingKey = sortingObject.apiKey;
     switch (sortingObject.sortingType) {
         case SortingTypeNone:
+            sortingKey = @"";
             break;
         case SortingTypePreisDESC:
         case SortingTypePreisASC:
