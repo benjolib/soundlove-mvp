@@ -10,4 +10,10 @@
 
 @interface TrackingManager : NSObject
 
++ (instancetype)sharedManager;
+
+- (void)trackUserLaunchedApp;
+- (void)trackUserSelectsReviewApp;
+- (void)trackUserSelectsReviewAppLater;
+
 @end
