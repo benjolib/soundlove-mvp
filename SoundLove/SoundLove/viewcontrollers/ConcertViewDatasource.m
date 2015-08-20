@@ -32,7 +32,7 @@
 
     if ([self.filterModel isFiltering]) {
         if ([self.filterModel isLocationFilteringSet]) {
-//            [urlString appendString:[NSString stringWithFormat:@"&city=%@", [self.filterModel countriesStringForAPICall]]];
+            [urlString appendString:[NSString stringWithFormat:@"&lat=%f&lng=%f&distance=%f", self.filterModel.centerCoordinate.latitude, self.filterModel.centerCoordinate.longitude, self.filterModel.locationDiameter]];
         }
         if (self.filterModel.startDate) {
             [urlString appendString:[NSString stringWithFormat:@"&dateFrom=%@", [self.filterModel startDateString]]];

@@ -38,6 +38,8 @@
     [self.filterModel resetFiterLocation];
 
     [self.slider setValue:0.0 animated:NO];
+    self.searchField.text = @"";
+
     [self changeSliderToValue:0.0];
     [self setTrashIconVisible:NO];
 }
@@ -122,6 +124,9 @@
 
     CLPlacemark *selectedPlaceMark = self.placeMarkSuggestionsArray[indexPath.row];
 
+    if (selectedPlaceMark.locality) {
+        self.filterModel.selectedCity = selectedPlaceMark.locality;
+    }
     self.filterModel.centerCoordinate = selectedPlaceMark.location.coordinate;
     self.mapSelectorManager.circleCoordinate = selectedPlaceMark.location.coordinate;
     [self.mapSelectorManager applySelectorSettings];

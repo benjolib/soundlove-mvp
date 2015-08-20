@@ -29,24 +29,17 @@ typedef NS_ENUM(NSUInteger, SelectedTabIndex) {
 @property (nonatomic, strong) NSMutableArray *currentlyUsedObjectsArray;
 
 @property (nonatomic, copy) NSString *searchText;
-@property (nonatomic) BOOL forceRedownload;
 @property (nonatomic) BOOL isSearching;
 
-- (void)loadObjectsAtIndex:(NSInteger)index WithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock;
+// download the next concerts
 - (void)downloadNextConcertsAtIndex:(NSInteger)index WithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock;
-//- (void)reloadObjectsAtIndex:(NSInteger)index withFilterModel:(FilterModel*)filterModel completionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock;
 
-- (void)downloadAllConcertsWithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock;
-- (void)downloadRecommendedConcertsWithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock;
-- (void)downloadFavoriteConcertsWithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock;
-
-
-
-
-
-
+// only reload the currently selected index
+- (void)reloadObjectsAtIndex:(NSInteger)index withFilterModel:(FilterModel*)filterModel completionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock;
+// redownload all
 - (void)redownloadConcertsWithIndex:(NSInteger)selectedIndex filterModel:(FilterModel*)filterModel withCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock;
-- (void)sortObjectsUsingSortingObject:(SortingObject*)sortingObject withCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock;
+// load the saved objects
+- (void)loadSavedObjectsAtIndex:(NSInteger)index withCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock;
 - (void)showArrayAtIndex:(SelectedTabIndex)tabIndex;
 
 

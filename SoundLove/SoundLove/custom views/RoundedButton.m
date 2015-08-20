@@ -28,7 +28,7 @@
 
 - (void)setupButton
 {
-    self.layer.cornerRadius = 26;
+    self.layer.cornerRadius = 24;
     self.backgroundColor = [UIColor globalGreenColor];
     [self setTitleColor:[UIColor darkGreenButtonTitleColor] forState:UIControlStateNormal];
     [self setTitleColor:[[UIColor darkGreenButtonTitleColor] colorWithAlphaComponent:0.4]

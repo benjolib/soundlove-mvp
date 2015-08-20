@@ -50,6 +50,10 @@
 {
     self.currentFilterModel = filterModel;
 
+    self.favoriteConcertDatasource.startIndex = 0;
+    self.recommendedConcertDatasource.startIndex = 0;
+    self.allConcertDatasource.startIndex = 0;
+
     if (selectedIndex == SelectedTabIndexFavorites)
     {
         [self downloadFavoriteConcertsWithCompletionBlock:completionBlock];
@@ -70,21 +74,19 @@
     }
 }
 
-- (void)sortObjectsUsingSortingObject:(SortingObject*)sortingObject withCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock
-{
-
-}
-
 - (void)showArrayAtIndex:(SelectedTabIndex)tabIndex
 {
     switch (tabIndex) {
         case SelectedTabIndexFavorites:
+            self.currentLimit = self.favoriteConcertDatasource.objectsArray.count + self.favoriteConcertDatasource.limit;
             self.currentlyUsedObjectsArray = self.favoriteConcertDatasource.objectsArray;
             break;
         case SelectedTabIndexRecommended:
+            self.currentLimit = self.recommendedConcertDatasource.objectsArray.count + self.recommendedConcertDatasource.limit;
             self.currentlyUsedObjectsArray = self.recommendedConcertDatasource.objectsArray;
             break;
         case SelectedTabIndexAll:
+            self.currentLimit = self.allConcertDatasource.objectsArray.count + self.allConcertDatasource.limit;
             self.currentlyUsedObjectsArray = self.allConcertDatasource.objectsArray;
             break;
         default:
@@ -115,20 +117,17 @@
     }
 }
 
-- (void)loadObjectsAtIndex:(NSInteger)index WithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock
+- (void)loadSavedObjectsAtIndex:(NSInteger)index withCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock
 {
     switch (index) {
         case SelectedTabIndexFavorites:
             [self loadFavoriteConcertsWithCompletionBlock:(completionBlock ? completionBlock : nil)];
-            self.currentLimit = self.favoriteConcertDatasource.startIndex  + self.favoriteConcertDatasource.limit;
             break;
         case SelectedTabIndexRecommended:
             [self loadRecommendedConcertsWithCompletionBlock:(completionBlock ? completionBlock : nil)];
-            self.currentLimit = self.recommendedConcertDatasource.startIndex  + self.recommendedConcertDatasource.limit;
             break;
         case SelectedTabIndexAll:
             [self loadAllConcertsWithCompletionBlock:(completionBlock ? completionBlock : nil)];
-            self.currentLimit = self.allConcertDatasource.startIndex + self.allConcertDatasource.limit;
             break;
         default:
             break;
@@ -137,8 +136,8 @@
 
 - (void)loadFavoriteConcertsWithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock
 {
-    if (self.favoriteConcertDatasource.objectsArray && !self.forceRedownload) {
-        self.currentlyUsedObjectsArray = [self sortArray:self.favoriteConcertDatasource.objectsArray usingSortingObject:self.currentSortingObject];
+    if (self.favoriteConcertDatasource.objectsArray) {
+        self.favoriteConcertDatasource.objectsArray = [self sortArray:self.favoriteConcertDatasource.objectsArray usingSortingObject:self.currentSortingObject];
         completionBlock(YES, nil);
     } else {
         [self downloadFavoriteConcertsWithCompletionBlock:completionBlock];
@@ -147,8 +146,8 @@
 
 - (void)loadRecommendedConcertsWithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock
 {
-    if (self.recommendedConcertDatasource.objectsArray && !self.forceRedownload) {
-        self.currentlyUsedObjectsArray = [self sortArray:self.recommendedConcertDatasource.objectsArray usingSortingObject:self.currentSortingObject];
+    if (self.recommendedConcertDatasource.objectsArray) {
+        self.recommendedConcertDatasource.objectsArray = [self sortArray:self.recommendedConcertDatasource.objectsArray usingSortingObject:self.currentSortingObject];
         completionBlock(YES, nil);
     } else {
         [self downloadRecommendedConcertsWithCompletionBlock:completionBlock];
@@ -157,8 +156,8 @@
 
 - (void)loadAllConcertsWithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock;
 {
-    if (self.allConcertDatasource.objectsArray && !self.forceRedownload) {
-        self.currentlyUsedObjectsArray = [self sortArray:self.allConcertDatasource.objectsArray usingSortingObject:self.currentSortingObject];
+    if (self.allConcertDatasource.objectsArray) {
+        self.allConcertDatasource.objectsArray = [self sortArray:self.allConcertDatasource.objectsArray usingSortingObject:self.currentSortingObject];
         completionBlock(YES, nil);
     } else {
         [self downloadAllConcertsWithCompletionBlock:completionBlock];
@@ -197,17 +196,17 @@
     switch (index) {
         case SelectedTabIndexFavorites:
             self.favoriteConcertDatasource.startIndex = self.favoriteConcertDatasource.objectsArray.count;
-            self.currentLimit = self.favoriteConcertDatasource.startIndex  + self.favoriteConcertDatasource.limit;
+            self.currentLimit = self.favoriteConcertDatasource.startIndex + self.favoriteConcertDatasource.limit;
             [self downloadFavoriteConcertsWithCompletionBlock:completionBlock];
             break;
         case SelectedTabIndexRecommended:
             self.recommendedConcertDatasource.startIndex = self.recommendedConcertDatasource.objectsArray.count;
-            self.currentLimit = self.recommendedConcertDatasource.startIndex  + self.recommendedConcertDatasource.limit;
+            self.currentLimit = self.recommendedConcertDatasource.startIndex + self.recommendedConcertDatasource.limit;
             [self downloadRecommendedConcertsWithCompletionBlock:completionBlock];
             break;
         case SelectedTabIndexAll:
             self.allConcertDatasource.startIndex = self.allConcertDatasource.objectsArray.count;
-            self.currentLimit = self.allConcertDatasource.startIndex  + self.allConcertDatasource.limit;
+            self.currentLimit = self.allConcertDatasource.startIndex + self.allConcertDatasource.limit;
             [self downloadAllConcertsWithCompletionBlock:completionBlock];
             break;
         default:
@@ -229,9 +228,7 @@
     self.allConcertDatasource.sortingObject = self.currentSortingObject;
     self.allConcertDatasource.filterModel = self.currentFilterModel;
 
-    __weak typeof(self) weakSelf = self;
     [self.allConcertDatasource downloadObjectsWithCompletionBlock:^(BOOL completed, NSString *errorMesage) {
-        weakSelf.currentlyUsedObjectsArray = weakSelf.allConcertDatasource.objectsArray;
         if (completionBlock) {
             completionBlock(completed, errorMesage);
         }
@@ -253,9 +250,7 @@
     self.recommendedConcertDatasource.sortingObject = self.currentSortingObject;
     self.recommendedConcertDatasource.filterModel = self.currentFilterModel;
 
-    __weak typeof(self) weakSelf = self;
     [self.recommendedConcertDatasource downloadObjectsWithCompletionBlock:^(BOOL completed, NSString *errorMesage) {
-        weakSelf.currentlyUsedObjectsArray = weakSelf.recommendedConcertDatasource.objectsArray;
         if (completionBlock) {
             completionBlock(completed, errorMesage);
         }
@@ -275,9 +270,7 @@
     self.favoriteConcertDatasource.sortingObject = self.currentSortingObject;
     self.favoriteConcertDatasource.filterModel = self.currentFilterModel;
 
-    __weak typeof(self) weakSelf = self;
     [self.favoriteConcertDatasource downloadObjectsWithCompletionBlock:^(BOOL completed, NSString *errorMesage) {
-        weakSelf.currentlyUsedObjectsArray = weakSelf.favoriteConcertDatasource.objectsArray;
         if (completionBlock) {
             completionBlock(completed, errorMesage);
         }

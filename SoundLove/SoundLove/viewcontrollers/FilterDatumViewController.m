@@ -94,7 +94,6 @@
             [self.flatDatePicker setDate:self.toDate animated:YES withDelegateCallback:YES];
         }
     } else {
-        [self.flatDatePicker setDate:[NSDate date] animated:YES withDelegateCallback:YES];
         [self setTrashIconVisible:NO];
     }
 }

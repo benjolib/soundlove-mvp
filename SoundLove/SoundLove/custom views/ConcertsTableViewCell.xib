@@ -40,13 +40,13 @@
                         </state>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ab 35,00 €" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="176" translatesAutoresizingMaskIntoConstraints="NO" id="UNp-e8-aj4">
-                        <rect key="frame" x="70" y="54" width="176" height="13"/>
+                        <rect key="frame" x="70" y="50" width="176" height="13"/>
                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="10"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="in 20 Tagen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="176" translatesAutoresizingMaskIntoConstraints="NO" id="KlV-1s-jJt">
-                        <rect key="frame" x="70" y="37" width="176" height="13"/>
+                        <rect key="frame" x="70" y="35" width="176" height="13"/>
                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="10"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -68,11 +68,11 @@
                     <constraint firstAttribute="trailing" secondItem="lBz-Fj-1Ob" secondAttribute="trailing" constant="14" id="1BY-mF-vf8"/>
                     <constraint firstItem="lBz-Fj-1Ob" firstAttribute="leading" secondItem="KIQ-OM-Bkl" secondAttribute="trailing" constant="10" id="1jB-qW-aWY"/>
                     <constraint firstAttribute="centerY" secondItem="KIQ-OM-Bkl" secondAttribute="centerY" multiplier="4:1" id="5JM-q5-oc5"/>
-                    <constraint firstAttribute="centerY" secondItem="KlV-1s-jJt" secondAttribute="centerY" multiplier="4:5" id="81T-aW-Yqq"/>
                     <constraint firstItem="BMG-LO-Tkp" firstAttribute="leading" secondItem="HYr-Ms-gYs" secondAttribute="trailing" constant="10" id="LGy-lE-TLo"/>
                     <constraint firstItem="HYr-Ms-gYs" firstAttribute="leading" secondItem="Rc4-FE-aNI" secondAttribute="leading" constant="15" id="OFt-Yq-KPM"/>
                     <constraint firstItem="lBz-Fj-1Ob" firstAttribute="leading" secondItem="BMG-LO-Tkp" secondAttribute="trailing" constant="10" id="SZ6-AJ-7Dq"/>
                     <constraint firstItem="lBz-Fj-1Ob" firstAttribute="leading" secondItem="KlV-1s-jJt" secondAttribute="trailing" constant="10" id="SdD-cR-Bz1"/>
+                    <constraint firstItem="UNp-e8-aj4" firstAttribute="top" secondItem="KlV-1s-jJt" secondAttribute="bottom" constant="2" id="V6f-Rc-Ef2"/>
                     <constraint firstItem="lBz-Fj-1Ob" firstAttribute="leading" secondItem="UNp-e8-aj4" secondAttribute="trailing" constant="10" id="c1D-pD-vG7"/>
                     <constraint firstItem="KlV-1s-jJt" firstAttribute="leading" secondItem="HYr-Ms-gYs" secondAttribute="trailing" constant="10" id="dxi-UX-L3L"/>
                     <constraint firstItem="KIQ-OM-Bkl" firstAttribute="leading" secondItem="HYr-Ms-gYs" secondAttribute="trailing" constant="10" id="edT-vh-kOQ"/>
@@ -80,7 +80,7 @@
                     <constraint firstAttribute="centerY" secondItem="HYr-Ms-gYs" secondAttribute="centerY" id="hIe-Fc-r8K"/>
                     <constraint firstAttribute="centerY" secondItem="BMG-LO-Tkp" secondAttribute="centerY" multiplier="4:3" id="jOY-TE-fhE"/>
                     <constraint firstAttribute="centerY" secondItem="lBz-Fj-1Ob" secondAttribute="centerY" id="kuO-L2-Jo5"/>
-                    <constraint firstAttribute="centerY" secondItem="UNp-e8-aj4" secondAttribute="centerY" multiplier="4:7" id="pbs-3P-kDL"/>
+                    <constraint firstItem="KlV-1s-jJt" firstAttribute="top" secondItem="BMG-LO-Tkp" secondAttribute="bottom" constant="2" id="l7L-dS-01E"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -91,7 +91,7 @@
                 <outlet property="locationLabel" destination="BMG-LO-Tkp" id="Xmp-Df-7Kq"/>
                 <outlet property="priceLabel" destination="UNp-e8-aj4" id="ydo-wC-MpL"/>
             </connections>
-            <point key="canvasLocation" x="-21" y="317"/>
+            <point key="canvasLocation" x="-259" y="468"/>
         </tableViewCell>
     </objects>
     <resources>

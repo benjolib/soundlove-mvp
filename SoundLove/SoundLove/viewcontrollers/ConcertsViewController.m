@@ -68,7 +68,7 @@
 
 - (IBAction)unwindFromFilteringViewByClosing:(UIStoryboardSegue*)segue
 {
-
+    // do nothing
 }
 
 - (IBAction)unwindFromFilterViewApplyingFilter:(UIStoryboardSegue*)unwindSegue
@@ -81,9 +81,8 @@
     __weak typeof (self) weakSelf = self;
     [self.datasourceManager redownloadConcertsWithIndex:self.currentlySelectedTabIndex filterModel:filterModel withCompletionBlock:^(BOOL completed, NSString *errorMesage) {
         if (completed) {
-            if (weakSelf.currentlySelectedTabIndex == SelectedTabIndexAll) {
-                [weakSelf handleDownloadedConcerts];
-            }
+            [weakSelf.datasourceManager showArrayAtIndex:weakSelf.currentlySelectedTabIndex];
+            [weakSelf handleDownloadedConcerts];
         } else {
             [weakSelf handleDownloadErrorMessage:errorMesage];
         }
@@ -173,17 +172,25 @@
     self.searchText = @"";
 
     self.datasourceManager.isSearching = NO;
-    self.datasourceManager.forceRedownload = NO;
     self.datasourceManager.searchText = @"";
-    [self downloadConcertsAccordingToSelection];
+
+    [self redownloadConcerts];
 }
 
 - (void)searchForConcerts
 {
     self.datasourceManager.isSearching = YES;
-    self.datasourceManager.forceRedownload = YES;
     self.datasourceManager.searchText = self.searchText;
-    [self downloadConcertsAccordingToSelection];
+
+    __weak typeof(self) weakSelf = self;
+    [self.datasourceManager redownloadConcertsWithIndex:self.currentlySelectedTabIndex filterModel:self.filterModel withCompletionBlock:^(BOOL completed, NSString *errorMesage) {
+        if (completed) {
+            [weakSelf.datasourceManager showArrayAtIndex:weakSelf.currentlySelectedTabIndex];
+            [weakSelf handleDownloadedConcerts];
+        } else {
+            [weakSelf handleDownloadErrorMessage:errorMesage];
+        }
+    }];
 }
 
 - (void)startSearchTimer
@@ -325,14 +332,17 @@
 {
     [self.refreshController startRefreshing];
 
-    self.currentlySelectedTabIndex = SelectedTabIndexAll;
+    [self redownloadConcerts];
+}
 
+- (void)redownloadConcerts
+{
     __weak typeof (self) weakSelf = self;
     [self.datasourceManager redownloadConcertsWithIndex:self.currentlySelectedTabIndex filterModel:self.filterModel withCompletionBlock:^(BOOL completed, NSString *errorMesage) {
+        [weakSelf.refreshController endRefreshing];
         if (completed) {
-            if (weakSelf.currentlySelectedTabIndex == SelectedTabIndexAll) {
-                [weakSelf handleDownloadedConcerts];
-            }
+            [weakSelf.datasourceManager showArrayAtIndex:weakSelf.currentlySelectedTabIndex];
+            [weakSelf handleDownloadedConcerts];
         } else {
             [weakSelf handleDownloadErrorMessage:errorMesage];
         }
@@ -347,6 +357,7 @@
     [self.datasourceManager downloadNextConcertsAtIndex:self.currentlySelectedTabIndex WithCompletionBlock:^(BOOL completed, NSString *errorMesage) {
         if (completed) {
             if (selectedTabIndexBeforRequest == weakSelf.currentlySelectedTabIndex) {
+                [weakSelf.datasourceManager showArrayAtIndex:weakSelf.currentlySelectedTabIndex];
                 [weakSelf handleDownloadedConcerts];
             }
         } else {
@@ -359,13 +370,14 @@
 {
     [self.tableView showLoadingIndicator];
 
-    [self.datasourceManager loadObjectsAtIndex:self.currentlySelectedTabIndex WithCompletionBlock:^(BOOL completed, NSString *errorMesage) {
-        [self.tableView hideLoadingIndicator];
+    __weak typeof(self) weakSelf = self;
+    [self.datasourceManager loadSavedObjectsAtIndex:self.currentlySelectedTabIndex withCompletionBlock:^(BOOL completed, NSString *errorMesage) {
+        [weakSelf.tableView hideLoadingIndicator];
         if (completed) {
-            [self.datasourceManager showArrayAtIndex:self.currentlySelectedTabIndex];
-            [self handleDownloadedConcerts];
+            [weakSelf.datasourceManager showArrayAtIndex:weakSelf.currentlySelectedTabIndex];
+            [weakSelf handleDownloadedConcerts];
         } else {
-            [self handleDownloadErrorMessage:errorMesage];
+            [weakSelf handleDownloadErrorMessage:errorMesage];
         }
     }];
 }
@@ -423,6 +435,8 @@
 
     self.datasourceManager = [[ConcertViewDatasourceManager alloc] init];
     self.datasourceManager.currentSortingObject = [SortingObject sortingWithType:SortingTypeNone];
+
+    self.currentlySelectedTabIndex = SelectedTabIndexAll;
 
     self.filterModel = [[FilterModel alloc] init];
     [self addRefreshController];
