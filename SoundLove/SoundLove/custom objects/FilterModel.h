@@ -22,6 +22,7 @@
 @property (nonatomic, strong) NSDate *startDate;
 @property (nonatomic, strong) NSDate *endDate;
 
+@property (nonatomic, copy) NSString *selectedCity;
 @property (nonatomic) CLLocationCoordinate2D centerCoordinate;
 @property (nonatomic) float locationDiameter;
 

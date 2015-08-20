@@ -85,7 +85,7 @@
 
 - (BOOL)isLocationFilteringSet
 {
-    return CLLocationCoordinate2DIsValid(self.centerCoordinate);
+    return CLLocationCoordinate2DIsValid(self.centerCoordinate) || self.selectedCity;
 }
 
 - (void)resetFiterLocation

@@ -15,8 +15,13 @@
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #import <Parse/Parse.h>
+#import "TrackingManager.h"
+#import "OverlayTransitionManager.h"
 
-@interface AppDelegate () <SKStoreProductViewControllerDelegate>
+@interface AppDelegate () <SKStoreProductViewControllerDelegate, OverlayViewControllerDelegate>
+@property (nonatomic, strong) NSTimer *popupDisplayerTimer;
+@property (nonatomic, strong) OverlayTransitionManager *overlayTransitionManager;
+@property (nonatomic, strong) OverlayViewController *overlayViewController;
 @end
 
 #define IS_iOS8 [[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0
@@ -25,6 +30,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[TrackingManager sharedManager] trackUserLaunchedApp];
+
     [Fabric with:@[CrashlyticsKit]];
     [Parse setApplicationId:@"26hpoVG7s5u7auIoBhXUKTLg4ZGmez2SfQ05ttSh"
                   clientKey:@"QtTaZxLKrkEJmebzcKXQMs4NsI08mbiDvISPqGXj"];
@@ -101,6 +108,57 @@
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"userRegisteredForNotifications" object:nil];
+}
+
+- (void)displayAppStoreReviewPopup
+{
+    self.overlayTransitionManager = [[OverlayTransitionManager alloc] init];
+    self.overlayViewController = [self.overlayTransitionManager presentOverlayViewWithType:OverlayTypeAppStore onViewController:self.window.rootViewController];
+    self.overlayViewController.delegate = self;
+
+    [GeneralSettings setRateAppWasShown];
+}
+
+- (void)startPopupTimer
+{
+    if ([GeneralSettings wasOnTrackPromptShown] || [GeneralSettings wasRateAppShown]) {
+        return;
+    }
+    self.popupDisplayerTimer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(updatePopupTimer:) userInfo:nil repeats:YES];
+}
+
+- (void)stopPopupTimer
+{
+    [self.popupDisplayerTimer invalidate];
+    self.popupDisplayerTimer = nil;
+}
+
+- (void)updatePopupTimer:(NSTimer*)timer
+{
+    [self checkToDisplayOnTrackPopup];
+}
+
+- (void)checkToDisplayOnTrackPopup
+{
+    if ([GeneralSettings passedIntervalSinceAppStart] > (5 * 60) && ![GeneralSettings wasRateAppShown]) {
+        [self displayAppStoreReviewPopup];
+        [self.popupDisplayerTimer invalidate];
+        self.popupDisplayerTimer = nil;
+    }
+}
+
+- (void)overlayViewControllerConfirmButtonPressed
+{
+    [[TrackingManager sharedManager] trackUserSelectsReviewApp];
+
+    [self performSelector:@selector(rateTheApp) withObject:nil afterDelay:1.0];
+}
+
+- (void)overlayViewControllerCancelButtonPressed
+{
+    [self stopPopupTimer];
+    [GeneralSettings saveAppStartDate];
+    [[TrackingManager sharedManager] trackUserSelectsReviewAppLater];
 }
 
 #pragma mark - rating the app
