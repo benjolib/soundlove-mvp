@@ -17,13 +17,14 @@ typedef NS_ENUM(NSUInteger, OverlayType) {
     OverlayTypeRSVP,
     OverlayTypeTicket24,
     OverlayTypeLocation,
-    OverlayTypeFacebook
+    OverlayTypeFacebook,
+    OverlayTypeAppStore
 };
 
 @protocol OverlayViewControllerDelegate <NSObject>
-
 - (void)overlayViewControllerConfirmButtonPressed;
-
+@optional
+- (void)overlayViewControllerCancelButtonPressed;
 @end
 
 @interface OverlayViewController : UIViewController
@@ -33,9 +34,12 @@ typedef NS_ENUM(NSUInteger, OverlayType) {
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *detailLabel;
 @property (weak, nonatomic) IBOutlet RoundedButton *confirmButton;
+@property (weak, nonatomic) IBOutlet RoundedButton *cancelButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *cancelButtonHeightConstraint;
 @property (nonatomic) OverlayType overlayTypeToDisplay;
 
 - (IBAction)confirmButtonPressed:(RoundedButton *)sender;
+- (IBAction)cancelButtonPressed:(RoundedButton *)sender;
 
 - (instancetype)initWithOverlayType:(OverlayType)type;
 

@@ -10,10 +10,6 @@
 #import "RoundedButton.h"
 #import "UIColor+GlobalColors.h"
 
-@interface OverlayViewController ()
-
-@end
-
 @implementation OverlayViewController
 
 - (instancetype)initWithOverlayType:(OverlayType)type
@@ -34,8 +30,23 @@
     }];
 }
 
+- (IBAction)cancelButtonPressed:(RoundedButton *)sender
+{
+    [self dismissViewControllerAnimated:YES completion:^{
+        if ([self.delegate respondsToSelector:@selector(overlayViewControllerCancelButtonPressed)]) {
+            [self.delegate overlayViewControllerCancelButtonPressed];
+        }
+    }];
+}
+
 - (void)loadViewWithOverlayType:(OverlayType)type
 {
+    if (type != OverlayTypeAppStore) {
+        [self setCancelButtonHidden:YES];
+    } else {
+        [self setCancelButtonHidden:NO];
+    }
+
     switch (type)
     {
         case OverlayTypeLocation:
@@ -75,14 +86,32 @@
             [self.confirmButton setTitle:@"Erneut versuchen" forState:UIControlStateNormal];
             break;
         case OverlayTypeFacebook:
-            self.titleLabel.text = @"Warum uberhaupt facebook?";
+            self.titleLabel.text = @"Warum uberhaupt Facebook?";
             self.detailLabel.text = @"Ihre Anmeldung über Facebook ermöglicht uns, Ihnen persönliche Empfehlungen zu geben. Selbstverständlich werden keine Inhalte in Ihrem Namen gepostet werden, denn Ihre Privatsphäre ist uns sehr wichtig.";
             self.iconImageView.image = [UIImage imageNamed:@"facebookIcon"];
             [self.confirmButton setTitle:@"Anmelden mit Facebook" forState:UIControlStateNormal];
             break;
+        case OverlayTypeAppStore:
+            self.cancelButton.backgroundColor = [UIColor clearColor];
+            [self.cancelButton setTitleColor:[UIColor globalGreenColor] forState:UIControlStateNormal];
+            [self.cancelButton setTitleColor:[UIColor globalGreenColorWithAlpha:0.4] forState:UIControlStateHighlighted];
+            self.cancelButton.layer.borderWidth = 1.0;
+            self.cancelButton.layer.borderColor = [UIColor globalGreenColorWithAlpha:0.4].CGColor;
+
+            self.titleLabel.text = @"Deine Ideen";
+            self.detailLabel.text = @"Hast Du Ideen was man an der App verbessern könnte? Wir würden sie gerne hören. Über den App Store kannst Du uns Deinen Kommentar hinterlassen.";
+            self.iconImageView.image = [UIImage imageNamed:@"starIcon"];
+            [self.confirmButton setTitle:@"Klar, warum nicht" forState:UIControlStateNormal];
+            [self.cancelButton setTitle:@"Vielleicht später" forState:UIControlStateNormal];
         default:
             break;
     }
+}
+
+- (void)setCancelButtonHidden:(BOOL)hidden
+{
+    self.cancelButtonHeightConstraint.constant = hidden ? 0.0 : 50.0;
+    [self.view layoutIfNeeded];
 }
 
 #pragma mark - view methods
