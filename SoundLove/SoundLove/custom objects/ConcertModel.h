@@ -20,6 +20,7 @@
 @property (nonatomic, strong) NSDate *date;
 @property (nonatomic, copy) NSString *price;
 @property (nonatomic, strong) ConcertLocation *concertLocation;
+@property (nonatomic, strong) NSArray *friendsArray;
 
 + (ConcertModel*)concertWithDictionary:(NSDictionary*)dictionary;
 - (instancetype)initWithName:(NSString*)name concertID:(NSString*)concertID city:(NSString*)city place:(NSString*)place price:(NSString*)price date:(NSDate*)date imageURL:(NSString*)imageURL;

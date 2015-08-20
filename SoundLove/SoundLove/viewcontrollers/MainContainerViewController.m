@@ -28,16 +28,6 @@
 
 @implementation MainContainerViewController
 
-- (IBAction)unwindFromFilteringViewByClosing:(UIStoryboardSegue*)segue
-{
-
-}
-
-- (IBAction)unwindFromFilteringViewByApplyingFilter:(UIStoryboardSegue*)segue
-{
-    // Do the filtering
-}
-
 - (IBAction)showOverlay:(id)sender
 {
     if (!self.overlayTransitionManager) {

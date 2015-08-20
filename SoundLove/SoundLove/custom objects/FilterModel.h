@@ -25,6 +25,7 @@
 @property (nonatomic) CLLocationCoordinate2D centerCoordinate;
 @property (nonatomic) float locationDiameter;
 
+
 @property (nonatomic, strong) SortingObject *sortingObject;
 
 + (FilterModel*)copySettingsFromFilterModel:(FilterModel*)filterModel;
@@ -41,6 +42,9 @@
 - (NSString*)genresString;
 - (NSString*)priceString;
 - (NSString*)dateString;
+
+- (NSString*)startDateString;
+- (NSString*)endDateString;
 
 - (NSString*)bandsStringForAPICall;
 - (NSString*)genresStringForAPICall;

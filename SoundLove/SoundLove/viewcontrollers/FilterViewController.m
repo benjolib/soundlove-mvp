@@ -197,6 +197,11 @@
     }
 }
 
+- (void)reloadView
+{
+    [self.tableView reloadData];
+}
+
 - (BOOL)prefersStatusBarHidden
 {
     return YES;

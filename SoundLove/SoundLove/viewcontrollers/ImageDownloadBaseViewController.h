@@ -10,7 +10,7 @@
 
 @class LoadingTableView, BaseImageModel;
 
-@interface ImageDownloadBaseViewController : BaseGradientViewController <UITableViewDataSource, UITableViewDelegate>
+@interface ImageDownloadBaseViewController : BaseGradientViewController <UIScrollViewDelegate>
 
 @property (nonatomic, weak) IBOutlet LoadingTableView *tableView;
 

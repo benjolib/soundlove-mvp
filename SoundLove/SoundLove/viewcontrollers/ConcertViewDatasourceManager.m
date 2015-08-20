@@ -46,7 +46,75 @@
     }
 }
 
+- (void)redownloadConcertsWithIndex:(NSInteger)selectedIndex filterModel:(FilterModel*)filterModel withCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock
+{
+    self.currentFilterModel = filterModel;
+
+    if (selectedIndex == SelectedTabIndexFavorites)
+    {
+        [self downloadFavoriteConcertsWithCompletionBlock:completionBlock];
+        [self downloadAllConcertsWithCompletionBlock:nil];
+        [self downloadRecommendedConcertsWithCompletionBlock:nil];
+    }
+    else if (selectedIndex == SelectedTabIndexRecommended)
+    {
+        [self downloadRecommendedConcertsWithCompletionBlock:completionBlock];
+        [self downloadAllConcertsWithCompletionBlock:nil];
+        [self downloadFavoriteConcertsWithCompletionBlock:nil];
+    }
+    else
+    {
+        [self downloadAllConcertsWithCompletionBlock:completionBlock];
+        [self downloadFavoriteConcertsWithCompletionBlock:nil];
+        [self downloadRecommendedConcertsWithCompletionBlock:nil];
+    }
+}
+
+- (void)sortObjectsUsingSortingObject:(SortingObject*)sortingObject withCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock
+{
+
+}
+
+- (void)showArrayAtIndex:(SelectedTabIndex)tabIndex
+{
+    switch (tabIndex) {
+        case SelectedTabIndexFavorites:
+            self.currentlyUsedObjectsArray = self.favoriteConcertDatasource.objectsArray;
+            break;
+        case SelectedTabIndexRecommended:
+            self.currentlyUsedObjectsArray = self.recommendedConcertDatasource.objectsArray;
+            break;
+        case SelectedTabIndexAll:
+            self.currentlyUsedObjectsArray = self.allConcertDatasource.objectsArray;
+            break;
+        default:
+            break;
+    }
+}
+
 #pragma mark - loading methods
+- (void)reloadObjectsAtIndex:(NSInteger)index withFilterModel:(FilterModel*)filterModel completionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock
+{
+    self.currentFilterModel = filterModel;
+
+    switch (index) {
+        case SelectedTabIndexFavorites:
+            self.favoriteConcertDatasource.filterModel = self.currentFilterModel;
+            [self downloadFavoriteConcertsWithCompletionBlock:completionBlock];
+            break;
+        case SelectedTabIndexRecommended:
+            self.recommendedConcertDatasource.filterModel = self.currentFilterModel;
+            [self downloadRecommendedConcertsWithCompletionBlock:completionBlock];
+            break;
+        case SelectedTabIndexAll:
+            self.allConcertDatasource.filterModel = self.currentFilterModel;
+            [self downloadAllConcertsWithCompletionBlock:completionBlock];
+            break;
+        default:
+            break;
+    }
+}
+
 - (void)loadObjectsAtIndex:(NSInteger)index WithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock
 {
     switch (index) {
@@ -159,6 +227,8 @@
 
     self.allConcertDatasource.searchText = self.searchText;
     self.allConcertDatasource.sortingObject = self.currentSortingObject;
+    self.allConcertDatasource.filterModel = self.currentFilterModel;
+
     __weak typeof(self) weakSelf = self;
     [self.allConcertDatasource downloadObjectsWithCompletionBlock:^(BOOL completed, NSString *errorMesage) {
         weakSelf.currentlyUsedObjectsArray = weakSelf.allConcertDatasource.objectsArray;
@@ -181,6 +251,7 @@
 
     self.recommendedConcertDatasource.searchText = self.searchText;
     self.recommendedConcertDatasource.sortingObject = self.currentSortingObject;
+    self.recommendedConcertDatasource.filterModel = self.currentFilterModel;
 
     __weak typeof(self) weakSelf = self;
     [self.recommendedConcertDatasource downloadObjectsWithCompletionBlock:^(BOOL completed, NSString *errorMesage) {
@@ -202,6 +273,8 @@
 
     self.favoriteConcertDatasource.searchText = self.searchText;
     self.favoriteConcertDatasource.sortingObject = self.currentSortingObject;
+    self.favoriteConcertDatasource.filterModel = self.currentFilterModel;
+
     __weak typeof(self) weakSelf = self;
     [self.favoriteConcertDatasource downloadObjectsWithCompletionBlock:^(BOOL completed, NSString *errorMesage) {
         weakSelf.currentlyUsedObjectsArray = weakSelf.favoriteConcertDatasource.objectsArray;

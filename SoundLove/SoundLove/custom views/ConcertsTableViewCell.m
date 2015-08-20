@@ -23,7 +23,7 @@
     self.dateLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
     self.priceLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
 
-    self.backgroundColor = [UIColor tabbingButtonActiveColor];
+    self.backgroundColor = [UIColor clearColor];
 
     self.concertImageView.layer.borderWidth = 1.0;
     self.concertImageView.layer.borderColor = [UIColor colorWithR:24.0 G:28.0 B:39.0].CGColor;
@@ -72,7 +72,7 @@
     if (highlighted) {
         self.backgroundColor = [[UIColor tabbingButtonInactiveColor] colorWithAlphaComponent:0.6];
     } else {
-        self.backgroundColor = [UIColor tabbingButtonActiveColor];
+        self.backgroundColor = [UIColor clearColor];
     }
 }
 

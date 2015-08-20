@@ -7,7 +7,13 @@
 //
 
 #import "CDFriend+FriendHelper.h"
+#import "FriendObject.h"
 
 @implementation CDFriend (FriendHelper)
+
+- (FriendObject*)friendObject
+{
+    return [[FriendObject alloc] initWithName:self.name imageURL:self.imageURL userID:self.identifier];
+}
 
 @end

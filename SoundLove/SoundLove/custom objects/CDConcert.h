@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class CDConcertImage, CDConcertLocation, NSManagedObject;
+@class CDConcertImage, CDConcertLocation;
 
 @interface CDConcert : NSManagedObject
 

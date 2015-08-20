@@ -196,6 +196,9 @@
                                         <state key="normal" title="Suchen" image="Filter">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="ZMb-xY-b5I" kind="unwind" unwindAction="unwindFromFilterViewApplyingFilter:" id="YSZ-eJ-7np"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.1529411765" green="0.18823529410000001" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -340,6 +343,9 @@
                                         <state key="normal" title="Suchen" image="Filter">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="7JM-iR-Ya3" kind="unwind" unwindAction="unwindFromFilterViewApplyingFilter:" id="aiT-d8-fr7"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.1529411765" green="0.18823529410000001" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -465,7 +471,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="0yk-Qz-3ae" kind="unwind" unwindAction="unwindFromFilteringViewByApplyingFilter:" id="clK-vd-RST"/>
+                                            <segue destination="0yk-Qz-3ae" kind="unwind" unwindAction="unwindFromFilterViewApplyingFilter:" id="jPV-J3-Lyz"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -640,7 +646,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="Wal-4d-MFa" kind="unwind" unwindAction="unwindFromFilteringViewByApplyingFilter:" id="glr-mP-R7g"/>
+                                            <segue destination="Wal-4d-MFa" kind="unwind" unwindAction="unwindFromFilterViewApplyingFilter:" id="8OF-vg-Ke5"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -807,7 +813,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="i7F-mj-gax" kind="unwind" unwindAction="unwindFromFilteringViewByApplyingFilter:" id="mB1-em-5qQ"/>
+                                            <segue destination="i7F-mj-gax" kind="unwind" unwindAction="unwindFromFilterViewApplyingFilter:" id="9L3-92-vkA"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1145,7 +1151,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="oMO-f0-vtm" kind="unwind" unwindAction="unwindFromFilteringViewByApplyingFilter:" id="puV-4N-cuJ"/>
+                                            <segue destination="oMO-f0-vtm" kind="unwind" unwindAction="unwindFromFilterViewApplyingFilter:" id="Mzl-fz-b8F"/>
                                         </connections>
                                     </button>
                                 </subviews>

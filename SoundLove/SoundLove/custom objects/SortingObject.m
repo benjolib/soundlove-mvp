@@ -23,10 +23,10 @@
             return [SortingObject sortingWithName:@"Preis (hoch zu niedrig)" andKey:@"price_from" orderDir:@"DESC" sortingType:SortingTypePreisDESC];
             break;
         case SortingTypeDateASC:
-            return [SortingObject sortingWithName:@"Date (ASC)" andKey:@"date_ts" orderDir:@"ASC" sortingType:SortingTypeDateASC];
+            return [SortingObject sortingWithName:@"Datum (Sobald wie möglich)" andKey:@"date_ts" orderDir:@"ASC" sortingType:SortingTypeDateASC];
             break;
         case SortingTypeDateDESC:
-            return [SortingObject sortingWithName:@"Date (bald bis in weiter Zukunft)" andKey:@"date_ts" orderDir:@"DESC" sortingType:SortingTypeDateDESC];
+            return [SortingObject sortingWithName:@"Datum (Vorausplanen)" andKey:@"date_ts" orderDir:@"DESC" sortingType:SortingTypeDateDESC];
             break;
         default:
             break;

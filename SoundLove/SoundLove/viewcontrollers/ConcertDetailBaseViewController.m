@@ -26,7 +26,7 @@
 
     //    [[TrackingManager sharedManager] trackUserSelectsShareButton];
 
-    NSString *stringToShare = [NSString stringWithFormat:@"WHAT TO SHARE HERE?????? %@", self.concertToDisplay.detailsURL];
+    NSString *stringToShare = [NSString stringWithFormat:@"Hab ein cooles Konzerte gefunden: %@. Die app findest Du ubrigens unter www.soundlove.io", self.concertToDisplay.name];
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[stringToShare]
                                                                                          applicationActivities:nil];
     activityViewController.excludedActivityTypes = @[UIActivityTypePostToWeibo,

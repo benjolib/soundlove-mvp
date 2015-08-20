@@ -8,11 +8,12 @@
         <attribute name="place" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="price" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sectionTitle" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="friends" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDFriend" inverseName="concert" inverseEntity="CDFriend" syncable="YES"/>
         <relationship name="image" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDConcertImage" inverseName="concert" inverseEntity="CDConcertImage" syncable="YES"/>
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDConcertLocation" inverseName="concert" inverseEntity="CDConcertLocation" syncable="YES"/>
     </entity>
     <entity name="CDConcertImage" representedClassName="CDConcertImage" syncable="YES">
-        <attribute name="image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" storedInTruthFile="YES" syncable="YES"/>
         <relationship name="concert" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDConcert" inverseName="image" inverseEntity="CDConcert" syncable="YES"/>
     </entity>
     <entity name="CDConcertLocation" representedClassName="CDConcertLocation" syncable="YES">
@@ -27,9 +28,16 @@
         <attribute name="zip" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="concert" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDConcert" inverseName="location" inverseEntity="CDConcert" syncable="YES"/>
     </entity>
+    <entity name="CDFriend" representedClassName="CDFriend" syncable="YES">
+        <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="concert" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDConcert" inverseName="friends" inverseEntity="CDConcert" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="CDConcert" positionX="-63" positionY="-18" width="128" height="180"/>
-        <element name="CDConcertImage" positionX="-63" positionY="36" width="128" height="75"/>
-        <element name="CDConcertLocation" positionX="-54" positionY="54" width="128" height="195"/>
+        <element name="CDConcert" positionX="-180" positionY="-234" width="128" height="193"/>
+        <element name="CDConcertImage" positionX="-342" positionY="99" width="128" height="73"/>
+        <element name="CDConcertLocation" positionX="-110" positionY="99" width="128" height="195"/>
+        <element name="CDFriend" positionX="151" positionY="99" width="128" height="103"/>
     </elements>
 </model>

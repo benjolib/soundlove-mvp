@@ -77,7 +77,7 @@
         case OverlayTypeFacebook:
             self.titleLabel.text = @"Warum uberhaupt facebook?";
             self.detailLabel.text = @"Ihre Anmeldung über Facebook ermöglicht uns, Ihnen persönliche Empfehlungen zu geben. Selbstverständlich werden keine Inhalte in Ihrem Namen gepostet werden, denn Ihre Privatsphäre ist uns sehr wichtig.";
-            self.iconImageView.image = [UIImage imageNamed:@"wifi icon"];
+            self.iconImageView.image = [UIImage imageNamed:@"facebookIcon"];
             [self.confirmButton setTitle:@"Anmelden mit Facebook" forState:UIControlStateNormal];
             break;
         default:

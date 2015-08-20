@@ -24,6 +24,7 @@
 #import "ConcertRankClient.h"
 #import "ConcertDetailViewController.h"
 #import "ConcertLoadMoreTableViewCell.h"
+#import "FilterViewController.h"
 
 @interface ConcertsViewController ()
 @property (nonatomic, strong) ConcertRankClient *rankClient;
@@ -65,10 +66,41 @@
     [self downloadConcertsAccordingToSelection];
 }
 
+- (IBAction)unwindFromFilteringViewByClosing:(UIStoryboardSegue*)segue
+{
+
+}
+
+- (IBAction)unwindFromFilterViewApplyingFilter:(UIStoryboardSegue*)unwindSegue
+{
+    FilterViewController *filterViewController = unwindSegue.sourceViewController;
+    FilterModel *filterModel = filterViewController.filterModel;
+
+    self.filterModel = filterModel;
+
+    __weak typeof (self) weakSelf = self;
+    [self.datasourceManager redownloadConcertsWithIndex:self.currentlySelectedTabIndex filterModel:filterModel withCompletionBlock:^(BOOL completed, NSString *errorMesage) {
+        if (completed) {
+            if (weakSelf.currentlySelectedTabIndex == SelectedTabIndexAll) {
+                [weakSelf handleDownloadedConcerts];
+            }
+        } else {
+            [weakSelf handleDownloadErrorMessage:errorMesage];
+        }
+    }];
+}
+
 - (IBAction)filterButtonPressed:(id)sender
 {
     FilterNavigationController *filterNav = [StoryboardManager filterNavigationController];
     [self presentViewController:filterNav animated:YES completion:nil];
+
+    // assign the current filter model to the filter viewController
+    if ([filterNav.topViewController isKindOfClass:[FilterViewController class]]) {
+        FilterViewController *filterViewController = (FilterViewController*)filterNav.topViewController;
+        filterViewController.filterModel = self.filterModel;
+        [filterViewController reloadView];
+    }
 }
 
 - (void)applySortingOptionToConcerts
@@ -232,7 +264,6 @@
                 ConcertLoadMoreTableViewCell *cell = (ConcertLoadMoreTableViewCell*)reloadCell;
                 [cell startRefreshing];
             }
-
         });
     }
 }
@@ -295,7 +326,17 @@
     [self.refreshController startRefreshing];
 
     self.currentlySelectedTabIndex = SelectedTabIndexAll;
-    [self downloadAllConcerts];
+
+    __weak typeof (self) weakSelf = self;
+    [self.datasourceManager redownloadConcertsWithIndex:self.currentlySelectedTabIndex filterModel:self.filterModel withCompletionBlock:^(BOOL completed, NSString *errorMesage) {
+        if (completed) {
+            if (weakSelf.currentlySelectedTabIndex == SelectedTabIndexAll) {
+                [weakSelf handleDownloadedConcerts];
+            }
+        } else {
+            [weakSelf handleDownloadErrorMessage:errorMesage];
+        }
+    }];
 }
 
 - (void)downloadNextConcerts
@@ -314,24 +355,14 @@
     }];
 }
 
-- (void)downloadAllConcerts
-{
-    __weak typeof (self) weakSelf = self;
-    [self.datasourceManager loadObjectsAtIndex:SelectedTabIndexAll WithCompletionBlock:^(BOOL completed, NSString *errorMesage) {
-        if (completed) {
-            if (weakSelf.currentlySelectedTabIndex == SelectedTabIndexAll) {
-                [weakSelf handleDownloadedConcerts];
-            }
-        } else {
-            [weakSelf handleDownloadErrorMessage:errorMesage];
-        }
-    }];
-}
-
 - (void)downloadConcertsAccordingToSelection
 {
+    [self.tableView showLoadingIndicator];
+
     [self.datasourceManager loadObjectsAtIndex:self.currentlySelectedTabIndex WithCompletionBlock:^(BOOL completed, NSString *errorMesage) {
+        [self.tableView hideLoadingIndicator];
         if (completed) {
+            [self.datasourceManager showArrayAtIndex:self.currentlySelectedTabIndex];
             [self handleDownloadedConcerts];
         } else {
             [self handleDownloadErrorMessage:errorMesage];

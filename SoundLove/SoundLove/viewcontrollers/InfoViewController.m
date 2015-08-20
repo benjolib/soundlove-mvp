@@ -124,12 +124,12 @@
 
 - (void)openOurApps
 {
-
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/us/artist/runashop-gmbh/id984065378"]];
 }
 
 - (void)openJobSearch
 {
-
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://soundlove.io/jobs.html"]];
 }
 
 - (void)presentAppStoreViewWithAppID:(NSString*)appStoreID
@@ -161,15 +161,6 @@
     [self.customNavigationView setButtonTarget:self selector:@selector(backButtonPressed)];
 
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-
-#ifdef DEBUG
-    NSDictionary *infoDictionary = [[NSBundle mainBundle]infoDictionary];
-
-    NSString *version = infoDictionary[@"CFBundleShortVersionString"];
-    NSString *build = infoDictionary[(NSString*)kCFBundleVersionKey];
-
-    self.versionNumberLabel.text = [NSString stringWithFormat:@"Version: %@, Build: %@", version, build];
-#endif
 }
 
 @end

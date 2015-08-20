@@ -31,7 +31,7 @@
 - (void)userWantsToLogout
 {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Abmelden"
-                                                        message:@"Are you sure you want to log out?!vknfdkjfd"
+                                                        message:@"Willst Du Dich wirklich abmelden?"
                                                        delegate:self
                                               cancelButtonTitle:@"Nein"
                                               otherButtonTitles:@"Abmelden", nil];
@@ -170,6 +170,17 @@
     [self addRecognizer];
 
     [self setButtonStates];
+
+#ifdef DEBUG
+    NSDictionary *infoDictionary = [[NSBundle mainBundle]infoDictionary];
+
+    NSString *version = infoDictionary[@"CFBundleShortVersionString"];
+    NSString *build = infoDictionary[(NSString*)kCFBundleVersionKey];
+
+    self.versionNumberLabel.text = [NSString stringWithFormat:@"Version: %@, Build: %@", version, build];
+#else
+    self.versionNumberLabel.hidden = YES;
+#endif
 }
 
 - (void)viewDidAppear:(BOOL)animated

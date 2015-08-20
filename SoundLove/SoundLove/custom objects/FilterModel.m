@@ -32,6 +32,7 @@
     self = [super init];
     if (self) {
         self.sortingObject = [SortingObject sortingWithType:SortingTypeNone];
+        [self resetFiterLocation];
     }
     return self;
 }
@@ -152,6 +153,16 @@
     }
 
     return dateString;
+}
+
+- (NSString*)startDateString
+{
+    return [self.dateFormatter stringFromDate:self.startDate];
+}
+
+- (NSString*)endDateString
+{
+    return [self.dateFormatter stringFromDate:self.endDate];
 }
 
 - (NSString*)bandsStringForAPICall

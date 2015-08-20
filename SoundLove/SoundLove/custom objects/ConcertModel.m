@@ -8,6 +8,7 @@
 
 #import "ConcertModel.h"
 #import "NSDictionary+nonNullObjectForKey.h"
+#import "FriendObject.h"
 
 @implementation ConcertModel
 
@@ -25,6 +26,20 @@
     ConcertModel *concert = [[ConcertModel alloc] initWithName:name concertID:concertID city:city place:place price:price date:date imageURL:imageURL];
     concert.concertLocation = [ConcertLocation concertLocationWithDictionary:dictionary];
     concert.detailsURL = detailsURL;
+
+//#ifdef DEBUG
+//    concert.friendsArray = [ConcertModel createFakeFriends];
+//#else 
+    NSArray *friendsArray = [dictionary nonNullObjectForKey:@"friends"];
+    if (friendsArray)
+    {
+        NSMutableArray *friendsTempArray = [NSMutableArray array];
+        for (NSDictionary *friendDictionary in friendsArray) {
+            [friendsTempArray addObject:[FriendObject friendObjectWithDictionary:friendDictionary]];
+        }
+        concert.friendsArray = friendsTempArray;
+    }
+//#endif
     return concert;
 }
 
@@ -105,6 +120,15 @@
         }
     }
     return NO;
+}
+
++ (NSArray*)createFakeFriends
+{
+    NSMutableArray *friendsTempArray = [NSMutableArray array];
+    for (int i = 0; i < 10; i++) {
+        [friendsTempArray addObject:[FriendObject friendObjectWithDictionary:@{@"id": @"24141", @"name": @"John Smith", @"picture": @"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/v/t1.0-1/p50x50/10603588_102209476787153_6748298543344698984_n.jpg?oh=6bc4c78d9f568041cd48e06b91fbdf20&oe=56782B82&__gda__=1450349470_68e004032853bc5f3b469a5a8538ce6b"}]];
+    }
+    return friendsTempArray;
 }
 
 @end

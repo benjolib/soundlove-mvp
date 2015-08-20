@@ -10,7 +10,9 @@
 #import "CDConcert.h"
 #import "CDConcertLocation.h"
 #import "CDConcertImage.h"
+#import "CDFriend.h"
 #import "ConcertModel.h"
+#import "FriendObject.h"
 
 @interface CoreDataHandler ()
 @property (readwrite, strong, nonatomic) NSManagedObjectContext *mainManagedObjectContext;
@@ -87,6 +89,18 @@
     concertLocation.house = concert.location.house;
 
     [concert setLocation:concertLocation];
+
+    if (concertModel.friendsArray.count > 0)
+    {
+        for (FriendObject *friend in concertModel.friendsArray) {
+            CDFriend *friendObject = [NSEntityDescription insertNewObjectForEntityForName:@"CDFriend" inManagedObjectContext:self.mainManagedObjectContext];
+            friendObject.name = friend.name;
+            friendObject.identifier = friend.userID;
+            friendObject.imageURL = friend.imageURL;
+
+            [concert addFriendsObject:friendObject];
+        }
+    }
 
     if (!self.sectionDateFormatter) {
         self.sectionDateFormatter = [[NSDateFormatter alloc] init];

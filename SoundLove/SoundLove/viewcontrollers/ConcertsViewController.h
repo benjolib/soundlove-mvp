@@ -11,7 +11,7 @@
 
 @class TabbingButton, LoadingTableView;
 
-@interface ConcertsViewController : ImageDownloadBaseViewController
+@interface ConcertsViewController : ImageDownloadBaseViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) IBOutletCollection(TabbingButton) NSArray *tabbuttonsArray;
 @property (nonatomic, weak) IBOutlet UIView *filterSortView;

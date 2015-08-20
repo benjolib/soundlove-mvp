@@ -8,6 +8,9 @@
 
 #import "CDConcert+ConcertHelper.h"
 #import "ConcertModel.h"
+#import "CDConcertLocation+ConcertLocationHelper.h"
+#import "CDConcertImage.h"
+#import "CDFriend+FriendHelper.h"
 
 @implementation CDConcert (ConcertHelper)
 
@@ -23,6 +26,15 @@
     concert.concertLocation = [self.location concertLocation];
 
     concert.image = [UIImage imageWithData:self.image.image];
+
+    if (self.friends.count > 0) {
+        NSMutableArray *tempFriendsArray = [NSMutableArray array];
+        for (CDFriend *friend in self.friends) {
+            [tempFriendsArray addObject:[friend friendObject]];
+        }
+        concert.friendsArray = tempFriendsArray;
+    }
+
     return concert;
 }
 

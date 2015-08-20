@@ -9,6 +9,7 @@
 #import "ConcertViewDatasource.h"
 #import "ConcertModel.h"
 #import "SortingObject.h"
+#import "FilterModel.h"
 
 @implementation ConcertViewDatasource
 
@@ -27,6 +28,30 @@
 
     if (self.searchText.length > 0) {
         [urlString appendString:[NSString stringWithFormat:@"&artist=%@", [self.searchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+    }
+
+    if ([self.filterModel isFiltering]) {
+        if ([self.filterModel isLocationFilteringSet]) {
+//            [urlString appendString:[NSString stringWithFormat:@"&city=%@", [self.filterModel countriesStringForAPICall]]];
+        }
+        if (self.filterModel.startDate) {
+            [urlString appendString:[NSString stringWithFormat:@"&dateFrom=%@", [self.filterModel startDateString]]];
+        }
+        if (self.filterModel.endDate) {
+            [urlString appendString:[NSString stringWithFormat:@"&dateTo=%@", [self.filterModel endDateString]]];
+        }
+        if (self.filterModel.selectedGenresArray.count > 0) {
+            [urlString appendString:[NSString stringWithFormat:@"&category=%@", [self.filterModel genresStringForAPICall]]];
+        }
+        if (self.filterModel.selectedBandsArray.count > 0) {
+            [urlString appendString:[NSString stringWithFormat:@"&artist=%@", [self.filterModel bandsStringForAPICall]]];
+        }
+        if (self.filterModel.fromPrice) {
+            [urlString appendString:[NSString stringWithFormat:@"&priceFrom=%@", self.filterModel.fromPrice]];
+        }
+        if (self.filterModel.toPrice) {
+            [urlString appendString:[NSString stringWithFormat:@"&priceTo=%@", self.filterModel.toPrice]];
+        }
     }
 
     NSLog(@"Url the request was sent to: %@", urlString);

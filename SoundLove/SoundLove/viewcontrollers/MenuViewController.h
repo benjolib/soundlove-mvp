@@ -22,6 +22,8 @@
 
 @property (nonatomic, weak) IBOutlet UIButton *infoButton;
 
+@property (nonatomic, weak) IBOutlet UILabel *versionNumberLabel;
+
 - (void)saveSourceViewController:(UIViewController*)sourceViewController;
 
 - (IBAction)menuButtonSelected:(MenuButton*)button;

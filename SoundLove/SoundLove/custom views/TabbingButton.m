@@ -29,7 +29,7 @@
 
 - (void)showBadgeWithValue:(NSInteger)value
 {
-    if (!self.badgeView) {
+    if (!self.badgeView && value > 0) {
         self.badgeView = [[BadgeCounterView alloc] initWithFrame:CGRectMake(0.0, 0.0, 21.0, 21.0)];
         self.badgeView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:self.badgeView];

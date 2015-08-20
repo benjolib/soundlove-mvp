@@ -9,8 +9,6 @@
 #import "CDConcert.h"
 #import "CDConcertImage.h"
 #import "CDConcertLocation.h"
-#import "NSManagedObject.h"
-
 
 @implementation CDConcert
 

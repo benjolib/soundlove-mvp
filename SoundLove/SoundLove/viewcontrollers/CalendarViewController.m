@@ -11,30 +11,53 @@
 #import <CoreData/CoreData.h>
 #import "CoreDataHandler.h"
 #import "CalendarEventTableViewCell.h"
+#import "CalendarEventFriendsTableViewCell.h"
 #import "UIColor+GlobalColors.h"
 #import "ConcertModel.h"
 #import "CDConcert+ConcertHelper.h"
 #import "CDConcertImage.h"
 #import "LoadingTableView.h"
 #import "ConcertDetailViewController.h"
+#import "ImageDownloader.h"
+#import "ImageDownloadManager.h"
+#import "NSDictionary+nonNullObjectForKey.h"
+#import "FriendObject.h"
 
 @interface CalendarViewController () <NSFetchedResultsControllerDelegate, CalendarEventTableViewCellDelegate>
-@property (nonatomic, strong) NSArray *savedConcertsArray;
-@property (nonatomic, strong) NSArray *friendsArray;
-
 @property (nonatomic, strong) NSFetchedResultsController *fetchController;
 @property (nonatomic, strong) NSMutableSet *cellsCurrentlyEditing;
-@property (nonatomic) BOOL isSearching;
+@property (nonatomic, strong) NSMutableDictionary *imageDownloadDictionary;
+// Contains an array of images
+@property (nonatomic, strong) NSMutableDictionary *downloadedImagesDictionary;
 @property (nonatomic) BOOL savedEventsSelected;
 @end
 
 @implementation CalendarViewController
+
+- (NSMutableDictionary*)imageDownloadDictionary
+{
+    if (!_imageDownloadDictionary) {
+        _imageDownloadDictionary = [NSMutableDictionary dictionary];
+    }
+
+    return _imageDownloadDictionary;
+}
+
+- (NSMutableDictionary*)downloadedImagesDictionary
+{
+    if (!_downloadedImagesDictionary) {
+        _downloadedImagesDictionary = [NSMutableDictionary dictionary];
+    }
+
+    return _downloadedImagesDictionary;
+}
 
 - (IBAction)friendsButtonPressed:(TabbingButton*)button
 {
     [button setButtonActive:YES];
     [self.eventsButton setButtonActive:NO];
 
+    [self.cellsCurrentlyEditing removeAllObjects];
     self.savedEventsSelected = NO;
     [self loadFriends];
 }
@@ -44,6 +67,7 @@
     [button setButtonActive:YES];
     [self.friendsButton setButtonActive:NO];
 
+    [self.cellsCurrentlyEditing removeAllObjects];
     self.savedEventsSelected = YES;
     [self loadAllSavedEvents];
 }
@@ -64,7 +88,6 @@
     [self.tableView hideEmptyView];
 
     [self.fetchController.fetchRequest setPredicate:nil];
-    self.isSearching = NO;
     [self loadAllSavedEvents];
 }
 
@@ -73,10 +96,8 @@
     if (searchText.length > 0) {
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name contains[cd] %@", searchText];
         [self.fetchController.fetchRequest setPredicate:predicate];
-        self.isSearching = YES;
     } else {
         [self.fetchController.fetchRequest setPredicate:nil];
-        self.isSearching = NO;
     }
 
     [self loadAllSavedEvents];
@@ -98,6 +119,8 @@
 
     if (concert) {
         [[CoreDataHandler sharedHandler] removeConcertObject:concert];
+
+        [self.downloadedImagesDictionary removeObjectForKey:indexPath];
     }
 }
 
@@ -207,21 +230,13 @@
 #pragma mark - tableView methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (self.savedEventsSelected) {
-        id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchController.sections objectAtIndex:section];
-        return [sectionInfo numberOfObjects];
-    } else {
-        return self.friendsArray.count;
-    }
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchController.sections objectAtIndex:section];
+    return [sectionInfo numberOfObjects];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (self.savedEventsSelected) {
-        return self.fetchController.sections.count;
-    } else {
-        return 1;
-    }
+    return self.fetchController.sections.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -261,40 +276,107 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CalendarEventTableViewCell *cell = (CalendarEventTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"cell"];
-    cell.delegate = self;
-
-    if ([self.cellsCurrentlyEditing containsObject:indexPath]) {
-        [cell openCell];
-    }
 
     CDConcert *savedConcert = [self.fetchController objectAtIndexPath:indexPath];
     ConcertModel *concert = [savedConcert concertModel];
 
-    cell.concertTitleLabel.text = concert.name;
-    cell.locationLabel.text = concert.place;
-    cell.priceLabel.text = [concert priceString];
-    cell.dateLabel.text = [concert calendarDaysTillStartDateString];
-
-    dispatch_async(dispatch_queue_create("com.SoundLove.getImageFromCoreData", NULL), ^{
-        CDConcertImage *imageModel = savedConcert.image;
-        if (imageModel) {
-            UIImage *image = [UIImage imageWithData:imageModel.image];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                cell.concertImageView.image = image;
-            });
-        } else {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                cell.concertImageView.image = [UIImage imageNamed:@"placeholder"];
-            });
+    if (self.savedEventsSelected)
+    {
+        cell.concertTitleLabel.text = concert.name;
+        if ([self.cellsCurrentlyEditing containsObject:indexPath]) {
+            [cell openCell];
         }
-    });
-    return cell;
+        cell.delegate = self;
+
+        cell.locationLabel.text = concert.place;
+        cell.priceLabel.text = [concert priceString];
+        cell.dateLabel.text = [concert calendarDaysTillStartDateString];
+
+        dispatch_async(dispatch_queue_create("com.SoundLove.getImageFromCoreData", NULL), ^{
+            CDConcertImage *imageModel = savedConcert.image;
+            if (imageModel) {
+                UIImage *image = [UIImage imageWithData:imageModel.image];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    cell.concertImageView.image = image;
+                });
+            } else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    cell.concertImageView.image = [UIImage imageNamed:@"placeholder"];
+                });
+            }
+        });
+        return cell;
+    }
+    else
+    {
+        CalendarEventFriendsTableViewCell *friendsCell = (CalendarEventFriendsTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"friendsCell"];
+        friendsCell.concertTitleLabel.text = concert.name;
+        [friendsCell adjustFriendsViewWithFriends:concert.friendsArray];
+
+        if (concert.friendsArray.count > 0)
+        {
+            NSArray *imagesArray = [self.downloadedImagesDictionary nonNullObjectForKey:indexPath];
+            if (imagesArray) {
+                [friendsCell applyImages:imagesArray];
+            } else {
+                [self downloadImages:concert.friendsArray atIndexPath:indexPath];
+            }
+        }
+
+        dispatch_async(dispatch_queue_create("com.SoundLove.getImageFromCoreData", NULL), ^{
+            CDConcertImage *imageModel = savedConcert.image;
+            if (imageModel) {
+                UIImage *image = [UIImage imageWithData:imageModel.image];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    friendsCell.concertImageView.image = image;
+                });
+            } else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    friendsCell.concertImageView.image = [UIImage imageNamed:@"placeholder"];
+                });
+            }
+        });
+
+        return friendsCell;
+    }
+}
+
+- (void)downloadImages:(NSArray*)friendsObjects atIndexPath:(NSIndexPath*)indexPath
+{
+    // check if there is a manager already for the given indexPath
+    ImageDownloadManager *downloadManager = [self.imageDownloadDictionary nonNullObjectForKey:indexPath];
+
+    if (!downloadManager)
+    {
+        downloadManager = [ImageDownloadManager new];
+
+        NSMutableArray *tempImageURLs = [NSMutableArray array];
+        for (FriendObject *friend in friendsObjects) {
+            if (friend.imageURL) {
+                [tempImageURLs addObject:friend.imageURL];
+            }
+        }
+        downloadManager.imageURLsToDownload = tempImageURLs;
+
+        __weak typeof(self) weakSelf = self;
+        [downloadManager startDownloadingImagesWithCompletionBlock:^(NSArray *downloadedImagesArray) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (downloadedImagesArray.count > 0 && !weakSelf.savedEventsSelected) {
+                    CalendarEventFriendsTableViewCell *cell = (CalendarEventFriendsTableViewCell*)[weakSelf.tableView cellForRowAtIndexPath:indexPath];
+                    [cell applyImages:downloadedImagesArray];
+
+                    weakSelf.downloadedImagesDictionary[indexPath] = downloadedImagesArray;
+                }
+                [weakSelf.imageDownloadDictionary removeObjectForKey:indexPath];
+            });
+        }];
+        self.imageDownloadDictionary[indexPath] = downloadManager;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
     [self performSegueWithIdentifier:@"openDetailView" sender:indexPath];
 }
 
@@ -353,10 +435,16 @@
 
 - (void)loadFriends
 {
-    // TODO:
-    
     [self.tableView hideLoadingIndicator];
     [self.tableView reloadData];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    [_downloadedImagesDictionary removeAllObjects];
+    [_imageDownloadDictionary removeAllObjects];
+
 }
 
 @end

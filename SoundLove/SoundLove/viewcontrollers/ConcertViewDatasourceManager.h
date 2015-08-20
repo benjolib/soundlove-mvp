@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ConcertViewDatasource.h"
 #import "SortingObject.h"
+#import "FilterModel.h"
 
 typedef NS_ENUM(NSUInteger, SelectedTabIndex) {
     SelectedTabIndexFavorites = 0,
@@ -23,6 +24,7 @@ typedef NS_ENUM(NSUInteger, SelectedTabIndex) {
 @property (nonatomic, strong) ConcertViewDatasource *recommendedConcertDatasource;
 
 @property (nonatomic, strong) SortingObject *currentSortingObject;
+@property (nonatomic, strong) FilterModel *currentFilterModel;
 @property (nonatomic) float currentLimit;
 @property (nonatomic, strong) NSMutableArray *currentlyUsedObjectsArray;
 
@@ -32,10 +34,20 @@ typedef NS_ENUM(NSUInteger, SelectedTabIndex) {
 
 - (void)loadObjectsAtIndex:(NSInteger)index WithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock;
 - (void)downloadNextConcertsAtIndex:(NSInteger)index WithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock;
-
+//- (void)reloadObjectsAtIndex:(NSInteger)index withFilterModel:(FilterModel*)filterModel completionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock;
 
 - (void)downloadAllConcertsWithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock;
 - (void)downloadRecommendedConcertsWithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock;
 - (void)downloadFavoriteConcertsWithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock;
+
+
+
+
+
+
+- (void)redownloadConcertsWithIndex:(NSInteger)selectedIndex filterModel:(FilterModel*)filterModel withCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock;
+- (void)sortObjectsUsingSortingObject:(SortingObject*)sortingObject withCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock;
+- (void)showArrayAtIndex:(SelectedTabIndex)tabIndex;
+
 
 @end

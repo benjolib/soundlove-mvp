@@ -10,4 +10,8 @@
 
 @interface ImageDownloadManager : NSObject
 
+@property (nonatomic, strong) NSArray *imageURLsToDownload;
+
+- (void)startDownloadingImagesWithCompletionBlock:(void(^)(NSArray *downloadedImagesArray))completionBlock;
+
 @end

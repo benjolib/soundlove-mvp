@@ -8,6 +8,10 @@
 
 #import "CDFriend.h"
 
+@class FriendObject;
+
 @interface CDFriend (FriendHelper)
+
+- (FriendObject*)friendObject;
 
 @end

@@ -8,7 +8,7 @@
 
 #import "AbstractClient.h"
 
-@class SortingObject;
+@class SortingObject, FilterModel;
 
 @interface ConcertViewDatasource : AbstractClient
 
@@ -18,7 +18,8 @@
 @property (nonatomic, copy) NSString *urlToDownloadFrom;
 
 @property (nonatomic, copy) NSString *searchText;
-@property (nonatomic, strong) SortingObject *sortingObject;
+@property (nonatomic, weak) SortingObject *sortingObject;
+@property (nonatomic, weak) FilterModel *filterModel;
 
 - (void)downloadObjectsWithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock;
 

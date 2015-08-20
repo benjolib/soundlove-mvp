@@ -103,6 +103,8 @@
     self.navigationView.titleLabel.text = self.concertToDisplay.name;
 
     [self.navigationView setShadowActive:YES];
+
+    [self.friendsButton showBadgeWithValue:self.concertToDisplay.friendsArray.count];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

@@ -26,4 +26,6 @@
 - (void)adjustButtonToFilterModel;
 - (void)setTrashIconVisible:(BOOL)visible;
 
+- (void)reloadView;
+
 @end

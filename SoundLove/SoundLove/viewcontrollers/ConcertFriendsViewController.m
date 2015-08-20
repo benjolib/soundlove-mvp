@@ -72,6 +72,11 @@
     return (CGRectGetWidth(collectionView.frame) - 3*100)/3;
 }
 
+//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return CGSizeMake((CGRectGetWidth(collectionView.frame)- 4*10)/3, (CGRectGetHeight(collectionView.frame)- 4*10)/3);
+//}
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     CGFloat pageWidth = scrollView.frame.size.width;
@@ -88,27 +93,39 @@
 
     self.emptyViewLabel.hidden = YES;
 
-    [self.collectionView showLoadingIndicator];
-    __weak typeof(self) weakSelf = self;
-    self.friendsDownloadClient = [[ConcertDownloadClient alloc] init];
-    [self.friendsDownloadClient downloadListOfFriendsGoingToConcert:self.concertToDisplay withCompletionBlock:^(NSArray *listOfFriends, BOOL completed, NSString *errorMessage) {
-        [self.collectionView hideLoadingIndicator];
-        if (completed) {
-            weakSelf.friendsArray = listOfFriends;
-            if (weakSelf.friendsArray.count == 0) {
-                weakSelf.emptyViewLabel.hidden = NO;
+    if (self.concertToDisplay.friendsArray.count <= 0) {
+        [self.collectionView showLoadingIndicator];
+        __weak typeof(self) weakSelf = self;
+        self.friendsDownloadClient = [[ConcertDownloadClient alloc] init];
+        [self.friendsDownloadClient downloadListOfFriendsGoingToConcert:self.concertToDisplay withCompletionBlock:^(NSArray *listOfFriends, BOOL completed, NSString *errorMessage) {
+            [self.collectionView hideLoadingIndicator];
+            if (completed) {
+                weakSelf.friendsArray = listOfFriends;
+                if (weakSelf.friendsArray.count == 0) {
+                    weakSelf.emptyViewLabel.hidden = NO;
+                } else {
+                    weakSelf.emptyViewLabel.hidden = YES;
+                }
+                [weakSelf setFriendsBadgeVisible];
+                [weakSelf.collectionView reloadData];
+                [weakSelf adjustPageControl];
             } else {
-                weakSelf.emptyViewLabel.hidden = YES;
+                if (errorMessage) {
+                    // TODO: handle error message
+                }
             }
-            [weakSelf setFriendsBadgeVisible];
-            [weakSelf.collectionView reloadData];
-            [weakSelf adjustPageControl];
-        } else {
-            if (errorMessage) {
-                // TODO: handle error message
-            }
-        }
-    }];
+        }];
+    }
+    else
+    {
+        [self.collectionView hideLoadingIndicator];
+
+        self.friendsArray = self.concertToDisplay.friendsArray;
+        [self setFriendsBadgeVisible];
+        [self.collectionView reloadData];
+
+        [self adjustPageControl];
+    }
 }
 
 - (void)setFriendsBadgeVisible
