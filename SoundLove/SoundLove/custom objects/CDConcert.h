@@ -2,14 +2,14 @@
 //  CDConcert.h
 //  SoundLove
 //
-//  Created by Sztanyi Szabolcs on 12/08/15.
+//  Created by Sztanyi Szabolcs on 20/08/15.
 //  Copyright (c) 2015 Zappdesigntemplates. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import "CDConcertLocation+ConcertLocationHelper.h"
-#import "CDConcertImage.h"
+
+@class CDConcertImage, CDConcertLocation, NSManagedObject;
 
 @interface CDConcert : NSManagedObject
 
@@ -22,5 +22,14 @@
 @property (nonatomic, retain) NSString * sectionTitle;
 @property (nonatomic, retain) CDConcertImage *image;
 @property (nonatomic, retain) CDConcertLocation *location;
+@property (nonatomic, retain) NSSet *friends;
+@end
+
+@interface CDConcert (CoreDataGeneratedAccessors)
+
+- (void)addFriendsObject:(NSManagedObject *)value;
+- (void)removeFriendsObject:(NSManagedObject *)value;
+- (void)addFriends:(NSSet *)values;
+- (void)removeFriends:(NSSet *)values;
 
 @end
