@@ -29,6 +29,11 @@
 
 - (IBAction)unwindToOnboardingView:(UIStoryboardSegue*)segue
 {
+
+}
+
+- (IBAction)questionButtonPressed:(id)sender
+{
     self.overlayViewController = nil;
 
     if (!self.overlayTransitionManager) {
@@ -36,11 +41,6 @@
     }
     self.overlayViewController = [self.overlayTransitionManager presentOverlayViewWithType:OverlayTypeFacebook onViewController:self];
     self.overlayViewController.delegate = self;
-}
-
-- (IBAction)questionButtonPressed:(id)sender
-{
-    // TODO: 
 }
 
 - (IBAction)facebookButtonPressed:(id)sender
@@ -81,7 +81,7 @@
 - (void)showPushNotificationMessageView
 {
     self.overlayTransitionManager = [[OverlayTransitionManager alloc] init];
-    self.overlayViewController = [self.overlayTransitionManager presentOverlayViewWithType:OverlayTypeMessage onViewController:self];
+    self.overlayViewController = [self.overlayTransitionManager presentOverlayViewWithType:OverlayTypeOnTrack onViewController:self];
     self.overlayViewController.delegate = self;
 }
 
