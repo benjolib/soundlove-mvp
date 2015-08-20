@@ -9,11 +9,13 @@
 #import "AbstractClient.h"
 #import "Reachability.h"
 #import "AppDelegate.h"
+#import "OverlayTransitionManager.h"
 
 #define kRetryLimit 3
 
-@interface AbstractClient ()
-//@property (nonatomic, strong) PopupView *noInternetPopup;
+@interface AbstractClient () <OverlayViewControllerDelegate>
+@property (nonatomic, strong) OverlayTransitionManager *overlayTransitionManager;
+@property (nonatomic, strong) OverlayViewController *overlayViewController;
 @property (nonatomic, copy) void (^completionBlock)(NSData *data, NSString *errorMessage, BOOL completed);
 @property (nonatomic, copy) NSURLRequest *retryRequest;
 @property (nonatomic, copy) NSURLSession *retrySession;
@@ -73,23 +75,18 @@
 #pragma mark - handle internet connection
 - (void)showNoInternetConnectionPopup
 {
-//    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-//    UIWindow *window = appDelegate.window;
-//
-//    self.noInternetPopup = [[PopupView alloc] initWithDelegate:self];
-//    [self.noInternetPopup setupWithConfirmButtonTitle:@"Erneut versuchen"
-//                                    cancelButtonTitle:nil
-//                                            viewTitle:@"Sorry"
-//                                                 text:@"Es scheint als hättest Du derzeit keine Verbindung zum Internet."
-//                                                 icon:[UIImage imageNamed:@"iconWifi"] showFestivalamaLogo:NO];
-//    [self.noInternetPopup showPopupViewAnimationOnView:window withBlurredBackground:YES];
+    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    UIWindow *window = appDelegate.window;
+
+    self.overlayTransitionManager = [[OverlayTransitionManager alloc] init];
+    self.overlayViewController = [self.overlayTransitionManager presentOverlayViewWithType:OverlayTypeNoInternet onViewController:window.rootViewController];
+    self.overlayViewController.delegate = self;
 }
 
-//- (void)popupViewConfirmButtonPressed:(PopupView *)popupView
-//{
-//    // restart last request
-//    [self startDataTaskWithRequest:self.retryRequest forSession:self.retrySession withCompletionBlock:self.completionBlock];
-//}
+- (void)overlayViewControllerConfirmButtonPressed
+{
+    [self startDataTaskWithRequest:self.retryRequest forSession:self.retrySession withCompletionBlock:self.completionBlock];
+}
 
 - (BOOL)isInternetConnectionAvailable
 {

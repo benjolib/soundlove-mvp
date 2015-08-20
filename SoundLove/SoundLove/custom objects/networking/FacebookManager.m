@@ -19,9 +19,7 @@
 
 - (void)sendFacebookLoginDataToServer:(NSString*)accessToken userID:(NSString*)userID completionBlock:(void (^)(BOOL completed, NSString *errorMessage))completionBlock
 {
-    NSString *deviceID = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-
-    NSString *urlString = [NSString stringWithFormat:@"%@device_id=%@&user_id=%@", kFacebookConnectURL, deviceID, userID];
+    NSString *urlString = [NSString stringWithFormat:@"%@access_token=%@&user_id=%@", kFacebookConnectURL, [FacebookManager currentUserAccessToken], userID];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[self defaultSessionConfiguration]];
 

@@ -8,6 +8,7 @@
 
 #import "ConcertRankClient.h"
 #import "ConcertModel.h"
+#import "FacebookManager.h"
 
 @implementation ConcertRankClient
 
@@ -22,13 +23,13 @@
 
 - (void)incrementRankForFestival:(ConcertModel*)concert withCompletionBlock:(void (^)(BOOL succeeded, NSString *errorMessage))completionBlock
 {
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@?id=%@", kBaseURL, kConcertIncrement, concert.concertID]]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@?event_id=%@&user_id=%@", kBaseURL, kConcertIncrement, concert.concertID, [FacebookManager currentUserID]]]];
     [self sendRequest:request withCompletionBlock:completionBlock];
 }
 
 - (void)decrementRankForFestival:(ConcertModel*)concert withCompletionBlock:(void (^)(BOOL succeeded, NSString *errorMessage))completionBlock
 {
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@?id=%@", kBaseURL, kConcertDecrement, concert.concertID]]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@?event_id=%@&user_id=%@", kBaseURL, kConcertDecrement, concert.concertID, [FacebookManager currentUserID]]]];
     [self sendRequest:request withCompletionBlock:completionBlock];
 }
 
