@@ -1,0 +1,15 @@
+//
+//  SoundLovePrefix.pch
+//  SoundLove
+//
+//  Created by Sztanyi Szabolcs on 21/08/15.
+//  Copyright (c) 2015 Zappdesigntemplates. All rights reserved.
+//
+
+#ifndef SoundLove_SoundLovePrefix_pch
+#define SoundLove_SoundLovePrefix_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif
