@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.SoundLove.$(PRODUCT_NAME:rfc1034identifier)</string>
+	<string>com.SoundLove.SoundLove2</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -30,7 +30,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.5</string>
+	<string>2.3</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -49,6 +49,10 @@
 	<string>506435659506380</string>
 	<key>FacebookDisplayName</key>
 	<string>SoundLove</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbauth2</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationWhenInUseUsageDescription</key>

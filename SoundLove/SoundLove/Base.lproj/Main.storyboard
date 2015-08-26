@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F25a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="fVw-rg-JIS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="fVw-rg-JIS">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -1095,10 +1095,10 @@
             </objects>
             <point key="canvasLocation" x="1192" y="1857"/>
         </scene>
-        <!--Bands View Controller-->
+        <!--Kunstler View Controller-->
         <scene sceneID="n8M-7f-gdE">
             <objects>
-                <viewController storyboardIdentifier="BandsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LGI-Y9-wyp" customClass="BandsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BandsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LGI-Y9-wyp" customClass="KunstlerViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eb0-Jq-sW0"/>
                         <viewControllerLayoutGuide type="bottom" id="YeG-h4-I2w"/>
@@ -1155,29 +1155,29 @@
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Hgs-lL-Gkg" customClass="LoadingCollectionView">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="528"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yaz-pq-KxH">
-                                            <size key="itemSize" width="120" height="120"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="0.0" id="yaz-pq-KxH">
+                                            <size key="itemSize" width="100" height="120"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                                            <inset key="sectionInset" minX="5" minY="10" maxX="5" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="giD-e8-73x" customClass="BandCollectionViewCell">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                    <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="120"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ls0-De-5Z2">
-                                                            <rect key="frame" x="20" y="5" width="80" height="80"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="100" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="ls0-De-5Z2">
+                                                            <rect key="frame" x="8" y="0.0" width="85" height="85"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="80" id="Nas-vm-1oT"/>
-                                                                <constraint firstAttribute="height" constant="80" id="qN1-4N-YVL"/>
+                                                                <constraint firstAttribute="height" constant="85" id="9LO-bj-Rv9"/>
+                                                                <constraint firstAttribute="width" constant="85" id="TJ3-di-jGr"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Diana Wheeler" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UWH-u0-zee">
-                                                            <rect key="frame" x="0.0" y="95" width="120" height="12"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Diana Wheeler Diana Wheeler" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="100" translatesAutoresizingMaskIntoConstraints="NO" id="UWH-u0-zee">
+                                                            <rect key="frame" x="0.0" y="90" width="100" height="24"/>
                                                             <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="10"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -1187,10 +1187,11 @@
                                                 </view>
                                                 <constraints>
                                                     <constraint firstItem="UWH-u0-zee" firstAttribute="leading" secondItem="giD-e8-73x" secondAttribute="leading" id="8b8-Ie-5Nk"/>
-                                                    <constraint firstAttribute="centerX" secondItem="ls0-De-5Z2" secondAttribute="centerX" id="Hng-wX-xxf"/>
-                                                    <constraint firstItem="UWH-u0-zee" firstAttribute="top" secondItem="ls0-De-5Z2" secondAttribute="bottom" constant="10" id="d1j-G1-sBe"/>
+                                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="UWH-u0-zee" secondAttribute="bottom" id="YtI-pA-Zfb"/>
+                                                    <constraint firstAttribute="centerX" secondItem="ls0-De-5Z2" secondAttribute="centerX" id="ccT-p4-PgJ"/>
+                                                    <constraint firstItem="UWH-u0-zee" firstAttribute="top" secondItem="ls0-De-5Z2" secondAttribute="bottom" constant="5" id="d1j-G1-sBe"/>
                                                     <constraint firstAttribute="trailing" secondItem="UWH-u0-zee" secondAttribute="trailing" id="eN2-4q-vRg"/>
-                                                    <constraint firstItem="ls0-De-5Z2" firstAttribute="top" secondItem="giD-e8-73x" secondAttribute="top" constant="5" id="kmm-lE-yZ0"/>
+                                                    <constraint firstItem="ls0-De-5Z2" firstAttribute="top" secondItem="giD-e8-73x" secondAttribute="top" id="kmm-lE-yZ0"/>
                                                 </constraints>
                                                 <connections>
                                                     <outlet property="artistImageView" destination="ls0-De-5Z2" id="RRU-SR-zEy"/>
@@ -1386,7 +1387,7 @@
                                 </connections>
                             </button>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="logoStart" translatesAutoresizingMaskIntoConstraints="NO" id="Dsc-2j-9T9">
-                                <rect key="frame" x="42" y="40" width="237" height="114"/>
+                                <rect key="frame" x="39" y="40" width="243" height="114"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -1421,7 +1422,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VvB-59-8jy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-387" y="743"/>
+            <point key="canvasLocation" x="-269" y="743"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4lR-y9-hfi">
@@ -1441,7 +1442,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LR7-0K-zBZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="104" y="743"/>
+            <point key="canvasLocation" x="130" y="743"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xSb-qb-sIY">
@@ -1860,7 +1861,7 @@
                                         <rect key="frame" x="30" y="200" width="260" height="69"/>
                                         <string key="text">Deine Freunde-Liste ist leider leer, da bischer keine Freundezu diesem Konzert hinzugefügt wurden. lade jetzt Deine Freunde ein.</string>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
-                                        <color key="textColor" red="0.38039215686274508" green="0.6470588235294118" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.56862745100000001" green="0.87058823529999996" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -2425,7 +2426,7 @@ noch 40 Tage</string>
         <image name="favoriteConcertsIcon" width="43" height="42"/>
         <image name="info button" width="33" height="33"/>
         <image name="inviteIcon" width="41" height="39"/>
-        <image name="logoStart" width="237" height="114"/>
+        <image name="logoStart" width="243" height="114"/>
         <image name="menuIcon" width="27" height="27"/>
         <image name="microphone" width="34" height="45"/>
         <image name="placeholder" width="45" height="45"/>

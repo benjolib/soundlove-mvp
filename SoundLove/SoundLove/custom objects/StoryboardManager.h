@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class OverlayViewController, MenuViewController;
-@class ConcertsViewController, FavoriteConcertViewController, CalendarViewController, BandsViewController;
+@class ConcertsViewController, FavoriteConcertViewController, CalendarViewController, KunstlerViewController;
 @class FilterNavigationController, SortingViewController;
 @class ConcertDetailInfoViewController, ConcertDetailLocationViewController, ConcertFriendsViewController;
 
@@ -26,7 +26,7 @@
 + (ConcertsViewController*)concertsViewController;
 + (FavoriteConcertViewController*)favoriteConcertViewController;
 + (CalendarViewController*)calendarViewController;
-+ (BandsViewController*)bandsViewController;
++ (KunstlerViewController*)bandsViewController;
 + (FilterNavigationController*)filterNavigationController;
 + (SortingViewController*)sortingViewController;
 

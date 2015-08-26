@@ -13,6 +13,10 @@
 @property (strong, nonatomic) UIWindow *window;
 
 - (void)askUserForPushNotifications;
+- (void)startPopupTimer;
+
+- (BOOL)isOnboardingViewControllerRoot;
+- (void)setRootViewControllerToOnboardingView;
 
 @end
 

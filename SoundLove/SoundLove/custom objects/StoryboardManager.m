@@ -56,7 +56,7 @@
     return [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"CalendarViewController"];
 }
 
-+ (BandsViewController*)bandsViewController
++ (KunstlerViewController*)bandsViewController
 {
     return [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"BandsViewController"];
 }

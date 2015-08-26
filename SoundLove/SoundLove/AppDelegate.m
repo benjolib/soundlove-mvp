@@ -17,6 +17,7 @@
 #import <Parse/Parse.h>
 #import "TrackingManager.h"
 #import "OverlayTransitionManager.h"
+#import "OnboardingViewController.h"
 
 @interface AppDelegate () <SKStoreProductViewControllerDelegate, OverlayViewControllerDelegate>
 @property (nonatomic, strong) NSTimer *popupDisplayerTimer;
@@ -48,7 +49,7 @@
     }
 
     self.window.rootViewController = rootViewController;
-
+    
     return YES;
 }
 
@@ -63,6 +64,26 @@
                                                           openURL:url
                                                 sourceApplication:sourceApplication
                                                        annotation:annotation];
+}
+
+/**
+ *  Returns YES, if the OnboardingViewController is the rootViewController
+ */
+- (BOOL)isOnboardingViewControllerRoot
+{
+    if ([self.window.rootViewController isMemberOfClass:[OnboardingViewController class]]) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+- (void)setRootViewControllerToOnboardingView
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    UIViewController *rootViewController = [storyboard instantiateInitialViewController];
+
+    self.window.rootViewController = rootViewController;
 }
 
 #pragma mark - push notification
@@ -149,8 +170,7 @@
 
 - (void)overlayViewControllerConfirmButtonPressed
 {
-    [[TrackingManager sharedManager] trackUserSelectsReviewApp];
-
+    [[TrackingManager sharedManager] userTapsReviewNow];
     [self performSelector:@selector(rateTheApp) withObject:nil afterDelay:1.0];
 }
 
@@ -158,7 +178,7 @@
 {
     [self stopPopupTimer];
     [GeneralSettings saveAppStartDate];
-    [[TrackingManager sharedManager] trackUserSelectsReviewAppLater];
+    [[TrackingManager sharedManager] userTapsReviewLater];
 }
 
 #pragma mark - rating the app
@@ -168,10 +188,7 @@
     [storeProductViewController setDelegate:self];
 
     [storeProductViewController loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier : [GeneralSettings appStoreID]} completionBlock:^(BOOL result, NSError *error) {
-        if (error) {
-            NSLog(@"Error %@ with User Info %@.", error, [error userInfo]);
-        } else {
-            // Present Store Product View Controller
+        if (!error) {
             [self.window.rootViewController presentViewController:storeProductViewController animated:YES completion:nil];
         }
     }];

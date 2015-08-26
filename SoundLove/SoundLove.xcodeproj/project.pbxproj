@@ -49,7 +49,7 @@
 		56740A1D1B60F12700638FEF /* MainContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56740A1C1B60F12700638FEF /* MainContainerViewController.m */; };
 		56740A221B60F17C00638FEF /* FestivalTransitionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 56740A1F1B60F17C00638FEF /* FestivalTransitionManager.m */; };
 		56740A231B60F17C00638FEF /* FestivalTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 56740A211B60F17C00638FEF /* FestivalTransitionAnimator.m */; };
-		56740A291B61232900638FEF /* BandsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56740A281B61232900638FEF /* BandsViewController.m */; };
+		56740A291B61232900638FEF /* KunstlerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56740A281B61232900638FEF /* KunstlerViewController.m */; };
 		56740A2C1B61234800638FEF /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56740A2B1B61234800638FEF /* CalendarViewController.m */; };
 		567C6F461B72BAA800F3BFA3 /* InviteFriendButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 567C6F451B72BAA800F3BFA3 /* InviteFriendButton.m */; };
 		567C6F491B72CB1100F3BFA3 /* CustomPageControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 567C6F481B72CB1100F3BFA3 /* CustomPageControlView.m */; };
@@ -144,6 +144,8 @@
 		56DF68231B7223A40025DBB1 /* ConcertDetailLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DF681F1B7223A40025DBB1 /* ConcertDetailLocationViewController.m */; };
 		56DF68261B723B040025DBB1 /* ConcertFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DF68251B723B040025DBB1 /* ConcertFriendsViewController.m */; };
 		56DF682C1B72B7350025DBB1 /* WebsiteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DF682B1B72B7350025DBB1 /* WebsiteButton.m */; };
+		56EC0E841B87130E00F4FF03 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56EC0E831B87130E00F4FF03 /* GoogleService-Info.plist */; };
+		56EC0E881B8757D200F4FF03 /* ArtistRatingClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 56EC0E871B8757D200F4FF03 /* ArtistRatingClient.m */; };
 		56ECD1301B67B6B9008E11A0 /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56ECD12F1B67B6B9008E11A0 /* OnboardingViewController.m */; };
 		56ECD1351B67BB30008E11A0 /* FacebookButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 56ECD1341B67BB30008E11A0 /* FacebookButton.m */; };
 		56F509B11B7955DD004AF51C /* ConcertLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F509B01B7955DD004AF51C /* ConcertLocation.m */; };
@@ -243,8 +245,8 @@
 		56740A1F1B60F17C00638FEF /* FestivalTransitionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FestivalTransitionManager.m; sourceTree = "<group>"; };
 		56740A201B60F17C00638FEF /* FestivalTransitionAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FestivalTransitionAnimator.h; sourceTree = "<group>"; };
 		56740A211B60F17C00638FEF /* FestivalTransitionAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FestivalTransitionAnimator.m; sourceTree = "<group>"; };
-		56740A271B61232900638FEF /* BandsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BandsViewController.h; sourceTree = "<group>"; };
-		56740A281B61232900638FEF /* BandsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BandsViewController.m; sourceTree = "<group>"; };
+		56740A271B61232900638FEF /* KunstlerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KunstlerViewController.h; sourceTree = "<group>"; };
+		56740A281B61232900638FEF /* KunstlerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KunstlerViewController.m; sourceTree = "<group>"; };
 		56740A2A1B61234800638FEF /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
 		56740A2B1B61234800638FEF /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
 		567C6F441B72BAA800F3BFA3 /* InviteFriendButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteFriendButton.h; sourceTree = "<group>"; };
@@ -419,6 +421,10 @@
 		56DF68251B723B040025DBB1 /* ConcertFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcertFriendsViewController.m; sourceTree = "<group>"; };
 		56DF682A1B72B7350025DBB1 /* WebsiteButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebsiteButton.h; sourceTree = "<group>"; };
 		56DF682B1B72B7350025DBB1 /* WebsiteButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebsiteButton.m; sourceTree = "<group>"; };
+		56EC0E831B87130E00F4FF03 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		56EC0E851B87272D00F4FF03 /* SoundLovePrefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundLovePrefix.pch; sourceTree = "<group>"; };
+		56EC0E861B8757D200F4FF03 /* ArtistRatingClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtistRatingClient.h; sourceTree = "<group>"; };
+		56EC0E871B8757D200F4FF03 /* ArtistRatingClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtistRatingClient.m; sourceTree = "<group>"; };
 		56ECD12E1B67B6B9008E11A0 /* OnboardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingViewController.h; sourceTree = "<group>"; };
 		56ECD12F1B67B6B9008E11A0 /* OnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingViewController.m; sourceTree = "<group>"; };
 		56ECD1331B67BB30008E11A0 /* FacebookButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookButton.h; sourceTree = "<group>"; };
@@ -485,6 +491,31 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		56184D021B8C9C5C0097C81C /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				5619A3121B6C0253000901F7 /* BaseImageModel.h */,
+				5619A3131B6C0253000901F7 /* BaseImageModel.m */,
+				56D857EE1B7E2DB2006B5C85 /* ArtistModel.h */,
+				56D857EF1B7E2DB2006B5C85 /* ArtistModel.m */,
+				5684B1D01B661DCB009EF346 /* ConcertModel.h */,
+				5684B1D11B661DCB009EF346 /* ConcertModel.m */,
+				56F509AF1B7955DD004AF51C /* ConcertLocation.h */,
+				56F509B01B7955DD004AF51C /* ConcertLocation.m */,
+				56A65C9E1B6A173200619189 /* Band.h */,
+				56A65C9F1B6A173200619189 /* Band.m */,
+				56A65CA01B6A173200619189 /* Genre.h */,
+				56A65CA11B6A173200619189 /* Genre.m */,
+				56D857E51B7DF759006B5C85 /* FriendObject.h */,
+				56D857E61B7DF759006B5C85 /* FriendObject.m */,
+				564F24B31B6BA13500172C16 /* FilterModel.h */,
+				564F24B41B6BA13500172C16 /* FilterModel.m */,
+				56A65CA71B6A1B7600619189 /* SortingObject.h */,
+				56A65CA81B6A1B7600619189 /* SortingObject.m */,
+			);
+			name = DataModel;
+			sourceTree = "<group>";
+		};
 		5619A31C1B6C32EA000901F7 /* Datasources */ = {
 			isa = PBXGroup;
 			children = (
@@ -541,6 +572,8 @@
 				5658BAA71B640D77004F08BB /* AbstractClient.m */,
 				56D857EB1B7E2D68006B5C85 /* ArtistDownloadClient.h */,
 				56D857EC1B7E2D68006B5C85 /* ArtistDownloadClient.m */,
+				56EC0E861B8757D200F4FF03 /* ArtistRatingClient.h */,
+				56EC0E871B8757D200F4FF03 /* ArtistRatingClient.m */,
 				567D7B5B1B709CFD0015EBB3 /* BandsDownloadClient.h */,
 				567D7B5C1B709CFD0015EBB3 /* BandsDownloadClient.m */,
 				567D7B641B70AF070015EBB3 /* GenreDownloadClient.h */,
@@ -658,6 +691,7 @@
 		569513841B5D1F42008A649B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				56EC0E851B87272D00F4FF03 /* SoundLovePrefix.pch */,
 				56DDA03C1B8523EF002DDACC /* aboutUs.html */,
 				56D857E01B7DD84D006B5C85 /* iTunesArtwork.png */,
 				56A65C691B68A9E000619189 /* onboarding.mov */,
@@ -701,8 +735,6 @@
 				56740A1C1B60F12700638FEF /* MainContainerViewController.m */,
 				567409E71B60DD3900638FEF /* MenuViewController.h */,
 				567409E81B60DD3900638FEF /* MenuViewController.m */,
-				5684B1C41B6619BD009EF346 /* TicketShopDetailViewController.h */,
-				5684B1C51B6619BD009EF346 /* TicketShopDetailViewController.m */,
 				56740A181B60F0CA00638FEF /* ConcertsViewController.h */,
 				56740A191B60F0CA00638FEF /* ConcertsViewController.m */,
 				56DF68171B7223490025DBB1 /* Concert and detail views */,
@@ -710,8 +742,8 @@
 				567409E61B60DD3900638FEF /* FavoriteConcertViewController.m */,
 				56740A2A1B61234800638FEF /* CalendarViewController.h */,
 				56740A2B1B61234800638FEF /* CalendarViewController.m */,
-				56740A271B61232900638FEF /* BandsViewController.h */,
-				56740A281B61232900638FEF /* BandsViewController.m */,
+				56740A271B61232900638FEF /* KunstlerViewController.h */,
+				56740A281B61232900638FEF /* KunstlerViewController.m */,
 				567409E91B60DD3900638FEF /* OverlayViewController.h */,
 				567409EA1B60DD3900638FEF /* OverlayViewController.m */,
 				56740A001B60ED4B00638FEF /* Info views */,
@@ -819,34 +851,17 @@
 		56D395D41B5F8117000DC427 /* custom objects */ = {
 			isa = PBXGroup;
 			children = (
-				5619A3121B6C0253000901F7 /* BaseImageModel.h */,
-				5619A3131B6C0253000901F7 /* BaseImageModel.m */,
-				56D857EE1B7E2DB2006B5C85 /* ArtistModel.h */,
-				56D857EF1B7E2DB2006B5C85 /* ArtistModel.m */,
-				5684B1D01B661DCB009EF346 /* ConcertModel.h */,
-				5684B1D11B661DCB009EF346 /* ConcertModel.m */,
-				56F509AF1B7955DD004AF51C /* ConcertLocation.h */,
-				56F509B01B7955DD004AF51C /* ConcertLocation.m */,
-				56A65C9E1B6A173200619189 /* Band.h */,
-				56A65C9F1B6A173200619189 /* Band.m */,
-				56A65CA01B6A173200619189 /* Genre.h */,
-				56A65CA11B6A173200619189 /* Genre.m */,
-				56D857E51B7DF759006B5C85 /* FriendObject.h */,
-				56D857E61B7DF759006B5C85 /* FriendObject.m */,
-				564F24B31B6BA13500172C16 /* FilterModel.h */,
-				564F24B41B6BA13500172C16 /* FilterModel.m */,
-				56D9DD4A1B7FC5F9007BA2E7 /* FilterLocationHelper.h */,
-				56D9DD4B1B7FC5F9007BA2E7 /* FilterLocationHelper.m */,
-				56A65CA71B6A1B7600619189 /* SortingObject.h */,
-				56A65CA81B6A1B7600619189 /* SortingObject.m */,
-				567D7B691B70BB900015EBB3 /* LocationManager.h */,
-				567D7B6A1B70BB900015EBB3 /* LocationManager.m */,
-				5658BAA41B640D67004F08BB /* networking */,
 				56740A071B60EE2700638FEF /* GeneralSettings.h */,
 				56740A081B60EE2700638FEF /* GeneralSettings.m */,
+				56184D021B8C9C5C0097C81C /* DataModel */,
+				5658BAA41B640D67004F08BB /* networking */,
 				56D6766F1B7BD020003DC597 /* Categories */,
 				56740A141B60F06C00638FEF /* Core Data */,
 				56D395D81B5F88DF000DC427 /* transitionManagers */,
+				56D9DD4A1B7FC5F9007BA2E7 /* FilterLocationHelper.h */,
+				56D9DD4B1B7FC5F9007BA2E7 /* FilterLocationHelper.m */,
+				567D7B691B70BB900015EBB3 /* LocationManager.h */,
+				567D7B6A1B70BB900015EBB3 /* LocationManager.m */,
 				56D857F11B7E3E5E006B5C85 /* TrackingManager.h */,
 				56D857F21B7E3E5E006B5C85 /* TrackingManager.m */,
 			);
@@ -873,6 +888,7 @@
 		56D395DF1B5F8C00000DC427 /* Third party */ = {
 			isa = PBXGroup;
 			children = (
+				56EC0E831B87130E00F4FF03 /* GoogleService-Info.plist */,
 				56D9DD431B7FA5ED007BA2E7 /* Fabric.framework */,
 				56D9DD441B7FA5ED007BA2E7 /* Crashlytics.framework */,
 				56D395E01B5F8C11000DC427 /* Reachability.h */,
@@ -931,6 +947,8 @@
 				56DF681F1B7223A40025DBB1 /* ConcertDetailLocationViewController.m */,
 				56DF68241B723B040025DBB1 /* ConcertFriendsViewController.h */,
 				56DF68251B723B040025DBB1 /* ConcertFriendsViewController.m */,
+				5684B1C41B6619BD009EF346 /* TicketShopDetailViewController.h */,
+				5684B1C51B6619BD009EF346 /* TicketShopDetailViewController.m */,
 			);
 			name = "Concert and detail views";
 			sourceTree = "<group>";
@@ -1021,7 +1039,7 @@
 				TargetAttributes = {
 					569513801B5D1F42008A649B = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = ER2R6PB292;
+						DevelopmentTeam = NDMF32TPPR;
 					};
 					569513991B5D1F43008A649B = {
 						CreatedOnToolsVersion = 6.4;
@@ -1065,6 +1083,7 @@
 				5684B1DA1B66220F009EF346 /* TutorialPopupView.xib in Resources */,
 				569513901B5D1F42008A649B /* Main.storyboard in Resources */,
 				569513921B5D1F42008A649B /* Images.xcassets in Resources */,
+				56EC0E841B87130E00F4FF03 /* GoogleService-Info.plist in Resources */,
 				56D857E11B7DD84D006B5C85 /* iTunesArtwork.png in Resources */,
 				567409F91B60EC4400638FEF /* Montserrat-Light.otf in Resources */,
 				56A65C6A1B68A9E000619189 /* onboarding.mov in Resources */,
@@ -1167,7 +1186,7 @@
 				567409EB1B60DD3900638FEF /* FavoriteConcertViewController.m in Sources */,
 				5658BAA31B640862004F08BB /* CalendarButton.m in Sources */,
 				567409FF1B60ED4700638FEF /* WhatWeDoViewController.m in Sources */,
-				56740A291B61232900638FEF /* BandsViewController.m in Sources */,
+				56740A291B61232900638FEF /* KunstlerViewController.m in Sources */,
 				56D9DD4C1B7FC5F9007BA2E7 /* FilterLocationHelper.m in Sources */,
 				5619A3141B6C0253000901F7 /* BaseImageModel.m in Sources */,
 				56740A1A1B60F0CA00638FEF /* ConcertsViewController.m in Sources */,
@@ -1187,6 +1206,7 @@
 				56DF68221B7223A40025DBB1 /* ConcertDetailInfoViewController.m in Sources */,
 				567D7B631B70AEA00015EBB3 /* FilterBandsViewController.m in Sources */,
 				56D6F2971B7CBE69006D765D /* FilterLocationAnnotation.m in Sources */,
+				56EC0E881B8757D200F4FF03 /* ArtistRatingClient.m in Sources */,
 				5619A31B1B6C2993000901F7 /* CDConcertImage.m in Sources */,
 				5658BA941B63F757004F08BB /* SearchNavigationView.m in Sources */,
 				5619A3221B6C3392000901F7 /* ConcertViewDatasourceManager.m in Sources */,
@@ -1296,7 +1316,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Szabolcs Sztanyi (X3957V6X5K)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Szabolcs Sztanyi (X3957V6X5K)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1318,6 +1339,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "88d3f5ca-22d9-426e-a452-a354dc440687";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1339,7 +1361,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Szabolcs Sztanyi (ER2R6PB292)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Szabolcs Sztanyi (ER2R6PB292)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1354,6 +1377,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "7ad1fa23-6b88-4741-ab2f-c7cc6b8863c5";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1373,6 +1397,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/SoundLove",
 				);
+				GCC_PREFIX_HEADER = "${PROJECT_DIR}/SoundLove/SoundLovePrefix.pch";
 				INFOPLIST_FILE = SoundLove/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1395,6 +1420,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/SoundLove",
 				);
+				GCC_PREFIX_HEADER = "${PROJECT_DIR}/SoundLove/SoundLovePrefix.pch";
 				INFOPLIST_FILE = SoundLove/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
