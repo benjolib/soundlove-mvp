@@ -14,13 +14,6 @@
 
 @implementation ConcertDownloadClient
 
-- (void)downloadConcertsFromIndex:(NSInteger)startIndex limit:(NSInteger)numberOfItems withFilters:(FilterModel*)filterModel searchText:(NSString*)searchText completionBlock:(void (^)(NSString *errorMessage, NSArray *concertsArray))completionBlock
-{
-    NSMutableString *urlString = [NSMutableString stringWithFormat:@"%@%@?start=%ld&limit=%ld", kBaseURL, kConcertsList, (long)startIndex, (long)numberOfItems];
-
-    [self downloadConcertsWithURL:[NSURL URLWithString:urlString] completionBlock:completionBlock];
-}
-
 - (void)downloadListOfFriendsGoingToConcert:(ConcertModel*)concert withCompletionBlock:(void(^)(NSArray *listOfFriends, BOOL completed, NSString *errorMessage))completionBlock
 {
     NSString *urlString = [NSString stringWithFormat:@"http://api-eventim.makers.do/events/facebook/friends?event_id=%@&user_id=%@&access_token=%@", concert.concertID, [FacebookManager currentUserID], [FacebookManager currentUserAccessToken]];
@@ -52,34 +45,6 @@
 }
 
 #pragma mark - private methods
-- (void)downloadConcertsWithURL:(NSURL*)url completionBlock:(void (^)(NSString *errorMessage, NSArray *concertsArray))completionBlock
-{
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:[self defaultSessionConfiguration]];
-
-    __weak typeof(self) weakSelf = self;
-
-    [super startDataTaskWithRequest:request forSession:session withCompletionBlock:^(NSData *data, NSString *errorMessage, BOOL completed) {
-        if (completed)
-        {
-            NSArray *festivals = [weakSelf parseJSONData:data];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (completionBlock) {
-                    completionBlock(nil, festivals);
-                }
-            });
-        }
-        else
-        {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (completionBlock) {
-                    completionBlock(errorMessage, nil);
-                }
-            });
-        }
-    }];
-}
-
 - (NSArray*)parseJSONData:(NSData*)data
 {
     NSError *jsonError = nil;

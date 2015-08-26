@@ -8,6 +8,7 @@
 
 #import "GenreDownloadClient.h"
 #import "Genre.h"
+#import "NSDictionary+nonNullObjectForKey.h"
 
 @implementation GenreDownloadClient
 
@@ -39,22 +40,23 @@
 {
     NSError *jsonError = nil;
     NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
-    NSArray *jsonArray = jsonDictionary[@"data"];
-    if (jsonArray.count > 0)
-    {
-        NSMutableArray *genresArray = [NSMutableArray array];
-        for (int i = 0; i < jsonArray.count; i++) {
-            [genresArray addObject:[Genre genreWithName:jsonArray[i]]];
-        }
+    NSDictionary *dataDictionary = [jsonDictionary nonNullObjectForKey:@"data"];
 
-        return [genresArray sortedArrayWithOptions:NSSortStable usingComparator:^NSComparisonResult(id obj1, id obj2) {
-            Genre *genre1 = (Genre*)obj1;
-            Genre *genre2 = (Genre*)obj2;
-            return [genre1.name compare:genre2.name];
-        }];
-    } else {
+    if (dataDictionary.allKeys.count == 0) {
         return nil;
     }
+    
+    __block NSInteger index = 0;
+    NSMutableArray *genresArray = [NSMutableArray array];
+    [dataDictionary enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *obj, BOOL *stop) {
+        [genresArray addObject:[Genre genreWithName:key andValue:obj]];
+        ++index;
+        if (index == dataDictionary.allKeys.count) {
+            *stop = YES;
+        }
+    }];
+
+    return genresArray;
 }
 
 @end

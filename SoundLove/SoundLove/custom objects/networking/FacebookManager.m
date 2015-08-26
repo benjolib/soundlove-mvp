@@ -34,12 +34,12 @@
 
 @end
 
-
-
 @interface FacebookManager ()
 @property (nonatomic, strong) FBSDKLoginManager *loginManager;
 @property (nonatomic, strong) FacebookLoginClient *facebookLoginClient;
 @end
+
+
 
 @implementation FacebookManager
 
@@ -54,8 +54,7 @@
 
 - (void)loginUserToFacebookWithCompletion:(void (^)(BOOL completed, NSString *errorMessage))completionBlock
 {
-    if ([FacebookManager isUserLoggedInToFacebook])
-    {
+    if ([FacebookManager isUserLoggedInToFacebook]) {
         if (completionBlock) {
             completionBlock(YES, nil);
         }
@@ -63,7 +62,7 @@
     else
     {
         __weak typeof(self) weakSelf = self;
-        [self.loginManager logInWithReadPermissions:@[@"email", @"public_profile", @"user_friends"] handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+        [self.loginManager logInWithReadPermissions:@[@"email", @"user_friends", @"user_likes", @"read_custom_friendlists", @"public_profile"] handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
             if (error) {
                 // Process error
                 if (completionBlock) {
@@ -77,8 +76,8 @@
             } else {
                 NSString *userID = result.token.userID;
                 NSString *accessToken = result.token.tokenString;
-                [FBSDKAccessToken setCurrentAccessToken:result.token];
 
+                [FBSDKAccessToken setCurrentAccessToken:result.token];
                 [weakSelf sendFacebookLoginDataToServer:accessToken userID:userID completionBlock:completionBlock];
             }
         }];
@@ -90,7 +89,27 @@
     [self.loginManager logOut];
 }
 
+- (void)refreshFacebookAccessTokenCompletionBlock:(void (^)(BOOL completed))completionBlock
+{
+    [self sendFacebookLoginDataToServerWithCompletionBlock:^(BOOL completed, NSString *errorMessage) {
+        if (completed) {
+            completionBlock(YES);
+        } else {
+            completionBlock(NO);
+        }
+    }];
+}
+
 #pragma mark - server login
+- (void)sendFacebookLoginDataToServerWithCompletionBlock:(void (^)(BOOL completed, NSString *errorMessage))completionBlock
+{
+    if (self.facebookLoginClient) {
+        self.facebookLoginClient = nil;
+    }
+    self.facebookLoginClient = [[FacebookLoginClient alloc] init];
+    [self.facebookLoginClient sendFacebookLoginDataToServer:[FacebookManager currentUserAccessToken] userID:[FacebookManager currentUserID] completionBlock:completionBlock];
+}
+
 - (void)sendFacebookLoginDataToServer:(NSString*)accessToken userID:(NSString*)userID completionBlock:(void (^)(BOOL completed, NSString *errorMessage))completionBlock
 {
     if (self.facebookLoginClient) {
@@ -103,7 +122,11 @@
 #pragma mark - class methods
 + (NSString*)currentUserID
 {
+//#ifdef DEBUG
+//    return @"130232157318218";
+//#else 
     return [FBSDKAccessToken currentAccessToken].userID;
+//#endif
 }
 
 + (NSString*)currentUserAccessToken

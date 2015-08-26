@@ -12,4 +12,6 @@
 
 - (void)downloadFavoriteArtistsWithCompletionBlock:(void (^)(NSArray *artists, BOOL completed, NSString *errorMessage))completionBlock;
 
+- (void)downloadRecommendedArtistsWithCompletionBlock:(void (^)(NSArray *artists, BOOL completed, NSString *errorMessage))completionBlock;
+
 @end

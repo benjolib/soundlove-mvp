@@ -17,4 +17,7 @@
 + (NSString*)currentUserAccessToken;
 + (NSString*)currentUserID;
 
+- (void)refreshFacebookAccessTokenCompletionBlock:(void (^)(BOOL completed))completionBlock;
+- (void)sendFacebookLoginDataToServerWithCompletionBlock:(void (^)(BOOL completed, NSString *errorMessage))completionBlock;
+
 @end

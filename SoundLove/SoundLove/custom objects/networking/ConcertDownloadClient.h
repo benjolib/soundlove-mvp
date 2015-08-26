@@ -12,8 +12,6 @@
 
 @interface ConcertDownloadClient : AbstractClient
 
-- (void)downloadConcertsFromIndex:(NSInteger)startIndex limit:(NSInteger)numberOfItems withFilters:(FilterModel*)filterModel searchText:(NSString*)searchText completionBlock:(void (^)(NSString *errorMessage, NSArray *concertsArray))completionBlock;
-
 - (void)downloadListOfFriendsGoingToConcert:(ConcertModel*)concert withCompletionBlock:(void(^)(NSArray *listOfFriends, BOOL completed, NSString *errorMessage))completionBlock;
 
 @end

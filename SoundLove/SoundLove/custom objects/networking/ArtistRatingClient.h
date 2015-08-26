@@ -7,7 +7,12 @@
 //
 
 #import "AbstractClient.h"
+#import "ArtistModel.h"
 
 @interface ArtistRatingClient : AbstractClient
+
+- (void)likeArtist:(ArtistModel*)artist withCompletionBlock:(void (^)(BOOL completed, NSString *errorMessage))completionBlock;
+
+- (void)dislikeArtist:(ArtistModel*)artist withCompletionBlock:(void (^)(BOOL completed, NSString *errorMessage))completionBlock;
 
 @end

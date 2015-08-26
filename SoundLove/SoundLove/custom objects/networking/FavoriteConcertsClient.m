@@ -9,6 +9,7 @@
 #import "FavoriteConcertsClient.h"
 #import "ConcertModel.h"
 #import "NSDate+DateHelper.h"
+#import "FacebookManager.h"
 
 @implementation FavoriteConcertsClient
 
@@ -22,7 +23,7 @@
     NSString *dateFromString = [NSString stringWithFormat:@"%ld-%ld-%ld", (long)components.year, (long)components.month, (long)components.day];
     NSString *dateToString = [NSString stringWithFormat:@"%ld-%ld-%ld", (long)components.year, (long)components.month, (unsigned long)dayRange.length];
 
-    NSMutableString *urlString = [NSMutableString stringWithFormat:@"%@%@?limit=1000&dateFrom=%@&dateTo=%@&orderProperty=date_ts&orderDir=ASC", kBaseURL, kFavoriteConcertsList, dateFromString, dateToString];
+    NSMutableString *urlString = [NSMutableString stringWithFormat:@"%@%@?user_id=%@&limit=1000&dateFrom=%@&dateTo=%@&orderProperty=date_ts&orderDir=ASC", kBaseURL, kFavoriteConcertsList, [FacebookManager currentUserID], dateFromString, dateToString];
     [self downloadConcertsWithURL:[NSURL URLWithString:urlString] completionBlock:completionBlock];
 }
 
@@ -37,10 +38,10 @@
     [super startDataTaskWithRequest:request forSession:session withCompletionBlock:^(NSData *data, NSString *errorMessage, BOOL completed) {
         if (completed)
         {
-            NSArray *festivals = [weakSelf parseJSONData:data];
+            NSArray *concerts = [weakSelf parseJSONData:data];
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (completionBlock) {
-                    completionBlock(nil, festivals);
+                    completionBlock(nil, concerts);
                 }
             });
         }
