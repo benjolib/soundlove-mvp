@@ -17,8 +17,6 @@
 #import "ConcertDetailBaseViewController.h"
 #import "CustomNavigationView.h"
 #import "TicketShopDetailViewController.h"
-//#import "UIFont+LatoFonts.h"
-//#import "TrackingManager.h"
 
 @interface ConcertDetailViewController ()
 @property (nonatomic, strong) ConcertDetailBaseViewController *displayViewController;
@@ -28,6 +26,7 @@
 
 - (IBAction)backButtonPressed:(id)sender
 {
+    [TRACKER userLeavesConcertDetail];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

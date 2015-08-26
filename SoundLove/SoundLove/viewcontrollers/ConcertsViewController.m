@@ -14,7 +14,6 @@
 #import "GeneralSettings.h"
 #import "UIColor+GlobalColors.h"
 #import "TutorialPopupView.h"
-#import "ConcertDownloadClient.h"
 #import "ConcertModel.h"
 #import "CoreDataHandler.h"
 #import "StoryboardManager.h"
@@ -29,7 +28,6 @@
 @interface ConcertsViewController ()
 @property (nonatomic, strong) ConcertRankClient *rankClient;
 @property (nonatomic, strong) ConcertRefreshControl *refreshController;
-@property (nonatomic, strong) ConcertDownloadClient *downloadClient;
 @property (nonatomic, strong) ConcertViewDatasourceManager *datasourceManager;
 @property (nonatomic) NSInteger currentlySelectedTabIndex;
 
@@ -56,6 +54,13 @@
 
 - (IBAction)tabbuttonSelected:(TabbingButton*)selectedButton
 {
+    [self.tableView hideLoadingIndicator];
+    [self.refreshController endRefreshing];
+    [self.tableView setContentInset:UIEdgeInsetsMake(0.0, 0.0, 50.0, 0.0)];
+    if (self.tableView.contentOffset.y < 0) {
+        self.tableView.contentOffset = CGPointMake(0.0, 0.0);
+    }
+
     for (TabbingButton *button in self.tabbuttonsArray) {
         [button setButtonActive:(button == selectedButton)];
     }
@@ -64,6 +69,14 @@
     self.currentlySelectedTabIndex = selectedButton.tag;
 
     [self downloadConcertsAccordingToSelection];
+
+    if (self.currentlySelectedTabIndex == 0) {
+        [TRACKER userTapsFavoriten];
+    } else if (self.currentlySelectedTabIndex == 1) {
+        [TRACKER userTapsEmpfohlen];
+    } else {
+        [TRACKER userTapsAll];
+    }
 }
 
 - (IBAction)unwindFromFilteringViewByClosing:(UIStoryboardSegue*)segue
@@ -80,6 +93,8 @@
 
     __weak typeof (self) weakSelf = self;
     [self.datasourceManager redownloadConcertsWithIndex:self.currentlySelectedTabIndex filterModel:filterModel withCompletionBlock:^(BOOL completed, NSString *errorMesage) {
+        [weakSelf.tableView hideLoadingIndicator];
+        [weakSelf.refreshController endRefreshing];
         if (completed) {
             [weakSelf.datasourceManager showArrayAtIndex:weakSelf.currentlySelectedTabIndex];
             [weakSelf handleDownloadedConcerts];
@@ -91,6 +106,8 @@
 
 - (IBAction)filterButtonPressed:(id)sender
 {
+    [TRACKER userOpensFilter];
+
     FilterNavigationController *filterNav = [StoryboardManager filterNavigationController];
     [self presentViewController:filterNav animated:YES completion:nil];
 
@@ -121,9 +138,9 @@
 
     BOOL alreadyExisting = [[CoreDataHandler sharedHandler] addConcertToFavorites:concertModel];
     if (alreadyExisting) {
-//        [[TrackingManager sharedManager] trackUserRemovedFestival];
+        [TRACKER userRemovesConcertFromCalendar];
     } else {
-//        [[TrackingManager sharedManager] trackUserAddedFestival];
+        [TRACKER userSavesConcertToCalendar];
     }
     [self sendRankInformationAboutSelectedConcert:concertModel increment:!alreadyExisting];
     [self.tableView reloadData];
@@ -147,6 +164,8 @@
 #pragma mark - searchnavigation view delegate methods
 - (void)searchNavigationViewSearchButtonPressed:(NSString *)searchText searchField:(UITextField *)searchField
 {
+    [TRACKER userOpensSearch];
+
     self.isSearching = YES;
     self.searchText = searchText;
     self.datasourceManager.isSearching = YES;
@@ -282,7 +301,8 @@
     NSInteger currentOffset = scrollView.contentOffset.y;
     NSInteger maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height;
 
-    if (maximumOffset - currentOffset <= -40 && ([self objectsToDisplay].count >= self.datasourceManager.currentLimit)) {
+    if (maximumOffset - currentOffset <= -40 && [self.datasourceManager shouldLoadNextItemsAtIndex:self.currentlySelectedTabIndex])
+    {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self downloadNextConcerts];
         });
@@ -313,6 +333,7 @@
 {
     if ([segue.identifier isEqualToString:@"openDetailView"])
     {
+        [TRACKER userSelectsConcertForDetails];
         if ([sender isKindOfClass:[NSIndexPath class]])
         {
             NSIndexPath *indexPath = (NSIndexPath*)sender;
@@ -321,7 +342,10 @@
             ConcertDetailViewController *detailViewController = (ConcertDetailViewController*)[segue destinationViewController];
             detailViewController.concertToDisplay = concertModel;
         }
-    } else if ([segue.identifier isEqualToString:@"showSortingView"]) {
+    }
+    else if ([segue.identifier isEqualToString:@"showSortingView"])
+    {
+        [TRACKER userOpensSorting];
         SortingViewController *sortingViewController = (SortingViewController*)segue.destinationViewController;
         sortingViewController.selectedSortingObject = self.filterModel.sortingObject;
     }
@@ -339,6 +363,7 @@
 {
     __weak typeof (self) weakSelf = self;
     [self.datasourceManager redownloadConcertsWithIndex:self.currentlySelectedTabIndex filterModel:self.filterModel withCompletionBlock:^(BOOL completed, NSString *errorMesage) {
+        [weakSelf.tableView hideLoadingIndicator];
         [weakSelf.refreshController endRefreshing];
         if (completed) {
             [weakSelf.datasourceManager showArrayAtIndex:weakSelf.currentlySelectedTabIndex];
@@ -351,15 +376,13 @@
 
 - (void)downloadNextConcerts
 {
-    NSInteger selectedTabIndexBeforRequest = self.currentlySelectedTabIndex;
-
     __weak typeof(self) weakSelf = self;
     [self.datasourceManager downloadNextConcertsAtIndex:self.currentlySelectedTabIndex WithCompletionBlock:^(BOOL completed, NSString *errorMesage) {
+        [weakSelf.tableView hideLoadingIndicator];
+        [weakSelf.refreshController endRefreshing];
         if (completed) {
-            if (selectedTabIndexBeforRequest == weakSelf.currentlySelectedTabIndex) {
-                [weakSelf.datasourceManager showArrayAtIndex:weakSelf.currentlySelectedTabIndex];
-                [weakSelf handleDownloadedConcerts];
-            }
+            [weakSelf.datasourceManager showArrayAtIndex:weakSelf.currentlySelectedTabIndex];
+            [weakSelf handleDownloadedConcerts];
         } else {
             [weakSelf handleDownloadErrorMessage:errorMesage];
         }
@@ -373,6 +396,7 @@
     __weak typeof(self) weakSelf = self;
     [self.datasourceManager loadSavedObjectsAtIndex:self.currentlySelectedTabIndex withCompletionBlock:^(BOOL completed, NSString *errorMesage) {
         [weakSelf.tableView hideLoadingIndicator];
+        [weakSelf.refreshController endRefreshing];
         if (completed) {
             [weakSelf.datasourceManager showArrayAtIndex:weakSelf.currentlySelectedTabIndex];
             [weakSelf handleDownloadedConcerts];
@@ -387,7 +411,7 @@
     [self.tableView hideLoadingIndicator];
     [self.refreshController endRefreshing];
 
-    self.showLoadingIndicatorCell = [self objectsToDisplay].count == self.datasourceManager.currentLimit;
+    self.showLoadingIndicatorCell = [self.datasourceManager shouldLoadNextItemsAtIndex:self.currentlySelectedTabIndex];
 
     if (self.tableView.contentOffset.y < 0) {
         self.tableView.contentOffset = CGPointMake(0.0, 0.0);
@@ -403,7 +427,12 @@
 
 - (void)handleDownloadErrorMessage:(NSString*)errorMessage
 {
+    [self.tableView hideLoadingIndicator];
+    [self.refreshController endRefreshing];
 
+    if (self.tableView.contentOffset.y < 0) {
+        self.tableView.contentOffset = CGPointMake(0.0, 0.0);
+    }
 }
 
 #pragma mark - view methods

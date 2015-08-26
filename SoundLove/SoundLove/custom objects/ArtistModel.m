@@ -25,6 +25,9 @@
     for (NSDictionary *artistDictionary in array) {
         NSString *name = [artistDictionary nonNullObjectForKey:@"name"];
         NSString *imageURL = [artistDictionary nonNullObjectForKey:@"picture"];
+        if (!imageURL) {
+            imageURL = [artistDictionary nonNullObjectForKey:@"image"];
+        }
         [tempArray addObject:[self artistWithName:name imageURL:imageURL]];
     }
 

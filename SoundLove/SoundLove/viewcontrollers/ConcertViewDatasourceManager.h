@@ -25,7 +25,6 @@ typedef NS_ENUM(NSUInteger, SelectedTabIndex) {
 
 @property (nonatomic, strong) SortingObject *currentSortingObject;
 @property (nonatomic, strong) FilterModel *currentFilterModel;
-@property (nonatomic) float currentLimit;
 @property (nonatomic, strong) NSMutableArray *currentlyUsedObjectsArray;
 
 @property (nonatomic, copy) NSString *searchText;
@@ -42,5 +41,6 @@ typedef NS_ENUM(NSUInteger, SelectedTabIndex) {
 - (void)loadSavedObjectsAtIndex:(NSInteger)index withCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock;
 - (void)showArrayAtIndex:(SelectedTabIndex)tabIndex;
 
+- (BOOL)shouldLoadNextItemsAtIndex:(NSInteger)index;
 
 @end

@@ -10,21 +10,43 @@
 #import "ConcertModel.h"
 #import "SortingObject.h"
 #import "FilterModel.h"
+#import "FacebookManager.h"
+#import "NSDictionary+nonNullObjectForKey.h"
 
 @implementation ConcertViewDatasource
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.startIndex = 0;
+        self.limit = 20;
+    }
+    return self;
+}
+
+- (BOOL)shouldLoadNextItems
+{
+    if (self.objectsArray.count < [self.totalNumberOfConcerts intValue] && self.objectsArray.count != 0) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
 - (void)downloadObjectsWithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock
 {
-    NSMutableString *urlString = nil;
+    NSMutableString *urlString = [NSMutableString stringWithFormat:@"%@%@?start=%ld&limit=%ld", kBaseURL, self.urlToDownloadFrom, (long)self.startIndex, (long)self.limit];
 
     // if there is sorting option selected
     if (self.sortingObject.sortingType != SortingTypeNone) {
         NSString *sortingKey = self.sortingObject.apiKey;
         NSString *sortingDir = self.sortingObject.orderDir;
-        urlString = [NSMutableString stringWithFormat:@"%@%@?start=%ld&limit=%ld&orderProperty=%@&orderDir=%@", kBaseURL, self.urlToDownloadFrom, (long)self.startIndex, (long)self.limit, sortingKey, sortingDir];
-    } else {
-        urlString = [NSMutableString stringWithFormat:@"%@%@?start=%ld&limit=%ld", kBaseURL, self.urlToDownloadFrom, (long)self.startIndex, (long)self.limit];
+        urlString = [NSMutableString stringWithFormat:@"&orderProperty=%@&orderDir=%@", sortingKey, sortingDir];
     }
+
+    // add user_id
+    [urlString appendString:[NSString stringWithFormat:@"&user_id=%@", [FacebookManager currentUserID]]];
 
     if (self.searchText.length > 0) {
         [urlString appendString:[NSString stringWithFormat:@"&artist=%@", [self.searchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
@@ -97,10 +119,15 @@
     [super startDataTaskWithRequest:request forSession:session withCompletionBlock:^(NSData *data, NSString *errorMessage, BOOL completed) {
         if (completed)
         {
-            NSArray *festivals = [weakSelf parseJSONData:data];
+            NSError *jsonError = nil;
+            NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
+            NSNumber *totalNumberOfConcerts = [jsonDictionary nonNullObjectForKey:@"foundRows"];
+            weakSelf.totalNumberOfConcerts = totalNumberOfConcerts;
+
+            NSArray *concerts = [weakSelf parseJSONData:data];
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (completionBlock) {
-                    completionBlock(nil, festivals);
+                    completionBlock(nil, concerts);
                 }
             });
         }
@@ -124,7 +151,9 @@
     {
         NSMutableArray *concerts = [NSMutableArray array];
         for (int i = 0; i < jsonArray.count; i++) {
-            [concerts addObject:[ConcertModel concertWithDictionary:jsonArray[i]]];
+            if ([jsonArray[i] isKindOfClass:[NSDictionary class]]) {
+                [concerts addObject:[ConcertModel concertWithDictionary:jsonArray[i]]];
+            }
         }
         return concerts;
     } else {

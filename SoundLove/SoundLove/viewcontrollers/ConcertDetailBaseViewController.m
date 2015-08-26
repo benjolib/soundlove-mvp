@@ -24,7 +24,7 @@
         return;
     }
 
-    //    [[TrackingManager sharedManager] trackUserSelectsShareButton];
+    [TRACKER userTapsLadeFreundeEin];
 
     NSString *stringToShare = [NSString stringWithFormat:@"Hab ein cooles Konzerte gefunden: %@. Die app findest Du ubrigens unter www.soundlove.io", self.concertToDisplay.name];
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[stringToShare]
@@ -42,13 +42,14 @@
 
 - (IBAction)ticketShopButtonPressed:(id)sender
 {
-    //    [[TrackingManager sharedManager] trackUserSelectsTicketShop];
+    [TRACKER userTapsToTicketShopButton];
     [self showToTicketShopPopup];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"showTicketShop"]) {
+    if ([segue.identifier isEqualToString:@"showTicketShop"])
+    {
         TicketShopDetailViewController *ticketShopViewController = segue.destinationViewController;
         ticketShopViewController.concertToDisplay = self.concertToDisplay;
     }

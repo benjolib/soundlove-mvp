@@ -11,8 +11,9 @@
 @interface Genre : NSObject
 
 @property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *value;
 
-+ (Genre*)genreWithName:(NSString*)name;
++ (Genre*)genreWithName:(NSString*)name andValue:(NSString*)value;
 + (NSArray*)genresFromArray:(NSArray*)array;
 
 @end

@@ -10,10 +10,11 @@
 
 @implementation Genre
 
-+ (Genre*)genreWithName:(NSString*)name
++ (Genre*)genreWithName:(NSString*)name andValue:(NSString*)value
 {
     Genre *genre = [Genre new];
     genre.name = name;
+    genre.value = value;
     return genre;
 }
 
@@ -21,7 +22,7 @@
 {
     NSMutableArray *tempArray = [NSMutableArray array];
     for (NSString *genreName in array) {
-        [tempArray addObject:[self genreWithName:genreName]];
+        [tempArray addObject:[self genreWithName:genreName andValue:@""]];
     }
     return tempArray;
 }

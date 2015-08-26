@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSMutableArray *objectsArray;
 @property (nonatomic) NSInteger startIndex;
 @property (nonatomic) NSInteger limit;
+@property (nonatomic, strong) NSNumber *totalNumberOfConcerts;
 @property (nonatomic, copy) NSString *urlToDownloadFrom;
 
 @property (nonatomic, copy) NSString *searchText;
@@ -24,5 +25,10 @@
 - (void)downloadObjectsWithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock;
 
 - (void)resetDatasource;
+
+/**
+ *  Return YES, if ther are more items on the server available, than downloaded.
+ */
+- (BOOL)shouldLoadNextItems;
 
 @end

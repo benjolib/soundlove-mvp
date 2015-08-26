@@ -13,15 +13,6 @@
 
 @implementation ConcertViewDatasourceManager
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        self.currentLimit = 20.0;
-    }
-    return self;
-}
-
 - (void)setCurrentSortingObject:(SortingObject *)currentSortingObject
 {
     _currentSortingObject = currentSortingObject;
@@ -78,15 +69,12 @@
 {
     switch (tabIndex) {
         case SelectedTabIndexFavorites:
-            self.currentLimit = self.favoriteConcertDatasource.objectsArray.count + self.favoriteConcertDatasource.limit;
             self.currentlyUsedObjectsArray = self.favoriteConcertDatasource.objectsArray;
             break;
         case SelectedTabIndexRecommended:
-            self.currentLimit = self.recommendedConcertDatasource.objectsArray.count + self.recommendedConcertDatasource.limit;
             self.currentlyUsedObjectsArray = self.recommendedConcertDatasource.objectsArray;
             break;
         case SelectedTabIndexAll:
-            self.currentLimit = self.allConcertDatasource.objectsArray.count + self.allConcertDatasource.limit;
             self.currentlyUsedObjectsArray = self.allConcertDatasource.objectsArray;
             break;
         default:
@@ -191,22 +179,37 @@
 }
 
 #pragma mark - downloading next concerts
+- (BOOL)shouldLoadNextItemsAtIndex:(NSInteger)index
+{
+    switch (index) {
+        case SelectedTabIndexFavorites:
+            return [self.favoriteConcertDatasource shouldLoadNextItems];
+            break;
+        case SelectedTabIndexRecommended:
+            return [self.recommendedConcertDatasource shouldLoadNextItems];
+            break;
+        case SelectedTabIndexAll:
+            return [self.allConcertDatasource shouldLoadNextItems];
+            break;
+        default:
+            return NO;
+            break;
+    }
+}
+
 - (void)downloadNextConcertsAtIndex:(NSInteger)index WithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock
 {
     switch (index) {
         case SelectedTabIndexFavorites:
             self.favoriteConcertDatasource.startIndex = self.favoriteConcertDatasource.objectsArray.count;
-            self.currentLimit = self.favoriteConcertDatasource.startIndex + self.favoriteConcertDatasource.limit;
             [self downloadFavoriteConcertsWithCompletionBlock:completionBlock];
             break;
         case SelectedTabIndexRecommended:
             self.recommendedConcertDatasource.startIndex = self.recommendedConcertDatasource.objectsArray.count;
-            self.currentLimit = self.recommendedConcertDatasource.startIndex + self.recommendedConcertDatasource.limit;
             [self downloadRecommendedConcertsWithCompletionBlock:completionBlock];
             break;
         case SelectedTabIndexAll:
             self.allConcertDatasource.startIndex = self.allConcertDatasource.objectsArray.count;
-            self.currentLimit = self.allConcertDatasource.startIndex + self.allConcertDatasource.limit;
             [self downloadAllConcertsWithCompletionBlock:completionBlock];
             break;
         default:
@@ -219,8 +222,6 @@
 {
     if (!self.allConcertDatasource) {
         self.allConcertDatasource = [[ConcertViewDatasource alloc] init];
-        self.allConcertDatasource.startIndex = 0;
-        self.allConcertDatasource.limit = 20;
         self.allConcertDatasource.urlToDownloadFrom = kConcertsList;
     }
 
@@ -239,11 +240,7 @@
 {
     if (!self.recommendedConcertDatasource) {
         self.recommendedConcertDatasource = [[ConcertViewDatasource alloc] init];
-        self.recommendedConcertDatasource.startIndex = 0;
-        self.recommendedConcertDatasource.limit = 20;
-
-        NSString *urlString = [NSString stringWithFormat:@"%@?user_id=%@&access_token=%@", kConcertsRecommendedList, [FacebookManager currentUserID], [FacebookManager currentUserAccessToken]];
-        self.recommendedConcertDatasource.urlToDownloadFrom = urlString;
+        self.recommendedConcertDatasource.urlToDownloadFrom = kConcertsRecommendedList;
     }
 
     self.recommendedConcertDatasource.searchText = self.searchText;
@@ -261,8 +258,6 @@
 {
     if (!self.favoriteConcertDatasource) {
         self.favoriteConcertDatasource = [[ConcertViewDatasource alloc] init];
-        self.favoriteConcertDatasource.startIndex = 0;
-        self.favoriteConcertDatasource.limit = 20;
         self.favoriteConcertDatasource.urlToDownloadFrom = kFavoriteConcertsList;
     }
 

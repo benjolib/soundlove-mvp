@@ -71,8 +71,8 @@ static NSString * const kAppStartDateKey = @"appStartDateKey";
     [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kAppStartDateKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
 
-//    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-//    [appDelegate startPopupTimer];
+    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    [appDelegate startPopupTimer];
 }
 
 + (NSTimeInterval)passedIntervalSinceAppStart

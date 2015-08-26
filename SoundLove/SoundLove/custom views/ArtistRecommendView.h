@@ -26,6 +26,7 @@
 @property (nonatomic, weak) IBOutlet UIImageView *fadeController;
 @property (nonatomic, weak) IBOutlet UIImageView *fadeControlBackgroundView;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *fadeControllerCenterXConstraint;
+@property (nonatomic, weak) IBOutlet UIView *emptyView;
 
 // circle view
 @property (nonatomic, weak) IBOutlet UIView *circleBackgroundView;
@@ -33,7 +34,10 @@
 @property (nonatomic, weak) IBOutlet UIImageView *artistImageView;
 @property (nonatomic, weak) IBOutlet UIView *middleCircleView;
 @property (nonatomic, weak) IBOutlet UIView *middleSmallCircleView;
+@property (nonatomic, weak) IBOutlet UIView *middleDotCircleView;
 
 - (void)showViewWithArtist:(ArtistModel*)artist;
+
+- (void)setEmptyViewVisible:(BOOL)visible;
 
 @end

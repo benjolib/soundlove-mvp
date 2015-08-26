@@ -30,6 +30,7 @@
 // Contains an array of images
 @property (nonatomic, strong) NSMutableDictionary *downloadedImagesDictionary;
 @property (nonatomic) BOOL savedEventsSelected;
+@property (nonatomic) BOOL isSearching;
 @end
 
 @implementation CalendarViewController
@@ -54,6 +55,8 @@
 
 - (IBAction)friendsButtonPressed:(TabbingButton*)button
 {
+    [TRACKER userTapsFreundeTab];
+
     [button setButtonActive:YES];
     [self.eventsButton setButtonActive:NO];
 
@@ -64,6 +67,8 @@
 
 - (IBAction)eventsButtonPressed:(TabbingButton*)button
 {
+    [TRACKER userTapsMeineEventsTab];
+
     [button setButtonActive:YES];
     [self.friendsButton setButtonActive:NO];
 
@@ -75,16 +80,22 @@
 #pragma mark - searching
 - (void)searchNavigationViewSearchButtonPressed:(NSString *)searchText searchField:(UITextField *)searchField
 {
+    self.isSearching = YES;
+
     [self searchWithText:searchText];
 }
 
 - (void)searchNavigationViewUserEnteredNewCharacter:(NSString *)searchText
 {
+    self.isSearching = YES;
+
     [self searchWithText:searchText];
 }
 
 - (void)searchNavigationViewCancelButtonPressedSearchField:(UITextField *)searchField
 {
+    self.isSearching = NO;
+
     [self.tableView hideEmptyView];
 
     [self.fetchController.fetchRequest setPredicate:nil];
@@ -93,6 +104,8 @@
 
 - (void)searchWithText:(NSString*)searchText
 {
+    self.isSearching = YES;
+
     if (searchText.length > 0) {
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name contains[cd] %@", searchText];
         [self.fetchController.fetchRequest setPredicate:predicate];
@@ -112,6 +125,8 @@
 #pragma mark - tableViewCell button actions
 - (IBAction)deleteButtonPressed:(UIButton*)button
 {
+    [TRACKER userTapsTrashIcon];
+
     NSIndexPath *indexPath = [self indexPathForButton:button];
     CDConcert *concert = [self.fetchController objectAtIndexPath:indexPath];
 
@@ -126,6 +141,8 @@
 
 - (IBAction)shareButtonPressed:(UIButton*)button
 {
+    [TRACKER userTapsShare];
+
     NSIndexPath *indexPath = [self indexPathForButton:button];
     CDConcert *concert = [self.fetchController objectAtIndexPath:indexPath];
 
@@ -431,6 +448,12 @@
 
     [self.tableView hideLoadingIndicator];
     [self.tableView reloadData];
+
+    if (self.fetchController.fetchedObjects.count == 0 && !self.isSearching) {
+        [self.tableView showEmptyCalendarView];
+    } else {
+        [self.tableView hideEmptyView];
+    }
 }
 
 - (void)loadFriends
