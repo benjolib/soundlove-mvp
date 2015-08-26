@@ -12,6 +12,7 @@
 @interface SearchEmptyView ()
 @property (nonatomic, strong) IBOutlet UILabel *textLabel;
 @property (nonatomic, strong) IBOutlet UILabel *titleLabel;
+@property (nonatomic, strong) IBOutlet UIImageView *logoView;
 @end
 
 @implementation SearchEmptyView
@@ -51,12 +52,20 @@
 
 - (void)showEmptySearch
 {
+    self.logoView.image = [UIImage imageNamed:@"emptySearchIcon"];
     self.textLabel.text = @"Wir haben leider keine Ergebnisse für Deine Suche gefunden";
 }
 
 - (void)showEmptyCalendarView
 {
-    self.textLabel.text = @"";
+    self.logoView.image = [UIImage imageNamed:@"emptyKalendar"];
+    self.textLabel.text = @"Zur Zeit ist diese Liste leer. Lade am besten ein paar Freunde zu Deinen Konzerten ein, um diese Liste zu füllen.";
+}
+
+- (void)showEmptyKunslterFavoriteView
+{
+    self.logoView.image = [UIImage imageNamed:@"emptyKünstler"];
+    self.textLabel.text = @"Deine Favoriten-Liste ist zur Zeit noch leer. Sobald Du einen Künstler oder eine Band markierst, kannst Du sie unter Favoriten einsehen.";
 }
 
 - (void)setText:(NSString*)text

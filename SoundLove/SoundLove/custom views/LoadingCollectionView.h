@@ -16,6 +16,8 @@
 - (void)showEmptySearchView;
 - (void)showEmptyFilterView;
 - (void)showEmptyCalendarView;
+- (void)showEmptyKunstlerFavoriteView;
+
 - (void)hideEmptyView;
 
 @end

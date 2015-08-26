@@ -20,4 +20,10 @@
     self.artistImageView.layer.cornerRadius = CGRectGetHeight(self.artistImageView.frame)/2;
 }
 
+- (void)prepareForReuse
+{
+    [super prepareForReuse];
+    self.artistImageView.image = [UIImage imageNamed:@"placeholder"];
+}
+
 @end

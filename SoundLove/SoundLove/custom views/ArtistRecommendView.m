@@ -42,6 +42,19 @@
     self.imageWrapperView.layer.cornerRadius = CGRectGetHeight(self.imageWrapperView.frame)/2;
     self.middleCircleView.layer.cornerRadius = CGRectGetHeight(self.middleCircleView.frame)/2;
     self.middleSmallCircleView.layer.cornerRadius = CGRectGetHeight(self.middleSmallCircleView.frame)/2;
+    self.middleDotCircleView.layer.cornerRadius = CGRectGetHeight(self.middleDotCircleView.frame)/2;
+
+    self.artistNameLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.artistNameLabel.frame);
+    [self layoutIfNeeded];
+}
+
+- (void)setEmptyViewVisible:(BOOL)visible
+{
+    if (visible) {
+        self.artistNameLabel.text = @"";
+        self.artistImageView.image = nil;
+    }
+    self.emptyView.hidden = !visible;
 }
 
 - (void)showViewWithArtist:(ArtistModel*)artist
@@ -55,6 +68,8 @@
             self.artistImageView.image = image;
             self.artistModel.image = image;
         }
+
+        [self layoutIfNeeded];
     }];
 }
 
@@ -84,11 +99,11 @@
         case UIGestureRecognizerStateCancelled:
         case UIGestureRecognizerStateEnded:
         {
-            if (self.fadeControllerCenterXConstraint.constant < 30.0) {
+            if (self.fadeControllerCenterXConstraint.constant < 50.0) {
                 if ([self.delegate respondsToSelector:@selector(artistRecommendViewFadeOutSelected:)]) {
                     [self.delegate artistRecommendViewFadeOutSelected:self.artistModel];
                 }
-            } else if (self.fadeControllerCenterXConstraint.constant >= CGRectGetWidth(self.fadeControlBackgroundView.frame)-30.0) {
+            } else if (self.fadeControllerCenterXConstraint.constant >= CGRectGetWidth(self.fadeControlBackgroundView.frame)/2-50.0) {
                 if ([self.delegate respondsToSelector:@selector(artistRecommendViewFadeInSelected:)]) {
                     [self.delegate artistRecommendViewFadeInSelected:self.artistModel];
                 }

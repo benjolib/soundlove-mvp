@@ -19,7 +19,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="emptySearchIcon" translatesAutoresizingMaskIntoConstraints="NO" id="apT-lM-Dap">
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" image="emptySearchIcon" translatesAutoresizingMaskIntoConstraints="NO" id="apT-lM-Dap">
                     <rect key="frame" x="113" y="0.0" width="94" height="94"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="94" id="Rlh-Xw-Y8f"/>
@@ -35,8 +35,8 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wir haben leider keine Ergebnisse für Deine Suche gefunden" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="fp1-Kd-8di">
-                    <rect key="frame" x="30" y="174" width="260" height="65"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wir haben leider keine Ergebnisse für Deine Suche gefunden" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="230" translatesAutoresizingMaskIntoConstraints="NO" id="fp1-Kd-8di">
+                    <rect key="frame" x="45" y="174" width="230" height="65"/>
                     <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="18"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -47,19 +47,20 @@
                 <constraint firstAttribute="centerX" secondItem="apT-lM-Dap" secondAttribute="centerX" id="1W5-IH-ueS"/>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="fp1-Kd-8di" secondAttribute="bottom" constant="10" id="5sH-FH-PSs"/>
                 <constraint firstItem="GNc-9P-4lM" firstAttribute="top" secondItem="apT-lM-Dap" secondAttribute="bottom" constant="30" id="A8c-zc-5qN"/>
-                <constraint firstAttribute="trailing" secondItem="fp1-Kd-8di" secondAttribute="trailing" constant="30" id="GXk-zT-akB"/>
+                <constraint firstAttribute="trailing" secondItem="fp1-Kd-8di" secondAttribute="trailing" constant="45" id="GXk-zT-akB"/>
                 <constraint firstItem="fp1-Kd-8di" firstAttribute="top" secondItem="GNc-9P-4lM" secondAttribute="bottom" constant="20" id="OaR-To-EHU"/>
-                <constraint firstItem="fp1-Kd-8di" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="Prs-2q-d6R"/>
+                <constraint firstItem="fp1-Kd-8di" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="45" id="Prs-2q-d6R"/>
                 <constraint firstItem="GNc-9P-4lM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="Vux-Fh-qJb"/>
                 <constraint firstItem="apT-lM-Dap" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Yae-6b-AHh"/>
                 <constraint firstAttribute="trailing" secondItem="GNc-9P-4lM" secondAttribute="trailing" constant="10" id="lUM-ad-lSl"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <connections>
+                <outlet property="logoView" destination="apT-lM-Dap" id="RNn-Ru-OcM"/>
                 <outlet property="textLabel" destination="fp1-Kd-8di" id="Yq0-oF-iv6"/>
                 <outlet property="titleLabel" destination="GNc-9P-4lM" id="g9W-Lr-Hfz"/>
             </connections>
-            <point key="canvasLocation" x="390" y="385"/>
+            <point key="canvasLocation" x="121" y="395"/>
         </view>
     </objects>
     <resources>

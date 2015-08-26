@@ -50,6 +50,15 @@
     }
 }
 
+- (void)showEmptyCalendarView
+{
+    self.emptyView.hidden = NO;
+    if (self.emptyView) {
+        [self.emptyView showEmptyCalendarView];
+        [self bringSubviewToFront:self.emptyView];
+    }
+}
+
 - (void)showEmptyFilterView
 {
     self.emptyView.hidden = NO;
@@ -59,11 +68,11 @@
     }
 }
 
-- (void)showEmptyCalendarView
+- (void)showEmptyKunstlerFavoriteView
 {
     self.emptyView.hidden = NO;
     if (self.emptyView) {
-        [self.emptyView showEmptyCalendarView];
+        [self.emptyView showEmptyKunslterFavoriteView];
         [self bringSubviewToFront:self.emptyView];
     }
 }

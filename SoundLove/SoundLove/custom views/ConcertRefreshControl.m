@@ -35,12 +35,15 @@
 
 - (void)startRefreshing
 {
+    self.isLoading = YES;
+
     CAAnimation *animation = [[self.imageView.layer animationForKey:@"slowAnimation"] mutableCopy];
     animation.duration = 0.5;
 }
 
 - (void)endRefreshing
 {
+    self.isLoading = NO;
     [self.imageView.layer removeAllAnimations];
 }
 
@@ -87,6 +90,7 @@
         self.currentState = RefreshStateLoading;
 
         CGPoint contentOffset = parentScrollView.contentOffset;
+        UIEdgeInsets contentInset = parentScrollView.contentInset;
 
         [UIView animateWithDuration:0.3 animations:^{
             parentScrollView.contentInset = UIEdgeInsetsMake(50.0, 0.0, 0.0, 0.0);
@@ -94,6 +98,7 @@
         } completion:^(BOOL finished) {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 self.currentState = RefreshStateNormal;
+                parentScrollView.contentInset = contentInset;
                 [self sendActionsForControlEvents:UIControlEventValueChanged];
             });
         }];

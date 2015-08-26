@@ -15,6 +15,7 @@
 - (void)showEmptySearch;
 - (void)showEmptyFilter;
 - (void)showEmptyCalendarView;
+- (void)showEmptyKunslterFavoriteView;
 
 + (CGFloat)viewHeight;
 
