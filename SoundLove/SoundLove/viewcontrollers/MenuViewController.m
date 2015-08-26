@@ -15,8 +15,9 @@
 
 #import "FavoriteConcertViewController.h"
 #import "CalendarViewController.h"
-#import "BandsViewController.h"
+#import "KunstlerViewController.h"
 #import "FacebookManager.h"
+#import "AppDelegate.h"
 
 @interface MenuViewController () <UIAlertViewDelegate>
 @property (nonatomic, strong) UITapGestureRecognizer *tapRecognizer;
@@ -53,7 +54,13 @@
     [self.facebookManager logoutUser];
     [[CoreDataHandler sharedHandler] clearDatabase];
 
-    [self performSegueWithIdentifier:@"userLoggedOutSegue" sender:nil];
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    if ([appDelegate isOnboardingViewControllerRoot]) {
+        [self performSegueWithIdentifier:@"userLoggedOutSegue" sender:nil];
+    } else {
+        [appDelegate setRootViewControllerToOnboardingView];
+        [self performSegueWithIdentifier:@"userLoggedOutSegue" sender:nil];
+    }
 }
 
 - (void)updateCalendarButton
@@ -84,19 +91,27 @@
 {
     if ([button isEqual:self.concertButton])
     {
+        [TRACKER userTapsKonzerte];
         [self switchCurrentSourceWithMenuItem:MenuItemConcerts];
     }
     else if ([button isEqual:self.favoriteConcertButton])
     {
+        [TRACKER userTapsBeliebteKonzerte];
         [self switchCurrentSourceWithMenuItem:MenuItemFavoriteConcerts];
     }
-    else if ([button isEqual:self.calendarButton]) {
+    else if ([button isEqual:self.calendarButton])
+    {
+        [TRACKER userTapsKalendar];
         [self switchCurrentSourceWithMenuItem:MenuItemCalendar];
     }
-    else if ([button isEqual:self.bandsButton]) {
+    else if ([button isEqual:self.bandsButton])
+    {
+        [TRACKER userTapsKunstler];
         [self switchCurrentSourceWithMenuItem:MenuItemBands];
     }
-    else if ([button isEqual:self.logoutButton]) {
+    else if ([button isEqual:self.logoutButton])
+    {
+        [TRACKER userTapsLogout];
         [self userWantsToLogout];
     }
 }
@@ -116,8 +131,7 @@
 {
     if ([segue.identifier isEqualToString:@"openInfoView"])
     {
-//        [[TrackingManager sharedManager] trackUserSelectedInfo];
-        
+        [TRACKER userTapsInfo];
         self.transitionManager = [[FestivalTransitionManager alloc] init];
         UINavigationController *destinationViewController = segue.destinationViewController;
         destinationViewController.transitioningDelegate = self.transitionManager;
@@ -145,7 +159,7 @@
         [self activateButton:self.calendarButton];
     } else if ([self.sourceViewController isMemberOfClass:[FavoriteConcertViewController class]]) {
         [self activateButton:self.favoriteConcertButton];
-    } else if ([self.sourceViewController isMemberOfClass:[BandsViewController class]]) {
+    } else if ([self.sourceViewController isMemberOfClass:[KunstlerViewController class]]) {
         [self activateButton:self.bandsButton];
     } else {
         [self activateButton:self.logoutButton];

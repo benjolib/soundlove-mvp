@@ -47,8 +47,8 @@
 
 - (void)trashButtonPressed:(id)sender
 {
-//    [[TrackingManager sharedManager] trackFilterTapsTrashIconDetail];
-
+    [TRACKER userTapsTrashButtonOnDetail];
+    
     self.filterModel.selectedBandsArray = nil;
     [self.selectedBandsArray removeAllObjects];
     [self.tableView reloadData];
@@ -71,8 +71,8 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-//    [[TrackingManager sharedManager] trackFilterSearches];
-
+    [TRACKER userTapsFilterSearch];
+    
     self.searchCancelButtonWidthConstraint.priority = 250.0;
     [UIView animateWithDuration:0.2 animations:^{
         [self.searchWrapperView layoutIfNeeded];
@@ -169,11 +169,11 @@
     if ([self.selectedBandsArray containsObject:selectedBand]) {
         [self.selectedBandsArray removeObject:selectedBand];
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-//        [[TrackingManager sharedManager] trackFilterSelectsBandAgainToUnselect];
+        [TRACKER userTapsDeSelectsAGenreArtist];
     } else {
         [self.selectedBandsArray addObject:selectedBand];
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-//        [[TrackingManager sharedManager] trackFilterSelectsBand];
+        [TRACKER userTapsSelectsAGenreArtist];
     }
 
     [self.filterModel setSelectedBandsArray:[self.selectedBandsArray copy]];

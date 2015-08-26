@@ -20,6 +20,8 @@
 
 - (IBAction)trashButtonPressed:(UIButton*)button
 {
+    [TRACKER userTapsTrashButtonOnDetail];
+
     [self.leftDatePickerView setActive:NO];
     [self.rightDatePickerView setActive:NO];
 

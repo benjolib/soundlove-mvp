@@ -18,6 +18,8 @@
 
 - (IBAction)unwindFromSubViewControllers:(UIStoryboardSegue*)unwindSegue
 {
+    [TRACKER userTapsBackButtonFromFilterDetail];
+
     FilterViewController *subViewController = unwindSegue.sourceViewController;
     self.filterModel = subViewController.filterModel;
 
@@ -40,6 +42,8 @@
 
 - (void)cellTrashButtonPressed:(UIButton*)button
 {
+    [TRACKER userTapsTrashButtonOnMain];
+
     UIView *aSuperview = [button superview];
     while (![aSuperview isKindOfClass:[FilterBandsTableViewCell class]]) {
         aSuperview = [aSuperview superview];
@@ -62,7 +66,6 @@
         [self.filterModel resetFiterLocation];
     }
 
-//    [[TrackingManager sharedManager] trackFilterTapsTrashIconOnMainBandCell];
     [self.tableView reloadData];
 
     [self adjustButtonToFilterModel];
@@ -149,18 +152,23 @@
     switch (indexPath.row)
     {
         case 0:
+            [TRACKER userTapsNachMusikGenre];
             [self performSegueWithIdentifier:@"openListView" sender:indexPath];
             break;
         case 1:
+            [TRACKER userTapsBands];
             [self performSegueWithIdentifier:@"openBands" sender:indexPath];
             break;
         case 2:
+            [TRACKER userTapsPrice];
             [self performSegueWithIdentifier:@"openPreisView" sender:indexPath];
             break;
         case 3:
+            [TRACKER userTapsDate];
             [self performSegueWithIdentifier:@"openDateView" sender:indexPath];
             break;
         case 4:
+            [TRACKER userTapsLocation];
             [self performSegueWithIdentifier:@"openLocationView" sender:indexPath];
             break;
         default:

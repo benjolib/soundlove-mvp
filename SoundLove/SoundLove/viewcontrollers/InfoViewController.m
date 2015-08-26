@@ -82,22 +82,20 @@
             break;
     }
 
-
     if (indexPath.row == 0) {
-//        [[TrackingManager sharedManager] trackUserSelectsWasWirMachen];
-
+        [TRACKER userTapsWasWirMachen];
     } else if (indexPath.row == 1) {
-//        [[TrackingManager sharedManager] trackUserSelectsTeileDieApp];
+        [TRACKER userTapsTeileDieApp];
         [self shareTheApp];
     } else {
-//        [[TrackingManager sharedManager] trackUserSelectsBewerteDieApp];
+        [TRACKER userTapsBewerteDieApp];
         [self rateTheApp];
     }
 }
 
 - (void)shareTheApp
 {
-    NSString *stringToShare = @"";
+    NSString *stringToShare = @"Durch uns verpasst Du nie wieder ein Konzert deiner Lieblingskünstler. www.soundlove.io";
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[stringToShare]
                                                                                          applicationActivities:nil];
     activityViewController.excludedActivityTypes = @[UIActivityTypePostToWeibo,

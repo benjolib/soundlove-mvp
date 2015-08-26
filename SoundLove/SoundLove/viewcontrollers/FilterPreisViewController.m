@@ -20,6 +20,8 @@
 
 - (IBAction)trashButtonPressed:(UIButton*)button
 {
+    [TRACKER userTapsTrashButtonOnDetail];
+
     [self.leftPriceView setActive:NO];
     [self.rightPriceView setActive:NO];
 

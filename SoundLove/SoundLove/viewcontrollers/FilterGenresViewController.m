@@ -28,7 +28,7 @@
 
 - (void)trashButtonPressed:(id)sender
 {
-//    [[TrackingManager sharedManager] trackFilterTapsTrashIconDetail];
+    [TRACKER userTapsTrashButtonOnDetail];
     
     self.filterModel.selectedGenresArray = nil;
     [self.selectedGenresArray removeAllObjects];
@@ -66,7 +66,7 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-//    [[TrackingManager sharedManager] trackFilterSearches];
+    [TRACKER userTapsFilterSearch];
 
     self.searchCancelButtonWidthConstraint.priority = 250.0;
     [UIView animateWithDuration:0.2 animations:^{
@@ -161,9 +161,9 @@
     if ([self.selectedGenresArray containsObject:selectedGenre]) {
         [self.selectedGenresArray removeObject:selectedGenre];
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-//        [[TrackingManager sharedManager] trackFilterSelectsGenreAgainToUnselect];
+        [TRACKER userTapsDeSelectsAGenreArtist];
     } else {
-//        [[TrackingManager sharedManager] trackFilterSelectsGenre];
+        [TRACKER userTapsSelectsAGenreArtist];
         [self.selectedGenresArray addObject:selectedGenre];
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
@@ -173,17 +173,6 @@
 }
 
 #pragma mark - section index titles
-//- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
-//{
-//    //sectionForSectionIndexTitleAtIndex: is a bit buggy, but is still useable
-//    return [[UILocalizedIndexedCollation currentCollation] sectionForSectionIndexTitleAtIndex:index];
-//}
-//
-//- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
-//{
-//    return [[UILocalizedIndexedCollation currentCollation] sectionIndexTitles];
-//}
-
 - (NSArray *)partitionObjects:(NSArray *)array collationStringSelector:(SEL)selector
 {
     UILocalizedIndexedCollation *collation = [UILocalizedIndexedCollation currentCollation];

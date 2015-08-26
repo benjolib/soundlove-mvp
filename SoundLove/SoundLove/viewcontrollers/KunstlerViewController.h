@@ -10,7 +10,7 @@
 
 @class CustomNavigationView, LoadingCollectionView, TabbingButton;
 
-@interface BandsViewController : ImageDownloadBaseViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface KunstlerViewController : ImageDownloadBaseViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, weak) IBOutlet TabbingButton *favoriteButton;
 @property (nonatomic, weak) IBOutlet TabbingButton *recommendedButton;

@@ -35,6 +35,8 @@
 
 - (IBAction)trashButtonPressed:(UIButton*)button
 {
+    [TRACKER userTapsTrashButtonOnDetail];
+
     [self.filterModel resetFiterLocation];
 
     [self.slider setValue:0.0 animated:NO];

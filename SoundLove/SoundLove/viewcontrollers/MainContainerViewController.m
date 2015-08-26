@@ -14,7 +14,7 @@
 #import "StoryboardManager.h"
 #import "ConcertsViewController.h"
 #import "FavoriteConcertViewController.h"
-#import "BandsViewController.h"
+#import "KunstlerViewController.h"
 #import "CalendarViewController.h"
 #import "UIColor+GlobalColors.h"
 #import "SearchNavigationView.h"
@@ -38,6 +38,8 @@
 
 - (IBAction)menuButtonPressed:(id)sender
 {
+    [TRACKER userTapsMenuButton];
+
     [self performSegueWithIdentifier:@"presentMenuView" sender:nil];
 }
 
@@ -104,7 +106,7 @@
             break;
         }
         case MenuItemBands: {
-            BandsViewController *bandsViewController = [StoryboardManager bandsViewController];
+            KunstlerViewController *bandsViewController = [StoryboardManager bandsViewController];
             [self startTransitionToViewController:bandsViewController];
             self.currentMenuItem = menuItem;
             [self setParentTitle:@"Künstler"];

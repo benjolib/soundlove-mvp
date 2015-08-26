@@ -36,7 +36,7 @@
     
     if (allFieldsAreValid)
     {
-//        [[TrackingManager sharedManager] trackUserSendsAnfrage];
+        [TRACKER userTapsAnfrageSenden];
 
         TicketShopTableViewCell *cell1 = (TicketShopTableViewCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
         TicketShopTableViewCell *cell2 = (TicketShopTableViewCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
@@ -51,14 +51,8 @@
                                               completionBlock:^(NSString *errorMessage, BOOL completed) {
                                                   if (completed) {
                                                       [self showConfirmationPopup];
-                                                  } else {
-                                                      // TODO: needs input
                                                   }
         }];
-    }
-    else
-    {
-
     }
 }
 

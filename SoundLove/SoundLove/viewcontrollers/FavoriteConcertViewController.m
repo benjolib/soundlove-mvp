@@ -27,8 +27,6 @@
 @property (nonatomic, strong) ConcertRefreshControl *refreshController;
 @property (nonatomic, strong) FavoriteConcertsClient *concertClient;
 
-@property (nonatomic) NSInteger startIndex;
-@property (nonatomic) NSInteger limit;
 @property (nonatomic) NSInteger currentlySelectedTabIndex;
 @property (nonatomic) BOOL isSearching;
 @property (nonatomic, copy) NSString *searchText;
@@ -53,6 +51,14 @@
         [self searchWithSearchText:self.searchText];
     } else {
         [self.tableView reloadData];
+    }
+
+    if (self.currentlySelectedTabIndex == 0) {
+        [TRACKER userTapsTodayTab];
+    } else if (self.currentlySelectedTabIndex == 1) {
+        [TRACKER userTapsThisWeekTab];
+    } else {
+        [TRACKER userTapsThisMonthTab];
     }
 }
 
@@ -105,9 +111,6 @@
     self.weekConcertsArray = [NSMutableArray array];
     self.todayConcertsArray = [NSMutableArray array];
 
-    self.startIndex = 0;
-    self.limit = 20.0;
-
     [self downloadConcerts];
 }
 
@@ -123,7 +126,11 @@
         if (errorMessage) {
             [weakSelf handleErrorMessage:errorMessage];
         } else {
-            [weakSelf sortConcerts:concertsArray];
+            if (concertsArray.count > 0) {
+                [weakSelf sortConcerts:concertsArray];
+            } else {
+                [weakSelf reloadView];
+            }
         }
     }];
 }
@@ -165,6 +172,11 @@
         }
     }
 
+    [self reloadView];
+}
+
+- (void)reloadView
+{
     if (self.tableView.contentOffset.y < 0) {
         self.tableView.contentOffset = CGPointMake(0.0, 0.0);
     }
@@ -193,9 +205,9 @@
 
     BOOL alreadyExisting = [[CoreDataHandler sharedHandler] addConcertToFavorites:concertModel];
     if (alreadyExisting) {
-        //        [[TrackingManager sharedManager] trackUserRemovedFestival];
+        [TRACKER userRemovesConcertFromCalendar];
     } else {
-        //        [[TrackingManager sharedManager] trackUserAddedFestival];
+        [TRACKER userSavesConcertToCalendar];
     }
     [self sendRankInformationAboutSelectedConcert:concertModel increment:!alreadyExisting];
     [self.tableView reloadData];

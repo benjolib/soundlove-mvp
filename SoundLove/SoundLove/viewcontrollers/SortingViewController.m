@@ -49,6 +49,26 @@
     SortingObject *sortingObj = self.sortingOptions[indexPath.row];
     self.selectedSortingObject = sortingObj;
 
+    switch (indexPath.row) {
+        case 0:
+            [TRACKER userTapsNoSorting];
+            break;
+        case 1:
+            [TRACKER userTapsPriceDESC];
+            break;
+        case 2:
+            [TRACKER userTapsPriceASC];
+            break;
+        case 3:
+            [TRACKER userTapsDateDESC];
+            break;
+        case 4:
+            [TRACKER userTapsDateASC];
+            break;
+        default:
+            break;
+    }
+
     [tableView reloadData];
 }
 
