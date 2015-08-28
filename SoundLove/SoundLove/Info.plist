@@ -25,12 +25,12 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb506435659506380</string>
+				<string>fb690675591044293</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>2.3</string>
+	<string>2.7</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -46,7 +46,7 @@
 		</array>
 	</dict>
 	<key>FacebookAppID</key>
-	<string>506435659506380</string>
+	<string>690675591044293</string>
 	<key>FacebookDisplayName</key>
 	<string>SoundLove</string>
 	<key>LSApplicationQueriesSchemes</key>

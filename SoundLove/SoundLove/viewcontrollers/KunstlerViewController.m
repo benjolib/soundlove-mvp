@@ -15,6 +15,7 @@
 #import "ArtistModel.h"
 #import "ArtistRecommendView.h"
 #import "ArtistRatingClient.h"
+#import "ConcertRefreshControl.h"
 
 @interface KunstlerViewController () <ArtistRecommendViewDelegate>
 @property (nonatomic, strong) NSMutableArray *favoriteArtistsArray;
@@ -22,12 +23,16 @@
 @property (nonatomic, strong) ArtistDownloadClient *artistDownloadClient;
 @property (nonatomic, strong) ArtistRatingClient *ratingClient;
 @property (nonatomic, strong) ArtistRecommendView *recommendedView;
+@property (nonatomic, strong) ConcertRefreshControl *refreshController;
+@property (nonatomic) BOOL recommendedTabSelected;
 @end
 
 @implementation KunstlerViewController
 
 - (IBAction)favoriteButtonPressed:(TabbingButton*)button
 {
+    self.recommendedTabSelected = NO;
+
     [self.recommendedButton setButtonActive:NO];
     [button setButtonActive:YES];
     [self switchSubviewsToRecommend:NO];
@@ -35,6 +40,8 @@
 
 - (IBAction)recommendButtonPressed:(TabbingButton*)button
 {
+    self.recommendedTabSelected = YES;
+
     if (self.recommendedArtistsArray.count == 0) {
         [self downloadRecommendedArtists];
     }
@@ -62,6 +69,7 @@
                         completion:^(BOOL finished) {
                             self.recommendedView.alpha = 1.0;
                             [self.recommendedView setNeedsLayout];
+                            [self.view layoutIfNeeded];
                         }];
     } else {
         [UIView transitionFromView:self.recommendedView
@@ -69,9 +77,17 @@
                           duration:0.3
                            options:UIViewAnimationOptionLayoutSubviews | UIViewAnimationOptionShowHideTransitionViews
                         completion:^(BOOL finished) {
-                            [self downloadArtists];
+                            [self.collectionView reloadData];
                         }];
 
+    }
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    if (self.recommendedTabSelected) {
+        [self.recommendedView layoutIfNeeded];
     }
 }
 
@@ -121,17 +137,22 @@
     }
 }
 
+- (NSMutableArray *)objectsToDisplay
+{
+    return self.favoriteArtistsArray;
+}
+
 #pragma mark - collectionView methods
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.favoriteArtistsArray.count;
+    return [self objectsToDisplay].count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     BandCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
 
-    ArtistModel *artist = [self.favoriteArtistsArray objectAtIndex:indexPath.row];
+    ArtistModel *artist = [[self objectsToDisplay] objectAtIndex:indexPath.row];
     cell.nameLabel.text = artist.name;
 
     if (artist.image) {
@@ -147,20 +168,21 @@
 
 - (void)updateTableViewCellAtIndexPath:(NSIndexPath *)indexPath image:(UIImage *)image
 {
-    ArtistModel *artist = self.favoriteArtistsArray[indexPath.row];
+    ArtistModel *artist = [self objectsToDisplay][indexPath.row];
 
     BandCollectionViewCell *cell = (BandCollectionViewCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
     if (image) {
         artist.image = image;
         cell.artistImageView.image = image;
+    } else {
+        cell.artistImageView.image = [UIImage imageNamed:@"placeholder"];
     }
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat cellWidth = CGRectGetWidth(collectionView.frame)/3-10;
-    CGFloat cellHeight = cellWidth;
-    return CGSizeMake(cellWidth, MAX(130.0, cellHeight));
+    return CGSizeMake(cellWidth, 160 /*MAX(130.0, cellHeight*/);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
@@ -168,7 +190,42 @@
     return 10.0;
 }
 
+- (void)loadImagesForVisibleRows
+{
+    NSArray *visibleRows = [self.collectionView indexPathsForVisibleItems];
+    for (NSIndexPath *indexpath in visibleRows) {
+        if (indexpath.row < [self objectsToDisplay].count )
+        {
+            BaseImageModel *object = self.objectsToDisplay[indexpath.row];
+            if (!object.image) {
+                [self startImageDownloadForObject:object atIndexPath:indexpath];
+            }
+        }
+    }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [self.refreshController parentScrollViewDidScroll:scrollView];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    [super scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
+    [self.refreshController parentScrollViewDidEndDragging:scrollView];
+}
+
 #pragma mark - view methods
+- (void)addRefreshController
+{
+    self.refreshController = [[ConcertRefreshControl alloc] initWithFrame:CGRectMake(0.0, -50.0, CGRectGetWidth(self.view.frame), 50.0)];
+    [self.collectionView addSubview:self.refreshController];
+
+    [self.refreshController addTarget:self
+                               action:@selector(refreshView)
+                     forControlEvents:UIControlEventValueChanged];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -178,24 +235,17 @@
     [self.favoriteButton setButtonActive:YES];
     [self.recommendedButton setButtonActive:NO];
 
+    [self addRefreshController];
+
     [self.collectionView showLoadingIndicator];
-
-//    self.favoriteArtistsArray = [[self createFakeFriends] mutableCopy];
-//    [self.collectionView reloadData];
-//    [self.collectionView hideLoadingIndicator];
-
-    [self downloadArtists];
-
+    [self refreshView];
     [self downloadRecommendedArtists];
 }
 
-- (NSArray*)createFakeFriends
+- (void)refreshView
 {
-    NSMutableArray *friendsTempArray = [NSMutableArray array];
-    for (int i = 0; i < 10; i++) {
-        [friendsTempArray addObject:[ArtistModel artistWithName:@"John Magenta" imageURL:@"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/v/t1.0-1/p50x50/10603588_102209476787153_6748298543344698984_n.jpg?oh=6bc4c78d9f568041cd48e06b91fbdf20&oe=56782B82&__gda__=1450349470_68e004032853bc5f3b469a5a8538ce6b"]];
-    }
-    return friendsTempArray;
+    [self.refreshController startRefreshing];
+    [self downloadArtists];
 }
 
 - (void)downloadArtists
@@ -204,6 +254,7 @@
 
     __weak typeof(self) weakSelf = self;
     [self.artistDownloadClient downloadFavoriteArtistsWithCompletionBlock:^(NSArray *artists, BOOL completed, NSString *errorMessage) {
+        [weakSelf.refreshController endRefreshing];
         if (errorMessage) {
             [weakSelf.collectionView showEmptyKunstlerFavoriteView];
         } else {
@@ -230,7 +281,12 @@
         if (errorMessage) {
             [weakSelf.recommendedView setEmptyViewVisible:YES];
         } else {
+            [weakSelf.recommendedView setEmptyViewVisible:NO];
             weakSelf.recommendedArtistsArray = [artists mutableCopy];
+
+            if (weakSelf.recommendedTabSelected) {
+                [weakSelf loadRecommendedViewWithArtist];
+            }
         }
     }];
 }

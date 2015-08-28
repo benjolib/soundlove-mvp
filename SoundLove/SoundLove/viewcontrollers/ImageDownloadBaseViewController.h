@@ -20,5 +20,6 @@
 - (void)updateTableViewCellAtIndexPath:(NSIndexPath*)indexPath image:(UIImage*)image;
 
 - (void)cancelAllImageDownloads;
+- (void)loadImagesForVisibleRows;
 
 @end

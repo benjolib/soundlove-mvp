@@ -13,7 +13,7 @@ static NSString * const kBaseURL = @"http://api-eventim.makers.do/events/";
 
 static NSString * const kConcertsList = @"list";
 static NSString * const kConcertsRecommendedList = @"recommended/list";
-static NSString * const kFavoriteConcertsList = @"calendar/list";
+static NSString * const kFavoriteConcertsList = @"favorites/list";
 
 static NSString * const kFacebookConnectURL = @"http://api-eventim.makers.do/user/facebook/connect?";
 

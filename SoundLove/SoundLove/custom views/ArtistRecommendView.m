@@ -20,7 +20,8 @@
 - (instancetype)init
 {
     self = [super init];
-    if (self) {
+    if (self)
+    {
         NSArray *bundle = [[NSBundle mainBundle] loadNibNamed:@"ArtistRecommendView" owner:nil options:nil];
         for (id object in bundle) {
             if ([object isKindOfClass:[ArtistRecommendView class]]) {
@@ -28,7 +29,6 @@
                 break;
             }
         }
-
         [self setupFadeController];
     }
     return self;
@@ -62,15 +62,20 @@
     self.artistModel = artist;
     self.artistNameLabel.text = self.artistModel.name;
 
-    self.imageDownloader = [[ImageDownloader alloc] init];
-    [self.imageDownloader startDownloadingImage:self.artistModel.imageURL completionBlock:^(UIImage *image) {
-        if (image) {
-            self.artistImageView.image = image;
-            self.artistModel.image = image;
-        }
+    self.artistImageView.image = nil;
 
-        [self layoutIfNeeded];
-    }];
+    if (self.artistModel.imageURL.length > 0)
+    {
+        self.imageDownloader = [[ImageDownloader alloc] init];
+        [self.imageDownloader startDownloadingImage:self.artistModel.imageURL completionBlock:^(UIImage *image) {
+            if (image) {
+                self.artistImageView.image = image;
+                self.artistModel.image = image;
+            }
+
+            [self layoutIfNeeded];
+        }];
+    }
 }
 
 - (void)setupFadeController
@@ -119,7 +124,5 @@
             break;
     }
 }
-
-
 
 @end

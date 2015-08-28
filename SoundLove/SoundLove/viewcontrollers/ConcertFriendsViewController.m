@@ -54,6 +54,8 @@
     if (image) {
         friendObject.image = image;
         cell.artistImageView.image = image;
+    } else {
+        cell.artistImageView.image = [UIImage imageNamed:@"placeholder"];
     }
 }
 
@@ -71,11 +73,6 @@
 {
     return (CGRectGetWidth(collectionView.frame) - 3*100)/3;
 }
-
-//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return CGSizeMake((CGRectGetWidth(collectionView.frame)- 4*10)/3, (CGRectGetHeight(collectionView.frame)- 4*10)/3);
-//}
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
