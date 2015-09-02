@@ -34,7 +34,7 @@
 
 + (CGFloat)viewHeight
 {
-    return 270.0;
+    return 450.0;
 }
 
 - (void)awakeFromNib

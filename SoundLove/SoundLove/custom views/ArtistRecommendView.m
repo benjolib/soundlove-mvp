@@ -102,6 +102,7 @@
         }
             break;
         case UIGestureRecognizerStateCancelled:
+            break;
         case UIGestureRecognizerStateEnded:
         {
             if (self.fadeControllerCenterXConstraint.constant < 50.0) {

@@ -146,8 +146,10 @@
     NSInteger currentWeek = todayDateComponents.weekOfYear;
     NSInteger currentDay = todayDateComponents.day;
 
-    for (ConcertModel *concert in concertsArray)
-    {
+    // sort them first, by date
+    concertsArray = [concertsArray sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]]];
+
+    for (ConcertModel *concert in concertsArray) {
         NSDate *concertDate = concert.date;
 
         NSDateComponents *components = [concertDate dateComponents];

@@ -71,6 +71,16 @@
     [self adjustButtonToFilterModel];
 }
 
+- (IBAction)trashButtonPressed:(id)sender
+{
+    [TRACKER userTapsTrashButtonOnMain];
+
+    [self.filterModel clearFilters];
+    [self.tableView reloadData];
+
+    [self adjustButtonToFilterModel];
+}
+
 #pragma mark - tableView methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -203,6 +213,12 @@
     if (!self.filterModel) {
         self.filterModel = [[FilterModel alloc] init];
     }
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self adjustButtonToFilterModel];
 }
 
 - (void)reloadView

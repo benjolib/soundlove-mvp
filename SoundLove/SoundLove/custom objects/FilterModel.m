@@ -172,7 +172,8 @@
 
 - (NSString*)genresStringForAPICall
 {
-    return [[self genresString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *genreString = [[self genresString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    return [genreString stringByReplacingOccurrencesOfString:@"&" withString:@"%26"];
 }
 
 - (NSDateFormatter*)dateFormatter

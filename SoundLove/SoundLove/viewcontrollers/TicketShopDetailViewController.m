@@ -107,6 +107,11 @@
     [self setTicketButtonEnabled:[self allFieldsAreValid]];
 }
 
+- (IBAction)textFieldValueChanged:(UITextField*)textfield
+{
+    [self setTicketButtonEnabled:[self allFieldsAreValid]];
+}
+
 #pragma mark - tableView methods
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

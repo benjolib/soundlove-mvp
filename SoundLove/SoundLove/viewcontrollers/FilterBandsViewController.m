@@ -45,7 +45,7 @@
     return _sectionIndexTitles;
 }
 
-- (void)trashButtonPressed:(id)sender
+- (IBAction)trashButtonPressed:(id)sender
 {
     [TRACKER userTapsTrashButtonOnDetail];
     

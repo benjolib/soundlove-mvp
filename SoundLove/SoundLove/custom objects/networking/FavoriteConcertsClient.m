@@ -23,8 +23,13 @@
     NSString *dateFromString = [NSString stringWithFormat:@"%ld-%ld-%ld", (long)components.year, (long)components.month, (long)components.day];
     NSString *dateToString = [NSString stringWithFormat:@"%ld-%ld-%ld", (long)components.year, (long)components.month, (unsigned long)dayRange.length];
 
-    NSMutableString *urlString = [NSMutableString stringWithFormat:@"%@%@?user_id=%@&limit=1000&dateFrom=%@&dateTo=%@&orderProperty=date_ts&orderDir=ASC", kBaseURL, kFavoriteConcertsList, [FacebookManager currentUserID], dateFromString, dateToString];
-    [self downloadConcertsWithURL:[NSURL URLWithString:urlString] completionBlock:completionBlock];
+//http://api-eventim.makers.do/events/list?orderProperty=rank&orderDir=DESC
+
+//    NSMutableString *urlString = [NSMutableString stringWithFormat:@"%@%@?user_id=%@&limit=1000&dateFrom=%@&dateTo=%@&orderProperty=date_ts&orderDir=ASC", kBaseURL, kFavoriteConcertsList, [FacebookManager currentUserID], dateFromString, dateToString];
+
+    [self downloadConcertsWithURL:[NSURL URLWithString:@"http://api-eventim.makers.do/events/list?orderProperty=rank&orderDir=DESC"]
+                  completionBlock:completionBlock];
+//    [self downloadConcertsWithURL:[NSURL URLWithString:urlString] completionBlock:completionBlock];
 }
 
 #pragma mark - private methods

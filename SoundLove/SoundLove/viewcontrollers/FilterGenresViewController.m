@@ -9,7 +9,6 @@
 #import "FilterGenresViewController.h"
 #import "FilterTableViewCell.h"
 #import "Genre.h"
-//#import "TrackingManager.h"
 #import "ConcertRefreshControl.h"
 #import "GenreDownloadClient.h"
 #import "CustomNavigationView.h"
@@ -26,7 +25,7 @@
 
 @implementation FilterGenresViewController
 
-- (void)trashButtonPressed:(id)sender
+- (IBAction)trashButtonPressed:(id)sender
 {
     [TRACKER userTapsTrashButtonOnDetail];
     
@@ -160,13 +159,14 @@
     Genre *selectedGenre = self.tableData[indexPath.section][indexPath.row];
     if ([self.selectedGenresArray containsObject:selectedGenre]) {
         [self.selectedGenresArray removeObject:selectedGenre];
-        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         [TRACKER userTapsDeSelectsAGenreArtist];
     } else {
         [TRACKER userTapsSelectsAGenreArtist];
+        [self.selectedGenresArray removeAllObjects];
         [self.selectedGenresArray addObject:selectedGenre];
-        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
+
+    [self.tableView reloadData];
 
     self.filterModel.selectedGenresArray = [self.selectedGenresArray copy];
     [self adjustButtonToFilterModel];

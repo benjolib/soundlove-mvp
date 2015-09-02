@@ -91,6 +91,10 @@
         UIImage *image = self.loadingIndicatorView.image;
         self.loadingIndicatorView.frame = CGRectMake(CGRectGetWidth(self.frame)/2 - image.size.width/2, CGRectGetHeight(self.frame)/2 - image.size.height/2, image.size.width, image.size.height);
     }
+
+    if (self.emptyView.superview) {
+        self.emptyView.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
+    }
 }
 
 - (void)awakeFromNib
@@ -112,7 +116,7 @@
 - (void)setupEmptyView
 {
     self.emptyView = [[SearchEmptyView alloc] init];
-    self.emptyView.frame = CGRectMake(CGRectGetWidth(self.frame)/2 - CGRectGetWidth(self.emptyView.frame)/2, CGRectGetHeight(self.frame)/2 - [SearchEmptyView viewHeight]/2, CGRectGetWidth(self.emptyView.frame), [SearchEmptyView viewHeight]);
+    self.emptyView.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
     [self addSubview:self.emptyView];
     self.emptyView.hidden = YES;
 }
