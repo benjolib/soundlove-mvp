@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 Zappdesigntemplates. All rights reserved.
 //
 
-#import "CalendarEventTableViewCell.h"
+#import "ConcertsTableViewCell.h"
 
-@interface CalendarEventFriendsTableViewCell : CalendarEventTableViewCell
+@interface CalendarEventFriendsTableViewCell : ConcertsTableViewCell
 
 @property (nonatomic, weak) IBOutlet UIView *friendsWrapperView;
 @property (nonatomic, weak) IBOutlet UIView *additionalFriendsCircleView;

@@ -10,7 +10,6 @@
 
 typedef NS_ENUM(NSUInteger, MenuItem) {
     MenuItemConcerts,
-    MenuItemFavoriteConcerts,
     MenuItemCalendar,
     MenuItemBands,
 };

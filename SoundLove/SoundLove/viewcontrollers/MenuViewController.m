@@ -13,7 +13,6 @@
 #import "MainContainerViewController.h"
 #import "FestivalTransitionManager.h"
 
-#import "FavoriteConcertViewController.h"
 #import "CalendarViewController.h"
 #import "KunstlerViewController.h"
 #import "FacebookManager.h"
@@ -94,11 +93,6 @@
         [TRACKER userTapsKonzerte];
         [self switchCurrentSourceWithMenuItem:MenuItemConcerts];
     }
-    else if ([button isEqual:self.favoriteConcertButton])
-    {
-        [TRACKER userTapsBeliebteKonzerte];
-        [self switchCurrentSourceWithMenuItem:MenuItemFavoriteConcerts];
-    }
     else if ([button isEqual:self.calendarButton])
     {
         [TRACKER userTapsKalendar];
@@ -157,8 +151,6 @@
         [self activateButton:self.concertButton];
     } else if ([self.sourceViewController isMemberOfClass:[CalendarViewController class]]) {
         [self activateButton:self.calendarButton];
-    } else if ([self.sourceViewController isMemberOfClass:[FavoriteConcertViewController class]]) {
-        [self activateButton:self.favoriteConcertButton];
     } else if ([self.sourceViewController isMemberOfClass:[KunstlerViewController class]]) {
         [self activateButton:self.bandsButton];
     } else {

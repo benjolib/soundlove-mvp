@@ -86,6 +86,8 @@
 
 - (IBAction)unwindFromFilterViewApplyingFilter:(UIStoryboardSegue*)unwindSegue
 {
+    [self.tableView showLoadingIndicator];
+
     FilterViewController *filterViewController = unwindSegue.sourceViewController;
     FilterModel *filterModel = filterViewController.filterModel;
 
@@ -121,8 +123,10 @@
 
 - (void)applySortingOptionToConcerts
 {
+    [self.tableView showLoadingIndicator];
     self.datasourceManager.currentSortingObject = self.filterModel.sortingObject;
-    [self.tableView reloadData];
+
+    [self redownloadConcerts];
 }
 
 - (void)calendarButtonTapped:(UIButton*)button
@@ -320,7 +324,7 @@
 
 - (void)updateTableViewCellAtIndexPath:(NSIndexPath *)indexPath image:(UIImage *)image
 {
-    if (self.objectsToDisplay.count <= indexPath.row)
+    if (indexPath.row <= self.objectsToDisplay.count)
     {
         ConcertModel *concert = self.objectsToDisplay[indexPath.row];
 

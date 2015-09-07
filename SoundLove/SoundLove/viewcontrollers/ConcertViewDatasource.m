@@ -42,7 +42,7 @@
     if (self.sortingObject.sortingType != SortingTypeNone) {
         NSString *sortingKey = self.sortingObject.apiKey;
         NSString *sortingDir = self.sortingObject.orderDir;
-        urlString = [NSMutableString stringWithFormat:@"&orderProperty=%@&orderDir=%@", sortingKey, sortingDir];
+        [urlString appendFormat:@"&orderProperty=%@&orderDir=%@", sortingKey, sortingDir];
     }
 
     // add user_id

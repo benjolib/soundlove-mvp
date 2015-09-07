@@ -13,7 +13,8 @@ typedef NS_ENUM(NSUInteger, SortingType) {
     SortingTypePreisASC,
     SortingTypePreisDESC,
     SortingTypeDateASC,
-    SortingTypeDateDESC
+    SortingTypeDateDESC,
+    SortingTypePopularity
 };
 
 @interface SortingObject : NSObject

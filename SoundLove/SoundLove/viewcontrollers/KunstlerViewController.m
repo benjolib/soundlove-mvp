@@ -44,6 +44,8 @@
 
     if (self.recommendedArtistsArray.count == 0) {
         [self downloadRecommendedArtists];
+    } else {
+        [self loadRecommendedViewWithArtist];
     }
 
     [self.favoriteButton setButtonActive:NO];
@@ -53,8 +55,6 @@
         [self createRecommendView];
     }
     [self switchSubviewsToRecommend:YES];
-
-    [self loadRecommendedViewWithArtist];
 
     [self.recommendedView setEmptyViewVisible:self.recommendedArtistsArray.count == 0];
 }
@@ -139,10 +139,12 @@
 - (void)loadRecommendedViewWithArtist
 {
     if (self.recommendedArtistsArray.count > 0) {
+        [self.recommendedView setEmptyViewVisible:NO];
+        
         ArtistModel *artist = [self.recommendedArtistsArray lastObject];
         [self.recommendedView showViewWithArtist:artist];
     } else {
-        [self downloadRecommendedArtists];
+        [self.recommendedView setEmptyViewVisible:YES];
     }
 }
 

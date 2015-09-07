@@ -26,7 +26,6 @@
 		567409DD1B60DAEC00638FEF /* StoryboardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 567409DC1B60DAEC00638FEF /* StoryboardManager.m */; };
 		567409DF1B60DC1C00638FEF /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 567409DE1B60DC1C00638FEF /* Montserrat-Bold.ttf */; };
 		567409E11B60DC2100638FEF /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 567409E01B60DC2100638FEF /* Montserrat-Regular.ttf */; };
-		567409EB1B60DD3900638FEF /* FavoriteConcertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 567409E61B60DD3900638FEF /* FavoriteConcertViewController.m */; };
 		567409EC1B60DD3900638FEF /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 567409E81B60DD3900638FEF /* MenuViewController.m */; };
 		567409ED1B60DD3900638FEF /* OverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 567409EA1B60DD3900638FEF /* OverlayViewController.m */; };
 		567409F01B60DD5A00638FEF /* MenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 567409EF1B60DD5A00638FEF /* MenuButton.m */; };
@@ -80,7 +79,6 @@
 		56A65C6A1B68A9E000619189 /* onboarding.mov in Resources */ = {isa = PBXBuildFile; fileRef = 56A65C691B68A9E000619189 /* onboarding.mov */; };
 		56A65C6C1B68AA0300619189 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56A65C6B1B68AA0300619189 /* AVFoundation.framework */; };
 		56A65C6F1B68AD0600619189 /* FacebookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A65C6E1B68AD0600619189 /* FacebookManager.m */; };
-		56A65C761B68B9C900619189 /* CalendarEventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A65C751B68B9C900619189 /* CalendarEventTableViewCell.m */; };
 		56A65C791B68E14F00619189 /* SoundLove.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 56A65C771B68E14F00619189 /* SoundLove.xcdatamodeld */; };
 		56A65C7F1B68E60F00619189 /* CDConcert+ConcertHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A65C7E1B68E60F00619189 /* CDConcert+ConcertHelper.m */; };
 		56A65C821B691E4200619189 /* BasicButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A65C811B691E4200619189 /* BasicButton.m */; };
@@ -106,7 +104,6 @@
 		56D395DE1B5F8988000DC427 /* OverlayTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D395DD1B5F8988000DC427 /* OverlayTransitionAnimator.m */; };
 		56D395E41B5F8C11000DC427 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D395E11B5F8C11000DC427 /* Reachability.m */; };
 		56D395E51B5F8C11000DC427 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D395E31B5F8C11000DC427 /* UIImage+ImageEffects.m */; };
-		56D676651B7BA267003DC597 /* FavoriteConcertsClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D676641B7BA267003DC597 /* FavoriteConcertsClient.m */; };
 		56D676681B7BA65B003DC597 /* CDConcertLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D676671B7BA65B003DC597 /* CDConcertLocation.m */; };
 		56D6766E1B7BA6BC003DC597 /* CDConcertLocation+ConcertLocationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D6766D1B7BA6BC003DC597 /* CDConcertLocation+ConcertLocationHelper.m */; };
 		56D676721B7BD02F003DC597 /* NSDate+DateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D676711B7BD02F003DC597 /* NSDate+DateHelper.m */; };
@@ -126,8 +123,6 @@
 		56D857F61B7EB32F006B5C85 /* SortingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D857F51B7EB32F006B5C85 /* SortingButton.m */; };
 		56D857F91B7EBE59006B5C85 /* ArtistRecommendView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D857F81B7EBE59006B5C85 /* ArtistRecommendView.m */; };
 		56D9DD411B7FA4B5007BA2E7 /* ArtistRecommendView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56D9DD401B7FA4B5007BA2E7 /* ArtistRecommendView.xib */; };
-		56D9DD451B7FA5ED007BA2E7 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56D9DD431B7FA5ED007BA2E7 /* Fabric.framework */; };
-		56D9DD461B7FA5ED007BA2E7 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56D9DD441B7FA5ED007BA2E7 /* Crashlytics.framework */; };
 		56D9DD4C1B7FC5F9007BA2E7 /* FilterLocationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D9DD4B1B7FC5F9007BA2E7 /* FilterLocationHelper.m */; };
 		56DB63EE1B83622C00D10BA4 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56DB63EC1B83622C00D10BA4 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		56DB63EF1B83622C00D10BA4 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56DB63ED1B83622C00D10BA4 /* iAd.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -157,7 +152,7 @@
 		56FD78A61B80DD7C00B3CBB1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56FD789E1B80DD7C00B3CBB1 /* QuartzCore.framework */; };
 		56FD78A71B80DD7C00B3CBB1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56FD789F1B80DD7C00B3CBB1 /* Security.framework */; };
 		56FD78A81B80DD7C00B3CBB1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56FD78A01B80DD7C00B3CBB1 /* SystemConfiguration.framework */; };
-		A69EDD7B089946387E97C36B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B069AFE2E637084FE95467EB /* libPods.a */; };
+		61A0248F406F2335A3B42AE3 /* libPods-SoundLove.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A10AF2D692AB66339EC45B51 /* libPods-SoundLove.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -207,8 +202,6 @@
 		567409DC1B60DAEC00638FEF /* StoryboardManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StoryboardManager.m; path = "custom objects/StoryboardManager.m"; sourceTree = "<group>"; };
 		567409DE1B60DC1C00638FEF /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		567409E01B60DC2100638FEF /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
-		567409E51B60DD3900638FEF /* FavoriteConcertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteConcertViewController.h; sourceTree = "<group>"; };
-		567409E61B60DD3900638FEF /* FavoriteConcertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteConcertViewController.m; sourceTree = "<group>"; };
 		567409E71B60DD3900638FEF /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		567409E81B60DD3900638FEF /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		567409E91B60DD3900638FEF /* OverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayViewController.h; sourceTree = "<group>"; };
@@ -304,8 +297,6 @@
 		56A65C6B1B68AA0300619189 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		56A65C6D1B68AD0600619189 /* FacebookManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookManager.h; sourceTree = "<group>"; };
 		56A65C6E1B68AD0600619189 /* FacebookManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookManager.m; sourceTree = "<group>"; };
-		56A65C741B68B9C900619189 /* CalendarEventTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarEventTableViewCell.h; sourceTree = "<group>"; };
-		56A65C751B68B9C900619189 /* CalendarEventTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarEventTableViewCell.m; sourceTree = "<group>"; };
 		56A65C781B68E14F00619189 /* SoundLove.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SoundLove.xcdatamodel; sourceTree = "<group>"; };
 		56A65C7D1B68E60F00619189 /* CDConcert+ConcertHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CDConcert+ConcertHelper.h"; sourceTree = "<group>"; };
 		56A65C7E1B68E60F00619189 /* CDConcert+ConcertHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CDConcert+ConcertHelper.m"; sourceTree = "<group>"; };
@@ -353,8 +344,6 @@
 		56D395E11B5F8C11000DC427 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		56D395E21B5F8C11000DC427 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		56D395E31B5F8C11000DC427 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
-		56D676631B7BA267003DC597 /* FavoriteConcertsClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteConcertsClient.h; sourceTree = "<group>"; };
-		56D676641B7BA267003DC597 /* FavoriteConcertsClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteConcertsClient.m; sourceTree = "<group>"; };
 		56D676661B7BA65B003DC597 /* CDConcertLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDConcertLocation.h; sourceTree = "<group>"; };
 		56D676671B7BA65B003DC597 /* CDConcertLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDConcertLocation.m; sourceTree = "<group>"; };
 		56D6766C1B7BA6BC003DC597 /* CDConcertLocation+ConcertLocationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CDConcertLocation+ConcertLocationHelper.h"; sourceTree = "<group>"; };
@@ -443,8 +432,8 @@
 		56FD78A01B80DD7C00B3CBB1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A10AF2D692AB66339EC45B51 /* libPods-SoundLove.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SoundLove.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B069AFE2E637084FE95467EB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		CA11CC7A959ABC534999FED9 /* Pods-SoundLove.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundLove.debug.xcconfig"; path = "Pods/Target Support Files/Pods/Pods-SoundLove.debug.xcconfig"; sourceTree = "<group>"; };
-		E40602D49D84F4B627140536 /* Pods-SoundLove.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundLove.release.xcconfig"; path = "Pods/Target Support Files/Pods/Pods-SoundLove.release.xcconfig"; sourceTree = "<group>"; };
+		CA11CC7A959ABC534999FED9 /* Pods-SoundLove.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundLove.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SoundLove/Pods-SoundLove.debug.xcconfig"; sourceTree = "<group>"; };
+		E40602D49D84F4B627140536 /* Pods-SoundLove.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundLove.release.xcconfig"; path = "Pods/Target Support Files/Pods-SoundLove/Pods-SoundLove.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -465,11 +454,9 @@
 				56740A0F1B60EE4200638FEF /* CoreLocation.framework in Frameworks */,
 				56740A0B1B60EE3900638FEF /* StoreKit.framework in Frameworks */,
 				567D7B681B70B7890015EBB3 /* MapKit.framework in Frameworks */,
-				56D9DD461B7FA5ED007BA2E7 /* Crashlytics.framework in Frameworks */,
 				56A65C6C1B68AA0300619189 /* AVFoundation.framework in Frameworks */,
-				56D9DD451B7FA5ED007BA2E7 /* Fabric.framework in Frameworks */,
 				56740A0E1B60EE4200638FEF /* CoreData.framework in Frameworks */,
-				A69EDD7B089946387E97C36B /* libPods.a in Frameworks */,
+				61A0248F406F2335A3B42AE3 /* libPods-SoundLove.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,8 +542,6 @@
 				56740A051B60EE0900638FEF /* BaseTableViewCell.m */,
 				5684B1C71B6619EC009EF346 /* TicketShopTableViewCell.h */,
 				5684B1C81B6619EC009EF346 /* TicketShopTableViewCell.m */,
-				56A65C741B68B9C900619189 /* CalendarEventTableViewCell.h */,
-				56A65C751B68B9C900619189 /* CalendarEventTableViewCell.m */,
 				56DDA03E1B8530B5002DDACC /* CalendarEventFriendsTableViewCell.h */,
 				56DDA03F1B8530B5002DDACC /* CalendarEventFriendsTableViewCell.m */,
 				56A65C831B6957B000619189 /* BandCollectionViewCell.h */,
@@ -583,8 +568,6 @@
 				5684B1DF1B664B7C009EF346 /* ConcertDownloadClient.m */,
 				567D7B581B709CF40015EBB3 /* ConcertRankClient.h */,
 				567D7B591B709CF40015EBB3 /* ConcertRankClient.m */,
-				56D676631B7BA267003DC597 /* FavoriteConcertsClient.h */,
-				56D676641B7BA267003DC597 /* FavoriteConcertsClient.m */,
 				5684B1CD1B661DB3009EF346 /* TicketShopperClient.h */,
 				5684B1CE1B661DB3009EF346 /* TicketShopperClient.m */,
 				56A65C6D1B68AD0600619189 /* FacebookManager.h */,
@@ -740,8 +723,6 @@
 				56740A181B60F0CA00638FEF /* ConcertsViewController.h */,
 				56740A191B60F0CA00638FEF /* ConcertsViewController.m */,
 				56DF68171B7223490025DBB1 /* Concert and detail views */,
-				567409E51B60DD3900638FEF /* FavoriteConcertViewController.h */,
-				567409E61B60DD3900638FEF /* FavoriteConcertViewController.m */,
 				56740A2A1B61234800638FEF /* CalendarViewController.h */,
 				56740A2B1B61234800638FEF /* CalendarViewController.m */,
 				56740A271B61232900638FEF /* KunstlerViewController.h */,
@@ -996,7 +977,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 569513A41B5D1F43008A649B /* Build configuration list for PBXNativeTarget "SoundLove" */;
 			buildPhases = (
-				4CEE5559425C35DB7E47D7EC /* Check Pods Manifest.lock */,
 				5695137D1B5D1F42008A649B /* Sources */,
 				5695137E1B5D1F42008A649B /* Frameworks */,
 				5695137F1B5D1F42008A649B /* Resources */,
@@ -1103,21 +1083,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4CEE5559425C35DB7E47D7EC /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 		56D9DD421B7FA5D4007BA2E7 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1129,7 +1094,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run 1d51b53af02fba35c7d36bac44c720bfdda833c4 7fdf75fd42c95b14e051ec66332f17d7cdc35ae86aa008908120c26bdceb32a2";
+			shellScript = "\"${PODS_ROOT}/Fabric/Fabric.framework/run\" 1d51b53af02fba35c7d36bac44c720bfdda833c4 7fdf75fd42c95b14e051ec66332f17d7cdc35ae86aa008908120c26bdceb32a2";
 		};
 		727A527A4F99298404022E2F /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1143,7 +1108,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SoundLove/Pods-SoundLove-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1185,7 +1150,6 @@
 				56D395DB1B5F8928000DC427 /* OverlayTransitionManager.m in Sources */,
 				56A65CA21B6A173200619189 /* Band.m in Sources */,
 				56A65C7F1B68E60F00619189 /* CDConcert+ConcertHelper.m in Sources */,
-				567409EB1B60DD3900638FEF /* FavoriteConcertViewController.m in Sources */,
 				5658BAA31B640862004F08BB /* CalendarButton.m in Sources */,
 				567409FF1B60ED4700638FEF /* WhatWeDoViewController.m in Sources */,
 				56740A291B61232900638FEF /* KunstlerViewController.m in Sources */,
@@ -1218,7 +1182,6 @@
 				56A65C901B6974B900619189 /* FilterNavigationController.m in Sources */,
 				5658BA991B63FA35004F08BB /* CustomNavigationView.m in Sources */,
 				564F24B21B6B9F9000172C16 /* FilterDatumViewController.m in Sources */,
-				56A65C761B68B9C900619189 /* CalendarEventTableViewCell.m in Sources */,
 				56DDA04D1B854C9F002DDACC /* ImageDownloadManager.m in Sources */,
 				569513871B5D1F42008A649B /* main.m in Sources */,
 				567409FE1B60ED4700638FEF /* InfoViewController.m in Sources */,
@@ -1242,7 +1205,6 @@
 				56740A221B60F17C00638FEF /* FestivalTransitionManager.m in Sources */,
 				5684B1C21B6612D8009EF346 /* SearchEmptyView.m in Sources */,
 				5684B1E01B664B7C009EF346 /* ConcertDownloadClient.m in Sources */,
-				56D676651B7BA267003DC597 /* FavoriteConcertsClient.m in Sources */,
 				567C6F461B72BAA800F3BFA3 /* InviteFriendButton.m in Sources */,
 				5619A30B1B6BE231000901F7 /* FlatDatePicker.m in Sources */,
 				56740A171B60F07B00638FEF /* CoreDataHandler.m in Sources */,

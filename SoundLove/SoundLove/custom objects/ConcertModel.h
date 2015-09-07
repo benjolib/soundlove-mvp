@@ -16,6 +16,7 @@
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *city;
 @property (nonatomic, copy) NSString *place;
+@property (nonatomic, copy) NSString *rank;
 @property (nonatomic, copy) NSString *detailsURL;
 @property (nonatomic, strong) NSDate *date;
 @property (nonatomic, copy) NSString *price;

@@ -28,6 +28,9 @@
         case SortingTypeDateDESC:
             return [SortingObject sortingWithName:@"Datum (Vorausplanen)" andKey:@"date_ts" orderDir:@"DESC" sortingType:SortingTypeDateDESC];
             break;
+        case SortingTypePopularity:
+            return [SortingObject sortingWithName:@"Beliebt" andKey:@"rank" orderDir:@"DESC" sortingType:SortingTypePopularity];
+            break;
         default:
             break;
     }

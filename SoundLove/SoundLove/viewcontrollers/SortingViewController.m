@@ -65,6 +65,9 @@
         case 4:
             [TRACKER userTapsDateASC];
             break;
+        case 5:
+            // Popularity sorting
+            break;
         default:
             break;
     }
@@ -91,7 +94,7 @@
 - (void)populateArray
 {
     self.sortingOptions = @[[SortingObject sortingWithType:SortingTypeNone], [SortingObject sortingWithType:SortingTypePreisDESC], [SortingObject sortingWithType:SortingTypePreisASC],
-                            [SortingObject sortingWithType:SortingTypeDateDESC], [SortingObject sortingWithType:SortingTypeDateASC]];
+                            [SortingObject sortingWithType:SortingTypeDateDESC], [SortingObject sortingWithType:SortingTypeDateASC], [SortingObject sortingWithType:SortingTypePopularity]];
 
 }
 

@@ -93,7 +93,7 @@
     }
 
     if (self.emptyView.superview) {
-        self.emptyView.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
+        self.emptyView.frame = CGRectMake(CGRectGetWidth(self.frame)/2 - CGRectGetWidth(self.emptyView.frame)/2, CGRectGetHeight(self.frame)/2 - [SearchEmptyView viewHeight]/2, CGRectGetWidth(self.emptyView.frame), [SearchEmptyView viewHeight]);
     }
 }
 
