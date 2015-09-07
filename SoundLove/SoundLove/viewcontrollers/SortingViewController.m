@@ -8,7 +8,7 @@
 
 #import "SortingViewController.h"
 #import "LoadingTableView.h"
-#import "FilterTableViewCell.h"
+#import "FilterBandsTableViewCell.h"
 #import "SortingObject.h"
 #import "CustomNavigationView.h"
 #import "SortingButton.h"
@@ -22,7 +22,7 @@
 #pragma mark - tableView methods
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    FilterTableViewCell *cell = (FilterTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"cell"];
+    FilterBandsTableViewCell *cell = (FilterBandsTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"cell"];
     cell.accessoryType = UITableViewCellAccessoryNone;
 
     SortingObject *sortingObj = self.sortingOptions[indexPath.row];

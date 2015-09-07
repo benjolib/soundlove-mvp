@@ -108,8 +108,17 @@
 
 - (void)artistRecommendViewFadeOutSelected:(ArtistModel *)artistModel
 {
-    [self.recommendedArtistsArray removeLastObject];
-    [self loadRecommendedViewWithArtist];
+    if (!self.ratingClient) {
+        self.ratingClient = [[ArtistRatingClient alloc] init];
+    }
+
+    [self.ratingClient dislikeArtist:artistModel withCompletionBlock:^(BOOL completed, NSString *errorMessage) {
+        if (completed) {
+            [self.recommendedArtistsArray removeLastObject];
+        }
+
+        [self loadRecommendedViewWithArtist];
+    }];
 }
 
 - (void)artistRecommendViewFadeInSelected:(ArtistModel *)artistModel

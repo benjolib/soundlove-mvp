@@ -17,11 +17,11 @@ static NSString * const kFavoriteConcertsList = @"favorites/list";
 
 static NSString * const kFacebookConnectURL = @"http://api-eventim.makers.do/user/facebook/connect?";
 
-static NSString * const kKunstlerFavorites = @"http://api-eventim.makers.do/artists/favorites/list";
+static NSString * const kKunstlerFavorites = @"http://api-eventim.makers.do/artists/mixed/list";
 static NSString * const kKunstlerRecommended = @"http://api-eventim.makers.do/artists/recommended/list";
 
 static NSString * const  kKunstlerLike = @"http://api-eventim.makers.do/artists/favorites/add";
-static NSString * const  kKunstlerDisLike = @"http://api-eventim.makers.do/artists/favorites/remove";
+static NSString * const  kKunstlerDisLike = @"http://api-eventim.makers.do/artists/view";
 
 static NSString * const kBandsList = @"http://api-eventim.makers.do/festivals/band/list";
 static NSString * const kGenresList = @"http://api-eventim.makers.do/events/categories/list";

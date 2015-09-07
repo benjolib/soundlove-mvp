@@ -320,12 +320,18 @@
 
 - (void)updateTableViewCellAtIndexPath:(NSIndexPath *)indexPath image:(UIImage *)image
 {
-    ConcertModel *concert = self.objectsToDisplay[indexPath.row];
+    if (self.objectsToDisplay.count <= indexPath.row)
+    {
+        ConcertModel *concert = self.objectsToDisplay[indexPath.row];
 
-    ConcertsTableViewCell *cell = (ConcertsTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
-    if (image) {
-        concert.image = image;
-        cell.concertImageView.image = image;
+        ConcertsTableViewCell *cell = (ConcertsTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+        if (image)
+        {
+            concert.image = image;
+            if (cell) {
+                cell.concertImageView.image = image;
+            }
+        }
     }
 }
 

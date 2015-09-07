@@ -60,6 +60,7 @@
     self.selectedGenresArray = nil;
     self.selectedBandsArray = nil;
     self.locationDiameter = 0;
+    [self resetFiterLocation];
 }
 
 - (BOOL)isFiltering
