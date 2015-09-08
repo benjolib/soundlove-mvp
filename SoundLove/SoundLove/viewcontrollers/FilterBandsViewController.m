@@ -10,9 +10,9 @@
 #import "BandsDownloadClient.h"
 #import "Band.h"
 #import "FilterTableViewCell.h"
-//#import "TrackingManager.h"
 #import "ConcertRefreshControl.h"
 #import "UIColor+GlobalColors.h"
+#import "CustomNavigationView.h"
 
 @interface FilterBandsViewController ()
 @property (nonatomic, strong) NSArray *allBandsArrayCopy;
@@ -99,6 +99,7 @@
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
+            [self.indexView reloadIndex];
         });
     });
 }
@@ -115,6 +116,7 @@
         self.tableData = [self partitionObjects:self.allBandsArrayCopy collationStringSelector:@selector(name)];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
+            [self.indexView reloadIndex];
         });
     });
 }
@@ -183,18 +185,52 @@
 - (NSArray *)partitionObjects:(NSArray *)array collationStringSelector:(SEL)selector
 {
     UILocalizedIndexedCollation *collation = [UILocalizedIndexedCollation currentCollation];
-    NSInteger sectionCount = [[collation sectionTitles] count]; //section count is take from sectionTitles and not sectionIndexTitles
+    NSInteger sectionCount = [[collation sectionTitles] count];
     NSMutableArray *unsortedSections = [NSMutableArray arrayWithCapacity:sectionCount];
-    //create an array to hold the data for each section
-    for(int i = 0; i < sectionCount; i++) {
+
+    for (int i = 0; i < sectionCount; i++) {
         [unsortedSections addObject:[NSMutableArray array]];
     }
-    //put each object into a section
-    for (id object in array) {
-        NSInteger index = [collation sectionForObject:object collationStringSelector:selector];
-        [[unsortedSections objectAtIndex:index] addObject:object];
+
+    for (Band *band in array) {
+        NSInteger index = [collation sectionForObject:band collationStringSelector:selector];
+        [[unsortedSections objectAtIndex:index] addObject:band];
     }
-    return unsortedSections;
+
+    NSMutableArray *sections = [NSMutableArray arrayWithCapacity:sectionCount];
+    for (NSMutableArray *section in unsortedSections) {
+        [sections addObject:[collation sortedArrayFromArray:section collationStringSelector:selector]];
+    }
+
+    return sections;
+}
+
+#pragma mark - indexView methods
+- (void)addIndexView
+{
+    self.indexView = [[RGIndexView alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.view.frame)-30.0, CGRectGetMaxY(self.searchWrapperView.frame), 30.0, CGRectGetHeight(self.view.frame)-CGRectGetHeight(self.searchWrapperView.frame)-CGRectGetHeight(self.filterButtonWrapperView.frame))];
+    self.indexView.delegate = self;
+    self.indexView.displayMode = RGIndexViewDisplayModeFull;
+    [self.view insertSubview:self.indexView aboveSubview:self.tableView];
+    [self.indexView reloadIndex];
+}
+
+#pragma mark - indexView delegate methods
+- (NSInteger)numberOfItemsInIndexView
+{
+    return [[[UILocalizedIndexedCollation currentCollation] sectionTitles] count];
+}
+
+- (NSString *)textForIndex:(NSInteger)index
+{
+    return [[[UILocalizedIndexedCollation currentCollation] sectionTitles] objectAtIndex:index];
+}
+
+- (void)indexView:(RGIndexView *)indexView didSelectIndex:(NSInteger)index
+{
+    if ([self.tableView numberOfRowsInSection:index] != 0) {
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:index] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    }
 }
 
 #pragma mark - view methods
@@ -214,6 +250,34 @@
     [self refreshView];
 
     [self addIndexView];
+}
+
+- (void)setupSearchView
+{
+    self.searchWrapperView.backgroundColor = [UIColor clearColor];
+    self.searchField.layer.cornerRadius = 6.0;
+    self.searchField.layer.borderWidth = 1.0;
+    self.searchField.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:0.2].CGColor;
+    self.searchField.textColor = [UIColor globalGreenColor];
+    self.searchField.tintColor = [UIColor globalGreenColor];
+
+    self.searchField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.searchField.placeholder
+                                                                             attributes:@{NSForegroundColorAttributeName: [UIColor colorWithWhite:1.0 alpha:0.3]}];
+
+    UIView *leftSpacerView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 10.0, 0.0)];
+    leftSpacerView.backgroundColor = [UIColor clearColor];
+    self.searchField.leftView = leftSpacerView;
+    self.searchField.leftViewMode = UITextFieldViewModeAlways;
+
+    [self.searchField addTarget:self
+                         action:@selector(searchFieldTextChanged:)
+               forControlEvents:UIControlEventEditingChanged];
+
+    [self.searchCancelButton setTitleColor:[UIColor globalGreenColor] forState:UIControlStateNormal];
+    [self.searchCancelButton setTitleColor:[[UIColor globalGreenColor] colorWithAlphaComponent:0.4] forState:UIControlStateHighlighted];
+
+    self.searchCancelButtonWidthConstraint.priority = 999.0;
+    [self.searchWrapperView layoutIfNeeded];
 }
 
 - (void)refreshView

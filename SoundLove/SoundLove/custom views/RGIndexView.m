@@ -116,6 +116,7 @@ static int kRGIndexViewIndexLabelBaseTag = 10;
     if (_textColor == nil) {
         self.textColor = [UIColor colorWithWhite:1.0 alpha:0.2];
     }
+
     
     _numberOfItems = [_delegate numberOfItemsInIndexView];
     if (self.vertical) {

@@ -29,7 +29,7 @@
 
     [self.titleLabel sizeToFit];
     CGRect titleFrame = self.titleLabel.frame;
-    titleFrame.origin.x = CGRectGetWidth(self.frame)/2 - CGRectGetWidth(titleFrame)/2;
+    titleFrame.origin.x = CGRectGetWidth(self.frame)/2 - CGRectGetWidth(titleFrame)/2 + 15.0;
     self.titleLabel.frame = titleFrame;
 
 
@@ -39,8 +39,6 @@
     imageViewFrame.origin.x = CGRectGetMinX(self.titleLabel.frame) - 40.0;
     imageViewFrame.origin.y = CGRectGetHeight(self.frame)/2 - 15.0;
     self.imageView.frame = imageViewFrame;
-
-
 }
 
 @end

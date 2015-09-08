@@ -24,7 +24,7 @@
 @property (nonatomic, strong) NSArray *friendsArray;
 
 + (ConcertModel*)concertWithDictionary:(NSDictionary*)dictionary;
-- (instancetype)initWithName:(NSString*)name concertID:(NSString*)concertID city:(NSString*)city place:(NSString*)place price:(NSString*)price date:(NSDate*)date imageURL:(NSString*)imageURL;
+- (instancetype)initWithName:(NSString*)name concertID:(NSString*)concertID city:(NSString*)city place:(NSString*)place price:(NSString*)price date:(NSDate*)date imageURL:(NSString*)imageURL rank:(NSString*)rank;
 
 - (NSString*)priceString;
 - (NSString*)calendarDaysTillStartDateString;

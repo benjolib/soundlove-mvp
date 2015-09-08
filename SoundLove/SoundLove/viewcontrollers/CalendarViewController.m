@@ -192,6 +192,12 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [self.tableView endUpdates];
+
+    if (self.fetchController.fetchedObjects.count == 0) {
+        [self.tableView showEmptyCalendarView];
+    } else {
+        [self.tableView hideEmptyView];
+    }
 }
 
 - (void)calendarButtonTapped:(UIButton*)button
@@ -207,12 +213,6 @@
 
     [[CoreDataHandler sharedHandler] removeConcertObject:concertModel];
     [TRACKER userRemovesConcertFromCalendar];
-
-    if (self.fetchController.fetchedObjects.count == 0) {
-        [self.tableView showEmptyCalendarView];
-    } else {
-        [self.tableView hideEmptyView];
-    }
 }
 
 #pragma mark - tableView methods

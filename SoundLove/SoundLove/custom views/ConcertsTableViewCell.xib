@@ -91,11 +91,11 @@
                 <outlet property="locationLabel" destination="BMG-LO-Tkp" id="Xmp-Df-7Kq"/>
                 <outlet property="priceLabel" destination="UNp-e8-aj4" id="ydo-wC-MpL"/>
             </connections>
-            <point key="canvasLocation" x="-185" y="345"/>
+            <point key="canvasLocation" x="-77" y="312"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="calendarButton" width="35" height="31"/>
+        <image name="calendarButton" width="40" height="36"/>
         <image name="placeholder" width="45" height="45"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

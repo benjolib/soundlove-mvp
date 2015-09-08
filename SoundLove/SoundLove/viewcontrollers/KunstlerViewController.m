@@ -42,6 +42,10 @@
 {
     self.recommendedTabSelected = YES;
 
+    if (!self.recommendedView) {
+        [self createRecommendView];
+    }
+    
     if (self.recommendedArtistsArray.count == 0) {
         [self downloadRecommendedArtists];
     } else {
@@ -51,9 +55,6 @@
     [self.favoriteButton setButtonActive:NO];
     [button setButtonActive:YES];
 
-    if (!self.recommendedView) {
-        [self createRecommendView];
-    }
     [self switchSubviewsToRecommend:YES];
 
     [self.recommendedView setEmptyViewVisible:self.recommendedArtistsArray.count == 0];
