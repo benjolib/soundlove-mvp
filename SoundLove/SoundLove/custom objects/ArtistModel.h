@@ -16,4 +16,6 @@
 
 + (NSArray*)artistArrayFromStringArray:(NSArray*)array;
 
+- (NSString*)artistNameForAPI;
+
 @end

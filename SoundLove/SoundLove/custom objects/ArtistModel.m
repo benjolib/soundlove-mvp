@@ -38,4 +38,10 @@
     }];
 }
 
+- (NSString*)artistNameForAPI
+{
+    NSString *artistName = [self.name stringByReplacingOccurrencesOfString:@"&" withString:@"%26"];
+    return [artistName stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+}
+
 @end

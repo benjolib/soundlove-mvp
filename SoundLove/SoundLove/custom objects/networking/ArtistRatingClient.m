@@ -13,7 +13,7 @@
 
 - (void)likeArtist:(ArtistModel*)artist withCompletionBlock:(void (^)(BOOL completed, NSString *errorMessage))completionBlock
 {
-    NSString *urlString = [NSString stringWithFormat:@"%@?user_id=%@&artist=%@", kKunstlerLike, [FacebookManager currentUserID], [artist.name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSString *urlString = [NSString stringWithFormat:@"%@?user_id=%@&artist=%@", kKunstlerLike, [FacebookManager currentUserID], [artist artistNameForAPI]];
     NSURL *url = [NSURL URLWithString:urlString];
 
     [self sendRequestWithURL:url withCompletionBlock:completionBlock];
@@ -21,7 +21,7 @@
 
 - (void)dislikeArtist:(ArtistModel*)artist withCompletionBlock:(void (^)(BOOL completed, NSString *errorMessage))completionBlock
 {
-    NSString *urlString = [NSString stringWithFormat:@"%@?user_id=%@&artist=%@", kKunstlerDisLike, [FacebookManager currentUserID], [artist.name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSString *urlString = [NSString stringWithFormat:@"%@?user_id=%@&artist=%@", kKunstlerDisLike, [FacebookManager currentUserID], [artist artistNameForAPI]];
     NSURL *url = [NSURL URLWithString:urlString];
 
     [self sendRequestWithURL:url withCompletionBlock:completionBlock];
