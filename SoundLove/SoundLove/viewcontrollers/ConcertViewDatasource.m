@@ -76,7 +76,7 @@
         }
     }
 
-    NSLog(@"Url the request was sent to: %@", urlString);
+//    NSLog(@"Url the request was sent to: %@", urlString);
 
     __weak typeof(self) weakSelf = self;
     [self downloadConcertsWithURL:[NSURL URLWithString:urlString] completionBlock:^(NSString *errorMessage, NSArray *concertsArray) {
