@@ -20,11 +20,6 @@
     self.favoriteConcertDatasource.sortingObject = _currentSortingObject;
     self.recommendedConcertDatasource.sortingObject = _currentSortingObject;
     self.allConcertDatasource.sortingObject = _currentSortingObject;
-
-    if (_currentSortingObject.sortingType != SortingTypeNone)
-    {
-        self.currentlyUsedObjectsArray = [self sortArray:self.currentlyUsedObjectsArray usingSortingObject:_currentSortingObject];
-    }
 }
 
 - (void)setIsSearching:(BOOL)isSearching
@@ -166,6 +161,9 @@
         case SortingTypeDateDESC:
         case SortingTypeDateASC:
             sortingKey = @"date";
+            break;
+        case SortingTypePopularity:
+            sortingKey = @"rank";
             break;
     }
 

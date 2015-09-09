@@ -65,6 +65,9 @@
         case 4:
             [TRACKER userTapsDateASC];
             break;
+        case 5:
+            // Popularity sorting
+            break;
         default:
             break;
     }
@@ -74,7 +77,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80.0;
+    return 65.0;
 }
 
 #pragma mark - view methods
@@ -91,7 +94,7 @@
 - (void)populateArray
 {
     self.sortingOptions = @[[SortingObject sortingWithType:SortingTypeNone], [SortingObject sortingWithType:SortingTypePreisDESC], [SortingObject sortingWithType:SortingTypePreisASC],
-                            [SortingObject sortingWithType:SortingTypeDateDESC], [SortingObject sortingWithType:SortingTypeDateASC]];
+                            [SortingObject sortingWithType:SortingTypeDateDESC], [SortingObject sortingWithType:SortingTypeDateASC], [SortingObject sortingWithType:SortingTypePopularity]];
 
 }
 

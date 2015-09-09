@@ -13,7 +13,6 @@
 #import "BaseGradientViewController.h"
 #import "StoryboardManager.h"
 #import "ConcertsViewController.h"
-#import "FavoriteConcertViewController.h"
 #import "KunstlerViewController.h"
 #import "CalendarViewController.h"
 #import "UIColor+GlobalColors.h"
@@ -86,14 +85,6 @@
             [self startTransitionToViewController:concertsViewController];
             self.currentMenuItem = menuItem;
             [self setParentTitle:@"Konzerte"];
-            self.searchView.searchButton.hidden = NO;
-            break;
-        }
-        case MenuItemFavoriteConcerts: {
-            FavoriteConcertViewController *favoriteConcertViewController = [StoryboardManager favoriteConcertViewController];
-            [self startTransitionToViewController:favoriteConcertViewController];
-            self.currentMenuItem = menuItem;
-            [self setParentTitle:@"Beliebte Konzerte"];
             self.searchView.searchButton.hidden = NO;
             break;
         }

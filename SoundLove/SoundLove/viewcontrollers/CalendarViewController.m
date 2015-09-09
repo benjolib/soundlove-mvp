@@ -10,7 +10,6 @@
 #import "TabbingButton.h"
 #import <CoreData/CoreData.h>
 #import "CoreDataHandler.h"
-#import "CalendarEventTableViewCell.h"
 #import "CalendarEventFriendsTableViewCell.h"
 #import "UIColor+GlobalColors.h"
 #import "ConcertModel.h"
@@ -22,8 +21,9 @@
 #import "ImageDownloadManager.h"
 #import "NSDictionary+nonNullObjectForKey.h"
 #import "FriendObject.h"
+#import "ConcertsTableViewCell.h"
 
-@interface CalendarViewController () <NSFetchedResultsControllerDelegate, CalendarEventTableViewCellDelegate>
+@interface CalendarViewController () <NSFetchedResultsControllerDelegate>
 @property (nonatomic, strong) NSFetchedResultsController *fetchController;
 @property (nonatomic, strong) NSMutableSet *cellsCurrentlyEditing;
 @property (nonatomic, strong) NSMutableDictionary *imageDownloadDictionary;
@@ -122,56 +122,6 @@
     }
 }
 
-#pragma mark - tableViewCell button actions
-- (IBAction)deleteButtonPressed:(UIButton*)button
-{
-    [TRACKER userTapsTrashIcon];
-
-    NSIndexPath *indexPath = [self indexPathForButton:button];
-    CDConcert *concert = [self.fetchController objectAtIndexPath:indexPath];
-
-    [self cellDidClose:(CalendarEventTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath]];
-
-    if (concert) {
-        [[CoreDataHandler sharedHandler] removeConcertObject:concert];
-
-        [self.downloadedImagesDictionary removeObjectForKey:indexPath];
-    }
-}
-
-- (IBAction)shareButtonPressed:(UIButton*)button
-{
-    [TRACKER userTapsShare];
-
-    NSIndexPath *indexPath = [self indexPathForButton:button];
-    CDConcert *concert = [self.fetchController objectAtIndexPath:indexPath];
-
-    NSString *stringToShare = [NSString stringWithFormat:@"%@", concert.name];
-    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[stringToShare]
-                                                                                         applicationActivities:nil];
-    activityViewController.excludedActivityTypes = @[UIActivityTypePostToWeibo,
-                                                     UIActivityTypePrint,
-                                                     UIActivityTypeCopyToPasteboard,
-                                                     UIActivityTypeAssignToContact,
-                                                     UIActivityTypePostToVimeo,
-                                                     UIActivityTypePostToTencentWeibo,
-                                                     UIActivityTypePostToFlickr,
-                                                     UIActivityTypeSaveToCameraRoll];
-    [self presentViewController:activityViewController animated:YES completion:NULL];
-}
-
-- (NSIndexPath*)indexPathForButton:(UIButton*)button
-{
-    UIView *aSuperview = [button superview];
-    while (![aSuperview isKindOfClass:[ConcertsTableViewCell class]]) {
-        aSuperview = [aSuperview superview];
-    }
-
-    ConcertsTableViewCell *cell = (ConcertsTableViewCell*)aSuperview;
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    return indexPath;
-}
-
 #pragma mark - core data
 - (NSFetchedResultsController *)fetchController
 {
@@ -242,6 +192,27 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [self.tableView endUpdates];
+
+    if (self.fetchController.fetchedObjects.count == 0) {
+        [self.tableView showEmptyCalendarView];
+    } else {
+        [self.tableView hideEmptyView];
+    }
+}
+
+- (void)calendarButtonTapped:(UIButton*)button
+{
+    UIView *aSuperview = [button superview];
+    while (![aSuperview isKindOfClass:[ConcertsTableViewCell class]]) {
+        aSuperview = [aSuperview superview];
+    }
+
+    ConcertsTableViewCell *cell = (ConcertsTableViewCell*)aSuperview;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    CDConcert *concertModel = [self.fetchController objectAtIndexPath:indexPath];
+
+    [[CoreDataHandler sharedHandler] removeConcertObject:concertModel];
+    [TRACKER userRemovesConcertFromCalendar];
 }
 
 #pragma mark - tableView methods
@@ -292,7 +263,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CalendarEventTableViewCell *cell = (CalendarEventTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"cell"];
+    ConcertsTableViewCell *cell = (ConcertsTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"cell"];
 
     CDConcert *savedConcert = [self.fetchController objectAtIndexPath:indexPath];
     ConcertModel *concert = [savedConcert concertModel];
@@ -300,14 +271,12 @@
     if (self.savedEventsSelected)
     {
         cell.concertTitleLabel.text = concert.name;
-        if ([self.cellsCurrentlyEditing containsObject:indexPath]) {
-            [cell openCell];
-        }
-        cell.delegate = self;
-
         cell.locationLabel.text = concert.place;
         cell.priceLabel.text = [concert priceString];
         cell.dateLabel.text = [concert calendarDaysTillStartDateString];
+
+        [cell showSavedState:[[CoreDataHandler sharedHandler] isConcertSaved:concert]];
+        [cell.calendarButton addTarget:self action:@selector(calendarButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
 
         dispatch_async(dispatch_queue_create("com.SoundLove.getImageFromCoreData", NULL), ^{
             CDConcertImage *imageModel = savedConcert.image;
@@ -329,6 +298,9 @@
         CalendarEventFriendsTableViewCell *friendsCell = (CalendarEventFriendsTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"friendsCell"];
         friendsCell.concertTitleLabel.text = concert.name;
         [friendsCell adjustFriendsViewWithFriends:concert.friendsArray];
+
+        [friendsCell showSavedState:[[CoreDataHandler sharedHandler] isConcertSaved:concert]];
+        [friendsCell.calendarButton addTarget:self action:@selector(calendarButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
 
         if (concert.friendsArray.count > 0)
         {

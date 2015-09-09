@@ -42,7 +42,7 @@
     if (self.sortingObject.sortingType != SortingTypeNone) {
         NSString *sortingKey = self.sortingObject.apiKey;
         NSString *sortingDir = self.sortingObject.orderDir;
-        urlString = [NSMutableString stringWithFormat:@"&orderProperty=%@&orderDir=%@", sortingKey, sortingDir];
+        [urlString appendFormat:@"&orderProperty=%@&orderDir=%@", sortingKey, sortingDir];
     }
 
     // add user_id
@@ -76,7 +76,7 @@
         }
     }
 
-    NSLog(@"Url the request was sent to: %@", urlString);
+//    NSLog(@"Url the request was sent to: %@", urlString);
 
     __weak typeof(self) weakSelf = self;
     [self downloadConcertsWithURL:[NSURL URLWithString:urlString] completionBlock:^(NSString *errorMessage, NSArray *concertsArray) {

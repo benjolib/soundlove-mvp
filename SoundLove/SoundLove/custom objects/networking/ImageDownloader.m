@@ -20,7 +20,7 @@
 
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
-    NSLog(@"URL for image loading: %@", urlString);
+//    NSLog(@"URL for image loading: %@", urlString);
 
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];

@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F19a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Y8f-0V-9MP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Y8f-0V-9MP">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Montserrat-Light.otf">
-            <string>Montserrat-Light</string>
-            <string>Montserrat-Light</string>
             <string>Montserrat-Light</string>
             <string>Montserrat-Light</string>
             <string>Montserrat-Light</string>
@@ -260,7 +258,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="BaZ-hB-pGX" customClass="LoadingTableView">
-                                <rect key="frame" x="0.0" y="94" width="320" height="424"/>
+                                <rect key="frame" x="0.0" y="50" width="320" height="468"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="TWf-rH-ebu" style="IBUITableViewCellStyleDefault" id="y0f-jL-ONt" customClass="FilterTableViewCell">
@@ -287,44 +285,6 @@
                                     <outlet property="delegate" destination="qiA-hq-Te1" id="1cp-6J-lYt"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wxS-zX-hjc" userLabel="search wrapper view">
-                                <rect key="frame" x="0.0" y="50" width="320" height="44"/>
-                                <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="200" horizontalCompressionResistancePriority="800" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Suche" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fuw-uU-4FX">
-                                        <rect key="frame" x="10" y="7" width="214" height="30"/>
-                                        <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="qiA-hq-Te1" id="sNe-j2-orN"/>
-                                        </connections>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AnZ-8P-ayh">
-                                        <rect key="frame" x="234" y="8" width="76" height="28"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" priority="250" id="1RL-N8-tn9"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="12"/>
-                                        <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title="Abbrechen">
-                                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="searchCancelButtonTapped:" destination="qiA-hq-Te1" eventType="touchUpInside" id="qQx-Jr-9e2"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="fuw-uU-4FX" secondAttribute="bottom" constant="7" id="32d-lU-MvK"/>
-                                    <constraint firstItem="AnZ-8P-ayh" firstAttribute="leading" secondItem="fuw-uU-4FX" secondAttribute="trailing" constant="10" id="Qqg-w1-ZF0"/>
-                                    <constraint firstAttribute="bottom" secondItem="AnZ-8P-ayh" secondAttribute="bottom" constant="8" id="WLD-tT-7Kn"/>
-                                    <constraint firstAttribute="trailing" secondItem="AnZ-8P-ayh" secondAttribute="trailing" constant="10" id="Xjk-9G-Ama"/>
-                                    <constraint firstItem="AnZ-8P-ayh" firstAttribute="top" secondItem="wxS-zX-hjc" secondAttribute="top" constant="8" id="acO-Oc-TMk"/>
-                                    <constraint firstAttribute="height" constant="44" id="tcx-AM-NRH"/>
-                                    <constraint firstItem="fuw-uU-4FX" firstAttribute="leading" secondItem="wxS-zX-hjc" secondAttribute="leading" constant="10" id="vVE-VB-tmv"/>
-                                    <constraint firstItem="fuw-uU-4FX" firstAttribute="top" secondItem="wxS-zX-hjc" secondAttribute="top" constant="7" id="zIc-ds-THY"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="952-H3-DTP">
                                 <rect key="frame" x="0.0" y="518" width="320" height="50"/>
                                 <subviews>
@@ -410,27 +370,19 @@
                             <constraint firstAttribute="trailing" secondItem="952-H3-DTP" secondAttribute="trailing" id="1h9-pD-rCT"/>
                             <constraint firstItem="HzB-KV-pvd" firstAttribute="leading" secondItem="eQn-lb-6Iz" secondAttribute="leading" id="5eV-eg-5FC"/>
                             <constraint firstItem="952-H3-DTP" firstAttribute="top" secondItem="BaZ-hB-pGX" secondAttribute="bottom" id="750-OM-CDq"/>
-                            <constraint firstItem="BaZ-hB-pGX" firstAttribute="top" secondItem="wxS-zX-hjc" secondAttribute="bottom" id="Lq8-D0-G8d"/>
+                            <constraint firstItem="BaZ-hB-pGX" firstAttribute="top" secondItem="HzB-KV-pvd" secondAttribute="bottom" id="Sss-Vm-JDB"/>
                             <constraint firstAttribute="trailing" secondItem="HzB-KV-pvd" secondAttribute="trailing" id="Ynq-VB-vDa"/>
                             <constraint firstItem="4mZ-tG-Kza" firstAttribute="top" secondItem="952-H3-DTP" secondAttribute="bottom" id="awN-MY-Kbc"/>
                             <constraint firstItem="BaZ-hB-pGX" firstAttribute="leading" secondItem="eQn-lb-6Iz" secondAttribute="leading" id="gks-8N-Vid"/>
-                            <constraint firstItem="wxS-zX-hjc" firstAttribute="top" secondItem="HzB-KV-pvd" secondAttribute="bottom" id="h1s-aR-km1"/>
                             <constraint firstAttribute="trailing" secondItem="BaZ-hB-pGX" secondAttribute="trailing" id="k1M-d1-loC"/>
-                            <constraint firstAttribute="trailing" secondItem="wxS-zX-hjc" secondAttribute="trailing" id="qhk-Xp-5Cn"/>
                             <constraint firstItem="HzB-KV-pvd" firstAttribute="top" secondItem="R7e-Iy-tti" secondAttribute="bottom" id="yEu-Av-ftU"/>
                             <constraint firstItem="952-H3-DTP" firstAttribute="leading" secondItem="eQn-lb-6Iz" secondAttribute="leading" id="zSn-5F-Nz8"/>
-                            <constraint firstItem="wxS-zX-hjc" firstAttribute="leading" secondItem="eQn-lb-6Iz" secondAttribute="leading" id="zYJ-1S-dEm"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="7qs-Zu-rVT"/>
                     <connections>
                         <outlet property="filterButtonWrapperView" destination="952-H3-DTP" id="qPL-79-WUw"/>
                         <outlet property="navigationView" destination="HzB-KV-pvd" id="h0v-Vm-3He"/>
-                        <outlet property="searchCancelButton" destination="AnZ-8P-ayh" id="A0u-al-Jzr"/>
-                        <outlet property="searchCancelButtonWidthConstraint" destination="1RL-N8-tn9" id="M1Z-SR-7yp"/>
-                        <outlet property="searchField" destination="fuw-uU-4FX" id="6hZ-S8-7Mj"/>
-                        <outlet property="searchWrapperView" destination="wxS-zX-hjc" id="v7q-fK-Jft"/>
-                        <outlet property="searchWrapperViewTrailingConstraint" destination="Qqg-w1-ZF0" id="AWc-ha-hf6"/>
                         <outlet property="tableView" destination="BaZ-hB-pGX" id="3vT-hi-xIp"/>
                         <outlet property="trashButton" destination="ytw-aq-k73" id="dNe-k9-SEB"/>
                     </connections>

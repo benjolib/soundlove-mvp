@@ -34,7 +34,13 @@
 
 - (void)showSavedState:(BOOL)saved
 {
-    self.calendarButton.alpha = saved ? 1.0 : 0.4;
+    if (saved) {
+        self.calendarButton.alpha = 1.0;
+        [self.calendarButton setImage:[UIImage imageNamed:@"calendarButtonActive"] forState:UIControlStateNormal];
+    } else {
+        self.calendarButton.alpha = 0.4;
+        [self.calendarButton setImage:[UIImage imageNamed:@"calendarButton"] forState:UIControlStateNormal];
+    }
 }
 
 - (void)prepareForReuse

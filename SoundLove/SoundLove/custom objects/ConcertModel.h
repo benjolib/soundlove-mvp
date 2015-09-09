@@ -16,6 +16,7 @@
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *city;
 @property (nonatomic, copy) NSString *place;
+@property (nonatomic, copy) NSString *rank;
 @property (nonatomic, copy) NSString *detailsURL;
 @property (nonatomic, strong) NSDate *date;
 @property (nonatomic, copy) NSString *price;
@@ -23,7 +24,7 @@
 @property (nonatomic, strong) NSArray *friendsArray;
 
 + (ConcertModel*)concertWithDictionary:(NSDictionary*)dictionary;
-- (instancetype)initWithName:(NSString*)name concertID:(NSString*)concertID city:(NSString*)city place:(NSString*)place price:(NSString*)price date:(NSDate*)date imageURL:(NSString*)imageURL;
+- (instancetype)initWithName:(NSString*)name concertID:(NSString*)concertID city:(NSString*)city place:(NSString*)place price:(NSString*)price date:(NSDate*)date imageURL:(NSString*)imageURL rank:(NSString*)rank;
 
 - (NSString*)priceString;
 - (NSString*)calendarDaysTillStartDateString;

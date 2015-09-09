@@ -19,8 +19,8 @@
 @property (nonatomic, copy) NSString *urlToDownloadFrom;
 
 @property (nonatomic, copy) NSString *searchText;
-@property (nonatomic, weak) SortingObject *sortingObject;
-@property (nonatomic, weak) FilterModel *filterModel;
+@property (nonatomic, strong) SortingObject *sortingObject;
+@property (nonatomic, strong) FilterModel *filterModel;
 
 - (void)downloadObjectsWithCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock;
 
