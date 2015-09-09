@@ -78,12 +78,11 @@
     self.flatDatePicker.delegate = self;
     self.flatDatePicker.datePickerMode = FlatDatePickerModeDate;
     self.flatDatePicker.minimumDate = [NSDate date];
+    [self.flatDatePicker setDate:[NSDate date] animated:NO withDelegateCallback:NO];
     [self.flatDatePicker show];
 
     CGFloat pickerHeight = CGRectGetHeight(self.flatDatePicker.frame);
     self.flatDatePicker.frame = CGRectMake(0.0, CGRectGetHeight(self.view.frame)-pickerHeight-100.0, CGRectGetWidth(self.view.frame), pickerHeight);
-
-    [self.leftDatePickerView setActive:YES];
 
     self.fromDate = self.filterModel.startDate;
     self.toDate = self.filterModel.endDate;
@@ -107,7 +106,8 @@
         [self.leftDatePickerView setActive:YES];
         [self.rightDatePickerView setActive:NO];
 
-        self.flatDatePicker.minimumDate = self.fromDate ? self.fromDate : [NSDate date];
+        self.flatDatePicker.minimumDate = [NSDate date];
+        [self.flatDatePicker setDate:(self.fromDate ? self.fromDate : [NSDate date]) animated:NO withDelegateCallback:NO];
         [self.flatDatePicker show];
     }
 
@@ -116,6 +116,7 @@
         [self.rightDatePickerView setActive:YES];
         if (self.fromDate &&  [self.toDate timeIntervalSinceDate:self.fromDate] <= 0) { // if we selected the from date, and the toDate is earlier than fromDate
             self.flatDatePicker.minimumDate = self.fromDate;
+            [self.flatDatePicker setDate:self.fromDate animated:YES withDelegateCallback:NO];
             [self flatDatePicker:nil dateDidChange:self.fromDate];
         } else {
             [self.flatDatePicker setDate:self.toDate animated:YES withDelegateCallback:NO];

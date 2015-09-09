@@ -444,7 +444,7 @@
 - (void)setMinimumDate:(NSDate*)date {
     _minimumDate = date;
     [self setupControl];
-    [self setDate:date animated:NO withDelegateCallback:NO];
+//    [self setDate:date animated:NO withDelegateCallback:NO];
 }
 
 #pragma mark - Collections

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "ConcertViewDatasource.h"
 #import "SortingObject.h"
 #import "FilterModel.h"
@@ -42,5 +43,9 @@ typedef NS_ENUM(NSUInteger, SelectedTabIndex) {
 - (void)showArrayAtIndex:(SelectedTabIndex)tabIndex;
 
 - (BOOL)shouldLoadNextItemsAtIndex:(NSInteger)index;
+
+- (CGPoint)currentContentOffsetForSelectedIndex:(NSInteger)selectedIndex;
+- (void)saveContentOffset:(CGPoint)contentOffset forSelectedIndex:(NSInteger)selectedIndex;
+- (void)setAllContentOffsetToZero;
 
 @end

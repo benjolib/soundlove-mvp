@@ -7,6 +7,7 @@
 //
 
 #import "AbstractClient.h"
+#import <UIKit/UIKit.h>
 
 @class SortingObject, FilterModel;
 
@@ -18,6 +19,7 @@
 @property (nonatomic, strong) NSNumber *totalNumberOfConcerts;
 @property (nonatomic, copy) NSString *urlToDownloadFrom;
 
+@property (nonatomic) CGPoint tableViewContentOffset;
 @property (nonatomic, copy) NSString *searchText;
 @property (nonatomic, strong) SortingObject *sortingObject;
 @property (nonatomic, strong) FilterModel *filterModel;

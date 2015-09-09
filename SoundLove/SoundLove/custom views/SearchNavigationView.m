@@ -143,8 +143,6 @@
 
 - (IBAction)searchButtonPressed
 {
-//    [[TrackingManager sharedManager] trackOpenSearch];
-
     if (!self.isSearching) {
         self.isSearching = YES;
         self.searchButton.userInteractionEnabled = NO;

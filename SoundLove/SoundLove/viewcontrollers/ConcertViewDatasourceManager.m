@@ -32,6 +32,48 @@
     }
 }
 
+- (CGPoint)currentContentOffsetForSelectedIndex:(NSInteger)selectedIndex
+{
+    switch (selectedIndex) {
+        case SelectedTabIndexFavorites:
+            return self.favoriteConcertDatasource.tableViewContentOffset;
+            break;
+        case SelectedTabIndexRecommended:
+            return self.recommendedConcertDatasource.tableViewContentOffset;
+            break;
+        case SelectedTabIndexAll:
+            return self.allConcertDatasource.tableViewContentOffset;
+            break;
+        default:
+            return CGPointZero;
+            break;
+    }
+}
+
+- (void)saveContentOffset:(CGPoint)contentOffset forSelectedIndex:(NSInteger)selectedIndex
+{
+    switch (selectedIndex) {
+        case SelectedTabIndexFavorites:
+            self.favoriteConcertDatasource.tableViewContentOffset = contentOffset;
+            break;
+        case SelectedTabIndexRecommended:
+            self.recommendedConcertDatasource.tableViewContentOffset = contentOffset;
+            break;
+        case SelectedTabIndexAll:
+            self.allConcertDatasource.tableViewContentOffset = contentOffset;
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)setAllContentOffsetToZero
+{
+    self.favoriteConcertDatasource.tableViewContentOffset = CGPointZero;
+    self.recommendedConcertDatasource.tableViewContentOffset = CGPointZero;
+    self.allConcertDatasource.tableViewContentOffset = CGPointZero;
+}
+
 - (void)redownloadConcertsWithIndex:(NSInteger)selectedIndex filterModel:(FilterModel*)filterModel withCompletionBlock:(void(^)(BOOL completed, NSString *errorMesage))completionBlock
 {
     self.currentFilterModel = filterModel;

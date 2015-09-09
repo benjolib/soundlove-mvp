@@ -105,11 +105,11 @@
             break;
         case UIGestureRecognizerStateEnded:
         {
-            if (self.fadeControllerCenterXConstraint.constant < 30.0) {
+            if (self.fadeControllerCenterXConstraint.constant <= -CGRectGetWidth(self.fadeControlBackgroundView.frame)/2+50.0) {
                 if ([self.delegate respondsToSelector:@selector(artistRecommendViewFadeOutSelected:)]) {
                     [self.delegate artistRecommendViewFadeOutSelected:self.artistModel];
                 }
-            } else if (self.fadeControllerCenterXConstraint.constant >= CGRectGetWidth(self.fadeControlBackgroundView.frame)/2-30.0) {
+            } else if (self.fadeControllerCenterXConstraint.constant >= CGRectGetWidth(self.fadeControlBackgroundView.frame)/2-50.0) {
                 if ([self.delegate respondsToSelector:@selector(artistRecommendViewFadeInSelected:)]) {
                     [self.delegate artistRecommendViewFadeInSelected:self.artistModel];
                 }

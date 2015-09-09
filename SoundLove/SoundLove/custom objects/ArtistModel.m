@@ -41,7 +41,7 @@
 - (NSString*)artistNameForAPI
 {
     NSString *artistName = [self.name stringByReplacingOccurrencesOfString:@"&" withString:@"%26"];
-    return [artistName stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    return [artistName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
 @end

@@ -54,6 +54,9 @@
 
 - (IBAction)tabbuttonSelected:(TabbingButton*)selectedButton
 {
+    // save the current content offset
+    [self.datasourceManager saveContentOffset:self.tableView.contentOffset forSelectedIndex:self.currentlySelectedTabIndex];
+
     [self.tableView hideLoadingIndicator];
     [self.refreshController endRefreshing];
     [self.tableView setContentInset:UIEdgeInsetsMake(0.0, 0.0, 50.0, 0.0)];
@@ -86,6 +89,9 @@
 
 - (IBAction)unwindFromFilterViewApplyingFilter:(UIStoryboardSegue*)unwindSegue
 {
+    [self.datasourceManager setAllContentOffsetToZero];
+    [self.tableView setContentOffset:CGPointZero];
+
     [self.tableView showLoadingIndicator];
 
     FilterViewController *filterViewController = unwindSegue.sourceViewController;
@@ -180,6 +186,9 @@
 
 - (void)searchNavigationViewUserEnteredNewCharacter:(NSString *)searchText
 {
+    [self.datasourceManager setAllContentOffsetToZero];
+    [self.tableView setContentOffset:CGPointZero];
+
     [self cancelAllImageDownloads];
 
     self.isSearching = YES;
@@ -410,6 +419,8 @@
         if (completed) {
             [weakSelf.datasourceManager showArrayAtIndex:weakSelf.currentlySelectedTabIndex];
             [weakSelf handleDownloadedConcerts];
+
+            [weakSelf.tableView setContentOffset:[weakSelf.datasourceManager currentContentOffsetForSelectedIndex:weakSelf.currentlySelectedTabIndex]];
         } else {
             [weakSelf handleDownloadErrorMessage:errorMesage];
         }

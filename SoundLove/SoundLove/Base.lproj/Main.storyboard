@@ -1667,15 +1667,15 @@
                                         <rect key="frame" x="0.0" y="378" width="320" height="40"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" image="emptyKalendar" translatesAutoresizingMaskIntoConstraints="NO" id="Vmu-UE-Qfx">
-                                        <rect key="frame" x="112" y="81" width="96" height="96"/>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="emptyKalendar" translatesAutoresizingMaskIntoConstraints="NO" id="Vmu-UE-Qfx">
+                                        <rect key="frame" x="112" y="55" width="96" height="96"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="3OU-if-1zv"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="w7K-qh-vUP"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="cmz-9o-KKH">
-                                        <rect key="frame" x="30" y="192" width="260" height="86"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="cmz-9o-KKH">
+                                        <rect key="frame" x="30" y="166" width="260" height="86"/>
                                         <string key="text">Deine Freundesliste ist leider leer, da bisher noch keine Freunde zu diesem Konzert hinzugefügt wurden. Lade deine Freunde jetzt ein.</string>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                                         <color key="textColor" red="0.56862745100000001" green="0.87058823529999996" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
