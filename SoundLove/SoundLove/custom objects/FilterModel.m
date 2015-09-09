@@ -86,13 +86,14 @@
 
 - (BOOL)isLocationFilteringSet
 {
-    return CLLocationCoordinate2DIsValid(self.centerCoordinate) || self.selectedCity;
+    return CLLocationCoordinate2DIsValid(self.centerCoordinate) || self.selectedCity.length > 0;
 }
 
 - (void)resetFiterLocation
 {
     self.locationDiameter = 0;
     self.centerCoordinate = CLLocationCoordinate2DMake(5000.0, 5000.0);
+    self.selectedCity = @"";
 }
 
 #pragma mark - string methods
