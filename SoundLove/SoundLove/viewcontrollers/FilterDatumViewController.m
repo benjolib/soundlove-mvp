@@ -35,6 +35,7 @@
     [self.rightDatePickerView setValueText:@""];
 
     [self setTrashIconVisible:NO];
+    [self checkToEnableSearchButton];
 }
 
 - (NSDateFormatter*)dateFormatter
@@ -44,6 +45,21 @@
         _dateFormatter.dateFormat = @"dd.MM.YYY";
     }
     return _dateFormatter;
+}
+
+- (void)setSearchButtonEnabled:(BOOL)enabled
+{
+    self.searchButton.alpha = enabled ? 1.0 : 0.2;
+    self.searchButton.enabled = enabled;
+}
+
+- (void)checkToEnableSearchButton
+{
+    if (self.fromDate && self.toDate) {
+        [self setSearchButtonEnabled:YES];
+    } else {
+        [self setSearchButtonEnabled:NO];
+    }
 }
 
 #pragma mark - date picker
@@ -62,6 +78,7 @@
     }
 
     [self setTrashIconVisible:YES];
+    [self checkToEnableSearchButton];
 }
 
 #pragma mark - view methods
@@ -86,16 +103,33 @@
 
     self.fromDate = self.filterModel.startDate;
     self.toDate = self.filterModel.endDate;
+}
 
-    if (self.fromDate || self.toDate) {
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if (self.fromDate || self.toDate)
+    {
         [self setTrashIconVisible:YES];
-        if (self.fromDate) {
-            [self.flatDatePicker setDate:self.fromDate animated:YES withDelegateCallback:YES];
-        } else {
+        if (self.toDate) {
+            [self.leftDatePickerView setActive:NO];
+            [self.rightDatePickerView setActive:YES];
             [self.flatDatePicker setDate:self.toDate animated:YES withDelegateCallback:YES];
         }
+
+        if (self.fromDate) {
+            [self.leftDatePickerView setActive:YES];
+            [self.rightDatePickerView setActive:NO];
+            [self.flatDatePicker setDate:self.fromDate animated:YES withDelegateCallback:YES];
+        }
+
+        if (self.fromDate && self.toDate) {
+            [self setSearchButtonEnabled:YES];
+        }
     } else {
+        [self.leftDatePickerView setActive:YES];
         [self setTrashIconVisible:NO];
+        [self setSearchButtonEnabled:NO];
     }
 }
 

@@ -1,3 +1,4 @@
+
 //
 //  FilterDatumViewController.h
 //  SoundLove
@@ -8,11 +9,13 @@
 
 #import "BaseGradientViewController.h"
 #import "FilterViewController.h"
+#import "FilterButton.h"
 
 @class PriceContainerView, CustomNavigationView;
 
 @interface FilterDatumViewController : FilterViewController
 
+@property (nonatomic, weak) IBOutlet FilterButton *searchButton;
 @property (nonatomic, weak) IBOutlet PriceContainerView *leftDatePickerView;
 @property (nonatomic, weak) IBOutlet PriceContainerView *rightDatePickerView;
 @property (nonatomic, strong) NSDate *fromDate;

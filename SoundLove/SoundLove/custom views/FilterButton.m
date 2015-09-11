@@ -33,13 +33,13 @@
 
 - (void)setHighlighted:(BOOL)highlighted
 {
-    if (highlighted) {
-        self.imageView.alpha = 0.5;
-        self.titleLabel.alpha = 0.5;
-    } else {
-        self.imageView.alpha = 1.0;
-        self.titleLabel.alpha = 1.0;
-    }
+//    if (highlighted) {
+//        self.imageView.alpha = 0.5;
+//        self.titleLabel.alpha = 0.5;
+//    } else {
+//        self.imageView.alpha = 1.0;
+//        self.titleLabel.alpha = 1.0;
+//    }
 }
 
 @end

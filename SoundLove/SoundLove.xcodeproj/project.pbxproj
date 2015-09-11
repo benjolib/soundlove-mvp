@@ -152,7 +152,7 @@
 		56FD78A61B80DD7C00B3CBB1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56FD789E1B80DD7C00B3CBB1 /* QuartzCore.framework */; };
 		56FD78A71B80DD7C00B3CBB1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56FD789F1B80DD7C00B3CBB1 /* Security.framework */; };
 		56FD78A81B80DD7C00B3CBB1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56FD78A01B80DD7C00B3CBB1 /* SystemConfiguration.framework */; };
-		61A0248F406F2335A3B42AE3 /* libPods-SoundLove.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A10AF2D692AB66339EC45B51 /* libPods-SoundLove.a */; };
+		B389449A100B28D570964D60 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B069AFE2E637084FE95467EB /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -432,8 +432,8 @@
 		56FD78A01B80DD7C00B3CBB1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A10AF2D692AB66339EC45B51 /* libPods-SoundLove.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SoundLove.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B069AFE2E637084FE95467EB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		CA11CC7A959ABC534999FED9 /* Pods-SoundLove.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundLove.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SoundLove/Pods-SoundLove.debug.xcconfig"; sourceTree = "<group>"; };
-		E40602D49D84F4B627140536 /* Pods-SoundLove.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundLove.release.xcconfig"; path = "Pods/Target Support Files/Pods-SoundLove/Pods-SoundLove.release.xcconfig"; sourceTree = "<group>"; };
+		CA11CC7A959ABC534999FED9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		E40602D49D84F4B627140536 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -456,7 +456,7 @@
 				567D7B681B70B7890015EBB3 /* MapKit.framework in Frameworks */,
 				56A65C6C1B68AA0300619189 /* AVFoundation.framework in Frameworks */,
 				56740A0E1B60EE4200638FEF /* CoreData.framework in Frameworks */,
-				61A0248F406F2335A3B42AE3 /* libPods-SoundLove.a in Frameworks */,
+				B389449A100B28D570964D60 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,8 +473,8 @@
 		3464B3E4EB7F3A2738EE2F00 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				CA11CC7A959ABC534999FED9 /* Pods-SoundLove.debug.xcconfig */,
-				E40602D49D84F4B627140536 /* Pods-SoundLove.release.xcconfig */,
+				CA11CC7A959ABC534999FED9 /* Pods.debug.xcconfig */,
+				E40602D49D84F4B627140536 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -977,6 +977,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 569513A41B5D1F43008A649B /* Build configuration list for PBXNativeTarget "SoundLove" */;
 			buildPhases = (
+				C2B0B01322B4DC44691BAEEB /* Check Pods Manifest.lock */,
 				5695137D1B5D1F42008A649B /* Sources */,
 				5695137E1B5D1F42008A649B /* Frameworks */,
 				5695137F1B5D1F42008A649B /* Resources */,
@@ -1108,7 +1109,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SoundLove/Pods-SoundLove-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C2B0B01322B4DC44691BAEEB /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1349,7 +1365,7 @@
 		};
 		569513A51B5D1F43008A649B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CA11CC7A959ABC534999FED9 /* Pods-SoundLove.debug.xcconfig */;
+			baseConfigurationReference = CA11CC7A959ABC534999FED9 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1357,7 +1373,6 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/sax155/Documents/FacebookSDK,
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/SoundLove",
 				);
@@ -1372,7 +1387,7 @@
 		};
 		569513A61B5D1F43008A649B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E40602D49D84F4B627140536 /* Pods-SoundLove.release.xcconfig */;
+			baseConfigurationReference = E40602D49D84F4B627140536 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1380,7 +1395,6 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/sax155/Documents/FacebookSDK,
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/SoundLove",
 				);

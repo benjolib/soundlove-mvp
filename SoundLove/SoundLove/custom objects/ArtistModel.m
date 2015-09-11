@@ -40,8 +40,12 @@
 
 - (NSString*)artistNameForAPI
 {
-    NSString *artistName = [self.name stringByReplacingOccurrencesOfString:@"&" withString:@"%26"];
-    return [artistName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)self.name, NULL,
+                                                                                                    (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8));
+    return encodedString;
+
+//    NSString *artistName = [self.name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//    return [artistName stringByReplacingOccurrencesOfString:@"&" withString:@"%26"];
 }
 
 @end

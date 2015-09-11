@@ -107,7 +107,7 @@
     switch (indexPath.row)
     {
         case 0: {
-            cell.nameLabel.text = @"Musik Genre";
+            cell.nameLabel.text = @"Genre";
             enableTrashIcon = self.filterModel.selectedGenresArray.count > 0;
             NSString *genresString = [self.filterModel genresString];
             cell.bandDetailLabel.text = genresString;
@@ -115,7 +115,7 @@
             break;
         }
         case 1: {
-            cell.nameLabel.text = @"Nach Künstlern";
+            cell.nameLabel.text = @"Künstler";
             enableTrashIcon = self.filterModel.selectedBandsArray.count > 0;
             NSString *bandString = [self.filterModel bandsString];
             cell.bandDetailLabel.text = bandString;

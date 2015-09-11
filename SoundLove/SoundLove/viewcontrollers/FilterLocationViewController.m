@@ -116,6 +116,8 @@
     } else if (placeMark.locality) {
         cell.textLabel.text = placeMark.locality;
     }
+    cell.textLabel.textColor = [UIColor globalGreenColorWithAlpha:0.8];
+    cell.backgroundColor = [UIColor clearColor];
 
     return cell;
 }
