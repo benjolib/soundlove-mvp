@@ -126,4 +126,26 @@
     }
 }
 
+- (void)setMarkerToDefaultPoint
+{
+    self.fadeControllerCenterXConstraint.constant = 0.0;
+    [self setNeedsLayout];
+}
+
+- (CGPoint)setMarkerToLeftPoint
+{
+    self.fadeControllerCenterXConstraint.constant = -100.0;
+    [self setNeedsLayout];
+
+    return CGPointMake(CGRectGetMinX(self.fadeController.frame)+self.fadeControllerCenterXConstraint.constant, self.fadeController.frame.origin.y);
+}
+
+- (CGPoint)setMarkerToRightPoint
+{
+    self.fadeControllerCenterXConstraint.constant = +100.0;
+    [self setNeedsLayout];
+
+    return CGPointMake(CGRectGetWidth(self.frame)/2+self.fadeControllerCenterXConstraint.constant, self.fadeController.frame.origin.y);
+}
+
 @end

@@ -28,12 +28,12 @@
 
 + (OverlayViewController*)overlayViewController
 {
-    return [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"OverlayViewController"];
+    return (OverlayViewController*)[[self mainStoryboard] instantiateViewControllerWithIdentifier:@"OverlayViewController"];
 }
 
 + (MenuViewController*)menuViewController
 {
-    return [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"MenuViewController"];
+    return (MenuViewController*)[[self mainStoryboard] instantiateViewControllerWithIdentifier:@"MenuViewController"];
 }
 
 + (UINavigationController*)infoNavigationController
@@ -43,49 +43,49 @@
 
 + (ConcertsViewController*)concertsViewController
 {
-    return [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"ConcertsViewController"];
+    return (ConcertsViewController*)[[self mainStoryboard] instantiateViewControllerWithIdentifier:@"ConcertsViewController"];
 }
 
 + (FavoriteConcertViewController*)favoriteConcertViewController
 {
-    return [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"FavoriteConcertViewController"];
+    return (FavoriteConcertViewController*)[[self mainStoryboard] instantiateViewControllerWithIdentifier:@"FavoriteConcertViewController"];
 }
 
 + (CalendarViewController*)calendarViewController
 {
-    return [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"CalendarViewController"];
+    return (CalendarViewController*)[[self mainStoryboard] instantiateViewControllerWithIdentifier:@"CalendarViewController"];
 }
 
 + (KunstlerViewController*)bandsViewController
 {
-    return [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"BandsViewController"];
+    return (KunstlerViewController*)[[self mainStoryboard] instantiateViewControllerWithIdentifier:@"BandsViewController"];
 }
 
 #pragma mark - filter views
 + (FilterNavigationController*)filterNavigationController
 {
-    return [[self filterStoryboard] instantiateViewControllerWithIdentifier:@"FilterNavigationController"];
+    return (FilterNavigationController*)[[self filterStoryboard] instantiateViewControllerWithIdentifier:@"FilterNavigationController"];
 }
 
 + (SortingViewController*)sortingViewController
 {
-    return [[self filterStoryboard] instantiateViewControllerWithIdentifier:@"SortingViewController"];
+    return (SortingViewController*)[[self filterStoryboard] instantiateViewControllerWithIdentifier:@"SortingViewController"];
 }
 
 #pragma mark - concert detail views
 + (ConcertDetailLocationViewController*)concertDetailLocationViewController
 {
-    return [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"ConcertDetailLocationViewController"];
+    return (ConcertDetailLocationViewController*)[[self mainStoryboard] instantiateViewControllerWithIdentifier:@"ConcertDetailLocationViewController"];
 }
 
 + (ConcertFriendsViewController*)concertDetailFriendsViewController
 {
-    return [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"ConcertFriendsViewController"];
+    return (ConcertFriendsViewController*)[[self mainStoryboard] instantiateViewControllerWithIdentifier:@"ConcertFriendsViewController"];
 }
 
 + (ConcertDetailInfoViewController*)concertDetailInfoViewController
 {
-    return [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"ConcertDetailInfoViewController"];
+    return (ConcertDetailInfoViewController*)[[self mainStoryboard] instantiateViewControllerWithIdentifier:@"ConcertDetailInfoViewController"];
 }
 
 @end

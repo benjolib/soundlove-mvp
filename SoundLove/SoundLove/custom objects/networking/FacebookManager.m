@@ -62,24 +62,26 @@
     else
     {
         __weak typeof(self) weakSelf = self;
-        [self.loginManager logInWithReadPermissions:@[@"email", @"user_friends", @"user_likes", @"read_custom_friendlists", @"public_profile"] handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
-            if (error) {
-                // Process error
-                if (completionBlock) {
-                    completionBlock(NO, error.localizedDescription);
-                }
-            } else if (result.isCancelled) {
-                // Handle cancellations
-                if (completionBlock) {
-                    completionBlock(NO, nil);
-                }
-            } else {
-                NSString *userID = result.token.userID;
-                NSString *accessToken = result.token.tokenString;
-
-                [FBSDKAccessToken setCurrentAccessToken:result.token];
-                [weakSelf sendFacebookLoginDataToServer:accessToken userID:userID completionBlock:completionBlock];
-            }
+        [self.loginManager logInWithReadPermissions:@[@"email", @"user_friends", @"user_likes", @"read_custom_friendlists", @"public_profile"]
+                                 fromViewController:nil
+                                            handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+                                                if (error) {
+                                                    // Process error
+                                                    if (completionBlock) {
+                                                        completionBlock(NO, error.localizedDescription);
+                                                    }
+                                                } else if (result.isCancelled) {
+                                                    // Handle cancellations
+                                                    if (completionBlock) {
+                                                        completionBlock(NO, nil);
+                                                    }
+                                                } else {
+                                                    NSString *userID = result.token.userID;
+                                                    NSString *accessToken = result.token.tokenString;
+                                                    
+                                                    [FBSDKAccessToken setCurrentAccessToken:result.token];
+                                                    [weakSelf sendFacebookLoginDataToServer:accessToken userID:userID completionBlock:completionBlock];
+                                                }
         }];
     }
 }

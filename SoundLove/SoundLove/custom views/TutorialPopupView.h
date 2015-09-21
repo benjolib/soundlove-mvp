@@ -10,6 +10,12 @@
 
 static NSString * const kNotificationTutorialDismissed = @"kTutorialDismissed";
 
+typedef NS_ENUM(NSUInteger, PointerPosition) {
+    PointerPositionRight,
+    PointerPositionLeft,
+    PointerPositionCenter,
+};
+
 @interface TutorialPopupView : UIView
 
 @property (nonatomic, weak) IBOutlet UIButton *actionButton;
@@ -17,5 +23,7 @@ static NSString * const kNotificationTutorialDismissed = @"kTutorialDismissed";
 @property (nonatomic, weak) IBOutlet UIView *separatorView;
 
 - (void)showWithText:(NSString*)text atPoint:(CGPoint)point highLightArea:(CGRect)highlightedArea;
+
+- (void)showWithText:(NSString*)text atPoint:(CGPoint)point highLightArea:(CGRect)highlightedArea position:(PointerPosition)position;
 
 @end

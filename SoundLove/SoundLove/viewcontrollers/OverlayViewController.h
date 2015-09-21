@@ -18,7 +18,8 @@ typedef NS_ENUM(NSUInteger, OverlayType) {
     OverlayTypeTicket24,
     OverlayTypeLocation,
     OverlayTypeFacebook,
-    OverlayTypeAppStore
+    OverlayTypeAppStore,
+    OverlayTypeOnboardingFinished
 };
 
 @protocol OverlayViewControllerDelegate <NSObject>

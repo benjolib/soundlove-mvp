@@ -16,6 +16,8 @@
 #import "ArtistRecommendView.h"
 #import "ArtistRatingClient.h"
 #import "ConcertRefreshControl.h"
+#import "TutorialPopupView.h"
+#import "GeneralSettings.h"
 
 @interface KunstlerViewController () <ArtistRecommendViewDelegate>
 @property (nonatomic, strong) NSMutableArray *favoriteArtistsArray;
@@ -252,6 +254,12 @@
     [self.collectionView showLoadingIndicator];
     [self refreshView];
     [self downloadRecommendedArtists];
+
+
+
+
+
+    [self customiseViewForFirstTime];
 }
 
 - (void)refreshView
@@ -301,6 +309,69 @@
             }
         }
     }];
+}
+
+#pragma mark - first time view
+- (void)customiseViewForFirstTime
+{
+    [self recommendButtonPressed:nil];
+
+    [self.favoriteButton setButtonActive:NO];
+    [self.recommendedButton setButtonActive:YES];
+
+    [self showFirstTimeGuideViewAtMiddle];
+//    [self showFirstTimeGuideViewAtLeft];
+//    [self showFirstTimeGuideViewAtRight];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(tutorialPopupDismissed:)
+                                                 name:kNotificationTutorialDismissed object:nil];
+}
+
+- (void)tutorialPopupDismissed:(NSNotification*)notification
+{
+    [self.recommendedView setMarkerToDefaultPoint];
+
+
+}
+
+- (void)showFirstTimeGuideViewAtMiddle
+{
+    CGPoint markerPoint = CGPointMake(self.recommendedView.fadeController.center.x, self.recommendedView.fadeController.center.y - 20.0);
+
+    TutorialPopupView *tutorialView = [[TutorialPopupView alloc] init];
+    [tutorialView showWithText:@"Wähle 5 Künstler die du gerne hörst, damit du loslegen kannst."
+                       atPoint:markerPoint
+                 highLightArea:CGRectNull
+                      position:PointerPositionCenter];
+
+    [GeneralSettings setFirstTimeMarkerMiddleShown];
+}
+
+- (void)showFirstTimeGuideViewAtRight
+{
+    CGPoint markerPoint = [self.recommendedView setMarkerToRightPoint];
+
+    TutorialPopupView *tutorialView = [[TutorialPopupView alloc] init];
+    [tutorialView showWithText:@"Bewege den Regler nach rechts, wenn Dir ein Künstler gefällt."
+                       atPoint:markerPoint
+                 highLightArea:CGRectNull
+                      position:PointerPositionRight];
+
+    [GeneralSettings setFirstTimeMarkerRightShown];
+}
+
+- (void)showFirstTimeGuideViewAtLeft
+{
+    CGPoint markerPoint = [self.recommendedView setMarkerToLeftPoint];
+
+    TutorialPopupView *tutorialView = [[TutorialPopupView alloc] init];
+    [tutorialView showWithText:@"Bewege den Regler nach links, wenn Dir der Künstler nicht gefällt."
+                       atPoint:markerPoint
+                 highLightArea:CGRectNull
+                      position:PointerPositionLeft];
+
+    [GeneralSettings setFirstTimeMarkerLeftShown];
 }
 
 @end

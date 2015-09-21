@@ -54,12 +54,11 @@
     {
         BaseGradientViewController *controller = (BaseGradientViewController*)[segue destinationViewController];
         self.mainViewController = controller;
-        self.searchView.delegate = self.mainViewController;
-        self.currentMenuItem = MenuItemConcerts;
-        [self setParentTitle:@"Konzerte"];
+        self.currentMenuItem = MenuItemBands;
+        [self setParentTitle:@"Künstler"];
+        self.searchView.searchButton.hidden = YES;
     }
-    else
-    if ([segue.identifier isEqualToString:@"presentMenuView"])
+    else if ([segue.identifier isEqualToString:@"presentMenuView"])
     {
         MenuViewController *menuVC = (MenuViewController*)segue.destinationViewController;
         if (!self.overlayTransitionManager) {

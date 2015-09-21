@@ -10,12 +10,6 @@
 #import "UIColor+GlobalColors.h"
 #import "AppDelegate.h"
 
-typedef NS_ENUM(NSUInteger, PointerPosition) {
-    PointerPositionRight,
-    PointerPositionLeft,
-    PointerPositionCenter,
-};
-
 @interface TutorialPopupView ()
 @property (nonatomic, strong) UIView *dimmView;
 @end
@@ -72,7 +66,7 @@ typedef NS_ENUM(NSUInteger, PointerPosition) {
     }];
 }
 
-- (void)showWithText:(NSString*)text atPoint:(CGPoint)point highLightArea:(CGRect)highlightedArea
+- (void)showWithText:(NSString*)text atPoint:(CGPoint)point highLightArea:(CGRect)highlightedArea position:(PointerPosition)position
 {
     self.textLabel.text = text;
     UIWindow *window = ((AppDelegate*)[UIApplication sharedApplication].delegate).window;
@@ -90,10 +84,15 @@ typedef NS_ENUM(NSUInteger, PointerPosition) {
     viewFrame.origin.y = point.y;
     self.frame = viewFrame;
 
-    [self drawArrowLayerToPoint:point];
+    [self drawArrowLayerToPoint:point position:position];
 
     [window addSubview:[self dimmViewOnWindow:window withHighlightedArea:highlightedArea]];
     [window insertSubview:self aboveSubview:self.dimmView];
+}
+
+- (void)showWithText:(NSString*)text atPoint:(CGPoint)point highLightArea:(CGRect)highlightedArea
+{
+    [self showWithText:text atPoint:point highLightArea:highlightedArea];
 }
 
 - (UIView*)dimmViewOnWindow:(UIWindow*)window withHighlightedArea:(CGRect)highlightedArea
@@ -101,41 +100,57 @@ typedef NS_ENUM(NSUInteger, PointerPosition) {
     CGRect windowFrame = window.frame;
     CGRect dimmViewFrame = CGRectZero;
 
-    if (highlightedArea.origin.x == 0 && highlightedArea.origin.y == 0) {
-        dimmViewFrame = CGRectMake(CGRectGetMinX(highlightedArea), CGRectGetMaxY(highlightedArea), CGRectGetWidth(windowFrame), CGRectGetHeight(windowFrame) - CGRectGetMaxY(highlightedArea));
+    if (!CGRectIsNull(highlightedArea))
+    {
+        if (highlightedArea.origin.x == 0 && highlightedArea.origin.y == 0) {
+            dimmViewFrame = CGRectMake(CGRectGetMinX(highlightedArea), CGRectGetMaxY(highlightedArea), CGRectGetWidth(windowFrame), CGRectGetHeight(windowFrame) - CGRectGetMaxY(highlightedArea));
+        } else {
+            dimmViewFrame = CGRectMake(0.0, 0.0, CGRectGetWidth(windowFrame), CGRectGetHeight(windowFrame) - CGRectGetHeight(highlightedArea));
+        }
     } else {
-        dimmViewFrame = CGRectMake(0.0, 0.0, CGRectGetWidth(windowFrame), CGRectGetHeight(windowFrame) - CGRectGetHeight(highlightedArea));
+        dimmViewFrame = windowFrame;
     }
 
     UIView *view = [[UIView alloc] initWithFrame:dimmViewFrame];
-    view.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.4];
+    view.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.1];
 
     self.dimmView = view;
     return self.dimmView;
 }
 
 #pragma mark - private methods
-- (void)drawArrowLayerToPoint:(CGPoint)point
+- (void)drawArrowLayerToPoint:(CGPoint)point position:(PointerPosition)position
 {
     UIView *pointerView = [[UIView alloc] initWithFrame:CGRectMake(0.0, CGRectGetHeight(self.frame), CGRectGetWidth(self.frame), 1.0)];
     pointerView.backgroundColor = [UIColor clearColor];
 
-    PointerPosition position = PointerPositionCenter;
-    UIWindow *window = ((AppDelegate*)[UIApplication sharedApplication].delegate).window;
+    CGFloat pointX = point.x;
 
-    if (point.x > CGRectGetWidth(window.frame)/2) {
-        position = PointerPositionRight;
-        pointerView.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.frame), 1.0);
-    } else {
-        position = PointerPositionCenter;
-        pointerView.frame = CGRectMake(0.0, CGRectGetHeight(self.frame), CGRectGetWidth(self.frame), 1.0);
-    }
+//    if (position == PointerPositionCenter) {
+        pointerView.frame = CGRectMake(pointX, CGRectGetHeight(self.frame), 30.0, 30.0);
+//    } else if (position == PointerPositionLeft) {
+//        pointerView.frame = CGRectMake(pointX, CGRectGetHeight(self.frame), 30.0, 30.0);
+//    } else {
+//        pointerView.frame = CGRectMake(pointX, CGRectGetHeight(self.frame), 30.0, 30.0);
+//    }
+
+//    PointerPosition position;
+//    if (pointX <= self.frame.size.width/2) {
+//        position = PointerPositionLeft;
+//        pointerView.frame = CGRectMake(pointX, CGRectGetHeight(self.frame), 30.0, 30.0);
+//    } else if (pointX >= self.frame.size.width/2) {
+//        position = PointerPositionRight;
+//        pointerView.frame = CGRectMake(pointX, CGRectGetHeight(self.frame), 30.0, 30.0);
+//    } else {
+//        position = PointerPositionCenter;
+//        pointerView.frame = CGRectMake(0.0, CGRectGetHeight(self.frame), 30.0, 30.0);
+//    }
 
     CAShapeLayer *arrowLayer = [CAShapeLayer layer];
     arrowLayer.path = [self arrowPathForView:pointerView pointToPosition:position].CGPath;
     arrowLayer.fillColor = [UIColor globalGreenColor].CGColor;
-
     [pointerView.layer addSublayer:arrowLayer];
+
     [self addSubview:pointerView];
 }
 
@@ -144,15 +159,19 @@ typedef NS_ENUM(NSUInteger, PointerPosition) {
     UIBezierPath *bezierPath = [UIBezierPath bezierPath];
 
     if (position == PointerPositionRight) {
-        [bezierPath moveToPoint:CGPointMake(CGRectGetWidth(view.frame) - 10.0, 0.0)];
-        [bezierPath addLineToPoint:CGPointMake(CGRectGetWidth(view.frame) + 10.0, -12.0)];
-        [bezierPath addLineToPoint:CGPointMake(CGRectGetWidth(view.frame) + 10.0, 0.0)];
+        [bezierPath moveToPoint:CGPointMake(0.0, 0.0)];
+        [bezierPath addLineToPoint:CGPointMake(10.0, 16.0)];
+        [bezierPath addLineToPoint:CGPointMake(0.0 + 20.0, 0.0)];
     } else if (position == PointerPositionCenter) {
-        CGFloat middlePoint = CGRectGetMidX(view.frame);
-        [bezierPath moveToPoint:CGPointMake(middlePoint - 15.0, 0.0)];
-        [bezierPath addLineToPoint:CGPointMake(middlePoint, 0.0 + 16.0)];
-        [bezierPath addLineToPoint:CGPointMake(middlePoint + 15.0, 0.0)];
+        [bezierPath moveToPoint:CGPointMake(0.0, 0.0)];
+        [bezierPath addLineToPoint:CGPointMake(10.0, 16.0)];
+        [bezierPath addLineToPoint:CGPointMake(0.0 + 20.0, 0.0)];
+    } else {
+        [bezierPath moveToPoint:CGPointMake(CGRectGetMinX(view.frame) - 10.0, 0.0)];
+        [bezierPath addLineToPoint:CGPointMake(CGRectGetMinX(view.frame), 16.0)];
+        [bezierPath addLineToPoint:CGPointMake(CGRectGetMinX(view.frame) + 10.0, 0.0)];
     }
+
     [bezierPath closePath];
     return bezierPath;
 }

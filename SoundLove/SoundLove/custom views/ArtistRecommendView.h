@@ -40,4 +40,9 @@
 
 - (void)setEmptyViewVisible:(BOOL)visible;
 
+- (void)setMarkerToDefaultPoint;
+- (CGPoint)setMarkerToLeftPoint;
+- (CGPoint)setMarkerToRightPoint;
+
+
 @end

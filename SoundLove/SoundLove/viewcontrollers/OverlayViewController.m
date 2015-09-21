@@ -103,6 +103,13 @@
             self.iconImageView.image = [UIImage imageNamed:@"starIcon"];
             [self.confirmButton setTitle:@"Klar, warum nicht" forState:UIControlStateNormal];
             [self.cancelButton setTitle:@"Vielleicht später" forState:UIControlStateNormal];
+            break;
+        case OverlayTypeOnboardingFinished:
+            self.titleLabel.text = @"Super!";
+            self.detailLabel.text = @"Jetzt haben wir alles, was wir brauchen. Du kannst nun loslegen!";
+            self.iconImageView.image = [UIImage imageNamed:@""];
+            [self.confirmButton setTitle:@"Jetzt starten" forState:UIControlStateNormal];
+            break;
         default:
             break;
     }

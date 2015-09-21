@@ -27,4 +27,17 @@
 + (void)saveAppStartDate;
 + (NSTimeInterval)passedIntervalSinceAppStart;
 
+
++ (void)increaseNumberOfSelectedKunstler;
++ (NSInteger)numberOfSelectedKunstler;
+
++ (void)setFirstTimeMarkerMiddleShown;
++ (BOOL)firstTimeMarkerMiddleShown;
+
++ (void)setFirstTimeMarkerLeftShown;
++ (BOOL)firstTimeMarkerLeftShown;
+
++ (void)setFirstTimeMarkerRightShown;
++ (BOOL)firstTimeMarkerRightShown;
+
 @end
