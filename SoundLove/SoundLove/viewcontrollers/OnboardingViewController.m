@@ -107,16 +107,6 @@
     }
 }
 
-- (UIUserNotificationSettings*)userNotificationSettings
-{
-    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
-                                                    UIUserNotificationTypeBadge |
-                                                    UIUserNotificationTypeSound);
-    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
-                                                                             categories:nil];
-    return settings;
-}
-
 - (void)askUserForPushNotifications
 {
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;

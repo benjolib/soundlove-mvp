@@ -121,6 +121,11 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"userRegisteredForNotifications" object:nil];
 }
 
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"userRegisteredForNotifications" object:nil];
+}
+
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
     [PFPush handlePush:userInfo];

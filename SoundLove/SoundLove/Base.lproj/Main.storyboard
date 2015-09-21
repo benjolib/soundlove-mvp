@@ -1069,7 +1069,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="78O-Uj-qyc" userLabel="detailLabel">
-                                <rect key="frame" x="30" y="223" width="260" height="195"/>
+                                <rect key="frame" x="30" y="223" width="260" height="194.5"/>
                                 <string key="text">Ihre Anmeldung über Facebook ermöglicht uns, Ihnen persönliche Empfehlungen zu geben. Selbstverständlich werden keine Inhalte in Ihrem Namen gepostet werden, denn Ihre Privatsphäre ist uns sehr wichtig.</string>
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="18"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1081,7 +1081,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="GDg-Q7-8Yh"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="16"/>
                                 <state key="normal" title="Erlauben">
                                     <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1102,7 +1102,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="FZc-v9-ywh"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="16"/>
                                 <state key="normal" title="Vielleicht später">
                                     <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1457,7 +1457,7 @@
                         <viewControllerLayoutGuide type="bottom" id="DKR-dV-1ay"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="g8S-bg-b69">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="428"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2g3-bc-CdD" userLabel="navigation bar" customClass="CustomNavigationView">
@@ -1501,7 +1501,7 @@
                                 </connections>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="76" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gAX-iQ-bSz">
-                                <rect key="frame" x="0.0" y="50" width="320" height="283"/>
+                                <rect key="frame" x="0.0" y="50" width="320" height="373"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="70" id="Jza-O5-g5J" customClass="TicketShopTableViewCell">
@@ -1541,7 +1541,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="osO-Y8-IZY" customClass="RoundedButton">
-                                <rect key="frame" x="30" y="348" width="260" height="65"/>
+                                <rect key="frame" x="30" y="438" width="260" height="65"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="65" id="NjR-TF-NfD"/>
                                 </constraints>
@@ -2057,7 +2057,7 @@ noch 40 Tage</string>
                                     <outlet property="delegate" destination="gZM-7P-Npn" id="xJG-hX-Din"/>
                                 </connections>
                             </mapView>
-                            <view alpha="0.39999999999999963" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QYv-yE-YjV">
+                            <view alpha="0.19999999999999968" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QYv-yE-YjV">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="190"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -2261,6 +2261,6 @@ noch 40 Tage</string>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="cP4-gr-8Ir"/>
-        <segue reference="Wrr-Lt-We3"/>
+        <segue reference="5gW-z8-KbW"/>
     </inferredMetricsTieBreakers>
 </document>
